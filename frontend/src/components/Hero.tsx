@@ -26,7 +26,7 @@ const Hero = () => {
             asChild
             variant="outline"
             size="lg"
-            className="text-lg px-8 py-6 rounded-2xl border-2 hover:bg-primary/10 transition-all duration-300 bg-transparent"
+            className="text-lg px-8 py-6 rounded-2xl border-2 hover:bg-primary/20 transition-all duration-300 bg-white/50"
           >
             <Link href="/auth/login">Fazer Login</Link>
           </Button>
