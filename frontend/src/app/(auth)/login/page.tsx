@@ -101,7 +101,7 @@ export default function LoginPage() {
               </div>
 
               <div className="flex items-center justify-between text-sm">
-                <Link href="/auth/forgot-password" className="text-primary hover:text-primary/80 transition-colors">
+                <Link href="/forgot-password" className="text-primary hover:text-primary/80 transition-colors">
                   Esqueceu a senha?
                 </Link>
               </div>
@@ -152,7 +152,7 @@ export default function LoginPage() {
 
             <div className="text-center text-sm">
               <span className="text-muted-foreground">Não tem uma conta? </span>
-              <Link href="/auth/signup" className="text-primary hover:text-primary/80 font-medium transition-colors">
+              <Link href="/signup" className="text-primary hover:text-primary/80 font-medium transition-colors">
                 Criar conta
               </Link>
             </div>

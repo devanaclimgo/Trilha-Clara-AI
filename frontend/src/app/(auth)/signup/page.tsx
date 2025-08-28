@@ -1,25 +1,31 @@
-"use client"
+'use client'
 
-import type React from "react"
+import type React from 'react'
 
-import { useState } from "react"
-import Link from "next/link"
-import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
-import { Separator } from "@/components/ui/separator"
-import { Checkbox } from "@/components/ui/checkbox"
-import { Eye, EyeOff, Mail, Lock, User, ArrowLeft } from "lucide-react"
+import { useState } from 'react'
+import Link from 'next/link'
+import { Button } from '@/components/ui/button'
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from '@/components/ui/card'
+import { Input } from '@/components/ui/input'
+import { Label } from '@/components/ui/label'
+import { Separator } from '@/components/ui/separator'
+import { Checkbox } from '@/components/ui/checkbox'
+import { Eye, EyeOff, Mail, Lock, User, ArrowLeft } from 'lucide-react'
 
 export default function SignupPage() {
   const [showPassword, setShowPassword] = useState(false)
   const [showConfirmPassword, setShowConfirmPassword] = useState(false)
   const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    password: "",
-    confirmPassword: "",
+    name: '',
+    email: '',
+    password: '',
+    confirmPassword: '',
     acceptTerms: false,
   })
   const [isLoading, setIsLoading] = useState(false)
@@ -27,11 +33,11 @@ export default function SignupPage() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     if (formData.password !== formData.confirmPassword) {
-      alert("As senhas não coincidem")
+      alert('As senhas não coincidem')
       return
     }
     if (!formData.acceptTerms) {
-      alert("Você deve aceitar os termos de uso")
+      alert('Você deve aceitar os termos de uso')
       return
     }
     setIsLoading(true)
@@ -41,7 +47,7 @@ export default function SignupPage() {
 
   const handleGoogleSignup = () => {
     // TODO: Implement Google OAuth
-    console.log("Google signup")
+    console.log('Google signup')
   }
 
   const updateFormData = (field: string, value: string | boolean) => {
@@ -52,7 +58,11 @@ export default function SignupPage() {
     <div className="min-h-screen bg-gradient-to-br from-primary/20 via-secondary/20 to-accent/20 flex items-center justify-center p-4">
       <div className="w-full max-w-md">
         {/* Back to home */}
-        <Button asChild variant="ghost" className="mb-6 hover:bg-primary/10 rounded-xl">
+        <Button
+          asChild
+          variant="ghost"
+          className="mb-6 hover:bg-primary/10 rounded-xl"
+        >
           <Link href="/" className="flex items-center gap-2">
             <ArrowLeft className="w-4 h-4" />
             Voltar ao início
@@ -85,7 +95,7 @@ export default function SignupPage() {
                     type="text"
                     placeholder="Seu nome completo"
                     value={formData.name}
-                    onChange={(e) => updateFormData("name", e.target.value)}
+                    onChange={(e) => updateFormData('name', e.target.value)}
                     className="pl-10 rounded-xl border-2 focus:border-primary/50 transition-colors"
                     required
                   />
@@ -103,7 +113,7 @@ export default function SignupPage() {
                     type="email"
                     placeholder="seu@email.com"
                     value={formData.email}
-                    onChange={(e) => updateFormData("email", e.target.value)}
+                    onChange={(e) => updateFormData('email', e.target.value)}
                     className="pl-10 rounded-xl border-2 focus:border-primary/50 transition-colors"
                     required
                   />
@@ -118,10 +128,10 @@ export default function SignupPage() {
                   <Lock className="absolute left-3 top-3 w-4 h-4 text-muted-foreground" />
                   <Input
                     id="password"
-                    type={showPassword ? "text" : "password"}
+                    type={showPassword ? 'text' : 'password'}
                     placeholder="Mínimo 8 caracteres"
                     value={formData.password}
-                    onChange={(e) => updateFormData("password", e.target.value)}
+                    onChange={(e) => updateFormData('password', e.target.value)}
                     className="pl-10 pr-10 rounded-xl border-2 focus:border-primary/50 transition-colors"
                     required
                     minLength={8}
@@ -133,23 +143,32 @@ export default function SignupPage() {
                     className="absolute right-1 top-1 h-8 w-8 rounded-lg hover:bg-primary/10"
                     onClick={() => setShowPassword(!showPassword)}
                   >
-                    {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
+                    {showPassword ? (
+                      <EyeOff className="w-4 h-4" />
+                    ) : (
+                      <Eye className="w-4 h-4" />
+                    )}
                   </Button>
                 </div>
               </div>
 
               <div className="space-y-2">
-                <Label htmlFor="confirmPassword" className="text-sm font-medium">
+                <Label
+                  htmlFor="confirmPassword"
+                  className="text-sm font-medium"
+                >
                   Confirmar senha
                 </Label>
                 <div className="relative">
                   <Lock className="absolute left-3 top-3 w-4 h-4 text-muted-foreground" />
                   <Input
                     id="confirmPassword"
-                    type={showConfirmPassword ? "text" : "password"}
+                    type={showConfirmPassword ? 'text' : 'password'}
                     placeholder="Confirme sua senha"
                     value={formData.confirmPassword}
-                    onChange={(e) => updateFormData("confirmPassword", e.target.value)}
+                    onChange={(e) =>
+                      updateFormData('confirmPassword', e.target.value)
+                    }
                     className="pl-10 pr-10 rounded-xl border-2 focus:border-primary/50 transition-colors"
                     required
                   />
@@ -160,7 +179,11 @@ export default function SignupPage() {
                     className="absolute right-1 top-1 h-8 w-8 rounded-lg hover:bg-primary/10"
                     onClick={() => setShowConfirmPassword(!showConfirmPassword)}
                   >
-                    {showConfirmPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
+                    {showConfirmPassword ? (
+                      <EyeOff className="w-4 h-4" />
+                    ) : (
+                      <Eye className="w-4 h-4" />
+                    )}
                   </Button>
                 </div>
               </div>
@@ -169,16 +192,24 @@ export default function SignupPage() {
                 <Checkbox
                   id="terms"
                   checked={formData.acceptTerms}
-                  onCheckedChange={(checked: boolean) => updateFormData("acceptTerms", checked as boolean)}
+                  onCheckedChange={(checked: boolean) =>
+                    updateFormData('acceptTerms', checked as boolean)
+                  }
                   className="rounded-md"
                 />
                 <Label htmlFor="terms" className="text-sm leading-relaxed">
-                  Aceito os{" "}
-                  <Link href="/terms" className="text-primary hover:text-primary/80 transition-colors">
+                  Aceito os{' '}
+                  <Link
+                    href="/terms"
+                    className="text-primary hover:text-primary/80 transition-colors"
+                  >
                     termos de uso
-                  </Link>{" "}
-                  e{" "}
-                  <Link href="/privacy" className="text-primary hover:text-primary/80 transition-colors">
+                  </Link>{' '}
+                  e{' '}
+                  <Link
+                    href="/privacy"
+                    className="text-primary hover:text-primary/80 transition-colors"
+                  >
                     política de privacidade
                   </Link>
                 </Label>
@@ -189,7 +220,7 @@ export default function SignupPage() {
                 className="w-full rounded-xl py-6 text-base font-medium shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-[1.02]"
                 disabled={isLoading}
               >
-                {isLoading ? "Criando conta..." : "Criar conta"}
+                {isLoading ? 'Criando conta...' : 'Criar conta'}
               </Button>
             </form>
 
@@ -198,7 +229,9 @@ export default function SignupPage() {
                 <Separator className="w-full" />
               </div>
               <div className="relative flex justify-center text-xs uppercase">
-                <span className="bg-card px-2 text-muted-foreground">ou continue com</span>
+                <span className="bg-card px-2 text-muted-foreground">
+                  ou continue com
+                </span>
               </div>
             </div>
 
@@ -230,7 +263,10 @@ export default function SignupPage() {
 
             <div className="text-center text-sm">
               <span className="text-muted-foreground">Já tem uma conta? </span>
-              <Link href="/auth/login" className="text-primary hover:text-primary/80 font-medium transition-colors">
+              <Link
+                href="/login"
+                className="text-primary hover:text-primary/80 font-medium transition-colors"
+              >
                 Fazer login
               </Link>
             </div>

@@ -1,6 +1,6 @@
 import React from 'react'
-import Link from "next/link"
-import { Button } from "@/components/ui/button"
+import Link from 'next/link'
+import { Button } from '@/components/ui/button'
 
 const Hero = () => {
   return (
@@ -20,7 +20,7 @@ const Hero = () => {
             size="lg"
             className="text-lg px-8 py-6 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105"
           >
-            <Link href="/auth/signup">Começar Agora</Link>
+            <Link href="/signup">Começar Agora</Link>
           </Button>
           <Button
             asChild
@@ -28,7 +28,7 @@ const Hero = () => {
             size="lg"
             className="text-lg px-8 py-6 rounded-2xl border-2 hover:bg-primary/20 transition-all duration-300 bg-white/50"
           >
-            <Link href="/auth/login">Fazer Login</Link>
+            <Link href="/login">Fazer Login</Link>
           </Button>
         </div>
       </div>
