@@ -33,8 +33,7 @@ export default function LoginPage() {
       body: JSON.stringify({ email, password }),
     })
     if (r.ok)
-      window.location.href =
-        '/frontend/src/components/Dashboard/DashboardScreen.tsx'
+      window.location.href = '/dashboard'
     else alert('Login failed')
 
     setTimeout(() => setIsLoading(false), 1000)
