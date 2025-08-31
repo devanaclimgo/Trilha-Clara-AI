@@ -41,9 +41,9 @@ export default function SignupPage() {
       return
     }
     setIsLoading(true)
-  
+
     try {
-      const r = await fetch('http://localhost:3000/signup', {
+      const r = await fetch('http://localhost:3000/auth/signup', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -51,12 +51,13 @@ export default function SignupPage() {
             name: formData.name,
             email: formData.email,
             password: formData.password,
+            password_confirmation: formData.confirmPassword,
           },
         }),
       })
-  
+
       const data = await r.json()
-  
+
       if (r.ok) {
         console.log('Signup success!', data)
         // Save token in localStorage (or cookie)

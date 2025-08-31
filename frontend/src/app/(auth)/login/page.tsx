@@ -19,22 +19,35 @@ import { Eye, EyeOff, Mail, Lock, ArrowLeft } from 'lucide-react'
 
 export default function LoginPage() {
   const [showPassword, setShowPassword] = useState(false)
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
   const [isLoading, setIsLoading] = useState(false)
+  const [formData, setFormData] = useState({
+    email: '',
+    password: '',
+  })
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault()
     setIsLoading(true)
 
-    const r = await fetch('/api/login', {
+    const r = await fetch('http://localhost:3000/auth/login', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ email, password }),
+      body: JSON.stringify({
+        user: {
+          email: formData.email,
+          password: formData.password,
+        },
+      }),
     })
-    if (r.ok)
+    const data = await r.json()
+
+    if (r.ok){
+      localStorage.setItem('token', data.token)
       window.location.href = '/dashboard'
-    else alert('Login failed')
+    } else {
+        alert(data.errors || 'Signup failed')
+      }
+
 
     setTimeout(() => setIsLoading(false), 1000)
   }
@@ -42,6 +55,10 @@ export default function LoginPage() {
   const handleGoogleLogin = () => {
     // TODO: Implement Google OAuth
     console.log('Google login')
+  }
+
+  const updateFormData = (field: string, value: string | boolean) => {
+    setFormData((prev) => ({ ...prev, [field]: value }))
   }
 
   return (
@@ -84,8 +101,8 @@ export default function LoginPage() {
                     id="email"
                     type="email"
                     placeholder="seu@email.com"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
+                    value={formData.email}
+                    onChange={(e) => updateFormData('email', e.target.value)}
                     className="pl-10 rounded-xl border-2 focus:border-primary/50 transition-colors"
                     required
                   />
@@ -102,8 +119,8 @@ export default function LoginPage() {
                     id="password"
                     type={showPassword ? 'text' : 'password'}
                     placeholder="Sua senha"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
+                    value={formData.password}
+                    onChange={(e) => updateFormData('password', e.target.value)}
                     className="pl-10 pr-10 rounded-xl border-2 focus:border-primary/50 transition-colors"
                     required
                   />
