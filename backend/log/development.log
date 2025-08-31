@@ -28,3 +28,5 @@ Migrating to CreateJwtDenylists (20250831142752)
   [1m[36mActiveRecord::SchemaMigration Load (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='Backend'*/[0m
 [dotenv] Set [36mDEVISE_JWT_SECRET_KEY[0m
 [dotenv] Loaded [33m.env[0m
+[dotenv] Set [36mDEVISE_JWT_SECRET_KEY[0m
+[dotenv] Loaded [33m.env[0m
