@@ -2,7 +2,7 @@ class Auth::RegistrationsController < ApplicationController
   respond_to :json
 
   def create
-    user = User.new(params.permit(:name, :email, :password))
+    user = User.new(user_params)
     if user.save
       sign_in(user)
       token = request.env['warden-jwt_auth.token']
