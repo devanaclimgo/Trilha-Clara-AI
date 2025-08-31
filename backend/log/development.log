@@ -30,3 +30,5 @@ Migrating to CreateJwtDenylists (20250831142752)
 [dotenv] Loaded [33m.env[0m
 [dotenv] Set [36mDEVISE_JWT_SECRET_KEY[0m
 [dotenv] Loaded [33m.env[0m
+[dotenv] Set [36mDEVISE_JWT_SECRET_KEY[0m
+[dotenv] Loaded [33m.env[0m
