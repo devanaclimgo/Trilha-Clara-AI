@@ -58,3 +58,179 @@ Processing by Auth::SessionsController#create as JSON
 Completed 401 Unauthorized in 81ms (Views: 0.2ms | ActiveRecord: 15.3ms (1 query, 0 cached) | GC: 16.3ms)
 
 
+[dotenv] Set [36mDEVISE_JWT_SECRET_KEY[0m
+[dotenv] Loaded [33m.env[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='Backend'*/[0m
+Started GET "/" for ::1 at 2025-08-31 12:31:50 -0300
+Processing by Rails::WelcomeController#index as */*
+  Rendering /home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/railties-8.0.2.1/lib/rails/templates/rails/welcome/index.html.erb
+  Rendered /home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/railties-8.0.2.1/lib/rails/templates/rails/welcome/index.html.erb (Duration: 2.2ms | GC: 0.0ms)
+Completed 200 OK in 24ms (Views: 9.0ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/auth/signup" for ::1 at 2025-08-31 12:31:56 -0300
+  
+ActionController::RoutingError (uninitialized constant RegistrationsController)
+Caused by: ActionDispatch::MissingController (uninitialized constant RegistrationsController)
+Caused by: NameError (uninitialized constant RegistrationsController)
+
+Information for: ActionController::RoutingError (uninitialized constant RegistrationsController):
+  
+
+Information for cause: ActionDispatch::MissingController (uninitialized constant RegistrationsController):
+  
+actionpack (8.0.2.1) lib/action_dispatch/http/request.rb:102:in `rescue in controller_class_for'
+actionpack (8.0.2.1) lib/action_dispatch/http/request.rb:98:in `controller_class_for'
+actionpack (8.0.2.1) lib/action_dispatch/http/request.rb:91:in `controller_class'
+actionpack (8.0.2.1) lib/action_dispatch/routing/route_set.rb:61:in `controller'
+actionpack (8.0.2.1) lib/action_dispatch/routing/route_set.rb:48:in `serve'
+actionpack (8.0.2.1) lib/action_dispatch/journey/router.rb:53:in `block in serve'
+actionpack (8.0.2.1) lib/action_dispatch/journey/router.rb:133:in `block in find_routes'
+actionpack (8.0.2.1) lib/action_dispatch/journey/router.rb:126:in `each'
+actionpack (8.0.2.1) lib/action_dispatch/journey/router.rb:126:in `find_routes'
+actionpack (8.0.2.1) lib/action_dispatch/journey/router.rb:34:in `serve'
+actionpack (8.0.2.1) lib/action_dispatch/routing/route_set.rb:908:in `call'
+railties (8.0.2.1) lib/rails/engine/lazy_route_set.rb:68:in `call'
+warden-jwt_auth (0.11.0) lib/warden/jwt_auth/middleware/token_dispatcher.rb:20:in `call'
+warden-jwt_auth (0.11.0) lib/warden/jwt_auth/middleware/revocation_manager.rb:21:in `call'
+rack (3.2.0) lib/rack/builder.rb:283:in `call'
+warden-jwt_auth (0.11.0) lib/warden/jwt_auth/middleware.rb:22:in `call'
+warden (1.2.9) lib/warden/manager.rb:36:in `block in call'
+warden (1.2.9) lib/warden/manager.rb:34:in `catch'
+warden (1.2.9) lib/warden/manager.rb:34:in `call'
+rack (3.2.0) lib/rack/etag.rb:29:in `call'
+rack (3.2.0) lib/rack/conditional_get.rb:44:in `call'
+rack (3.2.0) lib/rack/head.rb:15:in `call'
+activerecord (8.0.2.1) lib/active_record/migration.rb:671:in `call'
+actionpack (8.0.2.1) lib/action_dispatch/middleware/callbacks.rb:31:in `block in call'
+activesupport (8.0.2.1) lib/active_support/callbacks.rb:100:in `run_callbacks'
+actionpack (8.0.2.1) lib/action_dispatch/middleware/callbacks.rb:30:in `call'
+actionpack (8.0.2.1) lib/action_dispatch/middleware/executor.rb:16:in `call'
+actionpack (8.0.2.1) lib/action_dispatch/middleware/actionable_exceptions.rb:18:in `call'
+actionpack (8.0.2.1) lib/action_dispatch/middleware/debug_exceptions.rb:31:in `call'
+actionpack (8.0.2.1) lib/action_dispatch/middleware/show_exceptions.rb:32:in `call'
+railties (8.0.2.1) lib/rails/rack/logger.rb:41:in `call_app'
+railties (8.0.2.1) lib/rails/rack/logger.rb:29:in `call'
+actionpack (8.0.2.1) lib/action_dispatch/middleware/remote_ip.rb:96:in `call'
+actionpack (8.0.2.1) lib/action_dispatch/middleware/request_id.rb:34:in `call'
+rack (3.2.0) lib/rack/runtime.rb:24:in `call'
+actionpack (8.0.2.1) lib/action_dispatch/middleware/server_timing.rb:61:in `block in call'
+actionpack (8.0.2.1) lib/action_dispatch/middleware/server_timing.rb:26:in `collect_events'
+actionpack (8.0.2.1) lib/action_dispatch/middleware/server_timing.rb:60:in `call'
+actionpack (8.0.2.1) lib/action_dispatch/middleware/executor.rb:16:in `call'
+actionpack (8.0.2.1) lib/action_dispatch/middleware/static.rb:27:in `call'
+rack (3.2.0) lib/rack/sendfile.rb:114:in `call'
+actionpack (8.0.2.1) lib/action_dispatch/middleware/host_authorization.rb:143:in `call'
+rack-cors (3.0.0) lib/rack/cors.rb:102:in `call'
+railties (8.0.2.1) lib/rails/engine.rb:535:in `call'
+puma (6.6.1) lib/puma/configuration.rb:279:in `call'
+puma (6.6.1) lib/puma/request.rb:99:in `block in handle_request'
+puma (6.6.1) lib/puma/thread_pool.rb:390:in `with_force_shutdown'
+puma (6.6.1) lib/puma/request.rb:98:in `handle_request'
+puma (6.6.1) lib/puma/server.rb:472:in `process_client'
+puma (6.6.1) lib/puma/server.rb:254:in `block in run'
+puma (6.6.1) lib/puma/thread_pool.rb:167:in `block in spawn_thread'
+
+Information for cause: NameError (uninitialized constant RegistrationsController):
+  
+activesupport (8.0.2.1) lib/active_support/inflector/methods.rb:290:in `const_get'
+activesupport (8.0.2.1) lib/active_support/inflector/methods.rb:290:in `constantize'
+activesupport (8.0.2.1) lib/active_support/core_ext/string/inflections.rb:74:in `constantize'
+actionpack (8.0.2.1) lib/action_dispatch/http/request.rb:99:in `controller_class_for'
+actionpack (8.0.2.1) lib/action_dispatch/http/request.rb:91:in `controller_class'
+actionpack (8.0.2.1) lib/action_dispatch/routing/route_set.rb:61:in `controller'
+actionpack (8.0.2.1) lib/action_dispatch/routing/route_set.rb:48:in `serve'
+actionpack (8.0.2.1) lib/action_dispatch/journey/router.rb:53:in `block in serve'
+actionpack (8.0.2.1) lib/action_dispatch/journey/router.rb:133:in `block in find_routes'
+actionpack (8.0.2.1) lib/action_dispatch/journey/router.rb:126:in `each'
+actionpack (8.0.2.1) lib/action_dispatch/journey/router.rb:126:in `find_routes'
+actionpack (8.0.2.1) lib/action_dispatch/journey/router.rb:34:in `serve'
+actionpack (8.0.2.1) lib/action_dispatch/routing/route_set.rb:908:in `call'
+railties (8.0.2.1) lib/rails/engine/lazy_route_set.rb:68:in `call'
+warden-jwt_auth (0.11.0) lib/warden/jwt_auth/middleware/token_dispatcher.rb:20:in `call'
+warden-jwt_auth (0.11.0) lib/warden/jwt_auth/middleware/revocation_manager.rb:21:in `call'
+rack (3.2.0) lib/rack/builder.rb:283:in `call'
+warden-jwt_auth (0.11.0) lib/warden/jwt_auth/middleware.rb:22:in `call'
+warden (1.2.9) lib/warden/manager.rb:36:in `block in call'
+warden (1.2.9) lib/warden/manager.rb:34:in `catch'
+warden (1.2.9) lib/warden/manager.rb:34:in `call'
+rack (3.2.0) lib/rack/etag.rb:29:in `call'
+rack (3.2.0) lib/rack/conditional_get.rb:44:in `call'
+rack (3.2.0) lib/rack/head.rb:15:in `call'
+activerecord (8.0.2.1) lib/active_record/migration.rb:671:in `call'
+actionpack (8.0.2.1) lib/action_dispatch/middleware/callbacks.rb:31:in `block in call'
+activesupport (8.0.2.1) lib/active_support/callbacks.rb:100:in `run_callbacks'
+actionpack (8.0.2.1) lib/action_dispatch/middleware/callbacks.rb:30:in `call'
+actionpack (8.0.2.1) lib/action_dispatch/middleware/executor.rb:16:in `call'
+actionpack (8.0.2.1) lib/action_dispatch/middleware/actionable_exceptions.rb:18:in `call'
+actionpack (8.0.2.1) lib/action_dispatch/middleware/debug_exceptions.rb:31:in `call'
+actionpack (8.0.2.1) lib/action_dispatch/middleware/show_exceptions.rb:32:in `call'
+railties (8.0.2.1) lib/rails/rack/logger.rb:41:in `call_app'
+railties (8.0.2.1) lib/rails/rack/logger.rb:29:in `call'
+actionpack (8.0.2.1) lib/action_dispatch/middleware/remote_ip.rb:96:in `call'
+actionpack (8.0.2.1) lib/action_dispatch/middleware/request_id.rb:34:in `call'
+rack (3.2.0) lib/rack/runtime.rb:24:in `call'
+actionpack (8.0.2.1) lib/action_dispatch/middleware/server_timing.rb:61:in `block in call'
+actionpack (8.0.2.1) lib/action_dispatch/middleware/server_timing.rb:26:in `collect_events'
+actionpack (8.0.2.1) lib/action_dispatch/middleware/server_timing.rb:60:in `call'
+actionpack (8.0.2.1) lib/action_dispatch/middleware/executor.rb:16:in `call'
+actionpack (8.0.2.1) lib/action_dispatch/middleware/static.rb:27:in `call'
+rack (3.2.0) lib/rack/sendfile.rb:114:in `call'
+actionpack (8.0.2.1) lib/action_dispatch/middleware/host_authorization.rb:143:in `call'
+rack-cors (3.0.0) lib/rack/cors.rb:102:in `call'
+railties (8.0.2.1) lib/rails/engine.rb:535:in `call'
+puma (6.6.1) lib/puma/configuration.rb:279:in `call'
+puma (6.6.1) lib/puma/request.rb:99:in `block in handle_request'
+puma (6.6.1) lib/puma/thread_pool.rb:390:in `with_force_shutdown'
+puma (6.6.1) lib/puma/request.rb:98:in `handle_request'
+puma (6.6.1) lib/puma/server.rb:472:in `process_client'
+puma (6.6.1) lib/puma/server.rb:254:in `block in run'
+puma (6.6.1) lib/puma/thread_pool.rb:167:in `block in spawn_thread'
+Started POST "/auth/signup" for ::1 at 2025-08-31 12:32:14 -0300
+Processing by Auth::RegistrationsController#create as JSON
+  Parameters: {"user"=>{"name"=>"Test User", "email"=>"[FILTERED]", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}, "registration"=>{"user"=>{"name"=>"Test User", "email"=>"[FILTERED]", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}}}
+  [1m[36mTRANSACTION (0.8ms)[0m  [1m[35mBEGIN /*action='create',application='Backend',controller='registrations'*/[0m
+  ↳ app/controllers/auth/registrations_controller.rb:6:in `create'
+  [1m[36mUser Exists? (12.3ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = 'test@example.com' LIMIT 1 /*action='create',application='Backend',controller='registrations'*/[0m
+  ↳ app/controllers/auth/registrations_controller.rb:6:in `create'
+  [1m[36mUser Create (5.5ms)[0m  [1m[32mINSERT INTO "users" ("email", "encrypted_password", "reset_password_token", "reset_password_sent_at", "remember_created_at", "name", "created_at", "updated_at") VALUES ('test@example.com', '$2a$12$9zyTX7HYPZR2wPTk3emSqejKe9g.aH86a8MJiUZnP9GSPYea75306', NULL, NULL, NULL, 'Test User', '2025-08-31 15:32:15.161865', '2025-08-31 15:32:15.161865') RETURNING "id" /*action='create',application='Backend',controller='registrations'*/[0m
+  ↳ app/controllers/auth/registrations_controller.rb:6:in `create'
+  [1m[36mTRANSACTION (2.7ms)[0m  [1m[35mCOMMIT /*action='create',application='Backend',controller='registrations'*/[0m
+  ↳ app/controllers/auth/registrations_controller.rb:6:in `create'
+Completed 500 Internal Server Error in 876ms (ActiveRecord: 37.2ms (2 queries, 0 cached) | GC: 0.0ms)
+
+
+  
+ActionDispatch::Request::Session::DisabledSessionError (Your application has sessions disabled. To write to the session you must first configure a session store):
+  
+app/controllers/auth/registrations_controller.rb:7:in `create'
+Started POST "/auth/signup" for ::1 at 2025-08-31 12:32:55 -0300
+Processing by Auth::RegistrationsController#create as JSON
+  Parameters: {"user"=>{"name"=>"Test User", "email"=>"[FILTERED]", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}, "registration"=>{"user"=>{"name"=>"Test User", "email"=>"[FILTERED]", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}}}
+  [1m[36mTRANSACTION (0.7ms)[0m  [1m[35mBEGIN /*action='create',application='Backend',controller='registrations'*/[0m
+  ↳ app/controllers/auth/registrations_controller.rb:6:in `create'
+  [1m[36mUser Exists? (6.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = 'test@example.com' LIMIT 1 /*action='create',application='Backend',controller='registrations'*/[0m
+  ↳ app/controllers/auth/registrations_controller.rb:6:in `create'
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[31mROLLBACK /*action='create',application='Backend',controller='registrations'*/[0m
+  ↳ app/controllers/auth/registrations_controller.rb:6:in `create'
+Completed 422 Unprocessable Content in 641ms (Views: 1.5ms | ActiveRecord: 7.2ms (1 query, 0 cached) | GC: 1.8ms)
+
+
+Started POST "/auth/signup" for ::1 at 2025-08-31 12:33:02 -0300
+Processing by Auth::RegistrationsController#create as JSON
+  Parameters: {"user"=>{"name"=>"Test User 2", "email"=>"[FILTERED]", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}, "registration"=>{"user"=>{"name"=>"Test User 2", "email"=>"[FILTERED]", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}}}
+  [1m[36mTRANSACTION (0.6ms)[0m  [1m[35mBEGIN /*action='create',application='Backend',controller='registrations'*/[0m
+  ↳ app/controllers/auth/registrations_controller.rb:6:in `create'
+  [1m[36mUser Exists? (5.6ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = 'test2@example.com' LIMIT 1 /*action='create',application='Backend',controller='registrations'*/[0m
+  ↳ app/controllers/auth/registrations_controller.rb:6:in `create'
+  [1m[36mUser Create (1.5ms)[0m  [1m[32mINSERT INTO "users" ("email", "encrypted_password", "reset_password_token", "reset_password_sent_at", "remember_created_at", "name", "created_at", "updated_at") VALUES ('test2@example.com', '$2a$12$lSPwQAXBviBQHMK2KNsv5uoT7nJN.sN15La0IlXw5Eis2afWuMgpG', NULL, NULL, NULL, 'Test User 2', '2025-08-31 15:33:03.146412', '2025-08-31 15:33:03.146412') RETURNING "id" /*action='create',application='Backend',controller='registrations'*/[0m
+  ↳ app/controllers/auth/registrations_controller.rb:6:in `create'
+  [1m[36mTRANSACTION (2.9ms)[0m  [1m[35mCOMMIT /*action='create',application='Backend',controller='registrations'*/[0m
+  ↳ app/controllers/auth/registrations_controller.rb:6:in `create'
+Completed 500 Internal Server Error in 590ms (ActiveRecord: 10.5ms (2 queries, 0 cached) | GC: 0.0ms)
+
+
+  
+ActionDispatch::Request::Session::DisabledSessionError (Your application has sessions disabled. To write to the session you must first configure a session store):
+  
+app/controllers/auth/registrations_controller.rb:7:in `create'
