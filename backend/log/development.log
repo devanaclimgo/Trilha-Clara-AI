@@ -32,3 +32,21 @@ Migrating to CreateJwtDenylists (20250831142752)
 [dotenv] Loaded [33m.env[0m
 [dotenv] Set [36mDEVISE_JWT_SECRET_KEY[0m
 [dotenv] Loaded [33m.env[0m
+[dotenv] Set [36mDEVISE_JWT_SECRET_KEY[0m
+[dotenv] Loaded [33m.env[0m
+Started GET "/" for ::1 at 2025-08-31 11:43:04 -0300
+  [1m[36mActiveRecord::SchemaMigration Load (1.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='Backend'*/[0m
+Processing by Rails::WelcomeController#index as HTML
+  Rendering /home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/railties-8.0.2.1/lib/rails/templates/rails/welcome/index.html.erb
+  Rendered /home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/railties-8.0.2.1/lib/rails/templates/rails/welcome/index.html.erb (Duration: 2.3ms | GC: 0.0ms)
+Completed 200 OK in 84ms (Views: 14.6ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/icon.png" for ::1 at 2025-08-31 11:43:05 -0300
+Started GET "/icon.png" for ::1 at 2025-08-31 11:43:05 -0300
+  
+ActionController::RoutingError (No route matches [GET] "/icon.png"):
+  
+  
+ActionController::RoutingError (No route matches [GET] "/icon.png"):
+  
