@@ -1,39 +1,59 @@
-"use client"
+'use client'
 
-import type React from "react"
+import type React from 'react'
 
-import { useState } from "react"
-import Link from "next/link"
-import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
-import { Separator } from "@/components/ui/separator"
-import { Eye, EyeOff, Mail, Lock, ArrowLeft } from "lucide-react"
+import { useState } from 'react'
+import Link from 'next/link'
+import { Button } from '@/components/ui/button'
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from '@/components/ui/card'
+import { Input } from '@/components/ui/input'
+import { Label } from '@/components/ui/label'
+import { Separator } from '@/components/ui/separator'
+import { Eye, EyeOff, Mail, Lock, ArrowLeft } from 'lucide-react'
 
 export default function LoginPage() {
   const [showPassword, setShowPassword] = useState(false)
-  const [email, setEmail] = useState("")
-  const [password, setPassword] = useState("")
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
   const [isLoading, setIsLoading] = useState(false)
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  async function handleSubmit(e: React.FormEvent) {
     e.preventDefault()
     setIsLoading(true)
-    // TODO: Implement login logic
+
+    const r = await fetch('/api/login', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email, password }),
+    })
+    if (r.ok)
+      window.location.href =
+        '/frontend/src/components/Dashboard/DashboardScreen.tsx'
+    else alert('Login failed')
+
     setTimeout(() => setIsLoading(false), 1000)
   }
 
   const handleGoogleLogin = () => {
     // TODO: Implement Google OAuth
-    console.log("Google login")
+    console.log('Google login')
   }
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-primary/20 via-secondary/20 to-accent/20 flex items-center justify-center p-4">
       <div className="w-full max-w-md">
         {/* Back to home */}
-        <Button asChild variant="ghost" className="mb-6 hover:bg-primary/10 rounded-xl">
+        <Button
+          asChild
+          variant="ghost"
+          className="mb-6 hover:bg-primary/10 rounded-xl"
+        >
           <Link href="/" className="flex items-center gap-2">
             <ArrowLeft className="w-4 h-4" />
             Voltar ao início
@@ -81,7 +101,7 @@ export default function LoginPage() {
                   <Lock className="absolute left-3 top-3 w-4 h-4 text-muted-foreground" />
                   <Input
                     id="password"
-                    type={showPassword ? "text" : "password"}
+                    type={showPassword ? 'text' : 'password'}
                     placeholder="Sua senha"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
@@ -95,13 +115,20 @@ export default function LoginPage() {
                     className="absolute right-1 top-1 h-8 w-8 rounded-lg hover:bg-primary/10"
                     onClick={() => setShowPassword(!showPassword)}
                   >
-                    {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
+                    {showPassword ? (
+                      <EyeOff className="w-4 h-4" />
+                    ) : (
+                      <Eye className="w-4 h-4" />
+                    )}
                   </Button>
                 </div>
               </div>
 
               <div className="flex items-center justify-between text-sm">
-                <Link href="/forgot-password" className="text-primary hover:text-primary/80 transition-colors">
+                <Link
+                  href="/forgot-password"
+                  className="text-primary hover:text-primary/80 transition-colors"
+                >
                   Esqueceu a senha?
                 </Link>
               </div>
@@ -111,7 +138,7 @@ export default function LoginPage() {
                 className="w-full rounded-xl py-6 text-base font-medium shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-[1.02]"
                 disabled={isLoading}
               >
-                {isLoading ? "Entrando..." : "Entrar"}
+                {isLoading ? 'Entrando...' : 'Entrar'}
               </Button>
             </form>
 
@@ -120,7 +147,9 @@ export default function LoginPage() {
                 <Separator className="w-full" />
               </div>
               <div className="relative flex justify-center text-xs uppercase">
-                <span className="bg-card px-2 text-muted-foreground">ou continue com</span>
+                <span className="bg-card px-2 text-muted-foreground">
+                  ou continue com
+                </span>
               </div>
             </div>
 
@@ -152,7 +181,10 @@ export default function LoginPage() {
 
             <div className="text-center text-sm">
               <span className="text-muted-foreground">Não tem uma conta? </span>
-              <Link href="/signup" className="text-primary hover:text-primary/80 font-medium transition-colors">
+              <Link
+                href="/signup"
+                className="text-primary hover:text-primary/80 font-medium transition-colors"
+              >
                 Criar conta
               </Link>
             </div>
