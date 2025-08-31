@@ -30,7 +30,7 @@ export default function SignupPage() {
   })
   const [isLoading, setIsLoading] = useState(false)
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  async function handleSubmit(e: React.FormEvent) {
     e.preventDefault()
     if (formData.password !== formData.confirmPassword) {
       alert('As senhas não coincidem')
@@ -41,8 +41,36 @@ export default function SignupPage() {
       return
     }
     setIsLoading(true)
-    // TODO: Implement signup logic
-    setTimeout(() => setIsLoading(false), 1000)
+  
+    try {
+      const r = await fetch('http://localhost:3000/signup', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          user: {
+            name: formData.name,
+            email: formData.email,
+            password: formData.password,
+          },
+        }),
+      })
+  
+      const data = await r.json()
+  
+      if (r.ok) {
+        console.log('Signup success!', data)
+        // Save token in localStorage (or cookie)
+        localStorage.setItem('token', data.token)
+        window.location.href = '/dashboard'
+      } else {
+        alert(data.errors || 'Signup failed')
+      }
+    } catch (err) {
+      console.error(err)
+      alert('Erro de conexão')
+    } finally {
+      setIsLoading(false)
+    }
   }
 
   const handleGoogleSignup = () => {
