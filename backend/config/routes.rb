@@ -6,5 +6,6 @@ Rails.application.routes.draw do
     post   "login",  to: "auth/sessions#create"
     delete "logout", to: "auth/sessions#destroy"
     get    "me",     to: "auth/users#me"
+    post "google", to: "auth/google#create"
   end
 end
