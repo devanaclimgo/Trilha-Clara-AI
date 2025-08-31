@@ -234,3 +234,27 @@ Completed 500 Internal Server Error in 590ms (ActiveRecord: 10.5ms (2 queries, 0
 ActionDispatch::Request::Session::DisabledSessionError (Your application has sessions disabled. To write to the session you must first configure a session store):
   
 app/controllers/auth/registrations_controller.rb:7:in `create'
+[dotenv] Set [36mDEVISE_JWT_SECRET_KEY[0m
+[dotenv] Loaded [33m.env[0m
+Started GET "/" for ::1 at 2025-08-31 15:20:27 -0300
+  [1m[36mActiveRecord::SchemaMigration Load (1.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='Backend'*/[0m
+Processing by Rails::WelcomeController#index as HTML
+  Rendering /home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/railties-8.0.2.1/lib/rails/templates/rails/welcome/index.html.erb
+  Rendered /home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/railties-8.0.2.1/lib/rails/templates/rails/welcome/index.html.erb (Duration: 3.1ms | GC: 1.2ms)
+Completed 200 OK in 39ms (Views: 18.2ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 19.5ms)
+
+
+Started POST "/auth/signup" for 127.0.0.1 at 2025-08-31 15:22:49 -0300
+Processing by Auth::RegistrationsController#create as JSON
+  Parameters: {"user"=>{"name"=>"teste", "email"=>"[FILTERED]", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}, "registration"=>{"user"=>{"name"=>"teste", "email"=>"[FILTERED]", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}}}
+  [1m[36mTRANSACTION (0.9ms)[0m  [1m[35mBEGIN /*action='create',application='Backend',controller='registrations'*/[0m
+  ↳ app/controllers/auth/registrations_controller.rb:6:in `create'
+  [1m[36mUser Exists? (7.4ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = 'teste@gmail.com' LIMIT 1 /*action='create',application='Backend',controller='registrations'*/[0m
+  ↳ app/controllers/auth/registrations_controller.rb:6:in `create'
+  [1m[36mUser Create (2.7ms)[0m  [1m[32mINSERT INTO "users" ("email", "encrypted_password", "reset_password_token", "reset_password_sent_at", "remember_created_at", "name", "created_at", "updated_at") VALUES ('teste@gmail.com', '$2a$12$dQm5JjtvKymyknPIfUFFpOWPP9/cILM3GkgOFX5dWOpdkWF2.ypO.', NULL, NULL, NULL, 'teste', '2025-08-31 18:22:49.769225', '2025-08-31 18:22:49.769225') RETURNING "id" /*action='create',application='Backend',controller='registrations'*/[0m
+  ↳ app/controllers/auth/registrations_controller.rb:6:in `create'
+  [1m[36mTRANSACTION (1.2ms)[0m  [1m[35mCOMMIT /*action='create',application='Backend',controller='registrations'*/[0m
+  ↳ app/controllers/auth/registrations_controller.rb:6:in `create'
+Completed 201 Created in 284ms (Views: 0.2ms | ActiveRecord: 29.0ms (2 queries, 0 cached) | GC: 1.0ms)
+
+
