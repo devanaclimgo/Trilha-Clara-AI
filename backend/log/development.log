@@ -50,3 +50,11 @@ ActionController::RoutingError (No route matches [GET] "/icon.png"):
   
 ActionController::RoutingError (No route matches [GET] "/icon.png"):
   
+Started POST "/auth/login" for 127.0.0.1 at 2025-08-31 12:13:18 -0300
+Processing by Auth::SessionsController#create as JSON
+  Parameters: {"email"=>"[FILTERED]", "password"=>"[FILTERED]", "session"=>{"email"=>"[FILTERED]", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (2.9ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = 'ana@gmail.com' ORDER BY "users"."id" ASC LIMIT 1 /*action='create',application='Backend',controller='sessions'*/[0m
+  ↳ app/controllers/auth/sessions_controller.rb:5:in `create'
+Completed 401 Unauthorized in 81ms (Views: 0.2ms | ActiveRecord: 15.3ms (1 query, 0 cached) | GC: 16.3ms)
+
+
