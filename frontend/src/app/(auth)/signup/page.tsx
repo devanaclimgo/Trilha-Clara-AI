@@ -18,8 +18,10 @@ import { Label } from '@/components/ui/label'
 import { Separator } from '@/components/ui/separator'
 import { Checkbox } from '@/components/ui/checkbox'
 import { Eye, EyeOff, Mail, Lock, User, ArrowLeft } from 'lucide-react'
+import { useToast } from '@/hooks/use-toast'
 
 export default function SignupPage() {
+  const { toast } = useToast()
   const [showPassword, setShowPassword] = useState(false)
   const [showConfirmPassword, setShowConfirmPassword] = useState(false)
   const [formData, setFormData] = useState({
@@ -34,11 +36,19 @@ export default function SignupPage() {
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault()
     if (formData.password !== formData.confirmPassword) {
-      alert('As senhas não coincidem')
+      toast({
+        variant: 'error',
+        title: 'Erro de validação',
+        description: 'As senhas não coincidem. Tente novamente.',
+      })
       return
     }
     if (!formData.acceptTerms) {
-      alert('Você deve aceitar os termos de uso')
+      toast({
+        variant: 'warning',
+        title: 'Termos não aceitos',
+        description: 'Você deve aceitar os termos de uso para continuar.',
+      })
       return
     }
     setIsLoading(true)
@@ -61,15 +71,36 @@ export default function SignupPage() {
 
       if (r.ok) {
         console.log('Signup success!', data)
+        toast({
+          variant: 'success',
+          title: 'Conta criada com sucesso!',
+          description: 'Redirecionando para o dashboard...',
+        })
         // Save token in localStorage (or cookie)
         localStorage.setItem('token', data.token)
-        window.location.href = '/dashboard'
+        setTimeout(() => {
+          window.location.href = '/dashboard'
+        }, 1500)
       } else {
-        alert(data.errors || 'Signup failed')
+        const errorMessage = data.errors
+          ? Array.isArray(data.errors)
+            ? data.errors.join(', ')
+            : data.errors
+          : 'Falha ao criar conta'
+        toast({
+          variant: 'error',
+          title: 'Erro ao criar conta',
+          description: errorMessage,
+        })
       }
     } catch (err) {
       console.error(err)
-      alert('Erro de conexão')
+      toast({
+        variant: 'error',
+        title: 'Erro de conexão',
+        description:
+          'Não foi possível conectar ao servidor. Verifique sua conexão.',
+      })
     } finally {
       setIsLoading(false)
     }
@@ -77,29 +108,67 @@ export default function SignupPage() {
 
   const googleSignup = useGoogleLogin({
     onSuccess: async (response) => {
-      // Get user info from Google
-      const userInfo = await fetch(
-        `https://www.googleapis.com/oauth2/v2/userinfo?access_token=${response.access_token}`,
-      ).then((res) => res.json())
+      try {
+        // Get user info from Google
+        const userInfoResponse = await fetch(
+          `https://www.googleapis.com/oauth2/v2/userinfo?access_token=${response.access_token}`,
+        )
 
-      const r = await fetch('http://localhost:4000/auth/google', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          email: userInfo.email,
-          name: userInfo.name,
-          google_id: userInfo.id,
-        }),
-      })
-      const data = await r.json()
-      if (r.ok && data.token) {
-        localStorage.setItem('token', data.token)
-        window.location.href = '/dashboard'
-      } else {
-        alert('Google login failed')
+        if (!userInfoResponse.ok) {
+          throw new Error('Failed to fetch user info from Google')
+        }
+
+        const userInfo = await userInfoResponse.json()
+
+        const r = await fetch('http://localhost:4000/auth/google', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            email: userInfo.email,
+            name: userInfo.name,
+            google_id: userInfo.id,
+          }),
+        })
+
+        const data = await r.json()
+
+        if (r.ok && data.token) {
+          toast({
+            variant: 'success',
+            title: 'Login com Google realizado!',
+            description: 'Redirecionando para o dashboard...',
+          })
+          localStorage.setItem('token', data.token)
+          setTimeout(() => {
+            window.location.href = '/dashboard'
+          }, 1500)
+        } else {
+          const errorMessage =
+            data.error || data.errors || 'Falha no login com Google'
+          toast({
+            variant: 'error',
+            title: 'Erro no login com Google',
+            description: errorMessage,
+          })
+        }
+      } catch (error) {
+        console.error('Google login error:', error)
+        toast({
+          variant: 'error',
+          title: 'Erro no login com Google',
+          description:
+            'Não foi possível conectar com o Google. Tente novamente.',
+        })
       }
     },
-    onError: () => alert('Google login error'),
+    onError: (error) => {
+      console.error('Google OAuth error:', error)
+      toast({
+        variant: 'error',
+        title: 'Erro de autenticação',
+        description: 'Falha na autenticação com Google. Tente novamente.',
+      })
+    },
   })
 
   const handleGoogleSignup = () => googleSignup()

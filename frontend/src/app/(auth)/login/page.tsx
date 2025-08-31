@@ -17,8 +17,10 @@ import { Label } from '@/components/ui/label'
 import { Separator } from '@/components/ui/separator'
 import { Eye, EyeOff, Mail, Lock, ArrowLeft } from 'lucide-react'
 import { useGoogleLogin } from '@react-oauth/google'
+import { useToast } from '@/hooks/use-toast'
 
 export default function LoginPage() {
+  const { toast } = useToast()
   const [showPassword, setShowPassword] = useState(false)
   const [isLoading, setIsLoading] = useState(false)
   const [formData, setFormData] = useState({
@@ -30,53 +32,117 @@ export default function LoginPage() {
     e.preventDefault()
     setIsLoading(true)
 
-    const r = await fetch('http://localhost:4000/auth/login', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        user: {
-          email: formData.email,
-          password: formData.password,
-        },
-      }),
-    })
-    const data = await r.json()
+    try {
+      const r = await fetch('http://localhost:4000/auth/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          user: {
+            email: formData.email,
+            password: formData.password,
+          },
+        }),
+      })
+      const data = await r.json()
 
-    if (r.ok) {
-      localStorage.setItem('token', data.token)
-      window.location.href = '/dashboard'
-    } else {
-      alert(data.errors || 'Signup failed')
+      if (r.ok) {
+        toast({
+          variant: 'success',
+          title: 'Login realizado com sucesso!',
+          description: 'Redirecionando para o dashboard...',
+        })
+        localStorage.setItem('token', data.token)
+        setTimeout(() => {
+          window.location.href = '/dashboard'
+        }, 1500)
+      } else {
+        const errorMessage = data.errors
+          ? Array.isArray(data.errors)
+            ? data.errors.join(', ')
+            : data.errors
+          : 'Falha no login'
+        toast({
+          variant: 'error',
+          title: 'Erro no login',
+          description: errorMessage,
+        })
+      }
+    } catch (err) {
+      console.error(err)
+      toast({
+        variant: 'error',
+        title: 'Erro de conexão',
+        description:
+          'Não foi possível conectar ao servidor. Verifique sua conexão.',
+      })
+    } finally {
+      setIsLoading(false)
     }
-
-    setTimeout(() => setIsLoading(false), 1000)
   }
 
   const googleLogin = useGoogleLogin({
     onSuccess: async (response) => {
-      // Get user info from Google
-      const userInfo = await fetch(
-        `https://www.googleapis.com/oauth2/v2/userinfo?access_token=${response.access_token}`,
-      ).then((res) => res.json())
+      try {
+        // Get user info from Google
+        const userInfoResponse = await fetch(
+          `https://www.googleapis.com/oauth2/v2/userinfo?access_token=${response.access_token}`,
+        )
 
-      const r = await fetch('http://localhost:4000/auth/google', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          email: userInfo.email,
-          name: userInfo.name,
-          google_id: userInfo.id,
-        }),
-      })
-      const data = await r.json()
-      if (r.ok && data.token) {
-        localStorage.setItem('token', data.token)
-        window.location.href = '/dashboard'
-      } else {
-        alert('Google login failed')
+        if (!userInfoResponse.ok) {
+          throw new Error('Failed to fetch user info from Google')
+        }
+
+        const userInfo = await userInfoResponse.json()
+
+        const r = await fetch('http://localhost:4000/auth/google', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            email: userInfo.email,
+            name: userInfo.name,
+            google_id: userInfo.id,
+          }),
+        })
+
+        const data = await r.json()
+
+        if (r.ok && data.token) {
+          toast({
+            variant: 'success',
+            title: 'Login com Google realizado!',
+            description: 'Redirecionando para o dashboard...',
+          })
+          localStorage.setItem('token', data.token)
+          setTimeout(() => {
+            window.location.href = '/dashboard'
+          }, 1500)
+        } else {
+          const errorMessage =
+            data.error || data.errors || 'Falha no login com Google'
+          toast({
+            variant: 'error',
+            title: 'Erro no login com Google',
+            description: errorMessage,
+          })
+        }
+      } catch (error) {
+        console.error('Google login error:', error)
+        toast({
+          variant: 'error',
+          title: 'Erro no login com Google',
+          description:
+            'Não foi possível conectar com o Google. Tente novamente.',
+        })
       }
     },
-    onError: () => alert('Google login error'),
+    onError: (error) => {
+      console.error('Google OAuth error:', error)
+      toast({
+        variant: 'error',
+        title: 'Erro de autenticação',
+        description: 'Falha na autenticação com Google. Tente novamente.',
+      })
+    },
   })
 
   const handleGoogleLogin = () => googleLogin()

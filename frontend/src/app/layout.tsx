@@ -4,6 +4,7 @@ import './globals.css'
 
 import { GoogleOAuthProvider } from '@react-oauth/google'
 import { GOOGLE_CONFIG } from '../../config/google'
+import { CustomToaster } from '@/components/ui/custom-toaster'
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -35,6 +36,7 @@ export default function RootLayout({
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
         <GoogleOAuthProvider clientId={GOOGLE_CONFIG.CLIENT_ID}>
           {children}
+          <CustomToaster />
         </GoogleOAuthProvider>
       </body>
     </html>
