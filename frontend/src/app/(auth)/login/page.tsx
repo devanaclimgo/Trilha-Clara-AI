@@ -196,7 +196,7 @@ export default function LoginPage() {
             <Button
               variant="outline"
               onClick={handleGoogleLogin}
-              className="w-full rounded-xl py-6 text-base border-2 hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl bg-accent"
+              className="w-full rounded-xl py-6 text-base border-2 hover:scale-105 transition-all duration-300 hover:shadow-xl bg-transparent hover:bg-transparent hover:text-black"
             >
               <svg className="w-5 h-5 mr-2" viewBox="0 0 24 24">
                 <path
