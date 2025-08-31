@@ -16,6 +16,7 @@ import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Separator } from '@/components/ui/separator'
 import { Eye, EyeOff, Mail, Lock, ArrowLeft } from 'lucide-react'
+import { useGoogleLogin } from '@react-oauth/google'
 
 export default function LoginPage() {
   const [showPassword, setShowPassword] = useState(false)
@@ -29,7 +30,7 @@ export default function LoginPage() {
     e.preventDefault()
     setIsLoading(true)
 
-    const r = await fetch('http://localhost:3000/auth/login', {
+    const r = await fetch('http://localhost:4000/auth/login', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
@@ -41,21 +42,44 @@ export default function LoginPage() {
     })
     const data = await r.json()
 
-    if (r.ok){
+    if (r.ok) {
       localStorage.setItem('token', data.token)
       window.location.href = '/dashboard'
     } else {
-        alert(data.errors || 'Signup failed')
-      }
-
+      alert(data.errors || 'Signup failed')
+    }
 
     setTimeout(() => setIsLoading(false), 1000)
   }
 
-  const handleGoogleLogin = () => {
-    // TODO: Implement Google OAuth
-    console.log('Google login')
-  }
+  const googleLogin = useGoogleLogin({
+    onSuccess: async (response) => {
+      // Get user info from Google
+      const userInfo = await fetch(
+        `https://www.googleapis.com/oauth2/v2/userinfo?access_token=${response.access_token}`,
+      ).then((res) => res.json())
+
+      const r = await fetch('http://localhost:4000/auth/google', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          email: userInfo.email,
+          name: userInfo.name,
+          google_id: userInfo.id,
+        }),
+      })
+      const data = await r.json()
+      if (r.ok && data.token) {
+        localStorage.setItem('token', data.token)
+        window.location.href = '/dashboard'
+      } else {
+        alert('Google login failed')
+      }
+    },
+    onError: () => alert('Google login error'),
+  })
+
+  const handleGoogleLogin = () => googleLogin()
 
   const updateFormData = (field: string, value: string | boolean) => {
     setFormData((prev) => ({ ...prev, [field]: value }))
@@ -172,7 +196,7 @@ export default function LoginPage() {
             <Button
               variant="outline"
               onClick={handleGoogleLogin}
-              className="w-full rounded-xl py-6 text-base border-2 hover:bg-primary/5 transition-all duration-300 bg-transparent"
+              className="w-full rounded-xl py-6 text-base border-2 hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl bg-accent"
             >
               <svg className="w-5 h-5 mr-2" viewBox="0 0 24 24">
                 <path

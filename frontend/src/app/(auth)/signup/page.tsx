@@ -5,6 +5,7 @@ import type React from 'react'
 import { useState } from 'react'
 import Link from 'next/link'
 import { Button } from '@/components/ui/button'
+import { useGoogleLogin } from '@react-oauth/google'
 import {
   Card,
   CardContent,
@@ -74,10 +75,34 @@ export default function SignupPage() {
     }
   }
 
-  const handleGoogleSignup = () => {
-    // TODO: Implement Google OAuth
-    console.log('Google signup')
-  }
+  const googleSignup = useGoogleLogin({
+    onSuccess: async (response) => {
+      // Get user info from Google
+      const userInfo = await fetch(
+        `https://www.googleapis.com/oauth2/v2/userinfo?access_token=${response.access_token}`,
+      ).then((res) => res.json())
+
+      const r = await fetch('http://localhost:4000/auth/google', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          email: userInfo.email,
+          name: userInfo.name,
+          google_id: userInfo.id,
+        }),
+      })
+      const data = await r.json()
+      if (r.ok && data.token) {
+        localStorage.setItem('token', data.token)
+        window.location.href = '/dashboard'
+      } else {
+        alert('Google login failed')
+      }
+    },
+    onError: () => alert('Google login error'),
+  })
+
+  const handleGoogleSignup = () => googleSignup()
 
   const updateFormData = (field: string, value: string | boolean) => {
     setFormData((prev) => ({ ...prev, [field]: value }))
@@ -267,7 +292,7 @@ export default function SignupPage() {
             <Button
               variant="outline"
               onClick={handleGoogleSignup}
-              className="w-full rounded-xl py-6 text-base border-2 hover:bg-primary/5 transition-all duration-300 bg-transparent"
+              className="w-full rounded-xl py-6 text-base border-2 hover:bg-accent/10 transition-all duration-300 bg-accent hover:scale-105"
             >
               <svg className="w-5 h-5 mr-2" viewBox="0 0 24 24">
                 <path

@@ -20,4 +20,16 @@ class Auth::SessionsController < ApplicationController
     sign_out(current_user)
     render json: { message: 'Logged out successfully' }, status: :ok
   end
+
+  def google
+    user_info = request.env['omniauth.auth']
+  
+    user = User.find_or_create_by(email: user_info['info']['email']) do |u|
+      u.name = user_info['info']['name']
+      u.password = SecureRandom.hex(15)
+    end
+  
+    token = generate_jwt(user)
+    render json: { user: user, token: token }
+  end  
 end

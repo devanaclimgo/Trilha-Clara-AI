@@ -260,3 +260,13 @@ Completed 201 Created in 284ms (Views: 0.2ms | ActiveRecord: 29.0ms (2 queries, 
 
 [dotenv] Set [36mDEVISE_JWT_SECRET_KEY[0m
 [dotenv] Loaded [33m.env[0m
+[dotenv] Set [36mDEVISE_JWT_SECRET_KEY[0m and [36mGOOGLE_CLIENT_ID[0m
+[dotenv] Loaded [33m.env[0m
+Started GET "/" for ::1 at 2025-08-31 15:38:39 -0300
+  [1m[36mActiveRecord::SchemaMigration Load (1.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='Backend'*/[0m
+Processing by Rails::WelcomeController#index as HTML
+  Rendering /home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/railties-8.0.2.1/lib/rails/templates/rails/welcome/index.html.erb
+  Rendered /home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/railties-8.0.2.1/lib/rails/templates/rails/welcome/index.html.erb (Duration: 2.1ms | GC: 1.3ms)
+Completed 200 OK in 21ms (Views: 7.2ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 10.6ms)
+
+

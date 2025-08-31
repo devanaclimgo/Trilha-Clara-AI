@@ -1,34 +1,42 @@
-import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
-import "./globals.css";
+import type { Metadata } from 'next'
+import { Geist, Geist_Mono } from 'next/font/google'
+import './globals.css'
+
+import { GoogleOAuthProvider } from '@react-oauth/google'
+import { GOOGLE_CONFIG } from '../../config/google'
 
 const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
+  variable: '--font-geist-sans',
+  subsets: ['latin'],
+})
 
 const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
+  variable: '--font-geist-mono',
+  subsets: ['latin'],
+})
 
-{/* rever description */}
-export const metadata: Metadata = { 
-  title: "Trilha Clara IA - Seu Guia Acadêmico",
-  description: "Plataforma acadêmica moderna e confiável para orientação de TCC",
-  generator: "v0.app",
-};
+{
+  /* rever description */
+}
+export const metadata: Metadata = {
+  title: 'Trilha Clara IA - Seu Guia Acadêmico',
+  description:
+    'Plataforma acadêmica moderna e confiável para orientação de TCC',
+  generator: 'v0.app',
+}
 
 export default function RootLayout({
   children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+}: {
+  children: React.ReactNode
+}) {
   return (
-    <html lang="en">
+    <html lang="pt">
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
-        {children}
+        <GoogleOAuthProvider clientId={GOOGLE_CONFIG.CLIENT_ID}>
+          {children}
+        </GoogleOAuthProvider>
       </body>
     </html>
-  );
+  )
 }
