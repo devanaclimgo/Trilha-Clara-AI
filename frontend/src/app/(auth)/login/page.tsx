@@ -50,11 +50,11 @@ export default function LoginPage() {
         toast({
           variant: 'success',
           title: 'Login realizado com sucesso!',
-          description: 'Redirecionando para o dashboard...',
+          description: 'Redirecionando para a página inicial...',
         })
         localStorage.setItem('token', data.token)
         setTimeout(() => {
-          window.location.href = '/dashboard'
+          window.location.href = '/home'
         }, 1500)
       } else {
         const errorMessage = data.errors
