@@ -1,5 +1,5 @@
-import DashboardScreen from '@/components/Dashboard/DashboardScreen'
+import DashboardStartScreen from '@/components/Dashboard/DashboardStartScreen'
 
 export default function DashboardPage() {
-  return <DashboardScreen />
+  return <DashboardStartScreen />
 }

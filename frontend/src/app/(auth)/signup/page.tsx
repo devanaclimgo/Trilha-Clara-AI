@@ -76,12 +76,12 @@ export default function SignupPage() {
         toast({
           variant: 'success',
           title: 'Conta criada com sucesso!',
-          description: 'Redirecionando para a página inicial...',
+          description: 'Redirecionando para o dashboard...',
         })
         // Save token in localStorage (or cookie)
         localStorage.setItem('token', data.token)
         setTimeout(() => {
-          window.location.href = '/home'
+          window.location.href = '/dashboard'
         }, 1500)
       } else {
         const errorMessage = data.errors

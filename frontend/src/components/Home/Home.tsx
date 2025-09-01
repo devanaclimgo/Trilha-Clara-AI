@@ -32,7 +32,7 @@ import {
 } from '@/components/ui/sidebar'
 import HomeSettingsScreen from './HomeSettingsScreen'
 import ThemeToggle from './HomeThemeToggle'
-import DashboardScreen from '../Dashboard/DashboardScreen'
+import DashboardStartScreen from '../Dashboard/DashboardStartScreen'
 
 const menuItems = [
   {
@@ -78,7 +78,7 @@ export default function TrilhaClara() {
       case 'settings':
         return <HomeSettingsScreen />
       default:
-        return <DashboardScreen />
+        return <DashboardStartScreen />
     }
   }
 
