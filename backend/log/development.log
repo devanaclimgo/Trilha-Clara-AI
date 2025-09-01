@@ -313,3 +313,229 @@ Processing by Auth::GoogleController#create as JSON
 Completed 200 OK in 37ms (Views: 0.1ms | ActiveRecord: 12.5ms (1 query, 0 cached) | GC: 0.0ms)
 
 
+[dotenv] Set [36mDEVISE_JWT_SECRET_KEY[0m, [36mGOOGLE_CLIENT_ID[0m, and [36mGOOGLE_CLIENT_SECRET[0m
+[dotenv] Loaded [33m.env[0m
+Started GET "/" for ::1 at 2025-09-01 14:25:58 -0300
+  [1m[36mActiveRecord::SchemaMigration Load (2.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='Backend'*/[0m
+Processing by Rails::WelcomeController#index as HTML
+  Rendering /home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/railties-8.0.2.1/lib/rails/templates/rails/welcome/index.html.erb
+  Rendered /home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/railties-8.0.2.1/lib/rails/templates/rails/welcome/index.html.erb (Duration: 0.8ms | GC: 0.0ms)
+Completed 200 OK in 11ms (Views: 4.3ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/auth/google" for 127.0.0.1 at 2025-09-01 14:26:11 -0300
+Processing by Auth::GoogleController#create as JSON
+  Parameters: {"email"=>"[FILTERED]", "name"=>"Ana Gomes", "google_id"=>"114945441299992670307", "google"=>{"email"=>"[FILTERED]", "name"=>"Ana Gomes", "google_id"=>"114945441299992670307"}}
+  [1m[36mUser Load (2.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = 'anaclimgo@gmail.com' LIMIT 1 /*action='create',application='Backend',controller='google'*/[0m
+  ↳ app/controllers/auth/google_controller.rb:13:in `create'
+Completed 200 OK in 89ms (Views: 0.2ms | ActiveRecord: 28.0ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/auth/google" for 127.0.0.1 at 2025-09-01 14:26:32 -0300
+Processing by Auth::GoogleController#create as JSON
+  Parameters: {"email"=>"[FILTERED]", "name"=>"Ana Gomes", "google_id"=>"114945441299992670307", "google"=>{"email"=>"[FILTERED]", "name"=>"Ana Gomes", "google_id"=>"114945441299992670307"}}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = 'anaclimgo@gmail.com' LIMIT 1 /*action='create',application='Backend',controller='google'*/[0m
+  ↳ app/controllers/auth/google_controller.rb:13:in `create'
+Completed 200 OK in 6ms (Views: 0.3ms | ActiveRecord: 0.4ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/auth/google" for 127.0.0.1 at 2025-09-01 15:04:23 -0300
+Processing by Auth::GoogleController#create as JSON
+  Parameters: {"email"=>"[FILTERED]", "name"=>"Ana Gomes", "google_id"=>"114945441299992670307", "google"=>{"email"=>"[FILTERED]", "name"=>"Ana Gomes", "google_id"=>"114945441299992670307"}}
+  [1m[36mUser Load (5.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = 'anaclimgo@gmail.com' LIMIT 1 /*action='create',application='Backend',controller='google'*/[0m
+  ↳ app/controllers/auth/google_controller.rb:13:in `create'
+Completed 200 OK in 244ms (Views: 7.9ms | ActiveRecord: 37.7ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/auth/google" for 127.0.0.1 at 2025-09-01 15:05:07 -0300
+Processing by Auth::GoogleController#create as JSON
+  Parameters: {"email"=>"[FILTERED]", "name"=>"Ana Gomes", "google_id"=>"114945441299992670307", "google"=>{"email"=>"[FILTERED]", "name"=>"Ana Gomes", "google_id"=>"114945441299992670307"}}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = 'anaclimgo@gmail.com' LIMIT 1 /*action='create',application='Backend',controller='google'*/[0m
+  ↳ app/controllers/auth/google_controller.rb:13:in `create'
+Completed 200 OK in 7ms (Views: 0.4ms | ActiveRecord: 0.4ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/auth/me" for ::1 at 2025-09-01 15:08:44 -0300
+Processing by Auth::UsersController#me as JSON
+Completed 401 Unauthorized in 60ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/auth/google" for 127.0.0.1 at 2025-09-01 15:09:53 -0300
+Processing by Auth::GoogleController#create as JSON
+  Parameters: {"email"=>"[FILTERED]", "name"=>"Test User", "google_id"=>"123456789", "google"=>{"email"=>"[FILTERED]", "name"=>"Test User", "google_id"=>"123456789"}}
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = 'test@example.com' LIMIT 1 /*action='create',application='Backend',controller='google'*/[0m
+  ↳ app/controllers/auth/google_controller.rb:14:in `create'
+Completed 500 Internal Server Error in 445ms (Views: 1.4ms | ActiveRecord: 31.0ms (1 query, 0 cached) | GC: 129.4ms)
+
+
+[dotenv] Set [36mDEVISE_JWT_SECRET_KEY[0m, [36mGOOGLE_CLIENT_ID[0m, and [36mGOOGLE_CLIENT_SECRET[0m
+[dotenv] Loaded [33m.env[0m
+Started POST "/auth/google" for 127.0.0.1 at 2025-09-01 15:10:35 -0300
+Processing by Auth::GoogleController#create as JSON
+  Parameters: {"email"=>"[FILTERED]", "name"=>"Test User", "google_id"=>"123456789", "google"=>{"email"=>"[FILTERED]", "name"=>"Test User", "google_id"=>"123456789"}}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = 'test@example.com' LIMIT 1 /*action='create',application='Backend',controller='google'*/[0m
+  ↳ app/controllers/auth/google_controller.rb:14:in `create'
+Completed 500 Internal Server Error in 7ms (Views: 0.2ms | ActiveRecord: 0.4ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+[dotenv] Set [36mDEVISE_JWT_SECRET_KEY[0m, [36mGOOGLE_CLIENT_ID[0m, and [36mGOOGLE_CLIENT_SECRET[0m
+[dotenv] Loaded [33m.env[0m
+Started POST "/auth/google" for 127.0.0.1 at 2025-09-01 15:16:12 -0300
+Processing by Auth::GoogleController#create as JSON
+  Parameters: {"email"=>"[FILTERED]", "name"=>"Ana Gomes", "google_id"=>"114945441299992670307", "google"=>{"email"=>"[FILTERED]", "name"=>"Ana Gomes", "google_id"=>"114945441299992670307"}}
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = 'anaclimgo@gmail.com' LIMIT 1 /*action='create',application='Backend',controller='google'*/[0m
+  ↳ app/controllers/auth/google_controller.rb:14:in `create'
+Completed 500 Internal Server Error in 19ms (Views: 0.2ms | ActiveRecord: 6.3ms (1 query, 0 cached) | GC: 0.7ms)
+
+
+Started POST "/auth/google" for 127.0.0.1 at 2025-09-01 15:28:56 -0300
+Processing by Auth::GoogleController#create as JSON
+  Parameters: {"email"=>"[FILTERED]", "name"=>"Test User", "google_id"=>"123456789", "google"=>{"email"=>"[FILTERED]", "name"=>"Test User", "google_id"=>"123456789"}}
+Google auth attempt for email: test@example.com, name: Test User
+  [1m[36mUser Load (1.9ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = 'test@example.com' LIMIT 1 /*action='create',application='Backend',controller='google'*/[0m
+  ↳ app/controllers/auth/google_controller.rb:16:in `create'
+User found/created: true, ID: 1
+User signed in successfully
+JWT token generated: NO
+JWT token is nil or empty
+Completed 500 Internal Server Error in 109ms (Views: 0.5ms | ActiveRecord: 12.7ms (1 query, 0 cached) | GC: 2.1ms)
+
+
+Started POST "/auth/login" for ::1 at 2025-09-01 15:29:29 -0300
+Processing by Auth::SessionsController#create as JSON
+  Parameters: {"user"=>{"email"=>"[FILTERED]", "password"=>"[FILTERED]"}, "session"=>{"user"=>{"email"=>"[FILTERED]", "password"=>"[FILTERED]"}}}
+  [1m[36mUser Load (1.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = 'test@example.com' ORDER BY "users"."id" ASC LIMIT 1 /*action='create',application='Backend',controller='sessions'*/[0m
+  ↳ app/controllers/auth/sessions_controller.rb:5:in `create'
+Completed 200 OK in 277ms (Views: 0.9ms | ActiveRecord: 1.2ms (1 query, 0 cached) | GC: 1.1ms)
+
+
+Started POST "/auth/google" for 127.0.0.1 at 2025-09-01 15:29:49 -0300
+Processing by Auth::GoogleController#create as JSON
+  Parameters: {"email"=>"[FILTERED]", "name"=>"Test User", "google_id"=>"123456789", "google"=>{"email"=>"[FILTERED]", "name"=>"Test User", "google_id"=>"123456789"}}
+Google auth attempt for email: test@example.com, name: Test User
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = 'test@example.com' LIMIT 1 /*action='create',application='Backend',controller='google'*/[0m
+  ↳ app/controllers/auth/google_controller.rb:16:in `create'
+User found/created: true, ID: 1
+User signed in successfully
+JWT token from warden: NO
+Attempting to generate JWT token manually
+Error during sign_in or token generation: undefined method `generate_jwt' for an instance of User
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/activemodel-8.0.2.1/lib/active_model/attribute_methods.rb:512:in `method_missing'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/activerecord-8.0.2.1/lib/active_record/attribute_methods.rb:495:in `method_missing'
+/home/ana/Documents/Programming/Trilha Clara/AI TCC Effortless/backend/app/controllers/auth/google_controller.rb:36:in `create'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/action_controller/metal/basic_implicit_render.rb:8:in `send_action'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/abstract_controller/base.rb:226:in `process_action'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/action_controller/metal/rendering.rb:193:in `process_action'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/abstract_controller/callbacks.rb:261:in `block in process_action'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/activesupport-8.0.2.1/lib/active_support/callbacks.rb:100:in `run_callbacks'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/abstract_controller/callbacks.rb:260:in `process_action'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/action_controller/metal/rescue.rb:27:in `process_action'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/action_controller/metal/instrumentation.rb:76:in `block in process_action'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/activesupport-8.0.2.1/lib/active_support/notifications.rb:210:in `block in instrument'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/activesupport-8.0.2.1/lib/active_support/notifications/instrumenter.rb:58:in `instrument'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/activesupport-8.0.2.1/lib/active_support/notifications.rb:210:in `instrument'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/action_controller/metal/instrumentation.rb:75:in `process_action'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/action_controller/metal/params_wrapper.rb:259:in `process_action'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/activerecord-8.0.2.1/lib/active_record/railties/controller_runtime.rb:39:in `process_action'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/abstract_controller/base.rb:163:in `process'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/action_controller/metal.rb:252:in `dispatch'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/action_controller/metal.rb:335:in `dispatch'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/action_dispatch/routing/route_set.rb:67:in `dispatch'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/action_dispatch/routing/route_set.rb:50:in `serve'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/action_dispatch/journey/router.rb:53:in `block in serve'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/action_dispatch/journey/router.rb:133:in `block in find_routes'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/action_dispatch/journey/router.rb:126:in `each'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/action_dispatch/journey/router.rb:126:in `find_routes'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/action_dispatch/journey/router.rb:34:in `serve'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/action_dispatch/routing/route_set.rb:908:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/railties-8.0.2.1/lib/rails/engine/lazy_route_set.rb:68:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/omniauth-2.1.3/lib/omniauth/strategy.rb:202:in `call!'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/omniauth-2.1.3/lib/omniauth/strategy.rb:169:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/omniauth-2.1.3/lib/omniauth/builder.rb:44:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/warden-jwt_auth-0.11.0/lib/warden/jwt_auth/middleware/token_dispatcher.rb:20:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/warden-jwt_auth-0.11.0/lib/warden/jwt_auth/middleware/revocation_manager.rb:21:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/rack-3.2.0/lib/rack/builder.rb:283:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/warden-jwt_auth-0.11.0/lib/warden/jwt_auth/middleware.rb:22:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/action_dispatch/middleware/cookies.rb:706:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/rack-session-2.1.1/lib/rack/session/abstract/id.rb:274:in `context'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/rack-session-2.1.1/lib/rack/session/abstract/id.rb:268:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/warden-1.2.9/lib/warden/manager.rb:36:in `block in call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/warden-1.2.9/lib/warden/manager.rb:34:in `catch'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/warden-1.2.9/lib/warden/manager.rb:34:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/rack-3.2.0/lib/rack/etag.rb:29:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/rack-3.2.0/lib/rack/conditional_get.rb:44:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/rack-3.2.0/lib/rack/head.rb:15:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/activerecord-8.0.2.1/lib/active_record/migration.rb:671:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/action_dispatch/middleware/callbacks.rb:31:in `block in call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/activesupport-8.0.2.1/lib/active_support/callbacks.rb:100:in `run_callbacks'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/action_dispatch/middleware/callbacks.rb:30:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/action_dispatch/middleware/executor.rb:16:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/action_dispatch/middleware/actionable_exceptions.rb:18:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/action_dispatch/middleware/debug_exceptions.rb:31:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/action_dispatch/middleware/show_exceptions.rb:32:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/railties-8.0.2.1/lib/rails/rack/logger.rb:41:in `call_app'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/railties-8.0.2.1/lib/rails/rack/logger.rb:29:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/action_dispatch/middleware/remote_ip.rb:96:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/action_dispatch/middleware/request_id.rb:34:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/rack-3.2.0/lib/rack/runtime.rb:24:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/action_dispatch/middleware/server_timing.rb:61:in `block in call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/action_dispatch/middleware/server_timing.rb:26:in `collect_events'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/action_dispatch/middleware/server_timing.rb:60:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/action_dispatch/middleware/executor.rb:16:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/action_dispatch/middleware/static.rb:27:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/rack-3.2.0/lib/rack/sendfile.rb:114:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/action_dispatch/middleware/host_authorization.rb:143:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/rack-cors-3.0.0/lib/rack/cors.rb:102:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/railties-8.0.2.1/lib/rails/engine.rb:535:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/puma-6.6.1/lib/puma/configuration.rb:279:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/puma-6.6.1/lib/puma/request.rb:99:in `block in handle_request'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/puma-6.6.1/lib/puma/thread_pool.rb:390:in `with_force_shutdown'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/puma-6.6.1/lib/puma/request.rb:98:in `handle_request'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/puma-6.6.1/lib/puma/server.rb:472:in `process_client'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/puma-6.6.1/lib/puma/server.rb:254:in `block in run'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/puma-6.6.1/lib/puma/thread_pool.rb:167:in `block in spawn_thread'
+Completed 500 Internal Server Error in 62ms (Views: 0.4ms | ActiveRecord: 10.8ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/auth/google" for 127.0.0.1 at 2025-09-01 15:30:59 -0300
+Processing by Auth::GoogleController#create as JSON
+  Parameters: {"email"=>"[FILTERED]", "name"=>"Test User", "google_id"=>"123456789", "google"=>{"email"=>"[FILTERED]", "name"=>"Test User", "google_id"=>"123456789"}}
+Google auth attempt for email: test@example.com, name: Test User
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = 'test@example.com' LIMIT 1 /*action='create',application='Backend',controller='google'*/[0m
+  ↳ app/controllers/auth/google_controller.rb:16:in `create'
+User found/created: true, ID: 1
+User signed in successfully
+JWT token from warden: NO
+JWT token is nil or empty
+JWT token from headers: NO
+Completed 500 Internal Server Error in 40ms (Views: 0.9ms | ActiveRecord: 6.2ms (1 query, 0 cached) | GC: 0.5ms)
+
+
+Started POST "/auth/google" for 127.0.0.1 at 2025-09-01 15:31:23 -0300
+Processing by Auth::GoogleController#create as JSON
+  Parameters: {"email"=>"[FILTERED]", "name"=>"Test User", "google_id"=>"123456789", "google"=>{"email"=>"[FILTERED]", "name"=>"Test User", "google_id"=>"123456789"}}
+Google auth attempt for email: test@example.com, name: Test User
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = 'test@example.com' LIMIT 1 /*action='create',application='Backend',controller='google'*/[0m
+  ↳ app/controllers/auth/google_controller.rb:16:in `create'
+User found/created: true, ID: 1
+User signed in successfully
+JWT token from warden: NO
+JWT token is nil or empty, generating manually
+Manual JWT token generated successfully
+Completed 200 OK in 44ms (Views: 0.3ms | ActiveRecord: 4.9ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/auth/google" for 127.0.0.1 at 2025-09-01 15:32:07 -0300
+Processing by Auth::GoogleController#create as JSON
+  Parameters: {"email"=>"[FILTERED]", "name"=>"Ana Gomes", "google_id"=>"114945441299992670307", "google"=>{"email"=>"[FILTERED]", "name"=>"Ana Gomes", "google_id"=>"114945441299992670307"}}
+Google auth attempt for email: anaclimgo@gmail.com, name: Ana Gomes
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = 'anaclimgo@gmail.com' LIMIT 1 /*action='create',application='Backend',controller='google'*/[0m
+  ↳ app/controllers/auth/google_controller.rb:16:in `create'
+User found/created: true, ID: 4
+User signed in successfully
+JWT token from warden: NO
+JWT token is nil or empty, generating manually
+Manual JWT token generated successfully
+Completed 200 OK in 18ms (Views: 0.3ms | ActiveRecord: 3.2ms (1 query, 0 cached) | GC: 0.3ms)
+
+
