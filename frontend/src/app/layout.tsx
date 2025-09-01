@@ -20,7 +20,7 @@ const geistMono = Geist_Mono({
   /* rever description */
 }
 export const metadata: Metadata = {
-  title: 'Trilha Clara IA - Seu Guia Acadêmico',
+  title: 'Trilha Clara IA',
   description:
     'Plataforma acadêmica moderna e confiável para orientação de TCC',
   generator: 'v0.app',
