@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { Button } from '@/components/ui/button'
 import {
   ArrowRight,
@@ -30,6 +30,7 @@ import { HelpCircle } from 'lucide-react'
 export default function DashboardStartScreen() {
   const [currentStep, setCurrentStep] = useState(1)
   const [sidebarOpen, setSidebarOpen] = useState(false)
+  const sidebarRef = useRef<HTMLDivElement>(null)
   const [savedNotes, setSavedNotes] = useState<string[]>([])
   const [currentScreen, setCurrentScreen] = useState<
     'main' | 'notes' | 'timeline' | 'settings' | 'profile' | 'support'
@@ -71,6 +72,25 @@ export default function DashboardStartScreen() {
     },
   ]
 
+  useEffect(() => {
+    function handleClickOutside(event: MouseEvent) {
+      if (
+        sidebarRef.current &&
+        !sidebarRef.current.contains(event.target as Node)
+      ) {
+        setSidebarOpen(false)
+      }
+    }
+    if (sidebarOpen) {
+      document.addEventListener('mousedown', handleClickOutside)
+    } else {
+      document.removeEventListener('mousedown', handleClickOutside)
+    }
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside)
+    }
+  }, [sidebarOpen])
+
   const steps = [
     { id: 1, title: 'Inserir Dados', icon: FileText },
     { id: 2, title: 'Explicação', icon: BookOpen },
@@ -99,6 +119,7 @@ export default function DashboardStartScreen() {
   return (
     <div className="min-h-screen flex gradient-trilha-soft">
       <div
+        ref={sidebarRef}
         className={`fixed inset-y-0 left-0 z-50 w-80 bg-slate-50/95 backdrop-blur-sm border-r border-slate-200/30 shadow-xl transform transition-transform duration-300 ${
           sidebarOpen ? 'translate-x-0' : '-translate-x-full'
         }`}
@@ -118,7 +139,6 @@ export default function DashboardStartScreen() {
             </div>
           </div>
           <div className="flex-1 overflow-y-auto p-4 space-y-6">
-            {/* Navigation Menu */}
             <div>
               <h3 className="font-semibold text-gray-700 mb-3">Navegação</h3>
               <div className="space-y-2">
