@@ -153,4 +153,22 @@
   .gradient-bg {
     @apply bg-gradient-to-r from-purple-500 to-blue-500;
   }
+
+  .gradient-trilha {
+    background: linear-gradient(
+      135deg,
+      oklch(0.5 0.2 280) 0%,
+      oklch(0.6 0.2 220) 50%,
+      oklch(0.65 0.25 340) 100%
+    );
+  }
+
+  .gradient-trilha-soft {
+    background: linear-gradient(
+      135deg,
+      oklch(0.95 0.05 280) 0%,
+      oklch(0.96 0.04 220) 50%,
+      oklch(0.97 0.03 340) 100%
+    );
+  }
 }
