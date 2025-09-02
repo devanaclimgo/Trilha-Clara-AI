@@ -85,7 +85,7 @@ export default function TimelineScreen() {
         <p className="text-muted-foreground">Acompanhe seu progresso semanal</p>
       </div>
 
-      <Card className="rounded-2xl shadow-xl bg-white/80 backdrop-blur-sm border-white/20">
+      <Card className="rounded-2xl shadow-xl bg-slate-50/80 backdrop-blur-sm border-slate-200/20">
         <CardContent className="p-6">
           <div className="flex justify-between items-center mb-4">
             <span className="font-medium text-gray-700">Progresso Geral</span>
@@ -117,7 +117,7 @@ export default function TimelineScreen() {
               className={`rounded-2xl shadow-lg backdrop-blur-sm border-white/20 hover:shadow-xl transition-all duration-300 cursor-pointer ${
                 isCompleted
                   ? 'bg-gradient-to-r from-green-50/80 to-emerald-50/80 border-green-200'
-                  : 'bg-white/80 hover:bg-white/90'
+                  : 'bg-slate-50/80 hover:bg-slate-100/90'
               }`}
               onClick={() => toggleTask(item.id)}
             >

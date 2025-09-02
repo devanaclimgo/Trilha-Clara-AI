@@ -79,14 +79,14 @@ export default function DashboardStartScreen() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-purple-50/30 via-blue-50/20 to-pink-50/30 flex">
+    <div className="min-h-screen bg-gradient-to-br from-slate-50/80 via-purple-50/40 to-blue-50/30 flex">
       <div
-        className={`fixed inset-y-0 left-0 z-50 w-80 bg-white/90 backdrop-blur-sm border-r border-white/20 shadow-xl transform transition-transform duration-300 ${
+        className={`fixed inset-y-0 left-0 z-50 w-80 bg-slate-50/95 backdrop-blur-sm border-r border-slate-200/30 shadow-xl transform transition-transform duration-300 ${
           sidebarOpen ? 'translate-x-0' : '-translate-x-full'
         }`}
       >
         <div className="flex flex-col h-full">
-          <div className="p-6 border-b border-white/20">
+          <div className="p-6 border-b border-slate-200/30">
             <div className="flex items-center justify-between">
               <h2 className="text-lg font-bold gradient-text">Menu</h2>
               <Button
@@ -242,7 +242,7 @@ export default function DashboardStartScreen() {
           {currentScreen === 'main' && (
             <>
               <div className="flex justify-center mb-8">
-                <div className="flex items-center gap-4 bg-white/60 backdrop-blur-sm rounded-2xl p-4 shadow-lg">
+                <div className="flex items-center gap-4 bg-slate-50/80 backdrop-blur-sm rounded-2xl p-4 shadow-lg border border-slate-200/20">
                   {steps.map((step, index) => (
                     <div key={step.id} className="flex items-center">
                       <div
@@ -296,7 +296,7 @@ export default function DashboardStartScreen() {
           {currentScreen === 'timeline' && <TimelineScreen />}
           {currentScreen === 'settings' && (
             <div className="max-w-4xl mx-auto">
-              <div className="bg-white/60 backdrop-blur-sm rounded-2xl p-8 shadow-lg">
+              <div className="bg-slate-50/80 backdrop-blur-sm rounded-2xl p-8 shadow-lg border border-slate-200/20">
                 <h2 className="text-2xl font-bold gradient-text mb-6">
                   Configurações
                 </h2>
@@ -308,7 +308,7 @@ export default function DashboardStartScreen() {
           )}
           {currentScreen === 'profile' && (
             <div className="max-w-4xl mx-auto">
-              <div className="bg-white/60 backdrop-blur-sm rounded-2xl p-8 shadow-lg">
+              <div className="bg-slate-50/80 backdrop-blur-sm rounded-2xl p-8 shadow-lg border border-slate-200/20">
                 <h2 className="text-2xl font-bold gradient-text mb-6">
                   Perfil do Usuário
                 </h2>
@@ -320,7 +320,7 @@ export default function DashboardStartScreen() {
           )}
           {currentScreen === 'support' && (
             <div className="max-w-4xl mx-auto">
-              <div className="bg-white/60 backdrop-blur-sm rounded-2xl p-8 shadow-lg">
+              <div className="bg-slate-50/80 backdrop-blur-sm rounded-2xl p-8 shadow-lg border border-slate-200/20">
                 <h2 className="text-2xl font-bold gradient-text mb-6">
                   Suporte
                 </h2>

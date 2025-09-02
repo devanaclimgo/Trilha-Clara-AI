@@ -1,24 +1,28 @@
-import { useState } from "react"
-import { Card, CardContent, CardHeader, CardTitle } from "../ui/card"
-import { Button } from "../ui/button"
-import { ArrowRight, Edit3 } from "lucide-react"
+import { useState } from 'react'
+import { Card, CardContent, CardHeader, CardTitle } from '../ui/card'
+import { Button } from '../ui/button'
+import { ArrowRight, Edit3 } from 'lucide-react'
 
 export default function Estruturasugerida({ onNext }: { onNext: () => void }) {
   const [estrutura, setEstrutura] = useState([
-    "Introdução",
-    "Revisão bibliográfica",
-    "Metodologia",
-    "Resultados esperados",
-    "Conclusão",
+    'Introdução',
+    'Revisão bibliográfica',
+    'Metodologia',
+    'Resultados esperados',
+    'Conclusão',
   ])
 
   const [editando, setEditando] = useState(false)
 
   return (
-    <Card className="rounded-2xl shadow-xl bg-white/80 backdrop-blur-sm border-white/20">
+    <Card className="rounded-2xl shadow-xl bg-slate-50/80 backdrop-blur-sm border-slate-200/20">
       <CardHeader className="text-center pb-6">
-        <CardTitle className="text-2xl font-bold gradient-text">Estrutura sugerida</CardTitle>
-        <p className="text-muted-foreground">Baseada no seu enunciado, sugerimos esta estrutura</p>
+        <CardTitle className="text-2xl font-bold gradient-text">
+          Estrutura sugerida
+        </CardTitle>
+        <p className="text-muted-foreground">
+          Baseada no seu enunciado, sugerimos esta estrutura
+        </p>
       </CardHeader>
       <CardContent className="space-y-4">
         {estrutura.map((capitulo, index) => (
@@ -37,10 +41,12 @@ export default function Estruturasugerida({ onNext }: { onNext: () => void }) {
                   nova[index] = e.target.value
                   setEstrutura(nova)
                 }}
-                className="flex-1 p-2 rounded-xl border border-gray-200 bg-white/70"
+                className="flex-1 p-2 rounded-xl border border-slate-200 bg-slate-50/70"
               />
             ) : (
-              <span className="flex-1 font-medium text-gray-700">{capitulo}</span>
+              <span className="flex-1 font-medium text-gray-700">
+                {capitulo}
+              </span>
             )}
           </div>
         ))}
@@ -51,7 +57,7 @@ export default function Estruturasugerida({ onNext }: { onNext: () => void }) {
             className="px-6 py-3 rounded-2xl border-2 border-purple-200 hover:bg-purple-50 transition-all duration-300"
           >
             <Edit3 className="mr-2 h-4 w-4" />
-            {editando ? "Salvar" : "Editar"}
+            {editando ? 'Salvar' : 'Editar'}
           </Button>
           <Button
             onClick={onNext}

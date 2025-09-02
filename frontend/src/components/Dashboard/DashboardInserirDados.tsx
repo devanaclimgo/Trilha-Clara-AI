@@ -1,17 +1,21 @@
-import { ArrowRight } from "lucide-react"
-import { Button } from "../ui/button"
-import { Card, CardContent, CardHeader, CardTitle } from "../ui/card"
-import { useState } from "react"
+import { ArrowRight } from 'lucide-react'
+import { Button } from '../ui/button'
+import { Card, CardContent, CardHeader, CardTitle } from '../ui/card'
+import { useState } from 'react'
 
 export default function InserirDados({ onNext }: { onNext: () => void }) {
-  const [curso, setCurso] = useState("")
-  const [enunciado, setEnunciado] = useState("")
+  const [curso, setCurso] = useState('')
+  const [enunciado, setEnunciado] = useState('')
 
   return (
-    <Card className="rounded-2xl shadow-xl bg-white/80 backdrop-blur-sm border-white/20">
+    <Card className="rounded-2xl shadow-xl bg-slate-50/80 backdrop-blur-sm border-slate-200/20">
       <CardHeader className="text-center pb-6">
-        <CardTitle className="text-2xl font-bold gradient-text">Inserir dados do trabalho</CardTitle>
-        <p className="text-muted-foreground">Vamos começar com as informações básicas do seu TCC</p>
+        <CardTitle className="text-2xl font-bold gradient-text">
+          Inserir dados do trabalho
+        </CardTitle>
+        <p className="text-muted-foreground">
+          Vamos começar com as informações básicas do seu TCC
+        </p>
       </CardHeader>
       <CardContent className="space-y-6">
         <div>
@@ -19,7 +23,7 @@ export default function InserirDados({ onNext }: { onNext: () => void }) {
           <select
             value={curso}
             onChange={(e) => setCurso(e.target.value)}
-            className="w-full p-4 rounded-2xl border border-gray-200 bg-white/50 backdrop-blur-sm focus:ring-2 focus:ring-purple-500/20 focus:border-purple-500 transition-all duration-300"
+            className="w-full p-4 rounded-2xl border border-slate-200 bg-slate-50/60 backdrop-blur-sm focus:ring-2 focus:ring-purple-500/20 focus:border-purple-500 transition-all duration-300"
           >
             <option value="">Selecione seu curso</option>
             <option value="administracao">Administração</option>
@@ -31,13 +35,15 @@ export default function InserirDados({ onNext }: { onNext: () => void }) {
           </select>
         </div>
         <div>
-          <label className="block text-sm font-medium mb-2">Enunciado do trabalho</label>
+          <label className="block text-sm font-medium mb-2">
+            Enunciado do trabalho
+          </label>
           <textarea
             value={enunciado}
             onChange={(e) => setEnunciado(e.target.value)}
             placeholder="Cole aqui o enunciado completo do seu TCC conforme fornecido pelo professor..."
             rows={8}
-            className="w-full p-4 rounded-2xl border border-gray-200 bg-white/50 backdrop-blur-sm focus:ring-2 focus:ring-purple-500/20 focus:border-purple-500 transition-all duration-300 resize-none"
+            className="w-full p-4 rounded-2xl border border-slate-200 bg-slate-50/60 backdrop-blur-sm focus:ring-2 focus:ring-purple-500/20 focus:border-purple-500 transition-all duration-300 resize-none"
           />
         </div>
         <div className="flex justify-center pt-4">

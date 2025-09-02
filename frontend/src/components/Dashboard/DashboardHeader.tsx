@@ -24,7 +24,7 @@ const DashboardHeader = ({
   return (
     <div>
       {' '}
-      <header className="border-b border-white/20 bg-white/10 backdrop-blur-sm">
+      <header className="border-b border-slate-200/30 bg-slate-50/60 backdrop-blur-sm">
         <div className="container mx-auto px-4 py-6">
           <div className="flex items-center gap-3">
             <Button
@@ -41,7 +41,7 @@ const DashboardHeader = ({
                 variant="ghost"
                 size="sm"
                 onClick={() => setCurrentScreen('main')}
-                className="rounded-xl hover:bg-purple-50 mr-2"
+                className="rounded-xl hover:bg-purple-50 hover:text-purple-600 mr-2"
               >
                 <ArrowLeft className="h-5 w-5" />
               </Button>
@@ -51,14 +51,18 @@ const DashboardHeader = ({
             </div>
             <h1 className="text-3xl font-bold gradient-text">Trilha Clara</h1>
           </div>
-          <p className="text-muted-foreground mt-2">
-            {currentScreen === 'main' && 'Seu assistente inteligente para TCC'}
-            {currentScreen === 'notes' && 'Suas anotações salvas'}
-            {currentScreen === 'timeline' && 'Cronograma do seu TCC'}
-            {currentScreen === 'settings' && 'Configurações do sistema'}
-            {currentScreen === 'profile' && 'Seu perfil de usuário'}
-            {currentScreen === 'support' && 'Central de suporte'}
-          </p>
+          <div className="mt-3 flex items-center gap-2">
+            <div className="h-1 w-8 bg-gradient-to-r from-purple-400 to-blue-400 rounded-full"></div>
+            <span className="text-sm font-medium text-gray-600">
+              {currentScreen === 'main' &&
+                'Seu assistente inteligente para TCC'}
+              {currentScreen === 'notes' && 'Suas anotações salvas'}
+              {currentScreen === 'timeline' && 'Cronograma do seu TCC'}
+              {currentScreen === 'settings' && 'Configurações do sistema'}
+              {currentScreen === 'profile' && 'Seu perfil de usuário'}
+              {currentScreen === 'support' && 'Central de suporte'}
+            </span>
+          </div>
         </div>
       </header>
     </div>
