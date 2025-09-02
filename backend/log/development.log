@@ -581,3 +581,69 @@ JWT token from warden: YES
 Completed 200 OK in 279ms (Views: 7.4ms | ActiveRecord: 26.1ms (1 query, 0 cached) | GC: 0.0ms)
 
 
+[dotenv] Set [36mDEVISE_JWT_SECRET_KEY[0m, [36mGOOGLE_CLIENT_ID[0m, and [36mGOOGLE_CLIENT_SECRET[0m
+[dotenv] Loaded [33m.env[0m
+Started POST "/auth/google" for 127.0.0.1 at 2025-09-02 16:18:44 -0300
+  [1m[36mActiveRecord::SchemaMigration Load (2.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='Backend'*/[0m
+Processing by Auth::GoogleController#create as JSON
+  Parameters: {"email"=>"[FILTERED]", "name"=>"Ana Gomes", "google_id"=>"114945441299992670307", "google"=>{"email"=>"[FILTERED]", "name"=>"Ana Gomes", "google_id"=>"114945441299992670307"}}
+Google auth attempt for email: anaclimgo@gmail.com, name: Ana Gomes
+  [1m[36mUser Load (1.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = 'anaclimgo@gmail.com' LIMIT 1 /*action='create',application='Backend',controller='google'*/[0m
+  ↳ app/controllers/auth/google_controller.rb:16:in `create'
+User found/created: true, ID: 4
+User signed in successfully
+JWT token from warden: YES
+Completed 200 OK in 58ms (Views: 0.3ms | ActiveRecord: 15.5ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+[dotenv] Set [36mDEVISE_JWT_SECRET_KEY[0m, [36mGOOGLE_CLIENT_ID[0m, and [36mGOOGLE_CLIENT_SECRET[0m
+[dotenv] Loaded [33m.env[0m
+Started POST "/auth/google" for 127.0.0.1 at 2025-09-02 17:30:27 -0300
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='Backend'*/[0m
+Processing by Auth::GoogleController#create as JSON
+  Parameters: {"email"=>"[FILTERED]", "name"=>"Ana Gomes", "google_id"=>"114945441299992670307", "google"=>{"email"=>"[FILTERED]", "name"=>"Ana Gomes", "google_id"=>"114945441299992670307"}}
+Google auth attempt for email: anaclimgo@gmail.com, name: Ana Gomes
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = 'anaclimgo@gmail.com' LIMIT 1 /*action='create',application='Backend',controller='google'*/[0m
+  ↳ app/controllers/auth/google_controller.rb:16:in `create'
+User found/created: true, ID: 4
+User signed in successfully
+JWT token from warden: YES
+Completed 200 OK in 43ms (Views: 0.2ms | ActiveRecord: 7.5ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/auth/google" for 127.0.0.1 at 2025-09-02 18:17:27 -0300
+Processing by Auth::GoogleController#create as JSON
+  Parameters: {"email"=>"[FILTERED]", "name"=>"Ana Gomes", "google_id"=>"114945441299992670307", "google"=>{"email"=>"[FILTERED]", "name"=>"Ana Gomes", "google_id"=>"114945441299992670307"}}
+Google auth attempt for email: anaclimgo@gmail.com, name: Ana Gomes
+  [1m[36mUser Load (3.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = 'anaclimgo@gmail.com' LIMIT 1 /*action='create',application='Backend',controller='google'*/[0m
+  ↳ app/controllers/auth/google_controller.rb:16:in `create'
+User found/created: true, ID: 4
+User signed in successfully
+JWT token from warden: YES
+Completed 200 OK in 294ms (Views: 6.8ms | ActiveRecord: 13.9ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/auth/google" for 127.0.0.1 at 2025-09-02 18:17:46 -0300
+Processing by Auth::GoogleController#create as JSON
+  Parameters: {"email"=>"[FILTERED]", "name"=>"Ana Gomes", "google_id"=>"114945441299992670307", "google"=>{"email"=>"[FILTERED]", "name"=>"Ana Gomes", "google_id"=>"114945441299992670307"}}
+Google auth attempt for email: anaclimgo@gmail.com, name: Ana Gomes
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = 'anaclimgo@gmail.com' LIMIT 1 /*action='create',application='Backend',controller='google'*/[0m
+  ↳ app/controllers/auth/google_controller.rb:16:in `create'
+User found/created: true, ID: 4
+User signed in successfully
+JWT token from warden: YES
+Completed 200 OK in 17ms (Views: 0.2ms | ActiveRecord: 0.6ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/auth/google" for 127.0.0.1 at 2025-09-02 18:27:12 -0300
+Processing by Auth::GoogleController#create as JSON
+  Parameters: {"email"=>"[FILTERED]", "name"=>"Ana Gomes", "google_id"=>"114945441299992670307", "google"=>{"email"=>"[FILTERED]", "name"=>"Ana Gomes", "google_id"=>"114945441299992670307"}}
+Google auth attempt for email: anaclimgo@gmail.com, name: Ana Gomes
+  [1m[36mUser Load (1.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = 'anaclimgo@gmail.com' LIMIT 1 /*action='create',application='Backend',controller='google'*/[0m
+  ↳ app/controllers/auth/google_controller.rb:16:in `create'
+User found/created: true, ID: 4
+User signed in successfully
+JWT token from warden: YES
+Completed 200 OK in 23ms (Views: 0.2ms | ActiveRecord: 6.6ms (1 query, 0 cached) | GC: 0.0ms)
+
+
