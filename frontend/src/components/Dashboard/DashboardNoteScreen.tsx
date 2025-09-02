@@ -1,16 +1,18 @@
 import React, { useState } from 'react'
 import { Button } from '../ui/button'
-import { Plus, Save, StickyNote, Trash2 } from 'lucide-react'
+import { Plus, Save, StickyNote, Trash2, ArrowLeft } from 'lucide-react'
 import { Card, CardContent, CardHeader, CardTitle } from '../ui/card'
 
 export default function NotesScreen({
   savedNotes,
   onRemoveNote,
   onAddNote,
+  onBackToHome,
 }: {
   savedNotes: string[]
   onRemoveNote: (index: number) => void
   onAddNote: (note: string) => void
+  onBackToHome?: () => void
 }) {
   const [newNote, setNewNote] = useState('')
   const [showAddForm, setShowAddForm] = useState(false)
@@ -25,12 +27,23 @@ export default function NotesScreen({
 
   return (
     <div className="max-w-4xl mx-auto space-y-6">
+      {onBackToHome && (
+        <div className="flex items-center justify-between mb-6">
+          <Button
+            variant="outline"
+            onClick={onBackToHome}
+            className="rounded-xl hover:bg-purple-50 border-purple-200 hover:border-purple-300 hover:text-purple-600 flex items-center gap-2 px-4 py-2"
+          >
+            <ArrowLeft className="h-4 w-4" />
+            <span className="text-sm font-medium">Voltar ao início</span>
+          </Button>
+        </div>
+      )}
+
       <div className="flex items-center justify-between">
         <div>
           <h2 className="text-2xl font-bold gradient-text">Suas Anotações</h2>
-          <p className="text-muted-foreground">
-            Gerencie suas anotações salvas
-          </p>
+          <p className="text-muted-foreground">Gerencie suas anotações salvas</p>
         </div>
         <Button
           onClick={() => setShowAddForm(true)}

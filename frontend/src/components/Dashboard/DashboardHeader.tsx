@@ -1,6 +1,6 @@
 import React from 'react'
 import { Button } from '../ui/button'
-import { Menu, ArrowLeft, GraduationCap } from 'lucide-react'
+import { Menu, GraduationCap } from 'lucide-react'
 
 interface DashboardHeaderProps {
   setSidebarOpen: (open: boolean) => void
@@ -11,15 +11,11 @@ interface DashboardHeaderProps {
     | 'settings'
     | 'profile'
     | 'support'
-  setCurrentScreen: (
-    screen: 'main' | 'notes' | 'timeline' | 'settings' | 'profile' | 'support',
-  ) => void
 }
 
 const DashboardHeader = ({
   setSidebarOpen,
   currentScreen,
-  setCurrentScreen,
 }: DashboardHeaderProps) => {
   return (
     <div>
@@ -36,16 +32,7 @@ const DashboardHeader = ({
               <Menu className="h-4 w-4" />
               <span className="text-sm font-medium hidden sm:block">Menu</span>
             </Button>
-            {currentScreen !== 'main' && (
-              <Button
-                variant="ghost"
-                size="sm"
-                onClick={() => setCurrentScreen('main')}
-                className="rounded-xl hover:bg-purple-50 hover:text-purple-600 mr-2"
-              >
-                <ArrowLeft className="h-5 w-5" />
-              </Button>
-            )}
+
             <div className="p-2 rounded-2xl gradient-bg">
               <GraduationCap className="h-8 w-8 text-white" />
             </div>

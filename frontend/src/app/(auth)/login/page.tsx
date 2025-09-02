@@ -54,7 +54,7 @@ export default function LoginPage() {
         })
         localStorage.setItem('token', data.token)
         setTimeout(() => {
-          window.location.href = '/home'
+          window.location.href = '/dashboard'
         }, 1500)
       } else {
         const errorMessage = data.errors

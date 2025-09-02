@@ -3,7 +3,13 @@ import { Button } from '../ui/button'
 import { Card, CardContent, CardHeader, CardTitle } from '../ui/card'
 import { useState } from 'react'
 
-export default function InserirDados({ onNext }: { onNext: () => void }) {
+export default function InserirDados({
+  onNext,
+  onSaveData,
+}: {
+  onNext: () => void
+  onSaveData?: (data: { curso: string; enunciado: string }) => void
+}) {
   const [curso, setCurso] = useState('')
   const [enunciado, setEnunciado] = useState('')
 
@@ -48,7 +54,12 @@ export default function InserirDados({ onNext }: { onNext: () => void }) {
         </div>
         <div className="flex justify-center pt-4">
           <Button
-            onClick={onNext}
+            onClick={() => {
+              if (onSaveData) {
+                onSaveData({ curso, enunciado })
+              }
+              onNext()
+            }}
             disabled={!curso || !enunciado.trim()}
             className="px-8 py-3 rounded-2xl gradient-bg text-white font-medium hover:scale-105 hover:shadow-lg transition-all duration-300 disabled:opacity-50 disabled:hover:scale-100"
           >

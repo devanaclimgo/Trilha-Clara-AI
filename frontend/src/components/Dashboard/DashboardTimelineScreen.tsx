@@ -1,78 +1,31 @@
 import React, { useState } from 'react'
 import { Card, CardContent } from '../ui/card'
-import { Check } from 'lucide-react'
+import { Check, ArrowLeft } from 'lucide-react'
+import { Button } from '../ui/button'
 
-export default function TimelineScreen() {
+export default function TimelineScreen({
+  onBackToHome,
+}: {
+  onBackToHome?: () => void
+}) {
   const [completedTasks, setCompletedTasks] = useState<number[]>([1, 2])
 
   const atividades = [
-    {
-      id: 1,
-      semana: 1,
-      atividade: 'Escolher tema e delimitar problema',
-      categoria: 'Planejamento',
-    },
-    {
-      id: 2,
-      semana: 2,
-      atividade: 'Levantar referências bibliográficas',
-      categoria: 'Pesquisa',
-    },
-    {
-      id: 3,
-      semana: 3,
-      atividade: 'Escrever introdução e justificativa',
-      categoria: 'Redação',
-    },
-    {
-      id: 4,
-      semana: 4,
-      atividade: 'Redigir metodologia da pesquisa',
-      categoria: 'Metodologia',
-    },
-    {
-      id: 5,
-      semana: 5,
-      atividade: 'Desenvolver revisão bibliográfica',
-      categoria: 'Pesquisa',
-    },
-    {
-      id: 6,
-      semana: 6,
-      atividade: 'Aplicar instrumentos de coleta',
-      categoria: 'Coleta de Dados',
-    },
-    {
-      id: 7,
-      semana: 7,
-      atividade: 'Analisar dados coletados',
-      categoria: 'Análise',
-    },
-    {
-      id: 8,
-      semana: 8,
-      atividade: 'Escrever resultados e discussão',
-      categoria: 'Redação',
-    },
-    {
-      id: 9,
-      semana: 9,
-      atividade: 'Elaborar conclusões',
-      categoria: 'Redação',
-    },
-    {
-      id: 10,
-      semana: 10,
-      atividade: 'Revisão final e formatação ABNT',
-      categoria: 'Finalização',
-    },
+    { id: 1, semana: 1, atividade: 'Escolher tema e delimitar problema', categoria: 'Planejamento' },
+    { id: 2, semana: 2, atividade: 'Levantar referências bibliográficas', categoria: 'Pesquisa' },
+    { id: 3, semana: 3, atividade: 'Escrever introdução e justificativa', categoria: 'Redação' },
+    { id: 4, semana: 4, atividade: 'Redigir metodologia da pesquisa', categoria: 'Metodologia' },
+    { id: 5, semana: 5, atividade: 'Desenvolver revisão bibliográfica', categoria: 'Pesquisa' },
+    { id: 6, semana: 6, atividade: 'Aplicar instrumentos de coleta', categoria: 'Coleta de Dados' },
+    { id: 7, semana: 7, atividade: 'Analisar dados coletados', categoria: 'Análise' },
+    { id: 8, semana: 8, atividade: 'Escrever resultados e discussão', categoria: 'Redação' },
+    { id: 9, semana: 9, atividade: 'Elaborar conclusões', categoria: 'Redação' },
+    { id: 10, semana: 10, atividade: 'Revisão final e formatação ABNT', categoria: 'Finalização' },
   ]
 
   const toggleTask = (taskId: number) => {
     setCompletedTasks((prev) =>
-      prev.includes(taskId)
-        ? prev.filter((id) => id !== taskId)
-        : [...prev, taskId],
+      prev.includes(taskId) ? prev.filter((id) => id !== taskId) : [...prev, taskId],
     )
   }
 
@@ -80,9 +33,24 @@ export default function TimelineScreen() {
 
   return (
     <div className="max-w-4xl mx-auto space-y-6">
-      <div className="text-center">
-        <h2 className="text-2xl font-bold gradient-text">Cronograma do TCC</h2>
-        <p className="text-muted-foreground">Acompanhe seu progresso semanal</p>
+      {onBackToHome && (
+        <div className="flex items-center justify-between mb-6">
+          <Button
+            variant="outline"
+            onClick={onBackToHome}
+            className="rounded-xl hover:bg-purple-50 border-purple-200 hover:border-purple-300 hover:text-purple-600 flex items-center gap-2 px-4 py-2"
+          >
+            <ArrowLeft className="h-4 w-4" />
+            <span className="text-sm font-medium">Voltar ao início</span>
+          </Button>
+        </div>
+      )}
+
+      <div className="flex items-center justify-between">
+        <div>
+          <h2 className="text-2xl font-bold gradient-text">Cronograma do TCC</h2>
+          <p className="text-muted-foreground">Acompanhe seu progresso semanal</p>
+        </div>
       </div>
 
       <Card className="rounded-2xl shadow-xl bg-slate-50/80 backdrop-blur-sm border-slate-200/20">
@@ -125,45 +93,31 @@ export default function TimelineScreen() {
                 <div className="flex items-center gap-4">
                   <div
                     className={`w-12 h-12 rounded-full flex items-center justify-center font-bold text-sm transition-all duration-300 ${
-                      isCompleted
-                        ? 'bg-green-500 text-white'
-                        : 'gradient-bg text-white'
+                      isCompleted ? 'bg-green-500 text-white' : 'gradient-bg text-white'
                     }`}
                   >
                     {isCompleted ? <Check className="h-5 w-5" /> : item.semana}
                   </div>
                   <div className="flex-1">
                     <div className="flex items-center gap-3 mb-2">
-                      <span
-                        className={`font-bold ${
-                          isCompleted ? 'text-green-800' : 'text-gray-700'
-                        }`}
-                      >
+                      <span className={`font-bold ${isCompleted ? 'text-green-800' : 'text-gray-700'}`}>
                         Semana {item.semana}
                       </span>
                       <span
                         className={`text-xs px-3 py-1 rounded-full ${
-                          isCompleted
-                            ? 'bg-green-100 text-green-700'
-                            : 'bg-purple-100 text-purple-700'
+                          isCompleted ? 'bg-green-100 text-green-700' : 'bg-purple-100 text-purple-700'
                         }`}
                       >
                         {item.categoria}
                       </span>
                     </div>
-                    <p
-                      className={`font-medium ${
-                        isCompleted ? 'text-green-800' : 'text-gray-700'
-                      }`}
-                    >
+                    <p className={`font-medium ${isCompleted ? 'text-green-800' : 'text-gray-700'}`}>
                       {item.atividade}
                     </p>
                   </div>
                   <div
                     className={`w-6 h-6 rounded-full border-2 flex items-center justify-center transition-all duration-300 ${
-                      isCompleted
-                        ? 'bg-green-500 border-green-500'
-                        : 'border-gray-300 hover:border-purple-400'
+                      isCompleted ? 'bg-green-500 border-green-500' : 'border-gray-300 hover:border-purple-400'
                     }`}
                   >
                     {isCompleted && <Check className="h-4 w-4 text-white" />}
@@ -177,9 +131,7 @@ export default function TimelineScreen() {
 
       <Card className="rounded-2xl shadow-xl bg-gradient-to-r from-purple-50/80 to-pink-50/80 backdrop-blur-sm border-purple-200">
         <CardContent className="p-6 text-center">
-          <h3 className="font-bold text-purple-900 mb-2">
-            🎯 Dica de Produtividade
-          </h3>
+          <h3 className="font-bold text-purple-900 mb-2">🎯 Dica de Produtividade</h3>
           <p className="text-purple-800 text-sm">
             Marque as tarefas como concluídas conforme você avança. Isso ajuda a
             manter a motivação e visualizar seu progresso!
