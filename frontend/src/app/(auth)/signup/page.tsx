@@ -200,7 +200,7 @@ export default function SignupPage() {
         <Button
           asChild
           variant="ghost"
-          className="mb-6 hover:bg-primary/10 rounded-xl"
+          className="mb-6 hover:bg-primary/10 hover:text-purple-600 transition-all duration-300 rounded-xl"
         >
           <Link href="/" className="flex items-center gap-2">
             <ArrowLeft className="w-4 h-4" />
