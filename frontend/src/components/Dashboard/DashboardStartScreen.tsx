@@ -97,7 +97,7 @@ export default function DashboardStartScreen() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50/80 via-purple-50/40 to-blue-50/30 flex">
+    <div className="min-h-screen flex gradient-trilha-soft">
       <div
         className={`fixed inset-y-0 left-0 z-50 w-80 bg-slate-50/95 backdrop-blur-sm border-r border-slate-200/30 shadow-xl transform transition-transform duration-300 ${
           sidebarOpen ? 'translate-x-0' : '-translate-x-full'

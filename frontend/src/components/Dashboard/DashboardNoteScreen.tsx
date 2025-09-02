@@ -42,7 +42,7 @@ export default function NotesScreen({
             )}
           </div>
         </div>
-        <div className="max-w-4xl mx-auto space-y-6 flex flex-col">
+        <div className="max-w-4xl mx-auto space-y-6 flex flex-row justify-between items-center mb-4 px-0">
           <div className="flex items-center px-0 gap-4">
             <div>
               <h2 className="text-2xl font-bold gradient-text">

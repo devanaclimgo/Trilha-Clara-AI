@@ -20,7 +20,7 @@ const DashboardHeader = ({
   return (
     <div>
       {' '}
-      <header className="border-b border-slate-200/30 bg-slate-50/60 backdrop-blur-sm">
+      <header className="border-b border-slate-200/30 bg-transparent backdrop-blur-sm">
         <div className="container mx-auto px-4 py-6">
           <div className="flex items-center gap-3">
             <Button
