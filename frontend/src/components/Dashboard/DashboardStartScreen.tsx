@@ -22,14 +22,45 @@ import ExplicacaoSimplificada from './DashboardExplicacaoSimplidicada'
 import Estruturasugerida from './DashboardEstruturaSugerida'
 import Cronograma from './DashboardCronograma'
 import ExportacaoABNT from './DashboardExportacaoABNT'
+import { Settings } from 'lucide-react'
+import { User } from 'lucide-react'
+import { HelpCircle } from 'lucide-react'
 
 export default function DashboardStartScreen() {
   const [currentStep, setCurrentStep] = useState(1)
   const [sidebarOpen, setSidebarOpen] = useState(false)
   const [savedNotes, setSavedNotes] = useState<string[]>([])
   const [currentScreen, setCurrentScreen] = useState<
-    'main' | 'notes' | 'timeline'
+    'main' | 'notes' | 'timeline' | 'settings' | 'profile' | 'support'
   >('main')
+
+  const menuItems = [
+    {
+      title: 'Anotações',
+      icon: FileText,
+      id: 'notes',
+    },
+    {
+      title: 'Cronograma',
+      icon: Calendar,
+      id: 'timeline',
+    },
+    {
+      title: 'Configurações',
+      icon: Settings,
+      id: 'settings',
+    },
+    {
+      title: 'Perfil',
+      icon: User,
+      id: 'profile',
+    },
+    {
+      title: 'Suporte',
+      icon: HelpCircle,
+      id: 'support',
+    },
+  ]
 
   const steps = [
     { id: 1, title: 'Inserir Dados', icon: FileText },
@@ -62,13 +93,44 @@ export default function DashboardStartScreen() {
                 variant="ghost"
                 size="sm"
                 onClick={() => setSidebarOpen(false)}
-                className="rounded-xl hover:bg-purple-50"
+                className="rounded-xl hover:bg-purple-50 hover:text-purple-600"
               >
                 <X className="h-4 w-4" />
               </Button>
             </div>
           </div>
           <div className="flex-1 overflow-y-auto p-4 space-y-6">
+            {/* Navigation Menu */}
+            <div>
+              <h3 className="font-semibold text-gray-700 mb-3">Navegação</h3>
+              <div className="space-y-2">
+                {menuItems.map((item) => (
+                  <Button
+                    key={item.id}
+                    variant="ghost"
+                    className="w-full justify-start gap-3 p-3 rounded-xl hover:bg-purple-50 hover:text-purple-600 transition-all"
+                    onClick={() => {
+                      if (item.id === 'notes') {
+                        setCurrentScreen('notes')
+                      } else if (item.id === 'timeline') {
+                        setCurrentScreen('timeline')
+                      } else if (item.id === 'settings') {
+                        setCurrentScreen('settings')
+                      } else if (item.id === 'profile') {
+                        setCurrentScreen('profile')
+                      } else if (item.id === 'support') {
+                        setCurrentScreen('support')
+                      }
+                      setSidebarOpen(false)
+                    }}
+                  >
+                    <item.icon className="h-4 w-4" />
+                    <span className="text-sm font-medium">{item.title}</span>
+                  </Button>
+                ))}
+              </div>
+            </div>
+
             <div>
               <div className="flex items-center justify-between mb-3">
                 <h3 className="font-semibold text-gray-700 flex items-center gap-2">
@@ -82,7 +144,7 @@ export default function DashboardStartScreen() {
                     setCurrentScreen('notes')
                     setSidebarOpen(false)
                   }}
-                  className="text-xs rounded-lg hover:bg-purple-50"
+                  className="text-xs rounded-lg hover:bg-purple-50 hover:text-purple-600"
                 >
                   Ver todas
                 </Button>
@@ -117,7 +179,7 @@ export default function DashboardStartScreen() {
                     setCurrentScreen('timeline')
                     setSidebarOpen(false)
                   }}
-                  className="text-xs rounded-lg hover:bg-purple-50"
+                  className="text-xs rounded-lg hover:bg-purple-50 hover:text-purple-600"
                 >
                   Ver cronograma
                 </Button>
@@ -232,6 +294,42 @@ export default function DashboardStartScreen() {
             />
           )}
           {currentScreen === 'timeline' && <TimelineScreen />}
+          {currentScreen === 'settings' && (
+            <div className="max-w-4xl mx-auto">
+              <div className="bg-white/60 backdrop-blur-sm rounded-2xl p-8 shadow-lg">
+                <h2 className="text-2xl font-bold gradient-text mb-6">
+                  Configurações
+                </h2>
+                <p className="text-gray-600">
+                  Configurações do sistema em desenvolvimento...
+                </p>
+              </div>
+            </div>
+          )}
+          {currentScreen === 'profile' && (
+            <div className="max-w-4xl mx-auto">
+              <div className="bg-white/60 backdrop-blur-sm rounded-2xl p-8 shadow-lg">
+                <h2 className="text-2xl font-bold gradient-text mb-6">
+                  Perfil do Usuário
+                </h2>
+                <p className="text-gray-600">
+                  Informações do perfil em desenvolvimento...
+                </p>
+              </div>
+            </div>
+          )}
+          {currentScreen === 'support' && (
+            <div className="max-w-4xl mx-auto">
+              <div className="bg-white/60 backdrop-blur-sm rounded-2xl p-8 shadow-lg">
+                <h2 className="text-2xl font-bold gradient-text mb-6">
+                  Suporte
+                </h2>
+                <p className="text-gray-600">
+                  Central de suporte em desenvolvimento...
+                </p>
+              </div>
+            </div>
+          )}
         </div>
       </div>
     </div>
