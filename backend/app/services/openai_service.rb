@@ -1,21 +1,32 @@
 class OpenaiService
-  DEFAULT_MODEL = "gpt-3.5-turbo".freeze
+  DEFAULT_MODEL = "gpt-4o-mini".freeze
 
-  def initialize(client: OpenAI::Client.new)
+  def initialize(client: OpenAI::Client.new(api_key: ENV["OPENAI_API_KEY"]))
     @client = client
   end
 
   # método genérico pra conversar com o modelo
   def chat!(messages, model: DEFAULT_MODEL, temperature: 0.4, max_tokens: 700)
-    resp = @client.chat(
-      parameters: {
-        model: model,
-        messages: messages,
-        temperature: temperature,
-        max_tokens: max_tokens
-      }
-    )
-    resp.dig("choices", 0, "message", "content")
+    tries = 0
+    begin
+      resp = @client.chat(
+          parameters: {
+          model: model,
+          messages: messages,
+          temperature: temperature,
+          max_tokens: max_tokens
+        }
+      )
+      resp.dig("choices", 0, "message", "content")
+    rescue Faraday::TooManyRequestsError => e
+      tries += 1
+      if tries < 3
+       sleep 2 ** tries
+        retry
+      else
+        raise e
+      end
+    end
   end
 
   # explicação simplificada do enunciado
