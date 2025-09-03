@@ -5,8 +5,8 @@ class TccController < ApplicationController
 
     openai = OpenaiService.new
 
-    @explicacao = openai.simplificar_enunciado(enunciado, curso)
-    @sumario = openai.gerar_sumario(curso)
+    @explicacao = openai.simplificar_enunciado!(enunciado: enunciado, curso: curso)
+    @sumario = openai.gerar_sumario!(curso: curso)
 
     render json: { explicacao: @explicacao, sumario: @sumario }
   end
