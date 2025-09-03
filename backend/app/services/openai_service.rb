@@ -1,46 +1,53 @@
 class OpenaiService
-  def initialize
-    @client = OpenAI::Client.new(access_token: Rails.application.credentials.openai[:api_key])
+  DEFAULT_MODEL = "gpt-3.5-turbo".freeze
+
+  def initialize(client: OpenAI::Client.new)
+    @client = client
   end
 
-  # Explicação simplificada do enunciado
-  def simplificar_enunciado(enunciado, curso)
-    prompt = <<~PROMPT
-      Você é um assistente que transforma enunciados de TCC em português claro.
-      Curso: #{curso}
-      Enunciado: #{enunciado}
-      Explique de forma simples e clara o que o aluno precisa fazer.
-    PROMPT
-
-    response = @client.chat(
+  # método genérico pra conversar com o modelo
+  def chat!(messages, model: DEFAULT_MODEL, temperature: 0.4, max_tokens: 700)
+    resp = @client.chat(
       parameters: {
-        model: "gpt-3.5-turbo",
-        messages: [{ role: "user", content: prompt }],
-        temperature: 0.7,
-        max_tokens: 500
+        model: model,
+        messages: messages,
+        temperature: temperature,
+        max_tokens: max_tokens
       }
     )
-
-    response.dig("choices", 0, "message", "content")
+    resp.dig("choices", 0, "message", "content")
   end
 
-  # Gerar sumário automático
-  def gerar_sumario(curso)
-    prompt = <<~PROMPT
-      Você é um assistente que sugere sumários de TCC.
-      Curso: #{curso}
-      Crie uma estrutura básica de capítulos.
-    PROMPT
+  # explicação simplificada do enunciado
+  def simplificar_enunciado!(enunciado:, curso:)
+    messages = [
+      { role: "system", content: "Você ajuda estudantes brasileiros a entender enunciados de TCC. Responda SEMPRE em português claro, direto, com bullets quando ajudar." },
+      { role: "user", content: <<~TXT }
+        Curso: #{curso}
+        Enunciado: #{enunciado}
 
-    response = @client.chat(
-      parameters: {
-        model: "gpt-3.5-turbo",
-        messages: [{ role: "user", content: prompt }],
-        temperature: 0.5,
-        max_tokens: 300
-      }
-    )
+        Tarefa: explique, em linguagem simples e objetiva, o que o aluno precisa fazer.
+        Dê passos práticos (ex.: escolher tema, definir problema, método etc.). Evite jargões.
+      TXT
+    ]
+    chat!(messages)
+  end
 
-    response.dig("choices", 0, "message", "content")
+  # gerar sumário automático
+  def gerar_sumario!(curso:)
+    messages = [
+      { role: "system", content: "Gere apenas uma lista numerada de capítulos para TCC, formato curto." },
+      { role: "user", content: "Crie um sumário básico de TCC para o curso de #{curso}." }
+    ]
+    chat!(messages, temperature: 0.3, max_tokens: 300)
+  end
+
+  # gerar cronograma semanal simples
+  def gerar_cronograma!(curso:, semanas: 8)
+    messages = [
+      { role: "system", content: "Monte um cronograma semanal, com tarefas objetivas, para TCC." },
+      { role: "user", content: "Curso: #{curso}. Crie um cronograma de #{semanas} semanas, 1-2 tarefas por semana, claro e acionável." }
+    ]
+    chat!(messages, temperature: 0.3, max_tokens: 500)
   end
 end
