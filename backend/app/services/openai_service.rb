@@ -6,7 +6,9 @@ class OpenaiService
   end
 
   # método genérico pra conversar com o modelo
-  def chat!(messages, model: DEFAULT_MODEL, temperature: 0.4, max_tokens: 700)
+  def chat!(messages, model: DEFAULT_MODEL, temperature: 0.4, max_tokens: 1500)
+    Rails.logger.info "OpenAI API Request - Messages: #{messages.size}, Tokens estimados: #{estimate_tokens(messages)}"
+
     tries = 0
     begin
       resp = @client.chat(
@@ -31,6 +33,10 @@ class OpenaiService
 
   # explicação simplificada do enunciado
   def simplificar_enunciado!(enunciado:, curso:)
+    cache_key = "simplify_#{Digest::MD5.hexdigest("#{enunciado}_#{curso}")}"
+    cached = Rails.cache.read(cache_key)
+    return cached if cached.present?
+
     messages = [
       { role: "system", content: "Você ajuda estudantes brasileiros a entender enunciados de TCC. Responda SEMPRE em português claro, direto, com bullets quando ajudar." },
       { role: "user", content: <<~TXT }
@@ -41,7 +47,11 @@ class OpenaiService
         Dê passos práticos (ex.: escolher tema, definir problema, método etc.). Evite jargões.
       TXT
     ]
-    chat!(messages)
+    result = chat!(messages)
+  
+    Rails.cache.write(cache_key, result, expires_in: 24.hours)
+  
+    result
   end
 
   # gerar sumário automático
@@ -60,5 +70,11 @@ class OpenaiService
       { role: "user", content: "Curso: #{curso}. Crie um cronograma de #{semanas} semanas, 1-2 tarefas por semana, claro e acionável." }
     ]
     chat!(messages, temperature: 0.3, max_tokens: 500)
+  end
+
+  private
+
+  def estimate_tokens(messages)
+    messages.sum { |msg| msg[:content].split.size / 0.75 }
   end
 end
