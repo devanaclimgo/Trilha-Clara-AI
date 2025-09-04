@@ -41,8 +41,12 @@ class OpenaiService
   # explicação simplificada do enunciado
   def simplificar_enunciado!(enunciado:, curso:)
     cache_key = "simplify_#{Digest::MD5.hexdigest("#{enunciado}_#{curso}")}"
-    cached = Rails.cache.read(cache_key)
-    return cached if cached.present?
+      if cached
+        Rails.logger.info "Cache hit for: #{cache_key}"
+        return cached
+      end
+
+   Rails.logger.info "Cache miss for: #{cache_key}"
 
     messages = [
       { role: "system", content: "Você ajuda estudantes brasileiros a entender enunciados de TCC. Responda SEMPRE em português claro, direto, com bullets quando ajudar." },
@@ -56,7 +60,7 @@ class OpenaiService
     ]
     result = chat!(messages)
   
-    Rails.cache.write(cache_key, result, expires_in: 24.hours)
+    Rails.cache.write(cache_key, result, expires_in: 1.week)
   
     result
   end
