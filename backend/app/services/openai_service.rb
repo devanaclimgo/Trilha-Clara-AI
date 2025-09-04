@@ -7,10 +7,11 @@ class OpenaiService
 
   # método genérico pra conversar com o modelo
   def chat!(messages, model: DEFAULT_MODEL, temperature: 0.4, max_tokens: 1500)
-    Rails.logger.info "OpenAI API Request - Messages: #{messages.size}, Tokens estimados: #{estimate_tokens(messages)}"
+    retries = 0
+    max_retries = 5
 
-    tries = 0
     begin
+      Rails.logger.info "OpenAI API Request - Messages: #{messages.size}, Tokens estimados: #{estimate_tokens(messages)}"
       resp = @client.chat(
           parameters: {
           model: model,
@@ -21,13 +22,19 @@ class OpenaiService
       )
       resp.dig("choices", 0, "message", "content")
     rescue Faraday::TooManyRequestsError => e
-      tries += 1
-      if tries < 3
-       sleep 2 ** tries
-        retry
+      retries += 1
+      if retries <= max_retries
+        wait_time = 2 ** retries # backoff exponencial: 2, 4, 8, 16, 32 segundos
+        Rails.logger.warn "Rate limit exceeded. Retrying in #{wait_time} seconds (attempt #{retries}/#{max_retries})"
+        sleep(wait_time)
+      retry
       else
+        Rails.logger.error "Max retries reached. Giving up."
         raise e
       end
+    rescue StandardError => e
+      Rails.logger.error "OpenAI API Error: #{e.message}"
+      raise e
     end
   end
 
