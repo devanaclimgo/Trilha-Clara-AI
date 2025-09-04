@@ -1,4 +1,9 @@
+require 'thread'
+
 class OpenaiService
+  SEMAPHORE = Mutex.new
+  MAX_CONCURRENT_REQUESTS = 2
+
   DEFAULT_MODEL = "gpt-4o-mini".freeze
 
   def initialize(client: OpenAI::Client.new(api_key: ENV["OPENAI_API_KEY"]))
@@ -7,6 +12,7 @@ class OpenaiService
 
   # método genérico pra conversar com o modelo
   def chat!(messages, model: DEFAULT_MODEL, temperature: 0.4, max_tokens: 1500)
+    SEMAPHORE.synchronize do
     retries = 0
     max_retries = 5
 
@@ -36,6 +42,7 @@ class OpenaiService
       Rails.logger.error "OpenAI API Error: #{e.message}"
       raise e
     end
+  end
   end
 
   # explicação simplificada do enunciado
