@@ -3,10 +3,10 @@ class TccController < ApplicationController
     enunciado = params[:enunciado]
     curso = params[:curso]
 
-   # openai = OpenaiService.new
+    gemini = GeminiService.new
 
-    @explicacao = openai.simplificar_enunciado!(enunciado: enunciado, curso: curso)
-    @sumario = openai.gerar_sumario!(curso: curso)
+    @explicacao = gemini.simplificar_enunciado!(enunciado: enunciado, curso: curso)
+    @sumario = gemini.gerar_sumario!(curso: curso)
 
     render json: { explicacao: @explicacao, sumario: @sumario }
   end
