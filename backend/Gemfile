@@ -26,6 +26,8 @@ gem "google-id-token"
 gem 'omniauth'
 gem 'omniauth-google-oauth2'
 
+gem 'faraday'
+
 gem 'redis-rails'
 
 group :development, :test do

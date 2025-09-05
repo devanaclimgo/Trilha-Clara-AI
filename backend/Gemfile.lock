@@ -410,6 +410,7 @@ DEPENDENCIES
   devise
   devise-jwt
   dotenv-rails
+  faraday
   google-id-token
   kamal
   omniauth
