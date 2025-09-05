@@ -7,7 +7,8 @@ class GeminiService
   DEFAULT_MODEL = "gemini-1.5-flash"
 
   def initialize(api_key: ENV["GEMINI_API_KEY"])
-    @api_key = api_key
+    @api_key = Rails.application.config.gemini_api_key || api_key
+    raise "GEMINI_API_KEY não está configurada" unless @api_key
     @client = Faraday.new(
       url: BASE_URL,
       params: { key: @api_key },
