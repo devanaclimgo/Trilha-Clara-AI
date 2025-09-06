@@ -35,6 +35,7 @@ export default function InserirDados({
             <option value="administracao">Administração</option>
             <option value="direito">Direito</option>
             <option value="engenharia">Engenharia</option>
+            <option value="contabeis">Ciências Contábeis</option>
             <option value="psicologia">Psicologia</option>
             <option value="desenvolvimento-de-sistemas">Análise e Desenvolvimento de Sistemas</option>
             <option value="publicidade">Publicidade e Propaganda</option>
