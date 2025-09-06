@@ -32,7 +32,7 @@ export default function InserirDados({
             className="w-full p-4 rounded-2xl border border-slate-200 bg-slate-50/60 backdrop-blur-sm focus:ring-2 focus:ring-purple-500/20 focus:border-purple-500 transition-all duration-300"
           >
             <option value="">Selecione seu curso</option>
-            <option value="administracao">Administração</option>
+            <option value="medicina">Medicina</option>
             <option value="direito">Direito</option>
             <option value="engenharia">Engenharia</option>
             <option value="contabeis">Ciências Contábeis</option>
