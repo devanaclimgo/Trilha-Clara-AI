@@ -663,3 +663,68 @@ Completed 200 OK in 23ms (Views: 0.2ms | ActiveRecord: 6.6ms (1 query, 0 cached)
 OpenAI API Request - Messages: 2, Tokens estimados: 76.0
 OpenAI API Request - Messages: 2, Tokens estimados: 76.0
 OpenAI API Request - Messages: 2, Tokens estimados: 76.0
+[dotenv] Set [36mDEVISE_JWT_SECRET_KEY[0m, [36mGOOGLE_CLIENT_ID[0m, and [36mGOOGLE_CLIENT_SECRET[0m
+[dotenv] Loaded [33m.env[0m
+[dotenv] Loaded [33m.env[0m
+[dotenv] Set [36mDEVISE_JWT_SECRET_KEY[0m, [36mGOOGLE_CLIENT_ID[0m, [36mGOOGLE_CLIENT_SECRET[0m, and [36mGEMINI_API_KEY[0m
+[dotenv] Loaded [33m.env[0m
+[dotenv] Loaded [33m.env[0m
+[dotenv] Set [36mDEVISE_JWT_SECRET_KEY[0m, [36mGOOGLE_CLIENT_ID[0m, [36mGOOGLE_CLIENT_SECRET[0m, and [36mGEMINI_API_KEY[0m
+[dotenv] Loaded [33m.env[0m
+[dotenv] Loaded [33m.env[0m
+[dotenv] Set [36mDEVISE_JWT_SECRET_KEY[0m, [36mGOOGLE_CLIENT_ID[0m, [36mGOOGLE_CLIENT_SECRET[0m, and [36mGEMINI_API_KEY[0m
+[dotenv] Loaded [33m.env[0m
+[dotenv] Loaded [33m.env[0m
+[dotenv] Set [36mDEVISE_JWT_SECRET_KEY[0m, [36mGOOGLE_CLIENT_ID[0m, [36mGOOGLE_CLIENT_SECRET[0m, and [36mGEMINI_API_KEY[0m
+[dotenv] Loaded [33m.env[0m
+[dotenv] Loaded [33m.env[0m
+Started GET "/" for ::1 at 2025-09-05 21:10:40 -0300
+  [1m[36mActiveRecord::SchemaMigration Load (1.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='Backend'*/[0m
+Processing by Rails::WelcomeController#index as HTML
+  Rendering /home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/railties-8.0.2.1/lib/rails/templates/rails/welcome/index.html.erb
+  Rendered /home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/railties-8.0.2.1/lib/rails/templates/rails/welcome/index.html.erb (Duration: 2.7ms | GC: 0.0ms)
+Completed 200 OK in 21ms (Views: 9.2ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/icon.png" for ::1 at 2025-09-05 21:10:40 -0300
+  
+ActionController::RoutingError (No route matches [GET] "/icon.png"):
+  
+Started GET "/icon.png" for ::1 at 2025-09-05 21:10:40 -0300
+  
+ActionController::RoutingError (No route matches [GET] "/icon.png"):
+  
+Started POST "/tcc/criar" for ::1 at 2025-09-05 21:11:00 -0300
+Processing by TccController#criar as */*
+  Parameters: {"enunciado"=>"Estrutura metodológica baseada em referenciais epistemológicos aplicados ao campo social.", "curso"=>"Psicologia", "semanas"=>8, "tcc"=>{"enunciado"=>"Estrutura metodológica baseada em referenciais epistemológicos aplicados ao campo social.", "curso"=>"Psicologia", "semanas"=>8}}
+Completed 500 Internal Server Error in 6172ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+  
+NoMethodError (undefined method `ask_gemini' for an instance of GeminiService):
+  
+app/services/gemini_service.rb:63:in `gerar_sumario!'
+app/controllers/tcc_controller.rb:10:in `criar'
+Started POST "/tcc/criar" for ::1 at 2025-09-05 21:19:29 -0300
+Processing by TccController#criar as */*
+  Parameters: {"enunciado"=>"Estrutura metodológica baseada em referenciais epistemológicos aplicados ao campo social.", "curso"=>"Psicologia", "semanas"=>8, "tcc"=>{"enunciado"=>"Estrutura metodológica baseada em referenciais epistemológicos aplicados ao campo social.", "curso"=>"Psicologia", "semanas"=>8}}
+Completed 200 OK in 13908ms (Views: 0.4ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/tcc/criar" for ::1 at 2025-09-05 21:31:35 -0300
+Processing by TccController#criar as */*
+Completed 200 OK in 9584ms (Views: 1.2ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/tcc/criar" for ::1 at 2025-09-05 21:32:52 -0300
+Processing by TccController#criar as */*
+  Parameters: {"enunciado"=>"Estrutura metodológica baseada em referenciais epistemológicos aplicados ao campo social.", "curso"=>"Psicologia", "semanas"=>8, "tcc"=>{"enunciado"=>"Estrutura metodológica baseada em referenciais epistemológicos aplicados ao campo social.", "curso"=>"Psicologia", "semanas"=>8}}
+Completed 200 OK in 6654ms (Views: 0.5ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 43.7ms)
+
+
+Started POST "/tcc/criar" for ::1 at 2025-09-05 21:34:12 -0300
+Processing by TccController#criar as */*
+  Parameters: {"enunciado"=>"Analise a eficácia das campanhas publicitárias digitais voltadas para redes sociais, considerando o engajamento do público-alvo e a construção de marca. Avalie estratégias de storytelling, uso de influenciadores e métricas de desempenho, propondo melhorias baseadas em referências teóricas do marketing e comunicação.", "curso"=>"Publicidade e Propaganda", "semanas"=>8, "tcc"=>{"enunciado"=>"Analise a eficácia das campanhas publicitárias digitais voltadas para redes sociais, considerando o engajamento do público-alvo e a construção de marca. Avalie estratégias de storytelling, uso de influenciadores e métricas de desempenho, propondo melhorias baseadas em referências teóricas do marketing e comunicação.", "curso"=>"Publicidade e Propaganda", "semanas"=>8}}
+Completed 200 OK in 11355ms (Views: 0.8ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 2.6ms)
+
+
