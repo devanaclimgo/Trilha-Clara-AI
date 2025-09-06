@@ -6,6 +6,8 @@ Rails.application.configure do
   # Make code changes take effect immediately without server restart.
   config.enable_reloading = true
 
+  config.hosts.clear # Allow requests from any host in development.
+
   # Do not eager load code on boot.
   config.eager_load = false
 
