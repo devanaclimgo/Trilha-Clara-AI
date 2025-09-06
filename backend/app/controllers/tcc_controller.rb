@@ -6,14 +6,14 @@ class TccController < ApplicationController
 
     gemini = GeminiService.new
 
-    explicacao = gemini.simplificar_enunciado!(enunciado: enunciado, curso: curso)
-    sumario = gemini.gerar_sumario!(curso: curso)
-    cronograma = gemini.gerar_cronograma!(curso: curso, semanas: semanas)
+    @explicacao = gemini.simplificar_enunciado!(enunciado: enunciado, curso: curso)
+    @sumario = gemini.gerar_sumario!(curso: curso)
+    @cronograma = gemini.gerar_cronograma!(curso: curso, semanas: semanas)
 
     render json: {
-      explicacao: explicacao,
-      sumario: sumario,
-      cronograma: cronograma
+      explicacao: @explicacao,
+      sumario: @sumario,
+      cronograma: @cronograma
     }
   end
 end
