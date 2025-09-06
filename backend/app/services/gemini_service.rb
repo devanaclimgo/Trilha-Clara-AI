@@ -55,19 +55,23 @@ class GeminiService
 
   # Gerar sumário
   def gerar_sumario!(curso:)
-    messages = [
-      { role: "system", content: "Gere apenas uma lista numerada de capítulos para TCC, formato curto." },
-      { role: "user", content: "Crie um sumário básico de TCC para o curso de #{curso}." }
-    ]
-    chat!(messages, max_output_tokens: 400)
+    prompt = <<~PROMPT
+      Gere um sumário básico e curto para um TCC do curso de #{curso}.
+      Responda em formato de lista numerada, apenas os capítulos principais.
+    PROMPT
+
+    ask_gemini(prompt)
   end
 
   # Gerar cronograma
   def gerar_cronograma!(curso:, semanas: 8)
-    messages = [
-      { role: "system", content: "Monte um cronograma semanal, com tarefas objetivas, para TCC." },
-      { role: "user", content: "Curso: #{curso}. Crie um cronograma de #{semanas} semanas, 1-2 tarefas por semana, claro e acionável." }
-    ]
-    chat!(messages, max_output_tokens: 600)
+    prompt = <<~PROMPT
+      Monte um cronograma semanal para um TCC do curso de #{curso}, com #{semanas} semanas.
+      - Liste de 1 a 2 tarefas por semana
+      - Seja claro, direto e acionável
+      - Responda em português
+    PROMPT
+
+    ask_gemini(prompt)
   end
 end
