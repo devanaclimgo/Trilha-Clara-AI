@@ -55,23 +55,27 @@ class GeminiService
 
   # Gerar sumário
   def gerar_sumario!(curso:)
-    prompt = <<~PROMPT
-      Gere um sumário básico e curto para um TCC do curso de #{curso}.
-      Responda em formato de lista numerada, apenas os capítulos principais.
-    PROMPT
+    messages = [
+      { role: "user", content: <<~PROMPT }
+        Gere um sumário básico e curto para um TCC do curso de #{curso}.
+        Responda em formato de lista numerada, apenas os capítulos principais.
+      PROMPT
+    ]
 
-    ask_gemini(prompt)
+    chat!(messages)
   end
 
   # Gerar cronograma
   def gerar_cronograma!(curso:, semanas: 8)
-    prompt = <<~PROMPT
-      Monte um cronograma semanal para um TCC do curso de #{curso}, com #{semanas} semanas.
-      - Liste de 1 a 2 tarefas por semana
-      - Seja claro, direto e acionável
-      - Responda em português
-    PROMPT
+    messages = [
+      { role: "user", content: <<~PROMPT }
+        Monte um cronograma semanal para um TCC do curso de #{curso}, com #{semanas} semanas.
+        - Liste de 1 a 2 tarefas por semana
+        - Seja claro, direto e acionável
+        - Responda em português
+      PROMPT
+    ]
 
-    ask_gemini(prompt)
+    chat!(messages)
   end
 end
