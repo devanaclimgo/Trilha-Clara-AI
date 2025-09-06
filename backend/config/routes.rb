@@ -9,4 +9,6 @@ Rails.application.routes.draw do
     post "google", to: "auth/google#create"
     get '/auth/:provider/callback', to: 'auth/sessions#google'
   end
+
+  post "/tcc/criar", to: "tcc#criar"
 end
