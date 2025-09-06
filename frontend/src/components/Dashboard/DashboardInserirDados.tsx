@@ -37,6 +37,7 @@ export default function InserirDados({
             <option value="engenharia">Engenharia</option>
             <option value="psicologia">Psicologia</option>
             <option value="pedagogia">Pedagogia</option>
+            <option value="publicidade">Publicidade e Propaganda</option>
             <option value="outros">Outros</option>
           </select>
         </div>
