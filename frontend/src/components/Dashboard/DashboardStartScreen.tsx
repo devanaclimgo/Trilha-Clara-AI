@@ -36,6 +36,7 @@ export default function DashboardStartScreen() {
     'main' | 'notes' | 'timeline' | 'settings' | 'profile' | 'support'
   >('main')
   const [showStepByStep, setShowStepByStep] = useState(false)
+  const [userData, setUserData] = useState<{ curso: string; enunciado: string } | null>(null)
 
   // Check if user has completed initial data entry
   const [hasCompletedInitialData, setHasCompletedInitialData] = useState(() => {
@@ -108,13 +109,14 @@ export default function DashboardStartScreen() {
   }
 
   const saveUserData = (data: { curso: string; enunciado: string }) => {
-    localStorage.setItem('tcc-user-data', JSON.stringify(data))
-    setHasCompletedInitialData(true)
+    setUserData(data)
   }
 
   const getProgressPercentage = () => {
     return Math.round((currentStep / steps.length) * 100)
   }
+
+  const [explicacao, setExplicacao] = useState<string>("")
 
   return (
     <div className="min-h-screen flex gradient-trilha-soft">
@@ -509,11 +511,15 @@ export default function DashboardStartScreen() {
                   {currentStep === 1 && (
                     <InserirDados
                       onNext={() => setCurrentStep(2)}
-                      onSaveData={saveUserData}
+                      onSaveData={(data, explicacaoGerada) => {
+                        saveUserData(data)
+                        setExplicacao(explicacaoGerada)
+                      }}
                     />
                   )}
                   {currentStep === 2 && (
                     <ExplicacaoSimplificada
+                      explicacao={explicacao}
                       onNext={() => setCurrentStep(3)}
                       onSaveNote={saveNote}
                     />
