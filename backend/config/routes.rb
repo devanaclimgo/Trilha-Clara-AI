@@ -10,5 +10,7 @@ Rails.application.routes.draw do
     get '/auth/:provider/callback', to: 'auth/sessions#google'
   end
 
-  post "/tcc/criar", to: "tcc#criar"
+  namespace :api, defaults: { format: :json } do
+    post "tcc/criar", to: "tcc#criar"
+  end
 end
