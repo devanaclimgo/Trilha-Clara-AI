@@ -1,4 +1,4 @@
-class TccController < ApplicationController
+class Api::TccController < ApplicationController
   def criar
     enunciado = params[:enunciado]
     curso = params[:curso]
