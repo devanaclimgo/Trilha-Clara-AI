@@ -8,7 +8,10 @@ export default function InserirDados({
   onSaveData,
 }: {
   onNext: () => void
-  onSaveData?: (data: { curso: string; enunciado: string }, explicacao: string) => void
+  onSaveData?: (
+    data: { curso: string; enunciado: string },
+    explicacao: string,
+  ) => void
 }) {
   const [curso, setCurso] = useState('')
   const [enunciado, setEnunciado] = useState('')
@@ -37,9 +40,13 @@ export default function InserirDados({
             <option value="engenharia">Engenharia</option>
             <option value="contabeis">Ciências Contábeis</option>
             <option value="psicologia">Psicologia</option>
-            <option value="desenvolvimento-de-sistemas">Análise e Desenvolvimento de Sistemas</option>
+            <option value="desenvolvimento-de-sistemas">
+              Análise e Desenvolvimento de Sistemas
+            </option>
             <option value="publicidade">Publicidade e Propaganda</option>
-            <option value="seguranca-da-informacao">Segurança da Informação</option>
+            <option value="seguranca-da-informacao">
+              Segurança da Informação
+            </option>
             <option value="outros">Outros</option>
           </select>
         </div>
@@ -57,27 +64,31 @@ export default function InserirDados({
         </div>
         <div className="flex justify-center pt-4">
           <Button
-            onClick={ async () => {
-              if (!curso || !enunciado.trim()) return 
+            onClick={async () => {
+              if (!curso || !enunciado.trim()) return
               try {
-                const res = await fetch('http://localhost:3000/api/tcc/criar.json', {
-                  method: 'POST',
-                  headers: {
-                    'Content-Type': 'application/json',
+                const res = await fetch(
+                  'http://localhost:4000/api/tcc/criar.json',
+                  {
+                    method: 'POST',
+                    headers: {
+                      'Content-Type': 'application/json',
+                      Accept: 'application/json',
+                    },
+                     body: JSON.stringify({ curso, enunciado }),
                   },
-                  body: JSON.stringify({ curso, enunciado }),
-                })
+                )
 
                 const data = await res.json()
 
                 if (onSaveData) {
                   onSaveData({ curso, enunciado }, data.explicacao)
                 }
-              onNext()
-            } catch (err) {
-              console.error('Erro ao salvar dados:', err)
-            }
-          }}
+                onNext()
+              } catch (err) {
+                console.error('Erro ao salvar dados:', err)
+              }
+            }}
             disabled={!curso || !enunciado.trim()}
             className="px-8 py-3 rounded-2xl gradient-bg text-white font-medium hover:scale-105 hover:shadow-lg transition-all duration-300 disabled:opacity-50 disabled:hover:scale-100"
           >
