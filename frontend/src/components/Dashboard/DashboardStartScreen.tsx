@@ -38,12 +38,14 @@ export default function DashboardStartScreen() {
   const [showStepByStep, setShowStepByStep] = useState(false)
   const [userData, setUserData] = useState<{ curso: string; enunciado: string } | null>(null)
 
-  // Check if user has completed initial data entry
-  const [hasCompletedInitialData, setHasCompletedInitialData] = useState(() => {
-    // Check localStorage for existing data
-    const savedData = localStorage.getItem('tcc-user-data')
-    return !!savedData
-  })
+const [hasCompletedInitialData, setHasCompletedInitialData] = useState(false)
+
+useEffect(() => {
+  const savedData = localStorage.getItem('tcc-user-data')
+  if (savedData) {
+    setHasCompletedInitialData(true)
+  }
+}, [])
 
   const menuItems = [
     {
