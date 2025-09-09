@@ -2,15 +2,41 @@ import { ArrowRight } from 'lucide-react'
 import { Button } from '../ui/button'
 import { Card, CardContent, CardHeader, CardTitle } from '../ui/card'
 
-export default function ExplicacaoSimplificada({
-  explicacao,
-  onNext,
-  onSaveNote
-}: {
-  explicacao: string
+type ExplicacaoSimplificadaProps = {
+  explicacao: string | string[] | null
+  sugestoes?: string[]
+  dica: string
   onNext: () => void
   onSaveNote: (note: string) => void
-}) {
+}
+
+export default function ExplicacaoSimplificada({
+  explicacao,
+  sugestoes = [],
+  dica,
+  onNext,
+  onSaveNote,
+}: ExplicacaoSimplificadaProps) {
+  console.log('explicacao:', explicacao, typeof explicacao)
+
+  const explicacaoArray = Array.isArray(explicacao)
+    ? explicacao
+    : typeof explicacao === 'string'
+    ? explicacao.split('\n').filter((line) => line.trim() !== '')
+    : []
+
+    const formatText = (text: string) => {
+    const parts = text.split(/(\*\*.*?\*\*)/g)
+    return parts.map((part, i) =>
+      part.startsWith('**') && part.endsWith('**') ? (
+        <strong key={i} className="font-semibold text-gray-900">
+          {part.slice(2, -2)}
+        </strong>
+      ) : (
+        <span key={i}>{part}</span>
+      )
+    )
+  }
 
   return (
     <Card className="rounded-2xl shadow-xl bg-slate-50/80 backdrop-blur-sm border-slate-200/20">
@@ -23,18 +49,39 @@ export default function ExplicacaoSimplificada({
         </p>
       </CardHeader>
       <CardContent className="space-y-4">
-        <div className="p-4 rounded-2xl bg-gradient-to-r from-green-50 to-blue-50 border border-green-100">
-          {explicacao}
+        <div className="space-y-3">
+          {explicacaoArray.map((item: string, idx: number) => (
+            <p
+              key={idx}
+              className="flex items-center gap-3 p-4 rounded-2xl bg-green-50 border border-green-100"
+            >
+               {formatText(item)}
+            </p>
+          ))}
         </div>
-        <div className="bg-blue-50 border border-blue-200 rounded-2xl p-6 mt-6">
+        <div className="bg-purple-50 border border-purple-200 rounded-2xl p-6">
+          <h3 className="font-semibold text-purple-900 mb-3">
+            💡 Sugestões de pesquisa:
+          </h3>
+          <ul className="space-y-2 text-purple-800 text-sm">
+            {sugestoes.length > 0 ? (
+              sugestoes.map((s, idx) => <li key={idx}>{s}</li>)
+            ) : (
+              <p>Sem sugestões no momento</p>
+            )}
+          </ul>
+          <Button
+            onClick={() => onSaveNote(sugestoes.join('\n'))}
+            className="mt-4 rounded-xl bg-purple-600 hover:bg-purple-700 text-white"
+          >
+            Salvar sugestões
+          </Button>
+        </div>
+        <div className="bg-blue-50 border border-blue-200 rounded-2xl p-6">
           <h3 className="font-semibold text-blue-900 mb-2">
             ✅ Dica importante:
           </h3>
-          <p className="text-blue-800 text-sm">
-            Seu TCC precisa seguir uma metodologia científica clara e apresentar
-            resultados originais. Vamos te ajudar a estruturar tudo isso de
-            forma organizada!
-          </p>
+          <p className="text-blue-800 text-sm">{dica}</p>
         </div>
         <div className="flex justify-center pt-6">
           <Button
