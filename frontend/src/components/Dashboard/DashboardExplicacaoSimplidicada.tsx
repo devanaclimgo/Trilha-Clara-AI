@@ -25,7 +25,7 @@ export default function ExplicacaoSimplificada({
     ? explicacao.split('\n').filter((line) => line.trim() !== '')
     : []
 
-    const formatText = (text: string) => {
+  const formatText = (text: string) => {
     const parts = text.split(/(\*\*.*?\*\*)/g)
     return parts.map((part, i) =>
       part.startsWith('**') && part.endsWith('**') ? (
@@ -34,7 +34,7 @@ export default function ExplicacaoSimplificada({
         </strong>
       ) : (
         <span key={i}>{part}</span>
-      )
+      ),
     )
   }
 
@@ -55,7 +55,7 @@ export default function ExplicacaoSimplificada({
               key={idx}
               className="flex items-center gap-3 p-4 rounded-2xl bg-green-50 border border-green-100"
             >
-               {formatText(item)}
+              {formatText(item)}
             </p>
           ))}
         </div>
