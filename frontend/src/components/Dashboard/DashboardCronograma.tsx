@@ -6,7 +6,7 @@ export default function Cronograma({ onNext }: { onNext: () => void }) {
   const atividades = [
     {
       semana: 1,
-      atividade: 'Escolher tema e delimitar problema',
+      atividade: 'Definir tema e problema de pesquisa',
       concluida: true,
     },
     {
@@ -19,31 +19,24 @@ export default function Cronograma({ onNext }: { onNext: () => void }) {
       atividade: 'Escrever introdução e justificativa',
       concluida: false,
     },
+    { semana: 4, atividade: 'Construir referencial teórico', concluida: false },
     {
-      semana: 4,
+      semana: 5,
       atividade: 'Redigir metodologia da pesquisa',
       concluida: false,
     },
-    {
-      semana: 5,
-      atividade: 'Desenvolver revisão bibliográfica',
-      concluida: false,
-    },
-    {
-      semana: 6,
-      atividade: 'Aplicar instrumentos de coleta',
-      concluida: false,
-    },
+    { semana: 6, atividade: 'Executar coleta de dados', concluida: false },
     { semana: 7, atividade: 'Analisar dados coletados', concluida: false },
+    { semana: 8, atividade: 'Escrever resultados', concluida: false },
     {
-      semana: 8,
-      atividade: 'Escrever resultados e discussão',
+      semana: 9,
+      atividade: 'Discutir resultados e limitações',
       concluida: false,
     },
-    { semana: 9, atividade: 'Elaborar conclusões', concluida: false },
+    { semana: 10, atividade: 'Elaborar conclusões finais', concluida: false },
     {
-      semana: 10,
-      atividade: 'Revisão final e formatação ABNT',
+      semana: 11,
+      atividade: 'Revisão geral e formatação ABNT',
       concluida: false,
     },
   ]
