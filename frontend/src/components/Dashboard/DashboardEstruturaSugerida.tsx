@@ -6,9 +6,12 @@ import { ArrowRight, Edit3 } from 'lucide-react'
 export default function Estruturasugerida({ onNext }: { onNext: () => void }) {
   const [estrutura, setEstrutura] = useState([
     'Introdução',
-    'Revisão bibliográfica',
+    'Revisão de literatura',
+    'Referencial teórico',
     'Metodologia',
-    'Resultados esperados',
+    'Coleta e análise de dados',
+    'Resultados',
+    'Discussão',
     'Conclusão',
   ])
 
