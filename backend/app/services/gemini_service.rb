@@ -44,7 +44,6 @@ class GeminiService
         Enunciado: #{enunciado}
 
         Tarefa: explique, em linguagem simples e objetiva, o que o aluno precisa fazer.
-        Dê passos práticos (ex.: escolher tema, definir problema, método etc.). Evite jargões.
       TXT
     ]
 
@@ -73,6 +72,7 @@ class GeminiService
         - Liste de 1 a 2 tarefas por semana
         - Seja claro, direto e acionável
         - Responda em português
+        Dê passos práticos (ex.: escolher tema, definir problema, método etc.). Evite jargões.
       PROMPT
     ]
 
