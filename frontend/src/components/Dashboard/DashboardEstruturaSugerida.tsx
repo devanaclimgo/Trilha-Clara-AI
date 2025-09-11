@@ -3,7 +3,14 @@ import { Card, CardContent, CardHeader, CardTitle } from '../ui/card'
 import { Button } from '../ui/button'
 import { ArrowRight, Edit3 } from 'lucide-react'
 
-export default function Estruturasugerida({ onNext }: { onNext: () => void }) {
+interface EstruturaSugeridaProps {
+  estrutura: string
+  onNext: () => void
+}
+
+export default function EstruturaSugerida({
+  onNext,
+}: EstruturaSugeridaProps) {
   const [estrutura, setEstrutura] = useState([
     'Introdução',
     'Revisão de literatura',
