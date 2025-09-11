@@ -2,7 +2,14 @@ import { ArrowRight, CheckCircle } from 'lucide-react'
 import { Button } from '../ui/button'
 import { Card, CardContent, CardHeader, CardTitle } from '../ui/card'
 
-export default function Cronograma({ onNext }: { onNext: () => void }) {
+interface CronogramaProps {
+  atividades: string[]
+  onNext: () => void
+}
+
+export default function Cronograma({
+  onNext,
+}: CronogramaProps) {
   const atividades = [
     {
       semana: 1,
