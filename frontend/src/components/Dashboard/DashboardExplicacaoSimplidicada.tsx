@@ -2,9 +2,9 @@ import { ArrowRight } from 'lucide-react'
 import { Button } from '../ui/button'
 import { Card, CardContent, CardHeader, CardTitle } from '../ui/card'
 
-type ExplicacaoSimplificadaProps = {
-  explicacao: string | string[] | null
-  sugestoes?: string[]
+interface ExplicacaoSimplificadaProps {
+  explicacao: string
+  sugestoes: string[]
   dica: string
   onNext: () => void
   onSaveNote: (note: string) => void
@@ -12,7 +12,7 @@ type ExplicacaoSimplificadaProps = {
 
 export default function ExplicacaoSimplificada({
   explicacao,
-  sugestoes = [],
+  sugestoes,
   dica,
   onNext,
   onSaveNote,
