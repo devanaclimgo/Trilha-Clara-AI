@@ -728,3 +728,452 @@ Processing by TccController#criar as */*
 Completed 200 OK in 11355ms (Views: 0.8ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 2.6ms)
 
 
+[dotenv] Set [36mDEVISE_JWT_SECRET_KEY[0m, [36mGOOGLE_CLIENT_ID[0m, [36mGOOGLE_CLIENT_SECRET[0m, and [36mGEMINI_API_KEY[0m
+[dotenv] Loaded [33m.env[0m
+[dotenv] Loaded [33m.env[0m
+Started GET "/" for ::1 at 2025-09-06 12:58:08 -0300
+  [1m[36mActiveRecord::SchemaMigration Load (4.9ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='Backend'*/[0m
+Processing by Rails::WelcomeController#index as HTML
+  Rendering /home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/railties-8.0.2.1/lib/rails/templates/rails/welcome/index.html.erb
+  Rendered /home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/railties-8.0.2.1/lib/rails/templates/rails/welcome/index.html.erb (Duration: 2.5ms | GC: 0.0ms)
+Completed 200 OK in 30ms (Views: 13.2ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/icon.png" for ::1 at 2025-09-06 12:58:09 -0300
+  
+ActionController::RoutingError (No route matches [GET] "/icon.png"):
+  
+Started GET "/icon.png" for ::1 at 2025-09-06 12:58:09 -0300
+  
+ActionController::RoutingError (No route matches [GET] "/icon.png"):
+  
+[dotenv] Set [36mDEVISE_JWT_SECRET_KEY[0m, [36mGOOGLE_CLIENT_ID[0m, [36mGOOGLE_CLIENT_SECRET[0m, and [36mGEMINI_API_KEY[0m
+[dotenv] Loaded [33m.env[0m
+[dotenv] Loaded [33m.env[0m
+Started POST "/auth/google" for 127.0.0.1 at 2025-09-08 13:58:43 -0300
+  [1m[36mActiveRecord::SchemaMigration Load (3.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='Backend'*/[0m
+Processing by Auth::GoogleController#create as JSON
+  Parameters: {"email"=>"[FILTERED]", "name"=>"Ana Gomes", "google_id"=>"114945441299992670307", "google"=>{"email"=>"[FILTERED]", "name"=>"Ana Gomes", "google_id"=>"114945441299992670307"}}
+Google auth attempt for email: anaclimgo@gmail.com, name: Ana Gomes
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = 'anaclimgo@gmail.com' LIMIT 1 /*action='create',application='Backend',controller='google'*/[0m
+  ↳ app/controllers/auth/google_controller.rb:16:in `create'
+User found/created: true, ID: 4
+User signed in successfully
+JWT token from warden: YES
+Completed 200 OK in 59ms (Views: 0.5ms | ActiveRecord: 19.1ms (1 query, 0 cached) | GC: 0.1ms)
+
+
+Started POST "/auth/google" for 127.0.0.1 at 2025-09-08 14:07:59 -0300
+Processing by Auth::GoogleController#create as JSON
+  Parameters: {"email"=>"[FILTERED]", "name"=>"Ana Gomes", "google_id"=>"114945441299992670307", "google"=>{"email"=>"[FILTERED]", "name"=>"Ana Gomes", "google_id"=>"114945441299992670307"}}
+Google auth attempt for email: anaclimgo@gmail.com, name: Ana Gomes
+  [1m[36mUser Load (1.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = 'anaclimgo@gmail.com' LIMIT 1 /*action='create',application='Backend',controller='google'*/[0m
+  ↳ app/controllers/auth/google_controller.rb:15:in `create'
+User found/created: true, ID: 4
+User signed in successfully
+JWT token from warden: YES
+  [1m[36mCACHE User Load (0.9ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = 'anaclimgo@gmail.com' LIMIT 1[0m
+  ↳ app/controllers/auth/google_controller.rb:74:in `create'
+Google auth error: undefined method `authenticate' for an instance of User
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/activemodel-8.0.2.1/lib/active_model/attribute_methods.rb:512:in `method_missing'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/activerecord-8.0.2.1/lib/active_record/attribute_methods.rb:495:in `method_missing'
+/home/ana/Documents/Programming/Trilha Clara/AI TCC Effortless/backend/app/controllers/auth/google_controller.rb:75:in `create'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/action_controller/metal/basic_implicit_render.rb:8:in `send_action'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/abstract_controller/base.rb:226:in `process_action'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/action_controller/metal/rendering.rb:193:in `process_action'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/abstract_controller/callbacks.rb:261:in `block in process_action'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/activesupport-8.0.2.1/lib/active_support/callbacks.rb:100:in `run_callbacks'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/abstract_controller/callbacks.rb:260:in `process_action'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/action_controller/metal/rescue.rb:27:in `process_action'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/action_controller/metal/instrumentation.rb:76:in `block in process_action'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/activesupport-8.0.2.1/lib/active_support/notifications.rb:210:in `block in instrument'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/activesupport-8.0.2.1/lib/active_support/notifications/instrumenter.rb:58:in `instrument'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/activesupport-8.0.2.1/lib/active_support/notifications.rb:210:in `instrument'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/action_controller/metal/instrumentation.rb:75:in `process_action'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/action_controller/metal/params_wrapper.rb:259:in `process_action'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/activerecord-8.0.2.1/lib/active_record/railties/controller_runtime.rb:39:in `process_action'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/abstract_controller/base.rb:163:in `process'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/action_controller/metal.rb:252:in `dispatch'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/action_controller/metal.rb:335:in `dispatch'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/action_dispatch/routing/route_set.rb:67:in `dispatch'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/action_dispatch/routing/route_set.rb:50:in `serve'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/action_dispatch/journey/router.rb:53:in `block in serve'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/action_dispatch/journey/router.rb:133:in `block in find_routes'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/action_dispatch/journey/router.rb:126:in `each'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/action_dispatch/journey/router.rb:126:in `find_routes'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/action_dispatch/journey/router.rb:34:in `serve'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/action_dispatch/routing/route_set.rb:908:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/railties-8.0.2.1/lib/rails/engine/lazy_route_set.rb:68:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/omniauth-2.1.3/lib/omniauth/strategy.rb:202:in `call!'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/omniauth-2.1.3/lib/omniauth/strategy.rb:169:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/omniauth-2.1.3/lib/omniauth/builder.rb:44:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/warden-jwt_auth-0.11.0/lib/warden/jwt_auth/middleware/token_dispatcher.rb:20:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/warden-jwt_auth-0.11.0/lib/warden/jwt_auth/middleware/revocation_manager.rb:21:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/rack-3.2.0/lib/rack/builder.rb:283:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/warden-jwt_auth-0.11.0/lib/warden/jwt_auth/middleware.rb:22:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/action_dispatch/middleware/cookies.rb:706:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/rack-session-2.1.1/lib/rack/session/abstract/id.rb:274:in `context'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/rack-session-2.1.1/lib/rack/session/abstract/id.rb:268:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/warden-1.2.9/lib/warden/manager.rb:36:in `block in call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/warden-1.2.9/lib/warden/manager.rb:34:in `catch'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/warden-1.2.9/lib/warden/manager.rb:34:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/rack-3.2.0/lib/rack/etag.rb:29:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/rack-3.2.0/lib/rack/conditional_get.rb:44:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/rack-3.2.0/lib/rack/head.rb:15:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/activerecord-8.0.2.1/lib/active_record/migration.rb:671:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/action_dispatch/middleware/callbacks.rb:31:in `block in call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/activesupport-8.0.2.1/lib/active_support/callbacks.rb:100:in `run_callbacks'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/action_dispatch/middleware/callbacks.rb:30:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/action_dispatch/middleware/executor.rb:16:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/action_dispatch/middleware/actionable_exceptions.rb:18:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/action_dispatch/middleware/debug_exceptions.rb:31:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/action_dispatch/middleware/show_exceptions.rb:32:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/railties-8.0.2.1/lib/rails/rack/logger.rb:41:in `call_app'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/railties-8.0.2.1/lib/rails/rack/logger.rb:29:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/action_dispatch/middleware/remote_ip.rb:96:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/action_dispatch/middleware/request_id.rb:34:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/rack-3.2.0/lib/rack/runtime.rb:24:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/action_dispatch/middleware/server_timing.rb:61:in `block in call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/action_dispatch/middleware/server_timing.rb:26:in `collect_events'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/action_dispatch/middleware/server_timing.rb:60:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/action_dispatch/middleware/executor.rb:16:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/action_dispatch/middleware/static.rb:27:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/rack-3.2.0/lib/rack/sendfile.rb:114:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/rack-cors-3.0.0/lib/rack/cors.rb:102:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/railties-8.0.2.1/lib/rails/engine.rb:535:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/puma-6.6.1/lib/puma/configuration.rb:279:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/puma-6.6.1/lib/puma/request.rb:99:in `block in handle_request'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/puma-6.6.1/lib/puma/thread_pool.rb:390:in `with_force_shutdown'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/puma-6.6.1/lib/puma/request.rb:98:in `handle_request'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/puma-6.6.1/lib/puma/server.rb:472:in `process_client'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/puma-6.6.1/lib/puma/server.rb:254:in `block in run'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/puma-6.6.1/lib/puma/thread_pool.rb:167:in `block in spawn_thread'
+Completed 500 Internal Server Error in 64ms (Views: 0.2ms | ActiveRecord: 6.3ms (2 queries, 1 cached) | GC: 0.0ms)
+
+
+  
+AbstractController::DoubleRenderError (Render and/or redirect were called multiple times in this action. Please note that you may only call render OR redirect, and at most once per action. Also note that neither redirect nor render terminate execution of the action, so if you want to exit an action after redirecting, you need to do something like "redirect_to(...); return".)
+Caused by: NoMethodError (undefined method `authenticate' for an instance of User)
+
+Information for: AbstractController::DoubleRenderError (Render and/or redirect were called multiple times in this action. Please note that you may only call render OR redirect, and at most once per action. Also note that neither redirect nor render terminate execution of the action, so if you want to exit an action after redirecting, you need to do something like "redirect_to(...); return".):
+  
+app/controllers/auth/google_controller.rb:89:in `rescue in create'
+app/controllers/auth/google_controller.rb:13:in `create'
+
+Information for cause: NoMethodError (undefined method `authenticate' for an instance of User):
+  
+app/controllers/auth/google_controller.rb:75:in `create'
+Started POST "/auth/google" for 127.0.0.1 at 2025-09-08 14:10:49 -0300
+Processing by Auth::GoogleController#create as JSON
+  Parameters: {"email"=>"[FILTERED]", "name"=>"Ana Gomes", "google_id"=>"114945441299992670307", "google"=>{"email"=>"[FILTERED]", "name"=>"Ana Gomes", "google_id"=>"114945441299992670307"}}
+Google auth attempt for email: anaclimgo@gmail.com, name: Ana Gomes
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = 'anaclimgo@gmail.com' LIMIT 1 /*action='create',application='Backend',controller='google'*/[0m
+  ↳ app/controllers/auth/google_controller.rb:16:in `create'
+User found/created: true, ID: 4
+User signed in successfully
+JWT token from warden: YES
+Completed 200 OK in 35ms (Views: 0.3ms | ActiveRecord: 7.6ms (1 query, 0 cached) | GC: 0.1ms)
+
+
+Started GET "/auth/refresh" for 127.0.0.1 at 2025-09-08 14:32:56 -0300
+  
+ActionController::RoutingError (No route matches [GET] "/auth/refresh"):
+  
+Started GET "/favicon.ico" for 127.0.0.1 at 2025-09-08 14:32:56 -0300
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/rails/info/routes?query=api" for 127.0.0.1 at 2025-09-08 14:33:02 -0300
+Processing by Rails::InfoController#routes as */*
+  Parameters: {"query"=>"api"}
+Completed 200 OK in 12ms (Views: 0.3ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.3ms)
+
+
+Started POST "/auth/google" for 127.0.0.1 at 2025-09-08 14:39:07 -0300
+Processing by Auth::GoogleController#create as JSON
+  Parameters: {"email"=>"[FILTERED]", "name"=>"Ana Gomes", "google_id"=>"114945441299992670307", "google"=>{"email"=>"[FILTERED]", "name"=>"Ana Gomes", "google_id"=>"114945441299992670307"}}
+Google auth attempt for email: anaclimgo@gmail.com, name: Ana Gomes
+  [1m[36mUser Load (2.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = 'anaclimgo@gmail.com' LIMIT 1 /*action='create',application='Backend',controller='google'*/[0m
+  ↳ app/controllers/auth/google_controller.rb:16:in `create'
+User found/created: true, ID: 4
+User signed in successfully
+JWT token from warden: YES
+Completed 200 OK in 40ms (Views: 0.2ms | ActiveRecord: 17.2ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+[dotenv] Set [36mDEVISE_JWT_SECRET_KEY[0m, [36mGOOGLE_CLIENT_ID[0m, [36mGOOGLE_CLIENT_SECRET[0m, and [36mGEMINI_API_KEY[0m
+[dotenv] Loaded [33m.env[0m
+[dotenv] Loaded [33m.env[0m
+Started POST "/auth/google" for 127.0.0.1 at 2025-09-08 19:13:11 -0300
+  [1m[36mActiveRecord::SchemaMigration Load (4.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='Backend'*/[0m
+Processing by Auth::GoogleController#create as JSON
+  Parameters: {"email"=>"[FILTERED]", "name"=>"Ana Gomes", "google_id"=>"114945441299992670307", "google"=>{"email"=>"[FILTERED]", "name"=>"Ana Gomes", "google_id"=>"114945441299992670307"}}
+Google auth attempt for email: anaclimgo@gmail.com, name: Ana Gomes
+  [1m[36mUser Load (1.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = 'anaclimgo@gmail.com' LIMIT 1 /*action='create',application='Backend',controller='google'*/[0m
+  ↳ app/controllers/auth/google_controller.rb:16:in `create'
+User found/created: true, ID: 4
+User signed in successfully
+JWT token from warden: YES
+Completed 200 OK in 88ms (Views: 0.4ms | ActiveRecord: 21.3ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+[dotenv] Set [36mDEVISE_JWT_SECRET_KEY[0m, [36mGOOGLE_CLIENT_ID[0m, [36mGOOGLE_CLIENT_SECRET[0m, and [36mGEMINI_API_KEY[0m
+[dotenv] Loaded [33m.env[0m
+[dotenv] Loaded [33m.env[0m
+[dotenv] Set [36mDEVISE_JWT_SECRET_KEY[0m, [36mGOOGLE_CLIENT_ID[0m, [36mGOOGLE_CLIENT_SECRET[0m, and [36mGEMINI_API_KEY[0m
+[dotenv] Loaded [33m.env[0m
+[dotenv] Loaded [33m.env[0m
+[dotenv] Set [36mDEVISE_JWT_SECRET_KEY[0m, [36mGOOGLE_CLIENT_ID[0m, [36mGOOGLE_CLIENT_SECRET[0m, and [36mGEMINI_API_KEY[0m
+[dotenv] Loaded [33m.env[0m
+[dotenv] Loaded [33m.env[0m
+[dotenv] Set [36mDEVISE_JWT_SECRET_KEY[0m, [36mGOOGLE_CLIENT_ID[0m, [36mGOOGLE_CLIENT_SECRET[0m, and [36mGEMINI_API_KEY[0m
+[dotenv] Loaded [33m.env[0m
+[dotenv] Loaded [33m.env[0m
+[dotenv] Set [36mDEVISE_JWT_SECRET_KEY[0m, [36mGOOGLE_CLIENT_ID[0m, [36mGOOGLE_CLIENT_SECRET[0m, and [36mGEMINI_API_KEY[0m
+[dotenv] Loaded [33m.env[0m
+[dotenv] Loaded [33m.env[0m
+Started POST "/auth/google" for 127.0.0.1 at 2025-09-09 19:07:24 -0300
+  [1m[36mActiveRecord::SchemaMigration Load (1.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='Backend'*/[0m
+Processing by Auth::GoogleController#create as JSON
+  Parameters: {"email"=>"[FILTERED]", "name"=>"Ana Gomes", "google_id"=>"114945441299992670307", "google"=>{"email"=>"[FILTERED]", "name"=>"Ana Gomes", "google_id"=>"114945441299992670307"}}
+Google auth attempt for email: anaclimgo@gmail.com, name: Ana Gomes
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = 'anaclimgo@gmail.com' LIMIT 1 /*action='create',application='Backend',controller='google'*/[0m
+  ↳ app/controllers/auth/google_controller.rb:16:in `create'
+User found/created: true, ID: 4
+User signed in successfully
+JWT token from warden: YES
+Completed 200 OK in 50ms (Views: 0.2ms | ActiveRecord: 11.6ms (1 query, 0 cached) | GC: 0.1ms)
+
+
+[dotenv] Set [36mDEVISE_JWT_SECRET_KEY[0m, [36mGOOGLE_CLIENT_ID[0m, [36mGOOGLE_CLIENT_SECRET[0m, and [36mGEMINI_API_KEY[0m
+[dotenv] Loaded [33m.env[0m
+[dotenv] Loaded [33m.env[0m
+[dotenv] Set [36mDEVISE_JWT_SECRET_KEY[0m, [36mGOOGLE_CLIENT_ID[0m, [36mGOOGLE_CLIENT_SECRET[0m, and [36mGEMINI_API_KEY[0m
+[dotenv] Loaded [33m.env[0m
+[dotenv] Loaded [33m.env[0m
+[dotenv] Set [36mDEVISE_JWT_SECRET_KEY[0m, [36mGOOGLE_CLIENT_ID[0m, [36mGOOGLE_CLIENT_SECRET[0m, and [36mGEMINI_API_KEY[0m
+[dotenv] Loaded [33m.env[0m
+[dotenv] Loaded [33m.env[0m
+[dotenv] Set [36mDEVISE_JWT_SECRET_KEY[0m, [36mGOOGLE_CLIENT_ID[0m, [36mGOOGLE_CLIENT_SECRET[0m, and [36mGEMINI_API_KEY[0m
+[dotenv] Loaded [33m.env[0m
+[dotenv] Loaded [33m.env[0m
+[dotenv] Set [36mDEVISE_JWT_SECRET_KEY[0m, [36mGOOGLE_CLIENT_ID[0m, [36mGOOGLE_CLIENT_SECRET[0m, and [36mGEMINI_API_KEY[0m
+[dotenv] Loaded [33m.env[0m
+[dotenv] Loaded [33m.env[0m
+[dotenv] Set [36mDEVISE_JWT_SECRET_KEY[0m, [36mGOOGLE_CLIENT_ID[0m, [36mGOOGLE_CLIENT_SECRET[0m, and [36mGEMINI_API_KEY[0m
+[dotenv] Loaded [33m.env[0m
+[dotenv] Loaded [33m.env[0m
+[dotenv] Set [36mDEVISE_JWT_SECRET_KEY[0m, [36mGOOGLE_CLIENT_ID[0m, [36mGOOGLE_CLIENT_SECRET[0m, and [36mGEMINI_API_KEY[0m
+[dotenv] Loaded [33m.env[0m
+[dotenv] Loaded [33m.env[0m
+Started POST "/api/tcc/criar.json" for ::1 at 2025-09-09 19:26:53 -0300
+  [1m[36mActiveRecord::SchemaMigration Load (0.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='Backend'*/[0m
+Processing by Api::TccController#criar as JSON
+  Parameters: {"curso"=>"Engenharia", "enunciado"=>"Teste de TCC", "tcc"=>{"curso"=>"Engenharia", "enunciado"=>"Teste de TCC"}}
+Completed 200 OK in 12988ms (Views: 0.7ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.1ms)
+
+
+Started POST "/api/tcc/criar.json" for 127.0.0.1 at 2025-09-09 19:36:00 -0300
+Processing by Api::TccController#criar as JSON
+  Parameters: {"curso"=>"medicina", "enunciado"=>"teste tcc", "tcc"=>{"curso"=>"medicina", "enunciado"=>"teste tcc"}}
+Completed 200 OK in 13914ms (Views: 0.2ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/api/tcc/criar.json" for 127.0.0.1 at 2025-09-09 19:47:34 -0300
+Processing by Api::TccController#criar as JSON
+  Parameters: {"curso"=>"medicina", "enunciado"=>"teste tcc", "tcc"=>{"curso"=>"medicina", "enunciado"=>"teste tcc"}}
+Completed 200 OK in 7619ms (Views: 0.7ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/api/tcc/criar.json" for 127.0.0.1 at 2025-09-09 19:54:32 -0300
+Processing by Api::TccController#criar as JSON
+  Parameters: {"curso"=>"medicina", "enunciado"=>"teste de tcc", "tcc"=>{"curso"=>"medicina", "enunciado"=>"teste de tcc"}}
+Completed 200 OK in 13131ms (Views: 0.1ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/api/tcc/criar.json" for 127.0.0.1 at 2025-09-09 19:57:30 -0300
+Processing by Api::TccController#criar as JSON
+  Parameters: {"curso"=>"medicina", "enunciado"=>"teste do tcc", "tcc"=>{"curso"=>"medicina", "enunciado"=>"teste do tcc"}}
+Completed 200 OK in 13374ms (Views: 0.9ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/api/tcc/criar.json" for 127.0.0.1 at 2025-09-09 20:01:57 -0300
+Processing by Api::TccController#criar as JSON
+  Parameters: {"curso"=>"psicologia", "enunciado"=>"Estrutura metodológica baseada em referenciais epistemológicos aplicados ao campo social", "tcc"=>{"curso"=>"psicologia", "enunciado"=>"Estrutura metodológica baseada em referenciais epistemológicos aplicados ao campo social"}}
+Completed 200 OK in 12555ms (Views: 0.2ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/api/tcc/criar.json" for 127.0.0.1 at 2025-09-09 20:58:22 -0300
+Processing by Api::TccController#criar as JSON
+  Parameters: {"curso"=>"psicologia", "enunciado"=>"Estrutura metodológica baseada em referenciais epistemológicos aplicados ao campo social", "tcc"=>{"curso"=>"psicologia", "enunciado"=>"Estrutura metodológica baseada em referenciais epistemológicos aplicados ao campo social"}}
+Completed 200 OK in 7685ms (Views: 2.5ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+[dotenv] Set [36mDEVISE_JWT_SECRET_KEY[0m, [36mGOOGLE_CLIENT_ID[0m, [36mGOOGLE_CLIENT_SECRET[0m, and [36mGEMINI_API_KEY[0m
+[dotenv] Loaded [33m.env[0m
+[dotenv] Loaded [33m.env[0m
+Started POST "/auth/google" for 127.0.0.1 at 2025-09-10 20:22:00 -0300
+  [1m[36mActiveRecord::SchemaMigration Load (6.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='Backend'*/[0m
+Processing by Auth::GoogleController#create as JSON
+  Parameters: {"email"=>"[FILTERED]", "name"=>"Ana Gomes", "google_id"=>"114945441299992670307", "google"=>{"email"=>"[FILTERED]", "name"=>"Ana Gomes", "google_id"=>"114945441299992670307"}}
+Google auth attempt for email: anaclimgo@gmail.com, name: Ana Gomes
+  [1m[36mUser Load (2.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = 'anaclimgo@gmail.com' LIMIT 1 /*action='create',application='Backend',controller='google'*/[0m
+  ↳ app/controllers/auth/google_controller.rb:16:in `create'
+User found/created: true, ID: 4
+User signed in successfully
+JWT token from warden: YES
+Completed 200 OK in 105ms (Views: 0.4ms | ActiveRecord: 23.7ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/api/tcc/criar.json" for 127.0.0.1 at 2025-09-10 20:23:37 -0300
+Processing by Api::TccController#criar as JSON
+  Parameters: {"curso"=>"publicidade", "enunciado"=>"Analise a eficácia das campanhas publicitárias digitais voltadas para redes sociais, considerando o engajamento do público-alvo e a construção de marca. Avalie estratégias de storytelling, uso de influenciadores e métricas de desempenho, propondo melhorias baseadas em referências teóricas do marketing e comunicação.", "tcc"=>{"curso"=>"publicidade", "enunciado"=>"Analise a eficácia das campanhas publicitárias digitais voltadas para redes sociais, considerando o engajamento do público-alvo e a construção de marca. Avalie estratégias de storytelling, uso de influenciadores e métricas de desempenho, propondo melhorias baseadas em referências teóricas do marketing e comunicação."}}
+Completed 200 OK in 11356ms (Views: 0.6ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/auth/google" for 127.0.0.1 at 2025-09-10 20:31:15 -0300
+Processing by Auth::GoogleController#create as JSON
+  Parameters: {"email"=>"[FILTERED]", "name"=>"Ana Gomes", "google_id"=>"114945441299992670307", "google"=>{"email"=>"[FILTERED]", "name"=>"Ana Gomes", "google_id"=>"114945441299992670307"}}
+Google auth attempt for email: anaclimgo@gmail.com, name: Ana Gomes
+  [1m[36mUser Load (2.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = 'anaclimgo@gmail.com' LIMIT 1 /*action='create',application='Backend',controller='google'*/[0m
+  ↳ app/controllers/auth/google_controller.rb:16:in `create'
+User found/created: true, ID: 4
+User signed in successfully
+JWT token from warden: YES
+Completed 200 OK in 48ms (Views: 0.3ms | ActiveRecord: 8.9ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/api/tcc/criar.json" for 127.0.0.1 at 2025-09-10 20:31:29 -0300
+Processing by Api::TccController#criar as JSON
+  Parameters: {"curso"=>"publicidade", "enunciado"=>"Analise a eficácia das campanhas publicitárias digitais voltadas para redes sociais, considerando o engajamento do público-alvo e a construção de marca. Avalie estratégias de storytelling, uso de influenciadores e métricas de desempenho, propondo melhorias baseadas em referências teóricas do marketing e comunicação.", "tcc"=>{"curso"=>"publicidade", "enunciado"=>"Analise a eficácia das campanhas publicitárias digitais voltadas para redes sociais, considerando o engajamento do público-alvo e a construção de marca. Avalie estratégias de storytelling, uso de influenciadores e métricas de desempenho, propondo melhorias baseadas em referências teóricas do marketing e comunicação."}}
+Completed 200 OK in 6945ms (Views: 0.2ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/api/tcc/criar.json" for 127.0.0.1 at 2025-09-10 21:13:14 -0300
+Processing by Api::TccController#criar as JSON
+  Parameters: {"curso"=>"publicidade", "enunciado"=>"Analise a eficácia das campanhas publicitárias digitais voltadas para redes sociais, considerando o engajamento do público-alvo e a construção de marca. Avalie estratégias de storytelling, uso de influenciadores e métricas de desempenho, propondo melhorias baseadas em referências teóricas do marketing e comunicação.", "tcc"=>{"curso"=>"publicidade", "enunciado"=>"Analise a eficácia das campanhas publicitárias digitais voltadas para redes sociais, considerando o engajamento do público-alvo e a construção de marca. Avalie estratégias de storytelling, uso de influenciadores e métricas de desempenho, propondo melhorias baseadas em referências teóricas do marketing e comunicação."}}
+Completed 200 OK in 8067ms (Views: 0.7ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+[dotenv] Set [36mDEVISE_JWT_SECRET_KEY[0m, [36mGOOGLE_CLIENT_ID[0m, [36mGOOGLE_CLIENT_SECRET[0m, and [36mGEMINI_API_KEY[0m
+[dotenv] Loaded [33m.env[0m
+[dotenv] Loaded [33m.env[0m
+Started POST "/auth/google" for 127.0.0.1 at 2025-09-11 21:32:58 -0300
+  [1m[36mActiveRecord::SchemaMigration Load (5.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='Backend'*/[0m
+Processing by Auth::GoogleController#create as JSON
+  Parameters: {"email"=>"[FILTERED]", "name"=>"Ana Gomes", "google_id"=>"114945441299992670307", "google"=>{"email"=>"[FILTERED]", "name"=>"Ana Gomes", "google_id"=>"114945441299992670307"}}
+Google auth attempt for email: anaclimgo@gmail.com, name: Ana Gomes
+  [1m[36mUser Load (2.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = 'anaclimgo@gmail.com' LIMIT 1 /*action='create',application='Backend',controller='google'*/[0m
+  ↳ app/controllers/auth/google_controller.rb:16:in `create'
+User found/created: true, ID: 4
+User signed in successfully
+JWT token from warden: YES
+Completed 200 OK in 108ms (Views: 0.5ms | ActiveRecord: 26.1ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/api/tcc/criar.json" for 127.0.0.1 at 2025-09-11 21:33:26 -0300
+Processing by Api::TccController#criar as JSON
+  Parameters: {"curso"=>"publicidade", "enunciado"=>"Analise a eficácia das campanhas publicitárias digitais voltadas para redes sociais, considerando o engajamento do público-alvo e a construção de marca. Avalie estratégias de storytelling, uso de influenciadores e métricas de desempenho, propondo melhorias baseadas em referências teóricas do marketing e comunicação.", "tcc"=>{"curso"=>"publicidade", "enunciado"=>"Analise a eficácia das campanhas publicitárias digitais voltadas para redes sociais, considerando o engajamento do público-alvo e a construção de marca. Avalie estratégias de storytelling, uso de influenciadores e métricas de desempenho, propondo melhorias baseadas em referências teóricas do marketing e comunicação."}}
+Completed 200 OK in 14225ms (Views: 0.7ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/api/tcc/criar.json" for 127.0.0.1 at 2025-09-11 21:34:48 -0300
+Processing by Api::TccController#criar as JSON
+  Parameters: {"curso"=>"publicidade", "enunciado"=>"Analise a eficácia das campanhas publicitárias digitais voltadas para redes sociais, considerando o engajamento do público-alvo e a construção de marca. Avalie estratégias de storytelling, uso de influenciadores e métricas de desempenho, propondo melhorias baseadas em referências teóricas do marketing e comunicação.", "tcc"=>{"curso"=>"publicidade", "enunciado"=>"Analise a eficácia das campanhas publicitárias digitais voltadas para redes sociais, considerando o engajamento do público-alvo e a construção de marca. Avalie estratégias de storytelling, uso de influenciadores e métricas de desempenho, propondo melhorias baseadas em referências teóricas do marketing e comunicação."}}
+Completed 200 OK in 14173ms (Views: 0.3ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+[dotenv] Set [36mDEVISE_JWT_SECRET_KEY[0m, [36mGOOGLE_CLIENT_ID[0m, [36mGOOGLE_CLIENT_SECRET[0m, and [36mGEMINI_API_KEY[0m
+[dotenv] Loaded [33m.env[0m
+[dotenv] Loaded [33m.env[0m
+Started POST "/auth/google" for 127.0.0.1 at 2025-09-12 10:47:02 -0300
+  [1m[36mActiveRecord::SchemaMigration Load (3.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='Backend'*/[0m
+Processing by Auth::GoogleController#create as JSON
+  Parameters: {"email"=>"[FILTERED]", "name"=>"Ana Gomes", "google_id"=>"114945441299992670307", "google"=>{"email"=>"[FILTERED]", "name"=>"Ana Gomes", "google_id"=>"114945441299992670307"}}
+Google auth attempt for email: anaclimgo@gmail.com, name: Ana Gomes
+  [1m[36mUser Load (2.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = 'anaclimgo@gmail.com' LIMIT 1 /*action='create',application='Backend',controller='google'*/[0m
+  ↳ app/controllers/auth/google_controller.rb:16:in `create'
+User found/created: true, ID: 4
+User signed in successfully
+JWT token from warden: YES
+Completed 200 OK in 104ms (Views: 0.4ms | ActiveRecord: 24.1ms (1 query, 0 cached) | GC: 0.1ms)
+
+
+Started POST "/api/tcc/criar.json" for 127.0.0.1 at 2025-09-12 10:47:23 -0300
+Processing by Api::TccController#criar as JSON
+  Parameters: {"curso"=>"publicidade", "enunciado"=>"Analise a eficácia das campanhas publicitárias digitais voltadas para redes sociais, considerando o engajamento do público-alvo e a construção de marca. Avalie estratégias de storytelling, uso de influenciadores e métricas de desempenho, propondo melhorias baseadas em referências teóricas do marketing e comunicação.", "tcc"=>{"curso"=>"publicidade", "enunciado"=>"Analise a eficácia das campanhas publicitárias digitais voltadas para redes sociais, considerando o engajamento do público-alvo e a construção de marca. Avalie estratégias de storytelling, uso de influenciadores e métricas de desempenho, propondo melhorias baseadas em referências teóricas do marketing e comunicação."}}
+Completed 200 OK in 12352ms (Views: 0.7ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+[dotenv] Set [36mDEVISE_JWT_SECRET_KEY[0m, [36mGOOGLE_CLIENT_ID[0m, [36mGOOGLE_CLIENT_SECRET[0m, and [36mGEMINI_API_KEY[0m
+[dotenv] Loaded [33m.env[0m
+[dotenv] Loaded [33m.env[0m
+Started POST "/api/tcc/criar.json" for 127.0.0.1 at 2025-09-12 10:59:47 -0300
+Processing by Api::TccController#criar as JSON
+  Parameters: {"curso"=>"publicidade", "enunciado"=>"Analise a eficácia das campanhas publicitárias digitais voltadas para redes sociais, considerando o engajamento do público-alvo e a construção de marca. Avalie estratégias de storytelling, uso de influenciadores e métricas de desempenho, propondo melhorias baseadas em referências teóricas do marketing e comunicação.", "tcc"=>{"curso"=>"publicidade", "enunciado"=>"Analise a eficácia das campanhas publicitárias digitais voltadas para redes sociais, considerando o engajamento do público-alvo e a construção de marca. Avalie estratégias de storytelling, uso de influenciadores e métricas de desempenho, propondo melhorias baseadas em referências teóricas do marketing e comunicação."}}
+Completed 200 OK in 5660ms (Views: 0.5ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/api/tcc/criar.json" for ::1 at 2025-09-12 11:05:37 -0300
+Processing by Api::TccController#criar as JSON
+  Parameters: {"curso"=>"publicidade", "enunciado"=>"Analise a efetividade de campanhas digitais", "tcc"=>{"curso"=>"publicidade", "enunciado"=>"Analise a efetividade de campanhas digitais"}}
+Completed 200 OK in 4941ms (Views: 0.4ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/api/tcc/criar.json" for ::1 at 2025-09-12 11:06:17 -0300
+Processing by Api::TccController#criar as JSON
+  Parameters: {"curso"=>"publicidade", "enunciado"=>"Analise a efetividade de campanhas digitais", "tcc"=>{"curso"=>"publicidade", "enunciado"=>"Analise a efetividade de campanhas digitais"}}
+Dados estruturados: {"explicacao"=>["Este TCC analisará o sucesso de campanhas digitais, focando em métricas e resultados.", "É crucial definir indicadores de performance (KPIs) para avaliar a efetividade.", "Explore diferentes plataformas e estratégias de campanhas digitais.", "A análise de dados será fundamental para comprovar suas conclusões."], "sugestoes"=>["Comparação entre campanhas de diferentes plataformas (Facebook, Instagram, Google Ads).", "Análise da influência de diferentes tipos de conteúdo (vídeo, imagem, texto) na efetividade.", "Estudo de caso de uma campanha específica, detalhando sua estratégia e resultados.", "Impacto das campanhas digitais na geração de leads e conversões.", "Análise da relação entre investimento e retorno (ROI) em campanhas digitais.", "Efetividade de diferentes segmentações de público em campanhas digitais.", "O papel da mensuração e análise de dados na otimização de campanhas digitais.", "O uso de ferramentas de analytics para monitorar e avaliar o desempenho das campanhas.", "A influência de tendências e tecnologias emergentes na efetividade das campanhas digitais (ex: realidade aumentada, influenciadores digitais)."], "dica"=>"Defina claramente seus objetivos de pesquisa e os KPIs desde o início para garantir uma análise consistente.", "estrutura"=>["Introdução: Contextualização do tema e objetivos da pesquisa.", "Fundamentação Teórica: Conceitos de marketing digital, campanhas digitais e métricas de performance.", "Metodologia: Descrição da abordagem metodológica utilizada (ex: estudo de caso, pesquisa quantitativa/qualitativa).", "Análise de Resultados: Apresentação e discussão dos dados coletados e análise da efetividade das campanhas.", "Conclusão: Síntese dos resultados, conclusões e sugestões para futuras pesquisas."], "cronograma"=>[{"semana"=>1, "atividade"=>"Escolha do tema e definição do problema de pesquisa."}, {"semana"=>2, "atividade"=>"Levantamento bibliográfico e construção do referencial teórico."}, {"semana"=>3, "atividade"=>"Definição da metodologia de pesquisa e coleta de dados."}, {"semana"=>4, "atividade"=>"Análise dos dados coletados e interpretação dos resultados."}, {"semana"=>5, "atividade"=>"Redação da primeira versão do TCC."}, {"semana"=>6, "atividade"=>"Revisão e ajustes finais do TCC."}, {"semana"=>7, "atividade"=>"Entrega do TCC."}]}
+Completed 200 OK in 5899ms (Views: 3.0ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+[dotenv] Set [36mDEVISE_JWT_SECRET_KEY[0m, [36mGOOGLE_CLIENT_ID[0m, [36mGOOGLE_CLIENT_SECRET[0m, and [36mGEMINI_API_KEY[0m
+[dotenv] Loaded [33m.env[0m
+[dotenv] Loaded [33m.env[0m
+Started POST "/auth/google" for 127.0.0.1 at 2025-09-12 11:10:45 -0300
+  [1m[36mActiveRecord::SchemaMigration Load (1.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='Backend'*/[0m
+Processing by Auth::GoogleController#create as JSON
+  Parameters: {"email"=>"[FILTERED]", "name"=>"Ana Gomes", "google_id"=>"114945441299992670307", "google"=>{"email"=>"[FILTERED]", "name"=>"Ana Gomes", "google_id"=>"114945441299992670307"}}
+Google auth attempt for email: anaclimgo@gmail.com, name: Ana Gomes
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = 'anaclimgo@gmail.com' LIMIT 1 /*action='create',application='Backend',controller='google'*/[0m
+  ↳ app/controllers/auth/google_controller.rb:16:in `create'
+User found/created: true, ID: 4
+User signed in successfully
+JWT token from warden: YES
+Completed 200 OK in 69ms (Views: 0.4ms | ActiveRecord: 10.8ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/api/tcc/criar.json" for 127.0.0.1 at 2025-09-12 11:11:10 -0300
+Processing by Api::TccController#criar as JSON
+  Parameters: {"curso"=>"publicidade", "enunciado"=>"Analise a eficácia das campanhas publicitárias digitais voltadas para redes sociais, considerando o engajamento do público-alvo e a construção de marca. Avalie estratégias de storytelling, uso de influenciadores e métricas de desempenho, propondo melhorias baseadas em referências teóricas do marketing e comunicação.", "tcc"=>{"curso"=>"publicidade", "enunciado"=>"Analise a eficácia das campanhas publicitárias digitais voltadas para redes sociais, considerando o engajamento do público-alvo e a construção de marca. Avalie estratégias de storytelling, uso de influenciadores e métricas de desempenho, propondo melhorias baseadas em referências teóricas do marketing e comunicação."}}
+Completed 200 OK in 5065ms (Views: 2.1ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+[dotenv] Set [36mDEVISE_JWT_SECRET_KEY[0m, [36mGOOGLE_CLIENT_ID[0m, [36mGOOGLE_CLIENT_SECRET[0m, and [36mGEMINI_API_KEY[0m
+[dotenv] Loaded [33m.env[0m
+[dotenv] Loaded [33m.env[0m
+Started POST "/api/tcc/criar.json" for 127.0.0.1 at 2025-09-12 11:28:06 -0300
+  [1m[36mActiveRecord::SchemaMigration Load (1.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='Backend'*/[0m
+Processing by Api::TccController#criar as JSON
+  Parameters: {"curso"=>"publicidade", "enunciado"=>"Analise a eficácia das campanhas publicitárias digitais voltadas para redes sociais, considerando o engajamento do público-alvo e a construção de marca. Avalie estratégias de storytelling, uso de influenciadores e métricas de desempenho, propondo melhorias baseadas em referências teóricas do marketing e comunicação.", "tcc"=>{"curso"=>"publicidade", "enunciado"=>"Analise a eficácia das campanhas publicitárias digitais voltadas para redes sociais, considerando o engajamento do público-alvo e a construção de marca. Avalie estratégias de storytelling, uso de influenciadores e métricas de desempenho, propondo melhorias baseadas em referências teóricas do marketing e comunicação."}}
+Completed 200 OK in 4943ms (Views: 0.6ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/api/tcc/criar.json" for 127.0.0.1 at 2025-09-12 11:50:22 -0300
+Processing by Api::TccController#criar as JSON
+  Parameters: {"curso"=>"publicidade", "enunciado"=>"Analise a eficácia das campanhas publicitárias digitais voltadas para redes sociais, considerando o engajamento do público-alvo e a construção de marca. Avalie estratégias de storytelling, uso de influenciadores e métricas de desempenho, propondo melhorias baseadas em referências teóricas do marketing e comunicação.", "tcc"=>{"curso"=>"publicidade", "enunciado"=>"Analise a eficácia das campanhas publicitárias digitais voltadas para redes sociais, considerando o engajamento do público-alvo e a construção de marca. Avalie estratégias de storytelling, uso de influenciadores e métricas de desempenho, propondo melhorias baseadas em referências teóricas do marketing e comunicação."}}
+Completed 200 OK in 53ms (Views: 5.1ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/api/tcc/criar.json" for 127.0.0.1 at 2025-09-12 11:51:39 -0300
+Processing by Api::TccController#criar as JSON
+  Parameters: {"curso"=>"medicina", "enunciado"=>"analise causas do câncer de pele", "tcc"=>{"curso"=>"medicina", "enunciado"=>"analise causas do câncer de pele"}}
+Completed 200 OK in 12368ms (Views: 0.7ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/api/tcc/criar.json" for 127.0.0.1 at 2025-09-12 12:07:58 -0300
+Processing by Api::TccController#criar as JSON
+  Parameters: {"curso"=>"direito", "enunciado"=>"analise as leis trabalhistas", "tcc"=>{"curso"=>"direito", "enunciado"=>"analise as leis trabalhistas"}}
+Completed 200 OK in 6358ms (Views: 0.2ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
