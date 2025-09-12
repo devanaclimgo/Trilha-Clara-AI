@@ -44,7 +44,7 @@ export default function DashboardStartScreen() {
   const sidebarRef = useRef<HTMLDivElement>(null)
   const [savedNotes, setSavedNotes] = useState<string[]>([])
   const [currentScreen, setCurrentScreen] = useState<
-    'main' | 'notes' | 'timeline' | 'settings' | 'profile' | 'support'
+    'main' | 'notes' | 'explanation' | 'structure' | 'timeline' | 'settings' | 'profile' | 'support'
   >('main')
   const [showStepByStep, setShowStepByStep] = useState(false)
 
@@ -72,6 +72,16 @@ export default function DashboardStartScreen() {
       title: 'Anotações',
       icon: FileText,
       id: 'notes',
+    },
+    {
+      title: 'Explicação',
+      icon: BookOpen,
+      id: 'explanation',
+    },
+    {
+      title: 'Estrutura',
+      icon: Edit3,
+      id: 'structure',
     },
     {
       title: 'Cronograma',
@@ -302,7 +312,7 @@ export default function DashboardStartScreen() {
       <div className="flex-1">
         <DashboardHeader
           setSidebarOpen={setSidebarOpen}
-          currentScreen={currentScreen}
+          currentScreen={currentScreen as "notes" | "timeline" | "settings" | "profile" | "support" | "main"}
         />
         <div className="container mx-auto px-4 py-8">
           {currentScreen === 'main' &&
