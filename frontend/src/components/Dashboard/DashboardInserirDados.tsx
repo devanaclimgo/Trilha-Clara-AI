@@ -2,7 +2,7 @@ import { ArrowRight } from 'lucide-react'
 import { Button } from '../ui/button'
 import { Card, CardContent, CardHeader, CardTitle } from '../ui/card'
 import { useState } from 'react'
-import { TccData } from './DashboardStartScreen'
+import { TccData } from '@/types/tcc'
 
 interface InserirDadosProps {
   onNext: () => void
@@ -91,6 +91,11 @@ export default function InserirDados({
                       dica: data.dica,
                       estrutura: data.estrutura,
                       cronograma: data.cronograma,
+                      id: '',
+                      titulo: '',
+                      dataCriacao: '',
+                      ultimaModificacao: '',
+                      progresso: 0
                     },
                     data.explicacao,
                   )

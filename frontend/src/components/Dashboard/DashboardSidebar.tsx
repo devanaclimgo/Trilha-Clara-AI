@@ -14,7 +14,6 @@ import {
   X,
   CheckCircle,
 } from 'lucide-react'
-import { TccData, NotesData } from '@/types/tcc'
 
 interface DashboardSidebarProps {
   sidebarOpen: boolean
@@ -22,6 +21,7 @@ interface DashboardSidebarProps {
   currentScreen: string
   setCurrentScreen: (screen: string) => void
   currentStep: number
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   steps: Array<{ id: number; title: string; icon: any }>
   getCurrentWorkNotes: () => string[]
   getProgressPercentage: () => number
@@ -30,7 +30,6 @@ interface DashboardSidebarProps {
 export default function DashboardSidebar({
   sidebarOpen,
   setSidebarOpen,
-  currentScreen,
   setCurrentScreen,
   currentStep,
   steps,

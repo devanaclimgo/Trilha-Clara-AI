@@ -12,6 +12,7 @@ interface WorkCardsProps {
   getCurrentWorkNotes: () => string[]
   setShowStepByStep: (show: boolean) => void
   currentStep: number
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   steps: Array<{ id: number; title: string; icon: any }>
 }
 
@@ -20,7 +21,6 @@ export default function WorkCards({
   trabalhoAtual,
   trocarTrabalho,
   setShowNewProjectForm,
-  getCurrentWorkNotes,
   setShowStepByStep,
   currentStep,
   steps,
