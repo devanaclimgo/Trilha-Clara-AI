@@ -68,7 +68,7 @@ export default function DeleteWorkModal({
               type="button"
               variant="outline"
               onClick={onClose}
-              className="flex-1 rounded-xl hover:bg-gray-50 border-gray-200 hover:border-gray-300"
+              className="flex-1 rounded-xl hover:bg-gray-50 hover:text-gray-700 border-gray-200 hover:border-gray-300"
             >
               Cancelar
             </Button>
