@@ -27,6 +27,16 @@ import { Settings } from 'lucide-react'
 import { User } from 'lucide-react'
 import { HelpCircle } from 'lucide-react'
 
+export interface TccData {
+  curso: string
+  enunciado: string
+  explicacao: string
+  sugestoes: string[]
+  dica: string
+  estrutura: string
+  cronograma: string[]
+}
+
 export default function DashboardStartScreen() {
   const [currentStep, setCurrentStep] = useState(1)
   const [sidebarOpen, setSidebarOpen] = useState(false)
@@ -36,16 +46,25 @@ export default function DashboardStartScreen() {
     'main' | 'notes' | 'timeline' | 'settings' | 'profile' | 'support'
   >('main')
   const [showStepByStep, setShowStepByStep] = useState(false)
-  const [userData, setUserData] = useState<{ curso: string; enunciado: string } | null>(null)
 
-const [hasCompletedInitialData, setHasCompletedInitialData] = useState(false)
+  const [tccData, setTccData] = useState<TccData>({
+    curso: '',
+    enunciado: '',
+    explicacao: '',
+    sugestoes: [],
+    dica: '',
+    estrutura: '',
+    cronograma: [],
+  })
 
-useEffect(() => {
-  const savedData = localStorage.getItem('tcc-user-data')
-  if (savedData) {
-    setHasCompletedInitialData(true)
-  }
-}, [])
+  const [hasCompletedInitialData, setHasCompletedInitialData] = useState(false)
+
+  useEffect(() => {
+    const savedData = localStorage.getItem('tcc-user-data')
+    if (savedData) {
+      setHasCompletedInitialData(true)
+    }
+  }, [])
 
   const menuItems = [
     {
@@ -110,15 +129,9 @@ useEffect(() => {
     setSavedNotes((prev) => prev.filter((_, i) => i !== index))
   }
 
-  const saveUserData = (data: { curso: string; enunciado: string }) => {
-    setUserData(data)
-  }
-
   const getProgressPercentage = () => {
     return Math.round((currentStep / steps.length) * 100)
   }
-
-  const [explicacao, setExplicacao] = useState<string>("")
 
   return (
     <div className="min-h-screen flex gradient-trilha-soft">
@@ -513,24 +526,49 @@ useEffect(() => {
                   {currentStep === 1 && (
                     <InserirDados
                       onNext={() => setCurrentStep(2)}
-                      onSaveData={(data, explicacaoGerada) => {
-                        saveUserData(data)
-                        setExplicacao(explicacaoGerada)
+                      onSaveData={(data: TccData, explicacaoGerada: string) => {
+                        setTccData((prev) => ({
+                          ...prev,
+                          curso: data.curso,
+                          enunciado: data.enunciado,
+                          explicacao: explicacaoGerada,
+                          sugestoes: data.sugestoes,
+                          dica: data.dica,
+                          estrutura: data.estrutura,
+                          cronograma: data.cronograma,
+                        }))
                       }}
                     />
                   )}
                   {currentStep === 2 && (
                     <ExplicacaoSimplificada
-                      explicacao={explicacao}
+                      explicacao={tccData.explicacao || ''}
+                      sugestoes={
+                        Array.isArray(tccData.sugestoes)
+                          ? tccData.sugestoes
+                          : [tccData.sugestoes || '']
+                      }
+                      dica={tccData.dica || ''}
                       onNext={() => setCurrentStep(3)}
                       onSaveNote={saveNote}
                     />
                   )}
+
                   {currentStep === 3 && (
-                    <Estruturasugerida onNext={() => setCurrentStep(4)} />
+                    <Estruturasugerida
+                      estrutura={tccData.estrutura || ''}
+                      onNext={() => setCurrentStep(4)}
+                    />
                   )}
                   {currentStep === 4 && (
-                    <Cronograma onNext={() => setCurrentStep(5)} />
+                    <Cronograma
+                      atividades={
+                        Array.isArray(tccData.cronograma)
+                          ? tccData.cronograma
+                          : [tccData.cronograma || '']
+                      }
+                      onNext={() => setCurrentStep(5)}
+                    />
                   )}
                   {currentStep === 5 && <ExportacaoABNT />}
                 </div>
