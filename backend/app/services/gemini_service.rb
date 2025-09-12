@@ -33,23 +33,56 @@ class GeminiService
 
   # Simplificar enunciado
   def simplificar_enunciado!(enunciado:, curso:)
-    cache_key = "gemini_simplify_#{Digest::MD5.hexdigest("#{enunciado}_#{curso}")}"
-    cached = Rails.cache.read(cache_key)
-    return cached if cached
+  cache_key = "gemini_simplify_#{Digest::MD5.hexdigest("#{enunciado}_#{curso}")}"
+  cached = Rails.cache.read(cache_key)
+  return cached if cached
 
-    messages = [
-      { role: "system", content: "Você ajuda estudantes brasileiros a entender enunciados de TCC. Responda SEMPRE em português claro, direto, com bullets quando ajudar." },
-      { role: "user", content: <<~TXT }
-        Curso: #{curso}
-        Enunciado: #{enunciado}
+  messages = [
+    { role: "system", content: "Você ajuda estudantes brasileiros a organizar TCC. Sempre responda em português e em JSON válido com as chaves: explicacao, sugestoes, dica, estrutura, cronograma." },
+    { role: "user", content: <<~TXT }
+      Curso: #{curso}
+      Enunciado: #{enunciado}
 
-        Tarefa: explique, em linguagem simples e objetiva, o que o aluno precisa fazer.
-      TXT
-    ]
+      Tarefa: devolva no seguinte formato JSON:
 
-    result = chat!(messages)
-    Rails.cache.write(cache_key, result, expires_in: 1.week)
-    result
+      {
+        "explicacao": [
+          "frase curta 1",
+          "frase curta 2"
+        ],
+        "sugestoes": [
+          "sugestão 1",
+          "sugestão 2"
+        ],
+        "dica": "uma dica curta e objetiva",
+        "estrutura": [
+          "capítulo 1",
+          "capítulo 2",
+          "capítulo 3"
+        ],
+        "cronograma": [
+          { "semana": 1, "atividade": "escolher tema" },
+          { "semana": 2, "atividade": "levantar bibliografia" }
+        ]
+      }
+
+      - "explicacao": no máximo 4 bullets curtos e simples
+      - "sugestoes": lista de tópicos de pesquisa
+      - "dica": 1 frase de orientação importante
+      - "estrutura": só os capítulos principais
+      - "cronograma": lista curta de semanas com atividades práticas
+    TXT
+  ]
+
+  result = chat!(messages)
+
+    begin
+      parsed = JSON.parse(result)
+      Rails.cache.write(cache_key, parsed, expires_in: 1.week)
+      parsed
+    rescue JSON::ParserError
+      { "explicacao" => [result], "sugestoes" => [], "dica" => "", "estrutura" => [], "cronograma" => [] }
+    end
   end
 
   # Gerar sumário
