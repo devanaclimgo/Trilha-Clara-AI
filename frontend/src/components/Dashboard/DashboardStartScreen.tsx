@@ -19,6 +19,8 @@ import RecentActivity from './RecentActivity'
 import StepProgress from './StepProgress'
 import ContentPage from './ContentPage'
 import NewProjectModal from './NewProjectModal'
+import EditWorkModal from './EditWorkModal'
+import DeleteWorkModal from './DeleteWorkModal'
 import TimelineScreen from './DashboardTimelineScreen'
 import NotesScreen from './DashboardNoteScreen'
 import InserirDados from './DashboardInserirDados'
@@ -26,6 +28,9 @@ import ExplicacaoSimplificada from './DashboardExplicacaoSimplidicada'
 import Estruturasugerida from './DashboardEstruturaSugerida'
 import Cronograma from './DashboardCronograma'
 import ExportacaoABNT from './DashboardExportacaoABNT'
+import InfoButton from '../InfoButton'
+import DonationSection from '../DonationSection'
+import LogoutButton from '../LogoutButton'
 import { useTccData } from '@/hooks/useTccData'
 import { TccData } from '@/types/tcc'
 
@@ -44,10 +49,14 @@ export default function DashboardStartScreen() {
   >('main')
   const [showStepByStep, setShowStepByStep] = useState(false)
   const [showNewProjectForm, setShowNewProjectForm] = useState(false)
+  const [showEditWorkModal, setShowEditWorkModal] = useState(false)
+  const [showDeleteWorkModal, setShowDeleteWorkModal] = useState(false)
+  const [selectedWork, setSelectedWork] = useState<TccData | null>(null)
 
   const {
     trabalhos,
     trabalhoAtual,
+    setTrabalhoAtual,
     tccData,
     hasCompletedInitialData,
     setTccData,
@@ -87,6 +96,70 @@ export default function DashboardStartScreen() {
     criarNovoTrabalho(titulo, curso, enunciado)
     setCurrentStep(1)
     setShowNewProjectForm(false)
+  }
+
+  const handleEditWork = (work: TccData) => {
+    setSelectedWork(work)
+    setShowEditWorkModal(true)
+  }
+
+  const handleDeleteWork = (work: TccData) => {
+    setSelectedWork(work)
+    setShowDeleteWorkModal(true)
+  }
+
+  const handleSaveEditWork = (
+    workId: string,
+    updatedWork: Partial<TccData>,
+  ) => {
+    const workIndex = trabalhos.findIndex((w) => w.id === workId)
+    if (workIndex !== -1) {
+      const updatedTrabalhos = [...trabalhos]
+      updatedTrabalhos[workIndex] = {
+        ...updatedTrabalhos[workIndex],
+        ...updatedWork,
+      }
+      localStorage.setItem('tcc-trabalhos', JSON.stringify(updatedTrabalhos))
+
+      // Se é o trabalho atual, atualiza o tccData
+      if (trabalhoAtual === workId) {
+        setTccData(updatedTrabalhos[workIndex])
+      }
+    }
+  }
+
+  const handleConfirmDeleteWork = (workId: string) => {
+    const updatedTrabalhos = trabalhos.filter((w) => w.id !== workId)
+    localStorage.setItem('tcc-trabalhos', JSON.stringify(updatedTrabalhos))
+
+    // Se era o trabalho atual, limpa a seleção
+    if (trabalhoAtual === workId) {
+      if (updatedTrabalhos.length > 0) {
+        setTccData(updatedTrabalhos[0])
+        setTrabalhoAtual(updatedTrabalhos[0].id)
+      } else {
+        setTccData({
+          id: '',
+          titulo: '',
+          curso: '',
+          enunciado: '',
+          explicacao: [],
+          sugestoes: [],
+          dica: '',
+          estrutura: [],
+          cronograma: [],
+          dataCriacao: '',
+          ultimaModificacao: '',
+          progresso: 0,
+        })
+        setTrabalhoAtual(null)
+      }
+    }
+  }
+
+  const handleLogout = () => {
+    // Redirecionar para login
+    window.location.href = '/login'
   }
 
   return (
@@ -152,10 +225,11 @@ export default function DashboardStartScreen() {
                   trabalhoAtual={trabalhoAtual}
                   trocarTrabalho={handleTrocarTrabalho}
                   setShowNewProjectForm={setShowNewProjectForm}
-                  getCurrentWorkNotes={getCurrentWorkNotes}
                   setShowStepByStep={setShowStepByStep}
                   currentStep={currentStep}
                   steps={steps}
+                  onEditWork={handleEditWork}
+                  onDeleteWork={handleDeleteWork}
                 />
 
                 {/* Quick Access Cards */}
@@ -363,6 +437,35 @@ export default function DashboardStartScreen() {
             onClose={() => setShowNewProjectForm(false)}
             onCreateProject={handleCriarNovoTrabalho}
           />
+
+          {/* Modal para Editar Trabalho */}
+          <EditWorkModal
+            show={showEditWorkModal}
+            onClose={() => {
+              setShowEditWorkModal(false)
+              setSelectedWork(null)
+            }}
+            onSave={handleSaveEditWork}
+            work={selectedWork}
+          />
+
+          {/* Modal para Deletar Trabalho */}
+          <DeleteWorkModal
+            show={showDeleteWorkModal}
+            onClose={() => {
+              setShowDeleteWorkModal(false)
+              setSelectedWork(null)
+            }}
+            onConfirm={handleConfirmDeleteWork}
+            work={selectedWork}
+          />
+
+          {/* Botões flutuantes */}
+          <InfoButton />
+          <div className="fixed bottom-6 right-6 z-50 space-y-3">
+            <DonationSection />
+            <LogoutButton onLogout={handleLogout} />
+          </div>
         </div>
       </div>
     </div>

@@ -1,7 +1,13 @@
 'use client'
 
 import { Button } from '@/components/ui/button'
-import { FileText, ArrowRight } from 'lucide-react'
+import { FileText, ArrowRight, Edit3, Trash2, MoreVertical } from 'lucide-react'
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from '@/components/ui/dropdown-menu'
 import { TccData } from '@/types/tcc'
 
 interface WorkCardsProps {
@@ -9,11 +15,12 @@ interface WorkCardsProps {
   trabalhoAtual: string | null
   trocarTrabalho: (workId: string) => void
   setShowNewProjectForm: (show: boolean) => void
-  getCurrentWorkNotes: () => string[]
   setShowStepByStep: (show: boolean) => void
   currentStep: number
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   steps: Array<{ id: number; title: string; icon: any }>
+  onEditWork: (work: TccData) => void
+  onDeleteWork: (work: TccData) => void
 }
 
 export default function WorkCards({
@@ -24,6 +31,8 @@ export default function WorkCards({
   setShowStepByStep,
   currentStep,
   steps,
+  onEditWork,
+  onDeleteWork,
 }: WorkCardsProps) {
   const getCursoDisplayName = (curso: string) => {
     const cursoMap: { [key: string]: string } = {
@@ -96,9 +105,45 @@ export default function WorkCards({
                       </p>
                     </div>
                   </div>
-                  {trabalhoAtual === trabalho.id && (
-                    <div className="w-3 h-3 rounded-full bg-purple-500"></div>
-                  )}
+                  <div className="flex items-center gap-2">
+                    {trabalhoAtual === trabalho.id && (
+                      <div className="w-3 h-3 rounded-full bg-purple-500"></div>
+                    )}
+                    <DropdownMenu>
+                      <DropdownMenuTrigger asChild>
+                        <Button
+                          variant="ghost"
+                          size="sm"
+                          className="h-8 w-8 p-0 rounded-xl hover:bg-gray-100"
+                          onClick={(e) => e.stopPropagation()}
+                        >
+                          <MoreVertical className="h-4 w-4" />
+                        </Button>
+                      </DropdownMenuTrigger>
+                      <DropdownMenuContent align="end" className="w-48">
+                        <DropdownMenuItem
+                          onClick={(e: React.MouseEvent) => {
+                            e.stopPropagation()
+                            onEditWork(trabalho)
+                          }}
+                          className="flex items-center gap-2"
+                        >
+                          <Edit3 className="h-4 w-4" />
+                          Editar
+                        </DropdownMenuItem>
+                        <DropdownMenuItem
+                          onClick={(e: React.MouseEvent) => {
+                            e.stopPropagation()
+                            onDeleteWork(trabalho)
+                          }}
+                          className="flex items-center gap-2 text-red-600 hover:text-red-700"
+                        >
+                          <Trash2 className="h-4 w-4" />
+                          Excluir
+                        </DropdownMenuItem>
+                      </DropdownMenuContent>
+                    </DropdownMenu>
+                  </div>
                 </div>
 
                 <div className="mb-4">
