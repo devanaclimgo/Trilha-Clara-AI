@@ -2,17 +2,17 @@ import { ArrowRight } from 'lucide-react'
 import { Button } from '../ui/button'
 import { Card, CardContent, CardHeader, CardTitle } from '../ui/card'
 import { useState } from 'react'
+import { TccData } from './DashboardStartScreen'
+
+interface InserirDadosProps {
+  onNext: () => void
+  onSaveData?: (data: TccData, explicacaoGerada: string) => void
+}
 
 export default function InserirDados({
   onNext,
   onSaveData,
-}: {
-  onNext: () => void
-  onSaveData?: (
-    data: { curso: string; enunciado: string },
-    explicacao: string,
-  ) => void
-}) {
+}: InserirDadosProps) {
   const [curso, setCurso] = useState('')
   const [enunciado, setEnunciado] = useState('')
 
@@ -75,14 +75,25 @@ export default function InserirDados({
                       'Content-Type': 'application/json',
                       Accept: 'application/json',
                     },
-                     body: JSON.stringify({ curso, enunciado }),
+                    body: JSON.stringify({ curso, enunciado }),
                   },
                 )
 
                 const data = await res.json()
 
                 if (onSaveData) {
-                  onSaveData({ curso, enunciado }, data.explicacao)
+                  onSaveData(
+                    {
+                      curso,
+                      enunciado,
+                      explicacao: data.explicacao,
+                      sugestoes: data.sugestoes,
+                      dica: data.dica,
+                      estrutura: data.estrutura,
+                      cronograma: data.cronograma,
+                    },
+                    data.explicacao,
+                  )
                 }
                 onNext()
               } catch (err) {
