@@ -175,7 +175,7 @@ export default function LoginPage() {
         <Button
           asChild
           variant="ghost"
-          className="mb-6 hover:bg-primary/10 hover:text-purple-600 transition-all duration-300 rounded-xl"
+          className="mb-6 bg-primary/10 hover:bg-purple-50 border-purple-200 hover:border-purple-300 hover:text-purple-600 transition-all duration-300 rounded-xl"
         >
           <Link href="/" className="flex items-center gap-2">
             <ArrowLeft className="w-4 h-4" />
