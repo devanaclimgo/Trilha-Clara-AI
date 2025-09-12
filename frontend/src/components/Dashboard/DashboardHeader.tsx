@@ -7,6 +7,8 @@ interface DashboardHeaderProps {
   currentScreen:
     | 'main'
     | 'notes'
+    | 'explanation'
+    | 'structure'
     | 'timeline'
     | 'settings'
     | 'profile'
@@ -44,6 +46,10 @@ const DashboardHeader = ({
               {currentScreen === 'main' &&
                 'Seu assistente inteligente para TCC'}
               {currentScreen === 'notes' && 'Suas anotações salvas'}
+              {currentScreen === 'explanation' &&
+                'Explicação simplificada do seu TCC'}
+              {currentScreen === 'structure' &&
+                'Estrutura sugerida para seu TCC'}
               {currentScreen === 'timeline' && 'Cronograma do seu TCC'}
               {currentScreen === 'settings' && 'Configurações do sistema'}
               {currentScreen === 'profile' && 'Seu perfil de usuário'}

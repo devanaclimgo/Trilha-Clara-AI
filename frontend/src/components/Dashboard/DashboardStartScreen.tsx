@@ -44,7 +44,14 @@ export default function DashboardStartScreen() {
   const sidebarRef = useRef<HTMLDivElement>(null)
   const [savedNotes, setSavedNotes] = useState<string[]>([])
   const [currentScreen, setCurrentScreen] = useState<
-    'main' | 'notes' | 'explanation' | 'structure' | 'timeline' | 'settings' | 'profile' | 'support'
+    | 'main'
+    | 'notes'
+    | 'explanation'
+    | 'structure'
+    | 'timeline'
+    | 'settings'
+    | 'profile'
+    | 'support'
   >('main')
   const [showStepByStep, setShowStepByStep] = useState(false)
 
@@ -178,6 +185,10 @@ export default function DashboardStartScreen() {
                     onClick={() => {
                       if (item.id === 'notes') {
                         setCurrentScreen('notes')
+                      } else if (item.id === 'explanation') {
+                        setCurrentScreen('explanation')
+                      } else if (item.id === 'structure') {
+                        setCurrentScreen('structure')
                       } else if (item.id === 'timeline') {
                         setCurrentScreen('timeline')
                       } else if (item.id === 'settings') {
@@ -312,7 +323,7 @@ export default function DashboardStartScreen() {
       <div className="flex-1">
         <DashboardHeader
           setSidebarOpen={setSidebarOpen}
-          currentScreen={currentScreen as "notes" | "timeline" | "settings" | "profile" | "support" | "main"}
+          currentScreen={currentScreen}
         />
         <div className="container mx-auto px-4 py-8">
           {currentScreen === 'main' &&
@@ -413,6 +424,52 @@ export default function DashboardStartScreen() {
                     </p>
                   </div>
 
+                  {/* Explanation Card */}
+                  <div
+                    className="bg-slate-50/80 backdrop-blur-sm rounded-2xl p-6 shadow-lg border border-slate-200/20 hover:shadow-xl transition-all duration-300 cursor-pointer"
+                    onClick={() => setCurrentScreen('explanation')}
+                  >
+                    <div className="flex items-center gap-4 mb-4">
+                      <div className="p-3 rounded-xl gradient-bg">
+                        <BookOpen className="h-6 w-6 text-white" />
+                      </div>
+                      <div>
+                        <h3 className="text-lg font-bold text-gray-800">
+                          Explicação
+                        </h3>
+                        <p className="text-sm text-gray-600">
+                          Entenda o enunciado
+                        </p>
+                      </div>
+                    </div>
+                    <p className="text-gray-600 text-sm">
+                      Veja a explicação simplificada do seu TCC
+                    </p>
+                  </div>
+
+                  {/* Structure Card */}
+                  <div
+                    className="bg-slate-50/80 backdrop-blur-sm rounded-2xl p-6 shadow-lg border border-slate-200/20 hover:shadow-xl transition-all duration-300 cursor-pointer"
+                    onClick={() => setCurrentScreen('structure')}
+                  >
+                    <div className="flex items-center gap-4 mb-4">
+                      <div className="p-3 rounded-xl gradient-bg">
+                        <Edit3 className="h-6 w-6 text-white" />
+                      </div>
+                      <div>
+                        <h3 className="text-lg font-bold text-gray-800">
+                          Estrutura
+                        </h3>
+                        <p className="text-sm text-gray-600">
+                          Organize seu trabalho
+                        </p>
+                      </div>
+                    </div>
+                    <p className="text-gray-600 text-sm">
+                      Veja a estrutura sugerida para seu TCC
+                    </p>
+                  </div>
+
                   {/* Timeline Card */}
                   <div
                     className="bg-slate-50/80 backdrop-blur-sm rounded-2xl p-6 shadow-lg border border-slate-200/20 hover:shadow-xl transition-all duration-300 cursor-pointer"
@@ -436,9 +493,8 @@ export default function DashboardStartScreen() {
                     </p>
                   </div>
 
-                  {/* Continue Work Card */}
                   <div
-                    className="bg-slate-50/80 backdrop-blur-sm rounded-2xl p-6 shadow-lg border border-slate-200/20 hover:shadow-xl transition-all duration-300 cursor-pointer"
+                    className="bg-slate-50/80 backdrop-blur-sm rounded-2xl p-6 shadow-lg border border-slate-200/20 hover:shadow-xl transition-all duration-300 cursor-pointer max-w-md"
                     onClick={() => {
                       // Switch to the step-by-step view for the current step
                       setShowStepByStep(true)
@@ -588,6 +644,73 @@ export default function DashboardStartScreen() {
                   : undefined
               }
             />
+          )}
+          {currentScreen === 'explanation' && (
+            <div className="max-w-4xl mx-auto space-y-6">
+              <div className="flex items-center justify-between">
+                <div className="flex items-center gap-4">
+                  {hasCompletedInitialData && (
+                    <Button
+                      variant="outline"
+                      onClick={() => setCurrentScreen('main')}
+                      className="rounded-xl hover:bg-purple-50 border-purple-200 hover:border-purple-300 hover:text-purple-600 flex items-center gap-2 px-4 py-2"
+                    >
+                      <ArrowLeft className="h-4 w-4" />
+                      <span className="text-sm font-medium">
+                        Voltar ao início
+                      </span>
+                    </Button>
+                  )}
+                  <div>
+                    <h2 className="text-2xl font-bold gradient-text">
+                      Explicação Simplificada
+                    </h2>
+                    <p className="text-muted-foreground">
+                      Entenda o que o professor pediu de forma clara
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <ExplicacaoSimplificada
+                explicacao={tccData.explicacao || []}
+                sugestoes={tccData.sugestoes || []}
+                dica={tccData.dica || ''}
+                onNext={() => setCurrentScreen('structure')}
+                onSaveNote={saveNote}
+              />
+            </div>
+          )}
+          {currentScreen === 'structure' && (
+            <div className="max-w-4xl mx-auto space-y-6">
+              <div className="flex items-center justify-between">
+                <div className="flex items-center gap-4">
+                  {hasCompletedInitialData && (
+                    <Button
+                      variant="outline"
+                      onClick={() => setCurrentScreen('main')}
+                      className="rounded-xl hover:bg-purple-50 border-purple-200 hover:border-purple-300 hover:text-purple-600 flex items-center gap-2 px-4 py-2"
+                    >
+                      <ArrowLeft className="h-4 w-4" />
+                      <span className="text-sm font-medium">
+                        Voltar ao início
+                      </span>
+                    </Button>
+                  )}
+                  <div>
+                    <h2 className="text-2xl font-bold gradient-text">
+                      Estrutura Sugerida
+                    </h2>
+                    <p className="text-muted-foreground">
+                      Organize seu TCC com a estrutura recomendada
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <Estruturasugerida
+                estrutura={tccData.estrutura || []}
+                onNext={() => setCurrentScreen('timeline')}
+              />
+            </div>
           )}
           {currentScreen === 'timeline' && (
             <TimelineScreen
