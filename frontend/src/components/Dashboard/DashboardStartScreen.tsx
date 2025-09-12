@@ -29,8 +29,6 @@ import Estruturasugerida from './DashboardEstruturaSugerida'
 import Cronograma from './DashboardCronograma'
 import ExportacaoABNT from './DashboardExportacaoABNT'
 import InfoButton from '../InfoButton'
-import DonationSection from '../DonationSection'
-import LogoutButton from '../LogoutButton'
 import { useTccData } from '@/hooks/useTccData'
 import { TccData } from '@/types/tcc'
 
@@ -185,6 +183,7 @@ export default function DashboardStartScreen() {
         steps={steps}
         getCurrentWorkNotes={getCurrentWorkNotes}
         getProgressPercentage={getProgressPercentage}
+        onLogout={handleLogout}
       />
       {sidebarOpen && (
         <div
@@ -460,12 +459,8 @@ export default function DashboardStartScreen() {
             work={selectedWork}
           />
 
-          {/* Botões flutuantes */}
+          {/* Botão de informações */}
           <InfoButton />
-          <div className="fixed bottom-6 right-6 z-50 space-y-3">
-            <DonationSection />
-            <LogoutButton onLogout={handleLogout} />
-          </div>
         </div>
       </div>
     </div>

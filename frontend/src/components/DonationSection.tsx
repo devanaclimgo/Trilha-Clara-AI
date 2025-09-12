@@ -1,6 +1,5 @@
 'use client'
 import { useState } from 'react'
-import Image from 'next/image'
 
 export default function DonationSection() {
   const [isOpen, setIsOpen] = useState(false)
@@ -24,7 +23,7 @@ export default function DonationSection() {
         {/* Botão Pix */}
         <button
           onClick={() => setIsOpen(true)}
-          className="w-full sm:w-64 gradient-animate rounded-xl hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl text-white font-medium py-3 sm:py-4 px-4 sm:px-6 text-sm sm:text-base"
+          className="w-full sm:w-64 bg-primary rounded-xl hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl text-white font-medium py-3 sm:py-4 px-4 sm:px-6 text-sm sm:text-base"
         >
           Apoie este projeto 💖
         </button>

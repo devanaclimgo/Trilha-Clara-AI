@@ -14,6 +14,8 @@ import {
   X,
   CheckCircle,
 } from 'lucide-react'
+import LogoutButton from '../LogoutButton'
+import DonationSection from '../DonationSection'
 
 interface DashboardSidebarProps {
   sidebarOpen: boolean
@@ -25,6 +27,7 @@ interface DashboardSidebarProps {
   steps: Array<{ id: number; title: string; icon: any }>
   getCurrentWorkNotes: () => string[]
   getProgressPercentage: () => number
+  onLogout: () => void
 }
 
 export default function DashboardSidebar({
@@ -35,6 +38,7 @@ export default function DashboardSidebar({
   steps,
   getCurrentWorkNotes,
   getProgressPercentage,
+  onLogout,
 }: DashboardSidebarProps) {
   const sidebarRef = useRef<HTMLDivElement>(null)
 
@@ -116,7 +120,7 @@ export default function DashboardSidebar({
             </Button>
           </div>
         </div>
-        <div className="flex-1 overflow-y-auto p-4 space-y-6">
+        <div className="flex-1 overflow-y-auto p-4 space-y-6 scrollbar-purple">
           <div>
             <h3 className="font-semibold text-gray-700 mb-3">Navegação</h3>
             <div className="space-y-2">
@@ -242,6 +246,12 @@ export default function DashboardSidebar({
               ))}
             </div>
           </div>
+        </div>
+
+        {/* Botões na parte inferior do sidebar */}
+        <div className="p-4 border-t border-slate-200/30 space-y-3">
+          <DonationSection />
+          <LogoutButton onLogout={onLogout} />
         </div>
       </div>
     </div>
