@@ -28,6 +28,8 @@ import { User } from 'lucide-react'
 import { HelpCircle } from 'lucide-react'
 
 export interface TccData {
+  id: string
+  titulo: string
   curso: string
   enunciado: string
   explicacao: string | string[]
@@ -36,6 +38,9 @@ export interface TccData {
   estrutura: string | string[]
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   cronograma: any[]
+  dataCriacao: string
+  ultimaModificacao: string
+  progresso: number
 }
 
 export default function DashboardStartScreen() {
@@ -56,6 +61,8 @@ export default function DashboardStartScreen() {
   const [showStepByStep, setShowStepByStep] = useState(false)
 
   const [tccData, setTccData] = useState<TccData>({
+    id: '',
+    titulo: '',
     curso: '',
     enunciado: '',
     explicacao: [],
@@ -63,14 +70,28 @@ export default function DashboardStartScreen() {
     dica: '',
     estrutura: [],
     cronograma: [],
+    dataCriacao: '',
+    ultimaModificacao: '',
+    progresso: 0,
   })
 
+  const [trabalhos, setTrabalhos] = useState<TccData[]>([])
+  const [trabalhoAtual, setTrabalhoAtual] = useState<string | null>(null)
   const [hasCompletedInitialData, setHasCompletedInitialData] = useState(false)
+  const [showNewProjectForm, setShowNewProjectForm] = useState(false)
 
   useEffect(() => {
-    const savedData = localStorage.getItem('tcc-user-data')
-    if (savedData) {
+    const savedTrabalhos = localStorage.getItem('tcc-trabalhos')
+    if (savedTrabalhos) {
+      const trabalhosData = JSON.parse(savedTrabalhos)
+      setTrabalhos(trabalhosData)
       setHasCompletedInitialData(true)
+
+      // Se há trabalhos, carrega o primeiro como padrão
+      if (trabalhosData.length > 0) {
+        setTrabalhoAtual(trabalhosData[0].id)
+        setTccData(trabalhosData[0])
+      }
     }
   }, [])
 
@@ -149,6 +170,64 @@ export default function DashboardStartScreen() {
 
   const getProgressPercentage = () => {
     return Math.round((currentStep / steps.length) * 100)
+  }
+
+  const salvarTrabalho = (trabalho: TccData) => {
+    const trabalhosAtualizados = trabalhos.filter((t) => t.id !== trabalho.id)
+    trabalhosAtualizados.push(trabalho)
+    setTrabalhos(trabalhosAtualizados)
+    localStorage.setItem('tcc-trabalhos', JSON.stringify(trabalhosAtualizados))
+  }
+
+  const criarNovoTrabalho = (
+    titulo: string,
+    curso: string,
+    enunciado: string,
+  ) => {
+    const novoId = `tcc-${Date.now()}`
+    const novoTrabalho: TccData = {
+      id: novoId,
+      titulo,
+      curso,
+      enunciado,
+      explicacao: [],
+      sugestoes: [],
+      dica: '',
+      estrutura: [],
+      cronograma: [],
+      dataCriacao: new Date().toISOString(),
+      ultimaModificacao: new Date().toISOString(),
+      progresso: 0,
+    }
+
+    const trabalhosAtualizados = [...trabalhos, novoTrabalho]
+    setTrabalhos(trabalhosAtualizados)
+    setTrabalhoAtual(novoId)
+    setTccData(novoTrabalho)
+    setCurrentStep(1)
+    setShowNewProjectForm(false)
+    localStorage.setItem('tcc-trabalhos', JSON.stringify(trabalhosAtualizados))
+  }
+
+  const trocarTrabalho = (trabalhoId: string) => {
+    const trabalho = trabalhos.find((t) => t.id === trabalhoId)
+    if (trabalho) {
+      setTrabalhoAtual(trabalhoId)
+      setTccData(trabalho)
+      setCurrentStep(1)
+    }
+  }
+
+  const atualizarProgresso = (novoProgresso: number) => {
+    if (trabalhoAtual) {
+      const trabalhoAtualizado = {
+        ...tccData,
+        progresso: novoProgresso,
+        ultimaModificacao: new Date().toISOString(),
+      }
+      setTccData(trabalhoAtualizado)
+      salvarTrabalho(trabalhoAtualizado)
+    }
   }
 
   return (
@@ -399,125 +478,241 @@ export default function DashboardStartScreen() {
                   </div>
                 </div>
 
-                {/* Quick Access Cards */}
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                  {/* Notes Card */}
-                  <div
-                    className="bg-slate-50/80 backdrop-blur-sm rounded-2xl p-6 shadow-lg border border-slate-200/20 hover:shadow-xl transition-all duration-300 cursor-pointer"
-                    onClick={() => setCurrentScreen('notes')}
-                  >
-                    <div className="flex items-center gap-4 mb-4">
-                      <div className="p-3 rounded-xl gradient-bg">
-                        <FileText className="h-6 w-6 text-white" />
-                      </div>
-                      <div>
-                        <h3 className="text-lg font-bold text-gray-800">
-                          Anotações
-                        </h3>
-                        <p className="text-sm text-gray-600">
-                          {savedNotes.length} anotações salvas
-                        </p>
-                      </div>
-                    </div>
-                    <p className="text-gray-600 text-sm">
-                      Revise suas anotações e ideias importantes
-                    </p>
+                {/* Meus Trabalhos */}
+                <div className="mb-8">
+                  <div className="flex items-center justify-between mb-6">
+                    <h2 className="text-2xl font-bold gradient-text">
+                      Meus Trabalhos
+                    </h2>
+                    <Button
+                      onClick={() => setShowNewProjectForm(true)}
+                      className="px-6 py-3 rounded-2xl gradient-bg text-white font-medium hover:scale-105 hover:shadow-lg transition-all duration-300"
+                    >
+                      + Novo Trabalho
+                    </Button>
                   </div>
 
-                  {/* Explanation Card */}
-                  <div
-                    className="bg-slate-50/80 backdrop-blur-sm rounded-2xl p-6 shadow-lg border border-slate-200/20 hover:shadow-xl transition-all duration-300 cursor-pointer"
-                    onClick={() => setCurrentScreen('explanation')}
-                  >
-                    <div className="flex items-center gap-4 mb-4">
-                      <div className="p-3 rounded-xl gradient-bg">
-                        <BookOpen className="h-6 w-6 text-white" />
+                  {trabalhos.length === 0 ? (
+                    <div className="text-center py-12 bg-slate-50/80 backdrop-blur-sm rounded-2xl border border-slate-200/20">
+                      <div className="p-4 rounded-full gradient-bg w-16 h-16 mx-auto mb-4 flex items-center justify-center">
+                        <FileText className="h-8 w-8 text-white" />
                       </div>
-                      <div>
-                        <h3 className="text-lg font-bold text-gray-800">
-                          Explicação
-                        </h3>
-                        <p className="text-sm text-gray-600">
-                          Entenda o enunciado
-                        </p>
-                      </div>
+                      <h3 className="text-xl font-bold text-gray-800 mb-2">
+                        Nenhum trabalho ainda
+                      </h3>
+                      <p className="text-gray-600 mb-6">
+                        Comece criando seu primeiro trabalho acadêmico
+                      </p>
+                      <Button
+                        onClick={() => setShowNewProjectForm(true)}
+                        className="px-6 py-3 rounded-2xl gradient-bg text-white font-medium hover:scale-105 hover:shadow-lg transition-all duration-300"
+                      >
+                        Criar Primeiro Trabalho
+                      </Button>
                     </div>
-                    <p className="text-gray-600 text-sm">
-                      Veja a explicação simplificada do seu TCC
-                    </p>
-                  </div>
+                  ) : (
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                      {trabalhos.map((trabalho) => (
+                        <div
+                          key={trabalho.id}
+                          className={`bg-slate-50/80 backdrop-blur-sm rounded-2xl p-6 shadow-lg border border-slate-200/20 hover:shadow-xl transition-all duration-300 cursor-pointer ${
+                            trabalhoAtual === trabalho.id
+                              ? 'ring-2 ring-purple-400'
+                              : ''
+                          }`}
+                          onClick={() => trocarTrabalho(trabalho.id)}
+                        >
+                          <div className="flex items-start justify-between mb-4">
+                            <div className="flex items-center gap-3">
+                              <div className="p-2 rounded-xl gradient-bg">
+                                <FileText className="h-5 w-5 text-white" />
+                              </div>
+                              <div>
+                                <h3 className="text-lg font-bold text-gray-800">
+                                  {trabalho.titulo || 'Trabalho sem título'}
+                                </h3>
+                                <p className="text-sm text-gray-600">
+                                  {trabalho.curso}
+                                </p>
+                              </div>
+                            </div>
+                            {trabalhoAtual === trabalho.id && (
+                              <div className="w-3 h-3 rounded-full bg-purple-500"></div>
+                            )}
+                          </div>
 
-                  {/* Structure Card */}
-                  <div
-                    className="bg-slate-50/80 backdrop-blur-sm rounded-2xl p-6 shadow-lg border border-slate-200/20 hover:shadow-xl transition-all duration-300 cursor-pointer"
-                    onClick={() => setCurrentScreen('structure')}
-                  >
-                    <div className="flex items-center gap-4 mb-4">
-                      <div className="p-3 rounded-xl gradient-bg">
-                        <Edit3 className="h-6 w-6 text-white" />
-                      </div>
-                      <div>
-                        <h3 className="text-lg font-bold text-gray-800">
-                          Estrutura
-                        </h3>
-                        <p className="text-sm text-gray-600">
-                          Organize seu trabalho
-                        </p>
-                      </div>
-                    </div>
-                    <p className="text-gray-600 text-sm">
-                      Veja a estrutura sugerida para seu TCC
-                    </p>
-                  </div>
+                          <div className="mb-4">
+                            <div className="flex justify-between items-center mb-2">
+                              <span className="text-sm font-medium text-gray-700">
+                                Progresso
+                              </span>
+                              <span className="text-sm font-bold gradient-text">
+                                {trabalho.progresso}%
+                              </span>
+                            </div>
+                            <div className="w-full bg-gray-200 rounded-full h-2">
+                              <div
+                                className="gradient-bg h-2 rounded-full transition-all duration-500"
+                                style={{ width: `${trabalho.progresso}%` }}
+                              ></div>
+                            </div>
+                          </div>
 
-                  {/* Timeline Card */}
-                  <div
-                    className="bg-slate-50/80 backdrop-blur-sm rounded-2xl p-6 shadow-lg border border-slate-200/20 hover:shadow-xl transition-all duration-300 cursor-pointer"
-                    onClick={() => setCurrentScreen('timeline')}
-                  >
-                    <div className="flex items-center gap-4 mb-4">
-                      <div className="p-3 rounded-xl gradient-bg">
-                        <Calendar className="h-6 w-6 text-white" />
-                      </div>
-                      <div>
-                        <h3 className="text-lg font-bold text-gray-800">
-                          Cronograma
-                        </h3>
-                        <p className="text-sm text-gray-600">
-                          Acompanhe seu progresso
-                        </p>
-                      </div>
-                    </div>
-                    <p className="text-gray-600 text-sm">
-                      Veja suas tarefas e prazos organizados
-                    </p>
-                  </div>
+                          <p className="text-gray-600 text-sm mb-4 line-clamp-2">
+                            {trabalho.enunciado.length > 100
+                              ? `${trabalho.enunciado.substring(0, 100)}...`
+                              : trabalho.enunciado}
+                          </p>
 
-                  <div
-                    className="bg-slate-50/80 backdrop-blur-sm rounded-2xl p-6 shadow-lg border border-slate-200/20 hover:shadow-xl transition-all duration-300 cursor-pointer max-w-md"
-                    onClick={() => {
-                      // Switch to the step-by-step view for the current step
-                      setShowStepByStep(true)
-                    }}
-                  >
-                    <div className="flex items-center gap-4 mb-4">
-                      <div className="p-3 rounded-xl gradient-bg">
-                        <ArrowRight className="h-6 w-6 text-white" />
-                      </div>
-                      <div>
-                        <h3 className="text-lg font-bold text-gray-800">
-                          Continuar Trabalho
-                        </h3>
-                        <p className="text-sm text-gray-600">
-                          Próximo passo: {steps[currentStep - 1]?.title}
-                        </p>
-                      </div>
+                          <div className="flex items-center justify-between text-xs text-gray-500">
+                            <span>
+                              Criado em{' '}
+                              {new Date(
+                                trabalho.dataCriacao,
+                              ).toLocaleDateString('pt-BR')}
+                            </span>
+                            <span>
+                              {trabalhoAtual === trabalho.id
+                                ? 'Ativo'
+                                : 'Inativo'}
+                            </span>
+                          </div>
+                        </div>
+                      ))}
                     </div>
-                    <p className="text-gray-600 text-sm">
-                      Continue de onde parou no processo
-                    </p>
-                  </div>
+                  )}
                 </div>
+
+                {/* Quick Access Cards */}
+                {trabalhoAtual && (
+                  <div className="mb-8">
+                    <h2 className="text-2xl font-bold gradient-text mb-6">
+                      Ações Rápidas
+                    </h2>
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                      {/* Notes Card */}
+                      <div
+                        className="bg-slate-50/80 backdrop-blur-sm rounded-2xl p-6 shadow-lg border border-slate-200/20 hover:shadow-xl transition-all duration-300 cursor-pointer"
+                        onClick={() => setCurrentScreen('notes')}
+                      >
+                        <div className="flex items-center gap-4 mb-4">
+                          <div className="p-3 rounded-xl gradient-bg">
+                            <FileText className="h-6 w-6 text-white" />
+                          </div>
+                          <div>
+                            <h3 className="text-lg font-bold text-gray-800">
+                              Anotações
+                            </h3>
+                            <p className="text-sm text-gray-600">
+                              {savedNotes.length} anotações salvas
+                            </p>
+                          </div>
+                        </div>
+                        <p className="text-gray-600 text-sm">
+                          Revise suas anotações e ideias importantes
+                        </p>
+                      </div>
+
+                      {/* Explanation Card */}
+                      <div
+                        className="bg-slate-50/80 backdrop-blur-sm rounded-2xl p-6 shadow-lg border border-slate-200/20 hover:shadow-xl transition-all duration-300 cursor-pointer"
+                        onClick={() => setCurrentScreen('explanation')}
+                      >
+                        <div className="flex items-center gap-4 mb-4">
+                          <div className="p-3 rounded-xl gradient-bg">
+                            <BookOpen className="h-6 w-6 text-white" />
+                          </div>
+                          <div>
+                            <h3 className="text-lg font-bold text-gray-800">
+                              Explicação
+                            </h3>
+                            <p className="text-sm text-gray-600">
+                              Entenda o enunciado
+                            </p>
+                          </div>
+                        </div>
+                        <p className="text-gray-600 text-sm">
+                          Veja a explicação simplificada do seu TCC
+                        </p>
+                      </div>
+
+                      {/* Structure Card */}
+                      <div
+                        className="bg-slate-50/80 backdrop-blur-sm rounded-2xl p-6 shadow-lg border border-slate-200/20 hover:shadow-xl transition-all duration-300 cursor-pointer"
+                        onClick={() => setCurrentScreen('structure')}
+                      >
+                        <div className="flex items-center gap-4 mb-4">
+                          <div className="p-3 rounded-xl gradient-bg">
+                            <Edit3 className="h-6 w-6 text-white" />
+                          </div>
+                          <div>
+                            <h3 className="text-lg font-bold text-gray-800">
+                              Estrutura
+                            </h3>
+                            <p className="text-sm text-gray-600">
+                              Organize seu trabalho
+                            </p>
+                          </div>
+                        </div>
+                        <p className="text-gray-600 text-sm">
+                          Veja a estrutura sugerida para seu TCC
+                        </p>
+                      </div>
+
+                      {/* Timeline Card */}
+                      <div
+                        className="bg-slate-50/80 backdrop-blur-sm rounded-2xl p-6 shadow-lg border border-slate-200/20 hover:shadow-xl transition-all duration-300 cursor-pointer"
+                        onClick={() => setCurrentScreen('timeline')}
+                      >
+                        <div className="flex items-center gap-4 mb-4">
+                          <div className="p-3 rounded-xl gradient-bg">
+                            <Calendar className="h-6 w-6 text-white" />
+                          </div>
+                          <div>
+                            <h3 className="text-lg font-bold text-gray-800">
+                              Cronograma
+                            </h3>
+                            <p className="text-sm text-gray-600">
+                              Acompanhe seu progresso
+                            </p>
+                          </div>
+                        </div>
+                        <p className="text-gray-600 text-sm">
+                          Veja suas tarefas e prazos organizados
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                )}
+
+                {/* Continue Work Card */}
+                {trabalhoAtual && (
+                  <div className="flex justify-center">
+                    <div
+                      className="bg-slate-50/80 backdrop-blur-sm rounded-2xl p-6 shadow-lg border border-slate-200/20 hover:shadow-xl transition-all duration-300 cursor-pointer max-w-md"
+                      onClick={() => {
+                        setShowStepByStep(true)
+                      }}
+                    >
+                      <div className="flex items-center gap-4 mb-4">
+                        <div className="p-3 rounded-xl gradient-bg">
+                          <ArrowRight className="h-6 w-6 text-white" />
+                        </div>
+                        <div>
+                          <h3 className="text-lg font-bold text-gray-800">
+                            Continuar Trabalho
+                          </h3>
+                          <p className="text-sm text-gray-600">
+                            Próximo passo: {steps[currentStep - 1]?.title}
+                          </p>
+                        </div>
+                      </div>
+                      <p className="text-gray-600 text-sm">
+                        Continue de onde parou no processo
+                      </p>
+                    </div>
+                  </div>
+                )}
 
                 {/* Recent Activity */}
                 <div className="bg-slate-50/80 backdrop-blur-sm rounded-2xl p-6 shadow-lg border border-slate-200/20">
@@ -594,8 +789,8 @@ export default function DashboardStartScreen() {
                     <InserirDados
                       onNext={() => setCurrentStep(2)}
                       onSaveData={(data: TccData, explicacaoGerada: string) => {
-                        setTccData((prev) => ({
-                          ...prev,
+                        const trabalhoAtualizado = {
+                          ...tccData,
                           curso: data.curso,
                           enunciado: data.enunciado,
                           explicacao: explicacaoGerada,
@@ -603,7 +798,11 @@ export default function DashboardStartScreen() {
                           dica: data.dica,
                           estrutura: data.estrutura,
                           cronograma: data.cronograma,
-                        }))
+                          progresso: 20, // 20% após inserir dados
+                          ultimaModificacao: new Date().toISOString(),
+                        }
+                        setTccData(trabalhoAtualizado)
+                        salvarTrabalho(trabalhoAtualizado)
                       }}
                     />
                   )}
@@ -612,7 +811,10 @@ export default function DashboardStartScreen() {
                       explicacao={tccData.explicacao || []}
                       sugestoes={tccData.sugestoes || []}
                       dica={tccData.dica || ''}
-                      onNext={() => setCurrentStep(3)}
+                      onNext={() => {
+                        setCurrentStep(3)
+                        atualizarProgresso(40) // 40% após explicação
+                      }}
                       onSaveNote={saveNote}
                     />
                   )}
@@ -620,13 +822,19 @@ export default function DashboardStartScreen() {
                   {currentStep === 3 && (
                     <Estruturasugerida
                       estrutura={tccData.estrutura || []}
-                      onNext={() => setCurrentStep(4)}
+                      onNext={() => {
+                        setCurrentStep(4)
+                        atualizarProgresso(60) // 60% após estrutura
+                      }}
                     />
                   )}
                   {currentStep === 4 && (
                     <Cronograma
                       atividades={tccData.cronograma || []}
-                      onNext={() => setCurrentStep(5)}
+                      onNext={() => {
+                        setCurrentStep(5)
+                        atualizarProgresso(80) // 80% após cronograma
+                      }}
                     />
                   )}
                   {currentStep === 5 && <ExportacaoABNT />}
@@ -675,7 +883,10 @@ export default function DashboardStartScreen() {
                 explicacao={tccData.explicacao || []}
                 sugestoes={tccData.sugestoes || []}
                 dica={tccData.dica || ''}
-                onNext={() => setCurrentScreen('structure')}
+                onNext={() => {
+                  setCurrentScreen('structure')
+                  atualizarProgresso(40)
+                }}
                 onSaveNote={saveNote}
               />
             </div>
@@ -708,7 +919,10 @@ export default function DashboardStartScreen() {
               </div>
               <Estruturasugerida
                 estrutura={tccData.estrutura || []}
-                onNext={() => setCurrentScreen('timeline')}
+                onNext={() => {
+                  setCurrentScreen('timeline')
+                  atualizarProgresso(60)
+                }}
               />
             </div>
           )}
@@ -815,6 +1029,113 @@ export default function DashboardStartScreen() {
                 <p className="text-gray-600">
                   Central de suporte em desenvolvimento...
                 </p>
+              </div>
+            </div>
+          )}
+
+          {/* Modal para Novo Trabalho */}
+          {showNewProjectForm && (
+            <div className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+              <div className="bg-white rounded-2xl shadow-2xl max-w-md w-full p-6">
+                <div className="flex items-center justify-between mb-6">
+                  <h2 className="text-2xl font-bold gradient-text">
+                    Novo Trabalho
+                  </h2>
+                  <Button
+                    variant="ghost"
+                    size="sm"
+                    onClick={() => setShowNewProjectForm(false)}
+                    className="rounded-xl hover:bg-purple-50 hover:text-purple-600"
+                  >
+                    <X className="h-4 w-4" />
+                  </Button>
+                </div>
+
+                <form
+                  onSubmit={(e) => {
+                    e.preventDefault()
+                    const formData = new FormData(e.currentTarget)
+                    const titulo = formData.get('titulo') as string
+                    const curso = formData.get('curso') as string
+                    const enunciado = formData.get('enunciado') as string
+
+                    if (titulo && curso && enunciado) {
+                      criarNovoTrabalho(titulo, curso, enunciado)
+                    }
+                  }}
+                  className="space-y-4"
+                >
+                  <div>
+                    <label className="block text-sm font-medium mb-2">
+                      Título do Trabalho
+                    </label>
+                    <input
+                      name="titulo"
+                      type="text"
+                      placeholder="Ex: Análise de Campanhas Digitais"
+                      className="w-full p-3 rounded-xl border border-slate-200 bg-slate-50/60 backdrop-blur-sm focus:ring-2 focus:ring-purple-500/20 focus:border-purple-500 transition-all duration-300"
+                      required
+                    />
+                  </div>
+
+                  <div>
+                    <label className="block text-sm font-medium mb-2">
+                      Curso
+                    </label>
+                    <select
+                      name="curso"
+                      className="w-full p-3 rounded-xl border border-slate-200 bg-slate-50/60 backdrop-blur-sm focus:ring-2 focus:ring-purple-500/20 focus:border-purple-500 transition-all duration-300"
+                      required
+                    >
+                      <option value="">Selecione seu curso</option>
+                      <option value="medicina">Medicina</option>
+                      <option value="direito">Direito</option>
+                      <option value="engenharia">Engenharia</option>
+                      <option value="contabeis">Ciências Contábeis</option>
+                      <option value="psicologia">Psicologia</option>
+                      <option value="desenvolvimento-de-sistemas">
+                        Análise e Desenvolvimento de Sistemas
+                      </option>
+                      <option value="publicidade">
+                        Publicidade e Propaganda
+                      </option>
+                      <option value="seguranca-da-informacao">
+                        Segurança da Informação
+                      </option>
+                      <option value="outros">Outros</option>
+                    </select>
+                  </div>
+
+                  <div>
+                    <label className="block text-sm font-medium mb-2">
+                      Enunciado do Trabalho
+                    </label>
+                    <textarea
+                      name="enunciado"
+                      placeholder="Cole aqui o enunciado completo do seu TCC conforme fornecido pelo professor..."
+                      rows={4}
+                      className="w-full p-3 rounded-xl border border-slate-200 bg-slate-50/60 backdrop-blur-sm focus:ring-2 focus:ring-purple-500/20 focus:border-purple-500 transition-all duration-300 resize-none"
+                      required
+                    />
+                  </div>
+
+                  <div className="flex gap-3 pt-4">
+                    <Button
+                      type="button"
+                      variant="outline"
+                      onClick={() => setShowNewProjectForm(false)}
+                      className="flex-1 rounded-xl hover:bg-purple-50 border-purple-200 hover:border-purple-300 hover:text-purple-600"
+                    >
+                      Cancelar
+                    </Button>
+                    <Button
+                      type="submit"
+                      className="flex-1 px-6 py-3 rounded-xl gradient-bg text-white font-medium hover:scale-105 hover:shadow-lg transition-all duration-300"
+                    >
+                      Criar Trabalho
+                    </Button>
+                  </div>
+                </form>
               </div>
             </div>
           )}
