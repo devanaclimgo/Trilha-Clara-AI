@@ -4,23 +4,30 @@ import { Button } from '../ui/button'
 import { ArrowRight, Edit3 } from 'lucide-react'
 
 interface EstruturaSugeridaProps {
-  estrutura: string
+  estrutura: string[] | string
   onNext: () => void
 }
 
 export default function EstruturaSugerida({
+  estrutura: estruturaProp,
   onNext,
 }: EstruturaSugeridaProps) {
-  const [estrutura, setEstrutura] = useState([
-    'Introdução',
-    'Revisão de literatura',
-    'Referencial teórico',
-    'Metodologia',
-    'Coleta e análise de dados',
-    'Resultados',
-    'Discussão',
-    'Conclusão',
-  ])
+  // Converte estrutura para array se necessário
+  const estruturaInicial = Array.isArray(estruturaProp)
+    ? estruturaProp
+    : estruturaProp
+    ? estruturaProp.split('\n').filter((item) => item.trim() !== '')
+    : [
+        'Introdução',
+        'Revisão de literatura',
+        'Referencial teórico',
+        'Metodologia',
+        'Coleta e análise de dados',
+        'Resultados',
+        'Discussão',
+        'Conclusão',
+      ]
+  const [estrutura, setEstrutura] = useState(estruturaInicial)
 
   const [editando, setEditando] = useState(false)
 

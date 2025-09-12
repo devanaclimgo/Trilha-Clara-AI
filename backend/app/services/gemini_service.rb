@@ -76,13 +76,33 @@ class GeminiService
 
   result = chat!(messages)
 
-    begin
-      parsed = JSON.parse(result)
-      Rails.cache.write(cache_key, parsed, expires_in: 1.week)
-      parsed
-    rescue JSON::ParserError
-      { "explicacao" => [result], "sugestoes" => [], "dica" => "", "estrutura" => [], "cronograma" => [] }
-    end
+  begin
+    # Tenta extrair JSON do resultado se estiver dentro de markdown
+    json_match = result.match(/```json\s*(\{.*?\})\s*```/m)
+    json_string = json_match ? json_match[1] : result
+    
+    parsed = JSON.parse(json_string)
+    Rails.cache.write(cache_key, parsed, expires_in: 1.week)
+    parsed
+  rescue JSON::ParserError => e
+    Rails.logger.error "Erro ao fazer parse do JSON: #{e.message}"
+    Rails.logger.error "Resultado bruto: #{result}"
+    
+    # Fallback: tenta extrair informações básicas do texto
+    fallback_data = {
+      "explicacao" => ["Erro ao processar explicação. Tente novamente."],
+      "sugestoes" => ["Sugestões não disponíveis no momento"],
+      "dica" => "Verifique se o enunciado está claro e tente novamente.",
+      "estrutura" => ["Introdução", "Desenvolvimento", "Conclusão"],
+      "cronograma" => [
+        { "semana" => 1, "atividade" => "Definir tema" },
+        { "semana" => 2, "atividade" => "Pesquisar bibliografia" }
+      ]
+    }
+    
+    Rails.cache.write(cache_key, fallback_data, expires_in: 1.hour)
+    fallback_data
+  end
   end
 
   # Gerar sumário

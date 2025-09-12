@@ -3,50 +3,87 @@ import { Button } from '../ui/button'
 import { Card, CardContent, CardHeader, CardTitle } from '../ui/card'
 
 interface CronogramaProps {
-  atividades: string[]
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  atividades: any[] | string[]
   onNext: () => void
 }
 
 export default function Cronograma({
+  atividades: atividadesProp,
   onNext,
 }: CronogramaProps) {
-  const atividades = [
-    {
-      semana: 1,
-      atividade: 'Definir tema e problema de pesquisa',
-      concluida: true,
-    },
-    {
-      semana: 2,
-      atividade: 'Levantar referências bibliográficas',
-      concluida: true,
-    },
-    {
-      semana: 3,
-      atividade: 'Escrever introdução e justificativa',
-      concluida: false,
-    },
-    { semana: 4, atividade: 'Construir referencial teórico', concluida: false },
-    {
-      semana: 5,
-      atividade: 'Redigir metodologia da pesquisa',
-      concluida: false,
-    },
-    { semana: 6, atividade: 'Executar coleta de dados', concluida: false },
-    { semana: 7, atividade: 'Analisar dados coletados', concluida: false },
-    { semana: 8, atividade: 'Escrever resultados', concluida: false },
-    {
-      semana: 9,
-      atividade: 'Discutir resultados e limitações',
-      concluida: false,
-    },
-    { semana: 10, atividade: 'Elaborar conclusões finais', concluida: false },
-    {
-      semana: 11,
-      atividade: 'Revisão geral e formatação ABNT',
-      concluida: false,
-    },
-  ]
+  // Converte atividades para o formato esperado
+  const atividades =
+    Array.isArray(atividadesProp) && atividadesProp.length > 0
+      ? atividadesProp.map((item, index) => {
+          // Se o item é um objeto com semana e atividade
+          if (typeof item === 'object' && item.semana && item.atividade) {
+            return {
+              semana: item.semana,
+              atividade: item.atividade,
+              concluida: index < 2, // Primeiras 2 atividades marcadas como concluídas
+            }
+          }
+          // Se o item é uma string
+          return {
+            semana: index + 1,
+            atividade: item,
+            concluida: index < 2, // Primeiras 2 atividades marcadas como concluídas
+          }
+        })
+      : [
+          {
+            semana: 1,
+            atividade: 'Definir tema e problema de pesquisa',
+            concluida: true,
+          },
+          {
+            semana: 2,
+            atividade: 'Levantar referências bibliográficas',
+            concluida: true,
+          },
+          {
+            semana: 3,
+            atividade: 'Escrever introdução e justificativa',
+            concluida: false,
+          },
+          {
+            semana: 4,
+            atividade: 'Construir referencial teórico',
+            concluida: false,
+          },
+          {
+            semana: 5,
+            atividade: 'Redigir metodologia da pesquisa',
+            concluida: false,
+          },
+          {
+            semana: 6,
+            atividade: 'Executar coleta de dados',
+            concluida: false,
+          },
+          {
+            semana: 7,
+            atividade: 'Analisar dados coletados',
+            concluida: false,
+          },
+          { semana: 8, atividade: 'Escrever resultados', concluida: false },
+          {
+            semana: 9,
+            atividade: 'Discutir resultados e limitações',
+            concluida: false,
+          },
+          {
+            semana: 10,
+            atividade: 'Elaborar conclusões finais',
+            concluida: false,
+          },
+          {
+            semana: 11,
+            atividade: 'Revisão geral e formatação ABNT',
+            concluida: false,
+          },
+        ]
 
   const progresso =
     (atividades.filter((a) => a.concluida).length / atividades.length) * 100

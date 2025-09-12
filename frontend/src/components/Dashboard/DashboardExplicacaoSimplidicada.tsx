@@ -3,7 +3,7 @@ import { Button } from '../ui/button'
 import { Card, CardContent, CardHeader, CardTitle } from '../ui/card'
 
 interface ExplicacaoSimplificadaProps {
-  explicacao: string
+  explicacao: string | string[]
   sugestoes: string[]
   dica: string
   onNext: () => void
@@ -17,8 +17,6 @@ export default function ExplicacaoSimplificada({
   onNext,
   onSaveNote,
 }: ExplicacaoSimplificadaProps) {
-  console.log('explicacao:', explicacao, typeof explicacao)
-
   const explicacaoArray = Array.isArray(explicacao)
     ? explicacao
     : typeof explicacao === 'string'

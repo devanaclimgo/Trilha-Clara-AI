@@ -30,11 +30,12 @@ import { HelpCircle } from 'lucide-react'
 export interface TccData {
   curso: string
   enunciado: string
-  explicacao: string
+  explicacao: string | string[]
   sugestoes: string[]
   dica: string
-  estrutura: string
-  cronograma: string[]
+  estrutura: string | string[]
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  cronograma: any[]
 }
 
 export default function DashboardStartScreen() {
@@ -50,10 +51,10 @@ export default function DashboardStartScreen() {
   const [tccData, setTccData] = useState<TccData>({
     curso: '',
     enunciado: '',
-    explicacao: '',
+    explicacao: [],
     sugestoes: [],
     dica: '',
-    estrutura: '',
+    estrutura: [],
     cronograma: [],
   })
 
@@ -542,12 +543,8 @@ export default function DashboardStartScreen() {
                   )}
                   {currentStep === 2 && (
                     <ExplicacaoSimplificada
-                      explicacao={tccData.explicacao || ''}
-                      sugestoes={
-                        Array.isArray(tccData.sugestoes)
-                          ? tccData.sugestoes
-                          : [tccData.sugestoes || '']
-                      }
+                      explicacao={tccData.explicacao || []}
+                      sugestoes={tccData.sugestoes || []}
                       dica={tccData.dica || ''}
                       onNext={() => setCurrentStep(3)}
                       onSaveNote={saveNote}
@@ -556,17 +553,13 @@ export default function DashboardStartScreen() {
 
                   {currentStep === 3 && (
                     <Estruturasugerida
-                      estrutura={tccData.estrutura || ''}
+                      estrutura={tccData.estrutura || []}
                       onNext={() => setCurrentStep(4)}
                     />
                   )}
                   {currentStep === 4 && (
                     <Cronograma
-                      atividades={
-                        Array.isArray(tccData.cronograma)
-                          ? tccData.cronograma
-                          : [tccData.cronograma || '']
-                      }
+                      atividades={tccData.cronograma || []}
                       onNext={() => setCurrentStep(5)}
                     />
                   )}
