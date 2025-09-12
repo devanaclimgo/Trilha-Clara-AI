@@ -47,7 +47,9 @@ export default function DashboardStartScreen() {
   const [currentStep, setCurrentStep] = useState(1)
   const [sidebarOpen, setSidebarOpen] = useState(false)
   const sidebarRef = useRef<HTMLDivElement>(null)
-  const [savedNotes, setSavedNotes] = useState<string[]>([])
+  const [savedNotes, setSavedNotes] = useState<{ [workId: string]: string[] }>(
+    {},
+  )
   const [currentScreen, setCurrentScreen] = useState<
     | 'main'
     | 'notes'
@@ -82,6 +84,8 @@ export default function DashboardStartScreen() {
 
   useEffect(() => {
     const savedTrabalhos = localStorage.getItem('tcc-trabalhos')
+    const savedNotesData = localStorage.getItem('tcc-notes')
+
     if (savedTrabalhos) {
       const trabalhosData = JSON.parse(savedTrabalhos)
       setTrabalhos(trabalhosData)
@@ -92,6 +96,10 @@ export default function DashboardStartScreen() {
         setTrabalhoAtual(trabalhosData[0].id)
         setTccData(trabalhosData[0])
       }
+    }
+
+    if (savedNotesData) {
+      setSavedNotes(JSON.parse(savedNotesData))
     }
   }, [])
 
@@ -161,11 +169,34 @@ export default function DashboardStartScreen() {
   ]
 
   const saveNote = (note: string) => {
-    setSavedNotes((prev) => [...prev, note])
+    if (!trabalhoAtual) return
+
+    setSavedNotes((prev) => {
+      const newNotes = {
+        ...prev,
+        [trabalhoAtual]: [...(prev[trabalhoAtual] || []), note],
+      }
+      localStorage.setItem('tcc-notes', JSON.stringify(newNotes))
+      return newNotes
+    })
   }
 
   const removeNote = (index: number) => {
-    setSavedNotes((prev) => prev.filter((_, i) => i !== index))
+    if (!trabalhoAtual) return
+
+    setSavedNotes((prev) => {
+      const workNotes = prev[trabalhoAtual] || []
+      const newNotes = {
+        ...prev,
+        [trabalhoAtual]: workNotes.filter((_, i) => i !== index),
+      }
+      localStorage.setItem('tcc-notes', JSON.stringify(newNotes))
+      return newNotes
+    })
+  }
+
+  const getCurrentWorkNotes = () => {
+    return trabalhoAtual ? savedNotes[trabalhoAtual] || [] : []
   }
 
   const getProgressPercentage = () => {
@@ -215,6 +246,8 @@ export default function DashboardStartScreen() {
       setTrabalhoAtual(trabalhoId)
       setTccData(trabalho)
       setCurrentStep(1)
+      // Volta para a tela principal quando trocar de trabalho
+      setCurrentScreen('main')
     }
   }
 
@@ -306,19 +339,23 @@ export default function DashboardStartScreen() {
                 </Button>
               </div>
               <div className="space-y-2">
-                {savedNotes.length === 0 ? (
+                {getCurrentWorkNotes().length === 0 ? (
                   <p className="text-sm text-gray-500 italic">
                     Nenhuma anotação salva ainda
                   </p>
                 ) : (
-                  savedNotes.slice(0, 3).map((note, index) => (
-                    <div
-                      key={index}
-                      className="p-3 bg-gradient-to-r from-purple-50 to-pink-50 rounded-xl border border-purple-100 text-sm"
-                    >
-                      {note.length > 50 ? `${note.substring(0, 50)}...` : note}
-                    </div>
-                  ))
+                  getCurrentWorkNotes()
+                    .slice(0, 3)
+                    .map((note, index) => (
+                      <div
+                        key={index}
+                        className="p-3 bg-gradient-to-r from-purple-50 to-pink-50 rounded-xl border border-purple-100 text-sm"
+                      >
+                        {note.length > 50
+                          ? `${note.substring(0, 50)}...`
+                          : note}
+                      </div>
+                    ))
                 )}
               </div>
             </div>
@@ -604,7 +641,7 @@ export default function DashboardStartScreen() {
                               Anotações
                             </h3>
                             <p className="text-sm text-gray-600">
-                              {savedNotes.length} anotações salvas
+                              {getCurrentWorkNotes().length} anotações salvas
                             </p>
                           </div>
                         </div>
@@ -720,20 +757,22 @@ export default function DashboardStartScreen() {
                     Atividade Recente
                   </h3>
                   <div className="space-y-3">
-                    {savedNotes.slice(0, 3).map((note, index) => (
-                      <div
-                        key={index}
-                        className="flex items-start gap-3 p-3 bg-white/50 rounded-xl"
-                      >
-                        <StickyNote className="h-4 w-4 text-purple-600 mt-1 flex-shrink-0" />
-                        <p className="text-sm text-gray-700 flex-1">
-                          {note.length > 80
-                            ? `${note.substring(0, 80)}...`
-                            : note}
-                        </p>
-                      </div>
-                    ))}
-                    {savedNotes.length === 0 && (
+                    {getCurrentWorkNotes()
+                      .slice(0, 3)
+                      .map((note, index) => (
+                        <div
+                          key={index}
+                          className="flex items-start gap-3 p-3 bg-white/50 rounded-xl"
+                        >
+                          <StickyNote className="h-4 w-4 text-purple-600 mt-1 flex-shrink-0" />
+                          <p className="text-sm text-gray-700 flex-1">
+                            {note.length > 80
+                              ? `${note.substring(0, 80)}...`
+                              : note}
+                          </p>
+                        </div>
+                      ))}
+                    {getCurrentWorkNotes().length === 0 && (
                       <p className="text-gray-500 text-center py-4">
                         Nenhuma atividade recente. Comece adicionando anotações!
                       </p>
@@ -843,7 +882,7 @@ export default function DashboardStartScreen() {
             )}
           {currentScreen === 'notes' && (
             <NotesScreen
-              savedNotes={savedNotes}
+              savedNotes={getCurrentWorkNotes()}
               onRemoveNote={removeNote}
               onAddNote={saveNote}
               onBackToHome={
@@ -851,6 +890,7 @@ export default function DashboardStartScreen() {
                   ? () => setCurrentScreen('main')
                   : undefined
               }
+              trabalhoAtual={tccData}
             />
           )}
           {currentScreen === 'explanation' && (
