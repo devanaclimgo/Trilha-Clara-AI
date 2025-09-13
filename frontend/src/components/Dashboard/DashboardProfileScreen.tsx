@@ -218,15 +218,18 @@ export default function DashboardProfileScreen({
         {/* Header */}
         <div className="flex items-center justify-between mb-8">
           <div className="flex items-center gap-4">
-            {onBackToHome && (
+          {onBackToHome && (
+            <div className="mb-6">
               <Button
-                variant="ghost"
+                variant="outline"
                 onClick={onBackToHome}
-                className="rounded-xl bg-primary/10 hover:bg-purple-50 border-purple-200 hover:border-purple-300 hover:text-purple-600 transition-all duration-300 p-2"
+                className="rounded-xl hover:bg-purple-50 border-purple-200 hover:border-purple-300 hover:text-purple-600 flex items-center gap-2 px-4 py-2"
               >
-                <ArrowLeft className="h-5 w-5" />
+                <ArrowLeft className="h-4 w-4" />
+                <span className="text-sm font-medium">Voltar ao início</span>
               </Button>
-            )}
+            </div>
+          )}
             <div>
               <h1 className="text-3xl font-bold gradient-text">Meu Perfil</h1>
               <p className="text-gray-600">
