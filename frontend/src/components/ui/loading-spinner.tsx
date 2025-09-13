@@ -8,9 +8,6 @@ export function LoadingSpinner({
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm">
       <div className="bg-white rounded-2xl shadow-2xl p-8 flex flex-col items-center space-y-4 max-w-sm mx-4">
-        <div className="relative">
-          <div className="absolute inset-0 h-12 w-12 border-4 border-purple-200 rounded-full animate-pulse"></div>
-        </div>
         <div className="text-center">
           <h3 className="text-lg font-semibold text-gray-900 mb-1">
             {message}
