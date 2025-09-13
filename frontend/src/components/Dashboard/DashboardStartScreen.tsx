@@ -28,6 +28,7 @@ import ExplicacaoSimplificada from './DashboardExplicacaoSimplidicada'
 import Estruturasugerida from './DashboardEstruturaSugerida'
 import Cronograma from './DashboardCronograma'
 import ExportacaoABNT from './DashboardExportacaoABNT'
+import DashboardProfileScreen from './DashboardProfileScreen'
 import InfoButton from '../InfoButton'
 import { useTccData } from '@/hooks/useTccData'
 import { TccData } from '@/types/tcc'
@@ -390,18 +391,9 @@ export default function DashboardStartScreen() {
             </ContentPage>
           )}
           {currentScreen === 'profile' && (
-            <ContentPage
-              title="Perfil do Usuário"
-              description="Seu perfil de usuário"
-              hasCompletedInitialData={hasCompletedInitialData}
+            <DashboardProfileScreen
               onBackToHome={() => setCurrentScreen('main')}
-            >
-              <div className="bg-slate-50/80 backdrop-blur-sm rounded-2xl p-8 shadow-lg border border-slate-200/20">
-                <p className="text-gray-600">
-                  Informações do perfil em desenvolvimento...
-                </p>
-              </div>
-            </ContentPage>
+            />
           )}
           {currentScreen === 'support' && (
             <ContentPage

@@ -12,5 +12,13 @@ Rails.application.routes.draw do
 
   namespace :api, defaults: { format: :json } do
     post "tcc/criar", to: "tcc#criar"
+    
+    # Profile routes
+    get "profile", to: "profile#show"
+    put "profile", to: "profile#update"
+    patch "profile", to: "profile#update"
+    put "profile/password", to: "profile#update_password"
+    patch "profile/password", to: "profile#update_password"
+    delete "profile", to: "profile#destroy"
   end
 end
