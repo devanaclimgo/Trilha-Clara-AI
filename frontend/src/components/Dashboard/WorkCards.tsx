@@ -164,9 +164,9 @@ export default function WorkCards({
                 </div>
 
                 <p className="text-gray-600 text-sm mb-4 line-clamp-2">
-                  {trabalho.enunciado.length > 100
-                    ? `${trabalho.enunciado.substring(0, 100)}...`
-                    : trabalho.enunciado}
+                  {trabalho.subtitulo.length > 100
+                    ? `${trabalho.subtitulo.substring(0, 100)}...`
+                    : trabalho.subtitulo}
                 </p>
 
                 <div className="flex items-center justify-between text-xs text-gray-500">
