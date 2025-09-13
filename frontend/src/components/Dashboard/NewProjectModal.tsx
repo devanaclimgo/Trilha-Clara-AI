@@ -7,7 +7,7 @@ import { X } from 'lucide-react'
 interface NewProjectModalProps {
   show: boolean
   onClose: () => void
-  onCreateProject: (titulo: string, curso: string, enunciado: string) => void
+  onCreateProject: (titulo: string, curso: string, subtitulo: string) => void
 }
 
 export default function NewProjectModal({
@@ -18,20 +18,20 @@ export default function NewProjectModal({
   const [formData, setFormData] = useState({
     titulo: '',
     curso: '',
-    enunciado: '',
+    subtitulo: '',
   })
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
-    if (formData.titulo && formData.curso && formData.enunciado) {
-      onCreateProject(formData.titulo, formData.curso, formData.enunciado)
-      setFormData({ titulo: '', curso: '', enunciado: '' })
+    if (formData.titulo && formData.curso && formData.subtitulo) {
+      onCreateProject(formData.titulo, formData.curso, formData.subtitulo)
+      setFormData({ titulo: '', curso: '', subtitulo: '' })
       onClose()
     }
   }
 
   const handleCancel = () => {
-    setFormData({ titulo: '', curso: '', enunciado: '' })
+    setFormData({ titulo: '', curso: '', subtitulo: '' })
     onClose()
   }
 
@@ -98,14 +98,14 @@ export default function NewProjectModal({
 
           <div>
             <label className="block text-sm font-medium mb-2">
-              Enunciado do Trabalho
+              Subtítulo do Trabalho
             </label>
             <textarea
-              placeholder="Cole aqui o enunciado completo do seu TCC conforme fornecido pelo professor..."
+              placeholder="Cole aqui o subtitulo do seu TCC conforme fornecido pelo professor..."
               rows={4}
-              value={formData.enunciado}
+              value={formData.subtitulo}
               onChange={(e) =>
-                setFormData({ ...formData, enunciado: e.target.value })
+                setFormData({ ...formData, subtitulo: e.target.value })
               }
               className="w-full p-3 rounded-xl border border-slate-200 bg-slate-50/60 backdrop-blur-sm focus:ring-2 focus:ring-purple-500/20 focus:border-purple-500 transition-all duration-300 resize-none"
               required
