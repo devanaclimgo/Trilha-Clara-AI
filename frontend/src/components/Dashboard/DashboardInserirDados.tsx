@@ -1,6 +1,7 @@
 import { ArrowRight } from 'lucide-react'
 import { Button } from '../ui/button'
 import { Card, CardContent, CardHeader, CardTitle } from '../ui/card'
+import { LoadingSpinner } from '../ui/loading-spinner'
 import { useState } from 'react'
 import { TccData } from '@/types/tcc'
 
@@ -15,6 +16,7 @@ export default function InserirDados({
 }: InserirDadosProps) {
   const [curso, setCurso] = useState('')
   const [enunciado, setEnunciado] = useState('')
+  const [isLoading, setIsLoading] = useState(false)
 
   return (
     <Card className="rounded-2xl shadow-xl bg-slate-50/80 backdrop-blur-sm border-slate-200/20">
@@ -65,7 +67,8 @@ export default function InserirDados({
         <div className="flex justify-center pt-4">
           <Button
             onClick={async () => {
-              if (!curso || !enunciado.trim()) return
+              if (!curso || !enunciado.trim() || isLoading) return
+              setIsLoading(true)
               try {
                 const res = await fetch(
                   'http://localhost:4000/api/tcc/criar.json',
@@ -95,7 +98,7 @@ export default function InserirDados({
                       titulo: '',
                       dataCriacao: '',
                       ultimaModificacao: '',
-                      progresso: 0
+                      progresso: 0,
                     },
                     data.explicacao,
                   )
@@ -103,9 +106,11 @@ export default function InserirDados({
                 onNext()
               } catch (err) {
                 console.error('Erro ao salvar dados:', err)
+              } finally {
+                setIsLoading(false)
               }
             }}
-            disabled={!curso || !enunciado.trim()}
+            disabled={!curso || !enunciado.trim() || isLoading}
             className="px-8 py-3 rounded-2xl gradient-bg text-white font-medium hover:scale-105 hover:shadow-lg transition-all duration-300 disabled:opacity-50 disabled:hover:scale-100"
           >
             Continuar
@@ -113,6 +118,7 @@ export default function InserirDados({
           </Button>
         </div>
       </CardContent>
+      {isLoading && <LoadingSpinner message="Analisando seu TCC..." />}
     </Card>
   )
 }
