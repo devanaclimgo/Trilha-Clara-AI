@@ -2,7 +2,7 @@ export interface TccData {
   id: string
   titulo: string
   curso: string
-  enunciado: string
+  subtitulo: string
   explicacao: string | string[]
   sugestoes: string[]
   dica: string

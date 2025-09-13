@@ -8,7 +8,7 @@ export const useTccData = () => {
     id: '',
     titulo: '',
     curso: '',
-    enunciado: '',
+    subtitulo: '',
     explicacao: [],
     sugestoes: [],
     dica: '',
@@ -53,14 +53,14 @@ export const useTccData = () => {
   const criarNovoTrabalho = (
     titulo: string,
     curso: string,
-    enunciado: string,
+    subtitulo: string,
   ) => {
     const novoId = `tcc-${Date.now()}`
     const novoTrabalho: TccData = {
       id: novoId,
       titulo,
       curso,
-      enunciado,
+      subtitulo,
       explicacao: [],
       sugestoes: [],
       dica: '',
@@ -144,7 +144,7 @@ export const useTccData = () => {
           id: '',
           titulo: '',
           curso: '',
-          enunciado: '',
+          subtitulo: '',
           explicacao: [],
           sugestoes: [],
           dica: '',

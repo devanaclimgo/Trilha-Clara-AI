@@ -21,7 +21,7 @@ export default function EditWorkModal({
   const [formData, setFormData] = useState({
     titulo: '',
     curso: '',
-    enunciado: '',
+    subtitulo: '',
   })
 
   useEffect(() => {
@@ -29,18 +29,18 @@ export default function EditWorkModal({
       setFormData({
         titulo: work.titulo,
         curso: work.curso,
-        enunciado: work.enunciado,
+        subtitulo: work.subtitulo,
       })
     }
   }, [work])
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
-    if (work && formData.titulo && formData.curso && formData.enunciado) {
+    if (work && formData.titulo && formData.curso && formData.subtitulo) {
       onSave(work.id, {
         titulo: formData.titulo,
         curso: formData.curso,
-        enunciado: formData.enunciado,
+        subtitulo: formData.subtitulo,
         ultimaModificacao: new Date().toISOString(),
       })
       onClose()
@@ -52,7 +52,7 @@ export default function EditWorkModal({
       setFormData({
         titulo: work.titulo,
         curso: work.curso,
-        enunciado: work.enunciado,
+        subtitulo: work.subtitulo,
       })
     }
     onClose()
@@ -121,14 +121,14 @@ export default function EditWorkModal({
 
           <div>
             <label className="block text-sm font-medium mb-2">
-              Enunciado do Trabalho
+              Subtítulo do Trabalho
             </label>
             <textarea
-              placeholder="Cole aqui o enunciado completo do seu TCC conforme fornecido pelo professor..."
+              placeholder="Cole aqui o subtítulo do seu TCC conforme fornecido pelo professor..."
               rows={4}
-              value={formData.enunciado}
+              value={formData.subtitulo}
               onChange={(e) =>
-                setFormData({ ...formData, enunciado: e.target.value })
+                setFormData({ ...formData, subtitulo: e.target.value })
               }
               className="w-full p-3 rounded-xl border border-slate-200 bg-slate-50/60 backdrop-blur-sm focus:ring-2 focus:ring-purple-500/20 focus:border-purple-500 transition-all duration-300 resize-none"
               required

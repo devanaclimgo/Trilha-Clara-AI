@@ -15,7 +15,7 @@ export default function InserirDados({
   onSaveData,
 }: InserirDadosProps) {
   const [curso, setCurso] = useState('')
-  const [enunciado, setEnunciado] = useState('')
+  const [subtitulo, setSubtitulo] = useState('')
   const [isLoading, setIsLoading] = useState(false)
 
   return (
@@ -54,12 +54,12 @@ export default function InserirDados({
         </div>
         <div>
           <label className="block text-sm font-medium mb-2">
-            Enunciado do trabalho
+            Subtítulo do trabalho
           </label>
           <textarea
-            value={enunciado}
-            onChange={(e) => setEnunciado(e.target.value)}
-            placeholder="Cole aqui o enunciado completo do seu TCC conforme fornecido pelo professor..."
+            value={subtitulo}
+            onChange={(e) => setSubtitulo(e.target.value)}
+            placeholder="Cole aqui o subtítulo do seu TCC conforme fornecido pelo professor..."
             rows={8}
             className="w-full p-4 rounded-2xl border border-slate-200 bg-slate-50/60 backdrop-blur-sm focus:ring-2 focus:ring-purple-500/20 focus:border-purple-500 transition-all duration-300 resize-none"
           />
@@ -67,7 +67,7 @@ export default function InserirDados({
         <div className="flex justify-center pt-4">
           <Button
             onClick={async () => {
-              if (!curso || !enunciado.trim() || isLoading) return
+              if (!curso || !subtitulo.trim() || isLoading) return
               setIsLoading(true)
               try {
                 const res = await fetch(
@@ -78,7 +78,7 @@ export default function InserirDados({
                       'Content-Type': 'application/json',
                       Accept: 'application/json',
                     },
-                    body: JSON.stringify({ curso, enunciado }),
+                    body: JSON.stringify({ curso, subtitulo }),
                   },
                 )
 
@@ -88,7 +88,7 @@ export default function InserirDados({
                   onSaveData(
                     {
                       curso,
-                      enunciado,
+                      subtitulo,
                       explicacao: data.explicacao,
                       sugestoes: data.sugestoes,
                       dica: data.dica,
@@ -110,7 +110,7 @@ export default function InserirDados({
                 setIsLoading(false)
               }
             }}
-            disabled={!curso || !enunciado.trim() || isLoading}
+            disabled={!curso || !subtitulo.trim() || isLoading}
             className="px-8 py-3 rounded-2xl gradient-bg text-white font-medium hover:scale-105 hover:shadow-lg transition-all duration-300 disabled:opacity-50 disabled:hover:scale-100"
           >
             Continuar
