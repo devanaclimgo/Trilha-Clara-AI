@@ -129,6 +129,36 @@ export const useTccData = () => {
     return trabalhoAtual ? savedNotes[trabalhoAtual] || [] : []
   }
 
+  const deletarTrabalho = (trabalhoId: string) => {
+    const trabalhosAtualizados = trabalhos.filter((t) => t.id !== trabalhoId)
+    setTrabalhos(trabalhosAtualizados)
+    localStorage.setItem('tcc-trabalhos', JSON.stringify(trabalhosAtualizados))
+
+    // Se era o trabalho atual, limpa a seleção ou seleciona outro
+    if (trabalhoAtual === trabalhoId) {
+      if (trabalhosAtualizados.length > 0) {
+        setTccData(trabalhosAtualizados[0])
+        setTrabalhoAtual(trabalhosAtualizados[0].id)
+      } else {
+        setTccData({
+          id: '',
+          titulo: '',
+          curso: '',
+          enunciado: '',
+          explicacao: [],
+          sugestoes: [],
+          dica: '',
+          estrutura: [],
+          cronograma: [],
+          dataCriacao: '',
+          ultimaModificacao: '',
+          progresso: 0,
+        })
+        setTrabalhoAtual(null)
+      }
+    }
+  }
+
   return {
     trabalhos,
     trabalhoAtual,
@@ -144,5 +174,6 @@ export const useTccData = () => {
     saveNote,
     removeNote,
     getCurrentWorkNotes,
+    deletarTrabalho,
   }
 }

@@ -54,7 +54,6 @@ export default function DashboardStartScreen() {
   const {
     trabalhos,
     trabalhoAtual,
-    setTrabalhoAtual,
     tccData,
     hasCompletedInitialData,
     setTccData,
@@ -65,6 +64,7 @@ export default function DashboardStartScreen() {
     saveNote,
     removeNote,
     getCurrentWorkNotes,
+    deletarTrabalho,
   } = useTccData()
 
   // Função para trocar trabalho e voltar para main
@@ -127,32 +127,7 @@ export default function DashboardStartScreen() {
   }
 
   const handleConfirmDeleteWork = (workId: string) => {
-    const updatedTrabalhos = trabalhos.filter((w) => w.id !== workId)
-    localStorage.setItem('tcc-trabalhos', JSON.stringify(updatedTrabalhos))
-
-    // Se era o trabalho atual, limpa a seleção
-    if (trabalhoAtual === workId) {
-      if (updatedTrabalhos.length > 0) {
-        setTccData(updatedTrabalhos[0])
-        setTrabalhoAtual(updatedTrabalhos[0].id)
-      } else {
-        setTccData({
-          id: '',
-          titulo: '',
-          curso: '',
-          enunciado: '',
-          explicacao: [],
-          sugestoes: [],
-          dica: '',
-          estrutura: [],
-          cronograma: [],
-          dataCriacao: '',
-          ultimaModificacao: '',
-          progresso: 0,
-        })
-        setTrabalhoAtual(null)
-      }
-    }
+    deletarTrabalho(workId)
   }
 
   const handleLogout = () => {
