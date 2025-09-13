@@ -1,6 +1,7 @@
 import { ArrowRight } from 'lucide-react'
 import { Button } from '../ui/button'
 import { Card, CardContent, CardHeader, CardTitle } from '../ui/card'
+import { useState } from 'react'
 
 interface ExplicacaoSimplificadaProps {
   explicacao: string | string[]
@@ -17,6 +18,7 @@ export default function ExplicacaoSimplificada({
   onNext,
   onSaveNote,
 }: ExplicacaoSimplificadaProps) {
+  const [isAnimating, setIsAnimating] = useState(false)
   const explicacaoArray = Array.isArray(explicacao)
     ? explicacao
     : typeof explicacao === 'string'
@@ -34,6 +36,16 @@ export default function ExplicacaoSimplificada({
         <span key={i}>{part}</span>
       ),
     )
+  }
+
+  const handleSaveSuggestions = () => {
+    setIsAnimating(true)
+    onSaveNote(sugestoes.join('\n'))
+
+    // Reset da animação após 200ms
+    setTimeout(() => {
+      setIsAnimating(false)
+    }, 200)
   }
 
   return (
@@ -69,8 +81,10 @@ export default function ExplicacaoSimplificada({
             )}
           </ul>
           <Button
-            onClick={() => onSaveNote(sugestoes.join('\n'))}
-            className="mt-4 rounded-xl bg-purple-600 hover:bg-purple-700 text-white"
+            onClick={handleSaveSuggestions}
+            className={`mt-4 rounded-xl bg-purple-600 hover:bg-purple-700 text-white transition-all duration-200 ${
+              isAnimating ? 'scale-95' : 'scale-100'
+            }`}
           >
             Salvar sugestões
           </Button>
