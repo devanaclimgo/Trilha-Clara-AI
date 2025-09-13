@@ -27,6 +27,7 @@ interface DashboardSidebarProps {
   steps: Array<{ id: number; title: string; icon: any }>
   getCurrentWorkNotes: () => string[]
   getProgressPercentage: () => number
+  onShowAllNotes: () => void
   onLogout: () => void
 }
 
@@ -38,6 +39,7 @@ export default function DashboardSidebar({
   steps,
   getCurrentWorkNotes,
   getProgressPercentage,
+  onShowAllNotes,
   onLogout,
 }: DashboardSidebarProps) {
   const sidebarRef = useRef<HTMLDivElement>(null)
@@ -151,7 +153,7 @@ export default function DashboardSidebar({
                 variant="ghost"
                 size="sm"
                 onClick={() => {
-                  setCurrentScreen('notes')
+                  onShowAllNotes()
                   setSidebarOpen(false)
                 }}
                 className="text-xs rounded-lg hover:bg-purple-50 hover:text-purple-600"

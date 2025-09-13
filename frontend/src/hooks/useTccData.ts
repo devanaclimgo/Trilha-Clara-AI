@@ -129,6 +129,33 @@ export const useTccData = () => {
     return trabalhoAtual ? savedNotes[trabalhoAtual] || [] : []
   }
 
+  const getAllNotes = () => {
+    const allNotes: Array<{
+      workId: string
+      workTitle: string
+      workCourse: string
+      note: string
+      noteIndex: number
+    }> = []
+
+    Object.entries(savedNotes).forEach(([workId, notes]) => {
+      const work = trabalhos.find((t) => t.id === workId)
+      if (work) {
+        notes.forEach((note, noteIndex) => {
+          allNotes.push({
+            workId,
+            workTitle: work.titulo || 'Trabalho sem título',
+            workCourse: work.curso,
+            note,
+            noteIndex,
+          })
+        })
+      }
+    })
+
+    return allNotes
+  }
+
   const deletarTrabalho = (trabalhoId: string) => {
     const trabalhosAtualizados = trabalhos.filter((t) => t.id !== trabalhoId)
     setTrabalhos(trabalhosAtualizados)
@@ -174,6 +201,7 @@ export const useTccData = () => {
     saveNote,
     removeNote,
     getCurrentWorkNotes,
+    getAllNotes,
     deletarTrabalho,
   }
 }

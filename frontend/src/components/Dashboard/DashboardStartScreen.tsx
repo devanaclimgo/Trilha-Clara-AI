@@ -50,6 +50,7 @@ export default function DashboardStartScreen() {
   const [showEditWorkModal, setShowEditWorkModal] = useState(false)
   const [showDeleteWorkModal, setShowDeleteWorkModal] = useState(false)
   const [selectedWork, setSelectedWork] = useState<TccData | null>(null)
+  const [showAllNotes, setShowAllNotes] = useState(false)
 
   const {
     trabalhos,
@@ -64,6 +65,7 @@ export default function DashboardStartScreen() {
     saveNote,
     removeNote,
     getCurrentWorkNotes,
+    getAllNotes,
     deletarTrabalho,
   } = useTccData()
 
@@ -135,6 +137,11 @@ export default function DashboardStartScreen() {
     window.location.href = '/login'
   }
 
+  const handleShowAllNotes = () => {
+    setShowAllNotes(true)
+    setCurrentScreen('notes')
+  }
+
   return (
     <div className="min-h-screen flex gradient-trilha-soft">
       <DashboardSidebar
@@ -158,6 +165,7 @@ export default function DashboardStartScreen() {
         steps={steps}
         getCurrentWorkNotes={getCurrentWorkNotes}
         getProgressPercentage={getProgressPercentage}
+        onShowAllNotes={handleShowAllNotes}
         onLogout={handleLogout}
       />
       {sidebarOpen && (
@@ -256,7 +264,7 @@ export default function DashboardStartScreen() {
                         const trabalhoAtualizado = {
                           ...tccData,
                           curso: data.curso,
-                          enunciado: data.enunciado,
+                          subtitulo: data.subtitulo,
                           explicacao: explicacaoGerada,
                           sugestoes: data.sugestoes,
                           dica: data.dica,
@@ -312,10 +320,15 @@ export default function DashboardStartScreen() {
               onAddNote={saveNote}
               onBackToHome={
                 hasCompletedInitialData
-                  ? () => setCurrentScreen('main')
+                  ? () => {
+                      setCurrentScreen('main')
+                      setShowAllNotes(false)
+                    }
                   : undefined
               }
-              trabalhoAtual={tccData}
+              trabalhoAtual={tccData.id ? tccData : undefined}
+              showAllNotes={showAllNotes}
+              allNotes={getAllNotes()}
             />
           )}
           {currentScreen === 'explanation' && (

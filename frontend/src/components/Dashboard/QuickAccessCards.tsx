@@ -18,7 +18,10 @@ export default function QuickAccessCards({
         {/* Notes Card */}
         <div
           className="bg-slate-50/80 backdrop-blur-sm rounded-2xl p-6 shadow-lg border border-slate-200/20 hover:shadow-xl transition-all duration-300 cursor-pointer"
-          onClick={() => setCurrentScreen('notes')}
+          onClick={() => {
+            setCurrentScreen('notes')
+            // Garantir que mostra apenas anotações do trabalho atual
+          }}
         >
           <div className="flex items-center gap-4 mb-4">
             <div className="p-3 rounded-xl gradient-bg">
