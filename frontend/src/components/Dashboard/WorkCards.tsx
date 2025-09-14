@@ -16,9 +16,6 @@ interface WorkCardsProps {
   trocarTrabalho: (workId: string) => void
   setShowNewProjectForm: (show: boolean) => void
   setShowStepByStep: (show: boolean) => void
-  currentStep: number
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  steps: Array<{ id: number; title: string; icon: any }>
   onEditWork: (work: TccData) => void
   onDeleteWork: (work: TccData) => void
 }
@@ -29,8 +26,6 @@ export default function WorkCards({
   trocarTrabalho,
   setShowNewProjectForm,
   setShowStepByStep,
-  currentStep,
-  steps,
   onEditWork,
   onDeleteWork,
 }: WorkCardsProps) {
@@ -86,11 +81,14 @@ export default function WorkCards({
             {trabalhos.map((trabalho) => (
               <div
                 key={trabalho.id}
-                className={`bg-slate-50/80 backdrop-blur-sm rounded-2xl p-6 shadow-lg border border-slate-200/20 hover:shadow-xl transition-all duration-300 cursor-pointer ${
+                className={`bg-slate-50/80 backdrop-blur-sm rounded-2xl p-6 shadow-lg border border-slate-200/20 hover:shadow-xl transition-all duration-300 cursor-pointer flex flex-col h-full ${
                   trabalhoAtual === trabalho.id ? 'ring-2 ring-purple-400' : ''
                 }`}
-                onClick={() => trocarTrabalho(trabalho.id)}
+                onClick={() => {
+                  trocarTrabalho(trabalho.id)
+                }}
               >
+                {/* Header do card */}
                 <div className="flex items-start justify-between mb-4">
                   <div className="flex items-center gap-3">
                     <div className="p-2 rounded-xl gradient-bg">
@@ -146,6 +144,7 @@ export default function WorkCards({
                   </div>
                 </div>
 
+                {/* Progresso */}
                 <div className="mb-4">
                   <div className="flex justify-between items-center mb-2">
                     <span className="text-sm font-medium text-gray-700">
@@ -163,55 +162,53 @@ export default function WorkCards({
                   </div>
                 </div>
 
-                <p className="text-gray-600 text-sm mb-4 line-clamp-2">
-                  {trabalho.subtitulo.length > 100
-                    ? `${trabalho.subtitulo.substring(0, 100)}...`
-                    : trabalho.subtitulo}
-                </p>
+                {/* Conteúdo flexível que cresce */}
+                <div className="flex-1 flex flex-col">
+                  {/* Subtítulo limitado a uma linha */}
+                  <p className="text-gray-600 text-sm mb-4 line-clamp-1">
+                    {trabalho.subtitulo.length > 60
+                      ? `${trabalho.subtitulo.substring(0, 60)}...`
+                      : trabalho.subtitulo}
+                  </p>
 
-                <div className="flex items-center justify-between text-xs text-gray-500">
-                  <span>
-                    Criado em{' '}
-                    {new Date(trabalho.dataCriacao).toLocaleDateString('pt-BR')}
-                  </span>
-                  <span>
-                    {trabalhoAtual === trabalho.id ? 'Ativo' : 'Inativo'}
-                  </span>
+                  {/* Informações de data e status */}
+                  <div className="flex items-center justify-between text-xs text-gray-500 mb-4">
+                    <span>
+                      Criado em{' '}
+                      {new Date(trabalho.dataCriacao).toLocaleDateString(
+                        'pt-BR',
+                      )}
+                    </span>
+                    <span>
+                      {trabalhoAtual === trabalho.id ? 'Ativo' : 'Inativo'}
+                    </span>
+                  </div>
                 </div>
+
+                {/* Botão Continuar - sempre alinhado na parte inferior */}
+                <Button
+                  onClick={(e) => {
+                    e.stopPropagation()
+                    if (trabalhoAtual === trabalho.id) {
+                      setShowStepByStep(true)
+                    } else {
+                      trocarTrabalho(trabalho.id)
+                    }
+                  }}
+                  className={`w-full px-6 py-3 rounded-2xl font-medium transition-all duration-300 mt-auto ${
+                    trabalhoAtual === trabalho.id
+                      ? 'gradient-bg text-white hover:scale-105 active:scale-95 shadow-lg hover:shadow-xl'
+                      : 'bg-gray-200 text-gray-500 hover:bg-gray-300 cursor-pointer'
+                  }`}
+                >
+                  Continuar
+                  <ArrowRight className="ml-2 h-4 w-4" />
+                </Button>
               </div>
             ))}
           </div>
         )}
       </div>
-
-      {/* Continue Work Card */}
-      {trabalhoAtual && (
-        <div className="flex justify-center">
-          <div
-            className="bg-slate-50/80 backdrop-blur-sm rounded-2xl p-6 shadow-lg border border-slate-200/20 hover:shadow-xl transition-all duration-300 cursor-pointer max-w-md"
-            onClick={() => {
-              setShowStepByStep(true)
-            }}
-          >
-            <div className="flex items-center gap-4 mb-4">
-              <div className="p-3 rounded-xl gradient-bg">
-                <ArrowRight className="h-6 w-6 text-white" />
-              </div>
-              <div>
-                <h3 className="text-lg font-bold text-gray-800">
-                  Continuar Trabalho
-                </h3>
-                <p className="text-sm text-gray-600">
-                  Próximo passo: {steps[currentStep - 1]?.title}
-                </p>
-              </div>
-            </div>
-            <p className="text-gray-600 text-sm">
-              Continue de onde parou no processo
-            </p>
-          </div>
-        </div>
-      )}
     </>
   )
 }

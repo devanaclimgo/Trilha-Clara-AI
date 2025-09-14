@@ -196,4 +196,20 @@
     scrollbar-width: thin;
     scrollbar-color: #8b5cf6 #f1f5f9;
   }
+
+  /* Animação de fade in com scale para o botão continuar */
+  .animate-fade-in-scale {
+    animation: fadeInScale 0.3s ease-out;
+  }
+
+  @keyframes fadeInScale {
+    from {
+      opacity: 0;
+      transform: scale(0.95);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
 }

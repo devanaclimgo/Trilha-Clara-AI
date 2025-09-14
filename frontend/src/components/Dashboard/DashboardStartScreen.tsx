@@ -188,7 +188,7 @@ export default function DashboardStartScreen() {
           {currentScreen === 'main' &&
             hasCompletedInitialData &&
             !showStepByStep && (
-              <div className="max-w-6xl mx-auto space-y-8">
+              <div className="max-w-6xl mx-auto space-y-12">
                 {/* Welcome Header */}
                 <div className="text-center mb-8">
                   <h1 className="text-4xl font-bold gradient-text mb-4">
@@ -213,8 +213,6 @@ export default function DashboardStartScreen() {
                   trocarTrabalho={handleTrocarTrabalho}
                   setShowNewProjectForm={setShowNewProjectForm}
                   setShowStepByStep={setShowStepByStep}
-                  currentStep={currentStep}
-                  steps={steps}
                   onEditWork={handleEditWork}
                   onDeleteWork={handleDeleteWork}
                 />
