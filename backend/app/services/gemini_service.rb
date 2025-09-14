@@ -32,8 +32,8 @@ class GeminiService
   end
 
   # Simplificar enunciado
-  def simplificar_enunciado!(enunciado:, curso:)
-  cache_key = "gemini_simplify_#{Digest::MD5.hexdigest("#{enunciado}_#{curso}")}"
+  def simplificar_enunciado!(enunciado:, curso:, tipo_trabalho: nil)
+  cache_key = "gemini_simplify_#{Digest::MD5.hexdigest("#{enunciado}_#{curso}_#{tipo_trabalho}")}"
   cached = Rails.cache.read(cache_key)
   return cached if cached
 
@@ -41,6 +41,7 @@ class GeminiService
     { role: "system", content: "Você ajuda estudantes brasileiros a organizar TCC. Sempre responda em português e em JSON válido com as chaves: explicacao, sugestoes, dica, estrutura, cronograma." },
     { role: "user", content: <<~TXT }
       Curso: #{curso}
+      Tipo de trabalho: #{tipo_trabalho || 'Não especificado'}
       Enunciado: #{enunciado}
 
       Tarefa: devolva no seguinte formato JSON:
@@ -67,10 +68,10 @@ class GeminiService
       }
 
       - "explicacao": no máximo 4 bullets curtos e simples
-      - "sugestoes": lista de tópicos de pesquisa
-      - "dica": 1 frase de orientação importante
-      - "estrutura": só os capítulos principais
-      - "cronograma": lista curta de semanas com atividades práticas
+      - "sugestoes": lista de tópicos de pesquisa específicos para o tipo de trabalho
+      - "dica": 1 frase de orientação importante considerando o tipo de trabalho
+      - "estrutura": só os capítulos principais adaptados ao tipo de trabalho
+      - "cronograma": lista curta de semanas com atividades práticas específicas para o tipo de trabalho
     TXT
   ]
 

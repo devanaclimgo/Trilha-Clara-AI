@@ -15,6 +15,7 @@ export default function InserirDados({
   onSaveData,
 }: InserirDadosProps) {
   const [curso, setCurso] = useState('')
+  const [tipoTrabalho, setTipoTrabalho] = useState('')
   const [subtitulo, setSubtitulo] = useState('')
   const [isLoading, setIsLoading] = useState(false)
 
@@ -54,6 +55,29 @@ export default function InserirDados({
         </div>
         <div>
           <label className="block text-sm font-medium mb-2">
+            Tipo de trabalho
+          </label>
+          <select
+            value={tipoTrabalho}
+            onChange={(e) => setTipoTrabalho(e.target.value)}
+            className="w-full p-4 rounded-2xl border border-slate-200 bg-slate-50/60 backdrop-blur-sm focus:ring-2 focus:ring-purple-500/20 focus:border-purple-500 transition-all duration-300"
+          >
+            <option value="">Selecione o tipo de trabalho</option>
+            <option value="artigo-cientifico">Artigo Científico</option>
+            <option value="monografia">Monografia</option>
+            <option value="trabalho-monolitico">Trabalho Monolítico</option>
+            <option value="projeto-experimental">Projeto Experimental</option>
+            <option value="estudo-de-caso">Estudo de Caso</option>
+            <option value="pesquisa-aplicada">Pesquisa Aplicada</option>
+            <option value="revisao-sistematica">Revisão Sistemática</option>
+            <option value="projeto-interdisciplinar">
+              Projeto Interdisciplinar
+            </option>
+            <option value="outros">Outros</option>
+          </select>
+        </div>
+        <div>
+          <label className="block text-sm font-medium mb-2">
             Subtítulo do trabalho
           </label>
           <textarea
@@ -67,7 +91,8 @@ export default function InserirDados({
         <div className="flex justify-center pt-4">
           <Button
             onClick={async () => {
-              if (!curso || !subtitulo.trim() || isLoading) return
+              if (!curso || !tipoTrabalho || !subtitulo.trim() || isLoading)
+                return
               setIsLoading(true)
               try {
                 const res = await fetch(
@@ -78,7 +103,7 @@ export default function InserirDados({
                       'Content-Type': 'application/json',
                       Accept: 'application/json',
                     },
-                    body: JSON.stringify({ curso, subtitulo }),
+                    body: JSON.stringify({ curso, tipoTrabalho, subtitulo }),
                   },
                 )
 
@@ -88,6 +113,7 @@ export default function InserirDados({
                   onSaveData(
                     {
                       curso,
+                      tipoTrabalho,
                       subtitulo,
                       explicacao: data.explicacao,
                       sugestoes: data.sugestoes,
@@ -110,7 +136,7 @@ export default function InserirDados({
                 setIsLoading(false)
               }
             }}
-            disabled={!curso || !subtitulo.trim() || isLoading}
+            disabled={!curso || !tipoTrabalho || !subtitulo.trim() || isLoading}
             className="px-8 py-3 rounded-2xl gradient-bg text-white font-medium hover:scale-105 hover:shadow-lg transition-all duration-300 disabled:opacity-50 disabled:hover:scale-100"
           >
             Continuar

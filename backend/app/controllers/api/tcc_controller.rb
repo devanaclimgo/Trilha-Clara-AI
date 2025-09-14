@@ -6,12 +6,13 @@ class Api::TccController < ApplicationController
   def criar
     enunciado = params[:enunciado]
     curso = params[:curso]
+    tipo_trabalho = params[:tipoTrabalho]
     semanas = params[:semanas] || 8
 
     gemini = GeminiService.new
 
     # O método simplificar_enunciado! já retorna um hash com todos os dados estruturados
-    dados_estruturados = gemini.simplificar_enunciado!(enunciado: enunciado, curso: curso)
+    dados_estruturados = gemini.simplificar_enunciado!(enunciado: enunciado, curso: curso, tipo_trabalho: tipo_trabalho)
 
     render json: {
       explicacao: dados_estruturados["explicacao"] || [],
