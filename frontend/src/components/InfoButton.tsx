@@ -1,6 +1,6 @@
 import React from 'react'
 import { Button } from './ui/button'
-import { Github, Info, Linkedin, Mail, User } from 'lucide-react'
+import { Github, Info, Linkedin, Mail, User, Globe } from 'lucide-react'
 import {
   Dialog,
   DialogContent,
@@ -70,6 +70,15 @@ const InfoButton = () => {
               >
                 <Linkedin className="h-4 w-4 text-primary" />
                 <span className="text-sm">LinkedIn</span>
+              </a>
+              <a
+                href="https://my-portfolio-gamma-five-87.vercel.app/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center space-x-3 p-2 rounded-lg hover:bg-muted transition-colors"
+              >
+                <Globe className="h-4 w-4 text-primary" />
+                <span className="text-sm">Portfólio</span>
               </a>
             </div>
           </div>
