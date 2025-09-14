@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import { Button } from '@/components/ui/button'
+import { Input } from '@/components/ui/input'
 import {
   FileText,
   ArrowRight,
@@ -9,6 +10,8 @@ import {
   Trash2,
   MoreVertical,
   Play,
+  Check,
+  X,
 } from 'lucide-react'
 import {
   DropdownMenu,
@@ -17,7 +20,6 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu'
 import { TccData } from '@/types/tcc'
-import WorkDataDialog from './WorkDataDialog'
 import StartWorkModal from './StartWorkModal'
 
 interface WorkCardsProps {
@@ -51,6 +53,11 @@ interface WorkCardsProps {
       orientador: string
     },
   ) => void
+  onUpdateWork: (
+    workId: string,
+    field: keyof TccData,
+    value: string | number,
+  ) => void
 }
 
 export default function WorkCards({
@@ -62,10 +69,12 @@ export default function WorkCards({
   onDeleteWork,
   onContinueWork,
   onStartWork,
+  onUpdateWork,
 }: WorkCardsProps) {
-  const [showWorkDataDialog, setShowWorkDataDialog] = useState(false)
   const [showStartWorkModal, setShowStartWorkModal] = useState(false)
   const [selectedWorkId, setSelectedWorkId] = useState<string | null>(null)
+  const [editingSubtitulo, setEditingSubtitulo] = useState<string | null>(null)
+  const [tempSubtitulo, setTempSubtitulo] = useState('')
 
   const handleStartWork = (workId: string) => {
     setSelectedWorkId(workId)
@@ -73,8 +82,13 @@ export default function WorkCards({
   }
 
   const handleContinueWork = (workId: string) => {
-    setSelectedWorkId(workId)
-    setShowWorkDataDialog(true)
+    onContinueWork(workId, {
+      tema: trabalhos.find((t) => t.id === workId)?.tema || '',
+      tipoTrabalho: trabalhos.find((t) => t.id === workId)?.tipoTrabalho || '',
+      curso: trabalhos.find((t) => t.id === workId)?.curso || '',
+      semanas: 12, // Valor padrão
+      enunciado: '', // Campo não existe na interface
+    })
   }
 
   const handleStartWorkSubmit = (data: {
@@ -94,18 +108,25 @@ export default function WorkCards({
     }
   }
 
-  const handleWorkDataSubmit = (data: {
-    tema: string
-    tipoTrabalho: string
-    curso: string
-    semanas: number
-    enunciado: string
-  }) => {
-    if (selectedWorkId) {
-      onContinueWork(selectedWorkId, data)
-      setShowWorkDataDialog(false)
-      setSelectedWorkId(null)
+  const handleStartEditSubtitulo = (
+    workId: string,
+    currentSubtitulo: string,
+  ) => {
+    setEditingSubtitulo(workId)
+    setTempSubtitulo(currentSubtitulo)
+  }
+
+  const handleSaveSubtitulo = (workId: string) => {
+    if (tempSubtitulo.trim()) {
+      onUpdateWork(workId, 'subtitulo', tempSubtitulo.trim())
     }
+    setEditingSubtitulo(null)
+    setTempSubtitulo('')
+  }
+
+  const handleCancelEditSubtitulo = () => {
+    setEditingSubtitulo(null)
+    setTempSubtitulo('')
   }
 
   const getCursoDisplayName = (curso: string) => {
@@ -243,12 +264,59 @@ export default function WorkCards({
 
                 {/* Conteúdo flexível que cresce */}
                 <div className="flex-1 flex flex-col">
-                  {/* Subtítulo limitado a uma linha */}
-                  <p className="text-gray-600 text-sm mb-4 line-clamp-1">
-                    {trabalho.subtitulo.length > 60
-                      ? `${trabalho.subtitulo.substring(0, 60)}...`
-                      : trabalho.subtitulo}
-                  </p>
+                  {/* Subtítulo editável inline */}
+                  <div className="mb-4">
+                    {editingSubtitulo === trabalho.id ? (
+                      <div className="flex items-center gap-2">
+                        <Input
+                          value={tempSubtitulo}
+                          onChange={(e) => setTempSubtitulo(e.target.value)}
+                          className="text-sm border-gray-300 focus:border-purple-500 focus:ring-1 focus:ring-purple-500"
+                          placeholder="Digite o subtítulo..."
+                          maxLength={60}
+                          autoFocus
+                          onKeyDown={(e) => {
+                            if (e.key === 'Enter') {
+                              handleSaveSubtitulo(trabalho.id)
+                            } else if (e.key === 'Escape') {
+                              handleCancelEditSubtitulo()
+                            }
+                          }}
+                        />
+                        <Button
+                          size="sm"
+                          onClick={() => handleSaveSubtitulo(trabalho.id)}
+                          className="h-8 w-8 p-0 bg-green-500 hover:bg-green-600"
+                        >
+                          <Check className="h-3 w-3" />
+                        </Button>
+                        <Button
+                          size="sm"
+                          variant="outline"
+                          onClick={handleCancelEditSubtitulo}
+                          className="h-8 w-8 p-0"
+                        >
+                          <X className="h-3 w-3" />
+                        </Button>
+                      </div>
+                    ) : (
+                      <div
+                        className="text-gray-600 text-sm cursor-pointer hover:bg-gray-50 p-2 rounded-lg transition-colors group flex items-center justify-between"
+                        onClick={() =>
+                          handleStartEditSubtitulo(
+                            trabalho.id,
+                            trabalho.subtitulo,
+                          )
+                        }
+                      >
+                        <span className="line-clamp-1">
+                          {trabalho.subtitulo ||
+                            'Clique para adicionar subtítulo...'}
+                        </span>
+                        <Edit3 className="h-3 w-3 opacity-0 group-hover:opacity-100 transition-opacity" />
+                      </div>
+                    )}
+                  </div>
 
                   {/* Informações de data e status */}
                   <div className="flex items-center justify-between text-xs text-gray-500 mb-4">
@@ -296,16 +364,6 @@ export default function WorkCards({
           </div>
         )}
       </div>
-
-      {/* Dialog para configurar dados do trabalho */}
-      <WorkDataDialog
-        isOpen={showWorkDataDialog}
-        onClose={() => {
-          setShowWorkDataDialog(false)
-          setSelectedWorkId(null)
-        }}
-        onContinue={handleWorkDataSubmit}
-      />
 
       {/* Modal para iniciar trabalho */}
       <StartWorkModal

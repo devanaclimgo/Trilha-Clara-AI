@@ -36,6 +36,7 @@ export default function WorkEditPage() {
   const { trabalhos, atualizarTrabalho } = useTccData()
   const [workData, setWorkData] = useState<TccData | null>(null)
   const [activeTab, setActiveTab] = useState('basico')
+  const [isSaving, setIsSaving] = useState(false)
 
   useEffect(() => {
     if (params.id && trabalhos.length > 0) {
@@ -59,10 +60,19 @@ export default function WorkEditPage() {
     )
   }
 
-  const handleSave = () => {
+  const handleSave = async () => {
     if (workData) {
-      atualizarTrabalho(workData)
-      // Aqui você pode adicionar uma notificação de sucesso
+      setIsSaving(true)
+      try {
+        // Simular delay de salvamento
+        await new Promise((resolve) => setTimeout(resolve, 1000))
+        atualizarTrabalho(workData)
+        // Aqui você pode adicionar uma notificação de sucesso
+      } catch (error) {
+        console.error('Erro ao salvar:', error)
+      } finally {
+        setIsSaving(false)
+      }
     }
   }
 
@@ -361,37 +371,45 @@ export default function WorkEditPage() {
   const fields = getTrabalhoTypeFields()
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50">
+    <div className="min-h-screen gradient-trilha-soft">
       {/* Header */}
-      <div className="bg-white shadow-sm border-b">
+      <div className="bg-white/80 backdrop-blur-sm shadow-sm border-b border-slate-200/20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
             <div className="flex items-center gap-4">
               <Button
                 variant="ghost"
                 onClick={() => router.push('/dashboard')}
-                className="flex items-center gap-2"
+                className="flex items-center gap-2 hover:bg-slate-100 rounded-xl"
               >
                 <ArrowLeft className="h-4 w-4" />
                 Voltar
               </Button>
               <div>
-                <h1 className="text-xl font-bold text-gray-900">
+                <h1 className="text-xl font-bold gradient-text">
                   {workData.titulo}
                 </h1>
                 <p className="text-sm text-gray-600">{workData.curso}</p>
               </div>
             </div>
             <div className="flex items-center gap-3">
-              <Button onClick={handleSave} className="flex items-center gap-2">
-                <Save className="h-4 w-4" />
-                Salvar
+              <Button
+                onClick={handleSave}
+                disabled={isSaving}
+                className={`flex items-center gap-2 rounded-xl transition-all duration-300 ${
+                  isSaving
+                    ? 'bg-gray-400 cursor-not-allowed'
+                    : 'gradient-bg hover:scale-105 active:scale-95'
+                }`}
+              >
+                <Save className={`h-4 w-4 ${isSaving ? 'animate-spin' : ''}`} />
+                {isSaving ? 'Salvando...' : 'Salvar'}
               </Button>
               <div className="flex gap-2">
                 <Button
                   variant="outline"
                   onClick={() => handleDownload('doc')}
-                  className="flex items-center gap-2"
+                  className="flex items-center gap-2 rounded-xl border-2 hover:bg-slate-50"
                 >
                   <FileDown className="h-4 w-4" />
                   DOC
@@ -399,7 +417,7 @@ export default function WorkEditPage() {
                 <Button
                   variant="outline"
                   onClick={() => handleDownload('pdf')}
-                  className="flex items-center gap-2"
+                  className="flex items-center gap-2 rounded-xl border-2 hover:bg-slate-50"
                 >
                   <FileText className="h-4 w-4" />
                   PDF
@@ -417,60 +435,96 @@ export default function WorkEditPage() {
           onValueChange={setActiveTab}
           className="space-y-6"
         >
-          <TabsList className="grid w-full grid-cols-3">
-            <TabsTrigger value="basico">Informações Básicas</TabsTrigger>
-            <TabsTrigger value="conteudo">Conteúdo do Trabalho</TabsTrigger>
-            <TabsTrigger value="formatacao">Formatação ABNT</TabsTrigger>
+          <TabsList className="grid w-full grid-cols-3 bg-slate-50/80 backdrop-blur-sm border border-slate-200/20 rounded-2xl p-1">
+            <TabsTrigger
+              value="basico"
+              className="rounded-xl data-[state=active]:bg-white data-[state=active]:shadow-sm data-[state=active]:text-purple-600"
+            >
+              Informações Básicas
+            </TabsTrigger>
+            <TabsTrigger
+              value="conteudo"
+              className="rounded-xl data-[state=active]:bg-white data-[state=active]:shadow-sm data-[state=active]:text-purple-600"
+            >
+              Conteúdo do Trabalho
+            </TabsTrigger>
+            <TabsTrigger
+              value="formatacao"
+              className="rounded-xl data-[state=active]:bg-white data-[state=active]:shadow-sm data-[state=active]:text-purple-600"
+            >
+              Formatação ABNT
+            </TabsTrigger>
           </TabsList>
 
           {/* Informações Básicas */}
           <TabsContent value="basico" className="space-y-6">
-            <Card>
-              <CardHeader>
-                <CardTitle className="flex items-center gap-2">
+            <Card className="bg-slate-50/80 backdrop-blur-sm border border-slate-200/20 shadow-lg rounded-2xl">
+              <CardHeader className="pb-6">
+                <CardTitle className="flex items-center gap-2 text-xl font-bold gradient-text">
                   <FileText className="h-5 w-5" />
                   Informações Básicas
                 </CardTitle>
+                <p className="text-gray-600 text-sm">
+                  Configure as informações principais do seu trabalho
+                </p>
               </CardHeader>
               <CardContent className="space-y-6">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  <div className="space-y-2">
-                    <Label htmlFor="titulo">Título do Trabalho</Label>
-                    <Input
-                      id="titulo"
-                      value={workData.titulo}
-                      onChange={(e) => updateWorkData('titulo', e.target.value)}
-                      className="rounded-xl"
-                    />
+                <div className="space-y-6">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div className="space-y-2">
+                      <Label
+                        htmlFor="titulo"
+                        className="text-sm font-medium text-gray-700"
+                      >
+                        Título do Trabalho
+                      </Label>
+                      <Input
+                        id="titulo"
+                        value={workData.titulo}
+                        onChange={(e) =>
+                          updateWorkData('titulo', e.target.value)
+                        }
+                        className="rounded-xl border border-gray-300 focus:border-purple-500 focus:ring-1 focus:ring-purple-500 transition-colors"
+                        placeholder="Digite o título do seu trabalho"
+                      />
+                    </div>
+                    <div className="space-y-2">
+                      <Label
+                        htmlFor="curso"
+                        className="text-sm font-medium text-gray-700"
+                      >
+                        Curso
+                      </Label>
+                      <Input
+                        id="curso"
+                        value={workData.curso}
+                        onChange={(e) =>
+                          updateWorkData('curso', e.target.value)
+                        }
+                        className="rounded-xl border border-gray-300 focus:border-purple-500 focus:ring-1 focus:ring-purple-500 transition-colors"
+                        placeholder="Ex: Medicina, Direito, Engenharia..."
+                      />
+                    </div>
                   </div>
+
                   <div className="space-y-2">
-                    <Label htmlFor="subtitulo">Subtítulo</Label>
-                    <Input
-                      id="subtitulo"
-                      value={workData.subtitulo}
-                      onChange={(e) =>
-                        updateWorkData('subtitulo', e.target.value)
-                      }
-                      className="rounded-xl"
-                    />
-                  </div>
-                  <div className="space-y-2">
-                    <Label htmlFor="tema">Tema</Label>
-                    <Input
+                    <Label
+                      htmlFor="tema"
+                      className="text-sm font-medium text-gray-700"
+                    >
+                      Tema/Enunciado do Trabalho
+                    </Label>
+                    <Textarea
                       id="tema"
                       value={workData.tema || ''}
                       onChange={(e) => updateWorkData('tema', e.target.value)}
-                      className="rounded-xl"
+                      className="rounded-xl min-h-[120px] border border-gray-300 focus:border-purple-500 focus:ring-1 focus:ring-purple-500 transition-colors"
+                      placeholder="Descreva o tema completo do seu trabalho, o que o professor pediu, os objetivos, metodologia sugerida, etc..."
                     />
-                  </div>
-                  <div className="space-y-2">
-                    <Label htmlFor="curso">Curso</Label>
-                    <Input
-                      id="curso"
-                      value={workData.curso}
-                      onChange={(e) => updateWorkData('curso', e.target.value)}
-                      className="rounded-xl"
-                    />
+                    <p className="text-xs text-gray-500">
+                      Este é o tema completo e enunciado do seu trabalho
+                      acadêmico
+                    </p>
                   </div>
                 </div>
               </CardContent>
@@ -479,17 +533,23 @@ export default function WorkEditPage() {
 
           {/* Conteúdo do Trabalho */}
           <TabsContent value="conteudo" className="space-y-6">
-            <Card>
-              <CardHeader>
-                <CardTitle className="flex items-center gap-2">
+            <Card className="bg-slate-50/80 backdrop-blur-sm border border-slate-200/20 shadow-lg rounded-2xl">
+              <CardHeader className="pb-6">
+                <CardTitle className="flex items-center gap-2 text-xl font-bold gradient-text">
                   <BookOpen className="h-5 w-5" />
                   Conteúdo do Trabalho
                 </CardTitle>
+                <p className="text-gray-600 text-sm">
+                  Preencha as seções do seu trabalho acadêmico
+                </p>
               </CardHeader>
               <CardContent className="space-y-6">
                 {fields.map((field) => (
                   <div key={field.key} className="space-y-2">
-                    <Label htmlFor={field.key}>
+                    <Label
+                      htmlFor={field.key}
+                      className="text-sm font-medium text-gray-700"
+                    >
                       {field.label}
                       {field.required && (
                         <span className="text-red-500 ml-1">*</span>
@@ -505,7 +565,7 @@ export default function WorkEditPage() {
                             e.target.value,
                           )
                         }
-                        className="rounded-xl min-h-[120px]"
+                        className="rounded-xl min-h-[120px] border border-gray-300 focus:border-purple-500 focus:ring-1 focus:ring-purple-500 transition-colors"
                         placeholder={`Digite ${field.label.toLowerCase()}...`}
                       />
                     ) : (
@@ -518,7 +578,7 @@ export default function WorkEditPage() {
                             e.target.value,
                           )
                         }
-                        className="rounded-xl"
+                        className="rounded-xl border border-gray-300 focus:border-purple-500 focus:ring-1 focus:ring-purple-500 transition-colors"
                         placeholder={`Digite ${field.label.toLowerCase()}...`}
                       />
                     )}
@@ -530,19 +590,22 @@ export default function WorkEditPage() {
 
           {/* Formatação ABNT */}
           <TabsContent value="formatacao" className="space-y-6">
-            <Card>
-              <CardHeader>
-                <CardTitle className="flex items-center gap-2">
+            <Card className="bg-slate-50/80 backdrop-blur-sm border border-slate-200/20 shadow-lg rounded-2xl">
+              <CardHeader className="pb-6">
+                <CardTitle className="flex items-center gap-2 text-xl font-bold gradient-text">
                   <Hash className="h-5 w-5" />
                   Formatação ABNT
                 </CardTitle>
+                <p className="text-gray-600 text-sm">
+                  Configure os dados para formatação acadêmica
+                </p>
               </CardHeader>
               <CardContent className="space-y-6">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div className="space-y-2">
                     <Label
                       htmlFor="nomeAluno"
-                      className="flex items-center gap-2"
+                      className="flex items-center gap-2 text-sm font-medium text-gray-700"
                     >
                       <User className="h-4 w-4" />
                       Nome do Aluno
@@ -553,13 +616,14 @@ export default function WorkEditPage() {
                       onChange={(e) =>
                         updateWorkData('nomeAluno', e.target.value)
                       }
-                      className="rounded-xl"
+                      className="rounded-xl border border-gray-300 focus:border-purple-500 focus:ring-1 focus:ring-purple-500 transition-colors"
+                      placeholder="Seu nome completo"
                     />
                   </div>
                   <div className="space-y-2">
                     <Label
                       htmlFor="instituicao"
-                      className="flex items-center gap-2"
+                      className="flex items-center gap-2 text-sm font-medium text-gray-700"
                     >
                       <Building className="h-4 w-4" />
                       Instituição
@@ -570,13 +634,14 @@ export default function WorkEditPage() {
                       onChange={(e) =>
                         updateWorkData('instituicao', e.target.value)
                       }
-                      className="rounded-xl"
+                      className="rounded-xl border border-gray-300 focus:border-purple-500 focus:ring-1 focus:ring-purple-500 transition-colors"
+                      placeholder="Nome da universidade/faculdade"
                     />
                   </div>
                   <div className="space-y-2">
                     <Label
                       htmlFor="orientador"
-                      className="flex items-center gap-2"
+                      className="flex items-center gap-2 text-sm font-medium text-gray-700"
                     >
                       <GraduationCap className="h-4 w-4" />
                       Orientador
@@ -587,13 +652,14 @@ export default function WorkEditPage() {
                       onChange={(e) =>
                         updateWorkData('orientador', e.target.value)
                       }
-                      className="rounded-xl"
+                      className="rounded-xl border border-gray-300 focus:border-purple-500 focus:ring-1 focus:ring-purple-500 transition-colors"
+                      placeholder="Nome do orientador"
                     />
                   </div>
                   <div className="space-y-2">
                     <Label
                       htmlFor="coorientador"
-                      className="flex items-center gap-2"
+                      className="flex items-center gap-2 text-sm font-medium text-gray-700"
                     >
                       <GraduationCap className="h-4 w-4" />
                       Coorientador
@@ -604,7 +670,8 @@ export default function WorkEditPage() {
                       onChange={(e) =>
                         updateWorkData('coorientador', e.target.value)
                       }
-                      className="rounded-xl"
+                      className="rounded-xl border border-gray-300 focus:border-purple-500 focus:ring-1 focus:ring-purple-500 transition-colors"
+                      placeholder="Nome do coorientador (opcional)"
                     />
                   </div>
                 </div>

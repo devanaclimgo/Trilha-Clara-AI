@@ -142,7 +142,7 @@ export default function StartWorkModal({
                   htmlFor="tema"
                   className="text-sm font-medium text-gray-700"
                 >
-                  Tema/Título do Trabalho *
+                  Título do Trabalho *
                 </Label>
                 <div className="relative">
                   <BookOpen className="absolute left-3 top-3 w-4 h-4 text-gray-400" />
@@ -153,7 +153,7 @@ export default function StartWorkModal({
                       setFormData({ ...formData, tema: e.target.value })
                     }
                     className="pl-10 rounded-xl border-2 focus:border-purple-300 transition-colors"
-                    placeholder="Ex: Análise do impacto da IA na educação"
+                    placeholder="Título do seu trabalho"
                     required
                   />
                 </div>

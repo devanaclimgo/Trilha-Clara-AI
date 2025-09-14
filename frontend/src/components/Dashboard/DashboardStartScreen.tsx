@@ -343,6 +343,28 @@ export default function DashboardStartScreen() {
     window.location.href = `/work-edit/${workId}`
   }
 
+  const handleUpdateWork = (
+    workId: string,
+    field: keyof TccData,
+    value: string | number,
+  ) => {
+    // Encontrar o trabalho e atualizá-lo
+    const trabalho = trabalhos.find((t) => t.id === workId)
+    if (trabalho) {
+      const updatedTrabalho = {
+        ...trabalho,
+        [field]: value,
+        ultimaModificacao: new Date().toISOString(),
+      }
+      salvarTrabalho(updatedTrabalho)
+
+      // Se for o trabalho atual, atualizar também o tccData
+      if (trabalhoAtual === workId) {
+        setTccData(updatedTrabalho)
+      }
+    }
+  }
+
   return (
     <div className="min-h-screen flex gradient-trilha-soft">
       <DashboardSidebar
@@ -409,6 +431,7 @@ export default function DashboardStartScreen() {
                 onDeleteWork={handleDeleteWork}
                 onContinueWork={handleContinueWork}
                 onStartWork={handleStartWork}
+                onUpdateWork={handleUpdateWork}
               />
 
               {/* Overview Cards - sempre visíveis */}
@@ -500,10 +523,6 @@ export default function DashboardStartScreen() {
                 explicacao={tccData.explicacao || []}
                 sugestoes={tccData.sugestoes || []}
                 dica={tccData.dica || ''}
-                onNext={() => {
-                  setCurrentScreen('structure')
-                  atualizarProgresso(40)
-                }}
                 onSaveNote={saveNote}
               />
             </ContentPage>
@@ -515,13 +534,7 @@ export default function DashboardStartScreen() {
               hasCompletedInitialData={hasCompletedInitialData}
               onBackToHome={() => setCurrentScreen('main')}
             >
-              <Estruturasugerida
-                estrutura={tccData.estrutura || []}
-                onNext={() => {
-                  setCurrentScreen('timeline')
-                  atualizarProgresso(60)
-                }}
-              />
+              <Estruturasugerida estrutura={tccData.estrutura || []} />
             </ContentPage>
           )}
           {currentScreen === 'timeline' && (
