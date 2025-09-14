@@ -13,6 +13,7 @@ export default function SimpleTccForm({ onSuccess }: SimpleTccFormProps) {
   const [formData, setFormData] = useState({
     titulo: '',
     curso: '',
+    tema: '',
   })
   const [isLoading, setIsLoading] = useState(false)
   const [, setTccId] = useState<string | null>(null)
@@ -29,13 +30,20 @@ export default function SimpleTccForm({ onSuccess }: SimpleTccFormProps) {
     setError(null)
 
     try {
-      const response = await fetch('http://localhost:4000/api/tcc', {
+      const response = await fetch('http://localhost:4000/api/tcc/criar.json', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
           Accept: 'application/json',
         },
-        body: JSON.stringify(formData),
+        body: JSON.stringify({
+          nome: formData.titulo,
+          faculdade: 'Universidade',
+          curso: formData.curso,
+          materia: formData.curso,
+          tema: formData.tema,
+          tipo_trabalho: 'tcc',
+        }),
       })
 
       if (!response.ok) {
@@ -58,9 +66,10 @@ export default function SimpleTccForm({ onSuccess }: SimpleTccFormProps) {
     }
   }
 
-  const isFormValid = Object.values(formData).every(
-    (value) => value.trim() !== '',
-  )
+  const isFormValid =
+    formData.titulo.trim() !== '' &&
+    formData.curso.trim() !== '' &&
+    formData.tema.trim() !== ''
 
   return (
     <div className="min-h-screen flex items-center justify-center p-4">
@@ -110,6 +119,19 @@ export default function SimpleTccForm({ onSuccess }: SimpleTccFormProps) {
                 </option>
                 <option value="outros">Outros</option>
               </select>
+            </div>
+
+            <div>
+              <label className="block text-sm font-medium mb-2">
+                Tema do Trabalho
+              </label>
+              <textarea
+                value={formData.tema}
+                onChange={(e) => handleInputChange('tema', e.target.value)}
+                placeholder="Descreva o tema principal do seu trabalho..."
+                rows={4}
+                className="w-full p-4 rounded-2xl border border-slate-200 bg-slate-50/60 backdrop-blur-sm focus:ring-2 focus:ring-purple-500/20 focus:border-purple-500 transition-all duration-300 resize-none"
+              />
             </div>
 
             {error && (
