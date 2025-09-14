@@ -16,6 +16,13 @@ interface OverviewCardsProps {
   onViewStructure: () => void
   onViewTimeline: () => void
   hasData: boolean
+  workData?: {
+    titulo: string
+    curso: string
+    tipoTrabalho: string
+    tema?: string
+    status: string
+  }
   loadingStates?: {
     explanation: { isLoading: boolean; isCompleted: boolean }
     structure: { isLoading: boolean; isCompleted: boolean }
@@ -28,6 +35,7 @@ export default function OverviewCards({
   onViewStructure,
   onViewTimeline,
   hasData,
+  workData,
   loadingStates,
 }: OverviewCardsProps) {
   const cards = [
@@ -72,11 +80,14 @@ export default function OverviewCards({
             <FileText className="h-8 w-8 text-white" />
           </div>
           <h3 className="text-xl font-bold text-gray-800 mb-2">
-            Crie um trabalho primeiro
+            {workData?.status === 'novo'
+              ? 'Inicie seu trabalho'
+              : 'Crie um trabalho primeiro'}
           </h3>
           <p className="text-gray-600">
-            Para visualizar a estrutura, cronograma e explicação, você precisa
-            criar um trabalho acadêmico.
+            {workData?.status === 'novo'
+              ? `Clique em "Iniciar" no trabalho "${workData.titulo}" para começar a preencher as informações e gerar conteúdo com IA.`
+              : 'Para visualizar a estrutura, cronograma e explicação, você precisa criar um trabalho acadêmico.'}
           </p>
         </div>
       </div>

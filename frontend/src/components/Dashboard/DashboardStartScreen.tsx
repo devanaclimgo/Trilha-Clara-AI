@@ -138,7 +138,7 @@ export default function DashboardStartScreen() {
     setCurrentScreen('notes')
   }
 
-  const handleContinueWork = async (
+  const handleStartWork = async (
     workId: string,
     data: {
       tema: string
@@ -146,20 +146,27 @@ export default function DashboardStartScreen() {
       curso: string
       semanas: number
       enunciado: string
+      nomeAluno: string
+      instituicao: string
+      orientador: string
     },
   ) => {
     // Trocar para o trabalho selecionado
     trocarTrabalho(workId)
 
-    // Atualizar dados do trabalho
+    // Atualizar dados do trabalho com status "iniciado"
     const updatedData = {
       ...tccData,
       tema: data.tema,
       tipoTrabalho: data.tipoTrabalho,
       curso: data.curso,
       subtitulo: data.enunciado,
-      progresso: 10,
+      progresso: 5,
+      status: 'iniciado' as const,
       ultimaModificacao: new Date().toISOString(),
+      nomeAluno: data.nomeAluno,
+      instituicao: data.instituicao,
+      orientador: data.orientador,
     }
     setTccData(updatedData)
     salvarTrabalho(updatedData)
@@ -238,44 +245,59 @@ export default function DashboardStartScreen() {
       // Simular geração do cronograma
       const cronogramaGerado = [
         {
-          atividade: 'Pesquisa bibliográfica',
-          prazo: 'Semana 1-2',
-          status: 'pendente',
+          id: 1,
+          title: 'Pesquisa Bibliográfica',
+          description: 'Coleta e análise de referências relevantes',
+          startDate: new Date().toISOString(),
+          endDate: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toISOString(),
+          status: 'pending',
         },
         {
-          atividade: 'Elaboração da introdução',
-          prazo: 'Semana 3-4',
-          status: 'pendente',
+          id: 2,
+          title: 'Elaboração da Introdução',
+          description: 'Desenvolvimento da introdução e justificativa',
+          startDate: new Date(
+            Date.now() + 7 * 24 * 60 * 60 * 1000,
+          ).toISOString(),
+          endDate: new Date(
+            Date.now() + 14 * 24 * 60 * 60 * 1000,
+          ).toISOString(),
+          status: 'pending',
         },
         {
-          atividade: 'Revisão de literatura',
-          prazo: 'Semana 5-7',
-          status: 'pendente',
+          id: 3,
+          title: 'Desenvolvimento do Conteúdo',
+          description: 'Escrita das seções principais do trabalho',
+          startDate: new Date(
+            Date.now() + 14 * 24 * 60 * 60 * 1000,
+          ).toISOString(),
+          endDate: new Date(
+            Date.now() + 28 * 24 * 60 * 60 * 1000,
+          ).toISOString(),
+          status: 'pending',
         },
         {
-          atividade: 'Desenvolvimento metodológico',
-          prazo: 'Semana 8-9',
-          status: 'pendente',
-        },
-        {
-          atividade: 'Análise e discussão',
-          prazo: 'Semana 10-11',
-          status: 'pendente',
-        },
-        {
-          atividade: 'Conclusão e revisão final',
-          prazo: 'Semana 12',
-          status: 'pendente',
+          id: 4,
+          title: 'Revisão e Formatação',
+          description: 'Revisão final e formatação ABNT',
+          startDate: new Date(
+            Date.now() + 28 * 24 * 60 * 60 * 1000,
+          ).toISOString(),
+          endDate: new Date(
+            Date.now() + 35 * 24 * 60 * 60 * 1000,
+          ).toISOString(),
+          status: 'pending',
         },
       ]
 
-      const dataWithTimeline = {
+      const finalData = {
         ...dataWithStructure,
         cronograma: cronogramaGerado,
-        progresso: 80,
+        progresso: 100,
+        status: 'em_andamento' as const,
       }
-      setTccData(dataWithTimeline)
-      salvarTrabalho(dataWithTimeline)
+      setTccData(finalData)
+      salvarTrabalho(finalData)
 
       setLoadingStates((prev) => ({
         ...prev,
@@ -283,13 +305,42 @@ export default function DashboardStartScreen() {
       }))
     } catch (error) {
       console.error('Erro ao gerar conteúdo:', error)
-      // Reset loading states em caso de erro
       setLoadingStates({
         explanation: { isLoading: false, isCompleted: false },
         structure: { isLoading: false, isCompleted: false },
         timeline: { isLoading: false, isCompleted: false },
       })
     }
+  }
+
+  const handleContinueWork = async (
+    workId: string,
+    data: {
+      tema: string
+      tipoTrabalho: string
+      curso: string
+      semanas: number
+      enunciado: string
+    },
+  ) => {
+    // Trocar para o trabalho selecionado
+    trocarTrabalho(workId)
+
+    // Atualizar dados do trabalho
+    const updatedData = {
+      ...tccData,
+      tema: data.tema,
+      tipoTrabalho: data.tipoTrabalho,
+      curso: data.curso,
+      subtitulo: data.enunciado,
+      progresso: 10,
+      ultimaModificacao: new Date().toISOString(),
+    }
+    setTccData(updatedData)
+    salvarTrabalho(updatedData)
+
+    // Redirecionar para a página de edição
+    window.location.href = `/work-edit/${workId}`
   }
 
   return (
@@ -357,6 +408,7 @@ export default function DashboardStartScreen() {
                 onEditWork={handleEditWork}
                 onDeleteWork={handleDeleteWork}
                 onContinueWork={handleContinueWork}
+                onStartWork={handleStartWork}
               />
 
               {/* Overview Cards - sempre visíveis */}
@@ -365,6 +417,17 @@ export default function DashboardStartScreen() {
                 onViewStructure={() => setCurrentScreen('structure')}
                 onViewTimeline={() => setCurrentScreen('timeline')}
                 hasData={!!trabalhoAtual}
+                workData={
+                  tccData
+                    ? {
+                        titulo: tccData.titulo,
+                        curso: tccData.curso,
+                        tipoTrabalho: tccData.tipoTrabalho,
+                        tema: tccData.tema,
+                        status: tccData.status,
+                      }
+                    : undefined
+                }
                 loadingStates={loadingStates}
               />
 

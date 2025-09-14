@@ -2,7 +2,14 @@
 
 import { useState } from 'react'
 import { Button } from '@/components/ui/button'
-import { FileText, ArrowRight, Edit3, Trash2, MoreVertical } from 'lucide-react'
+import {
+  FileText,
+  ArrowRight,
+  Edit3,
+  Trash2,
+  MoreVertical,
+  Play,
+} from 'lucide-react'
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -11,6 +18,7 @@ import {
 } from '@/components/ui/dropdown-menu'
 import { TccData } from '@/types/tcc'
 import WorkDataDialog from './WorkDataDialog'
+import StartWorkModal from './StartWorkModal'
 
 interface WorkCardsProps {
   trabalhos: TccData[]
@@ -30,6 +38,19 @@ interface WorkCardsProps {
       enunciado: string
     },
   ) => void
+  onStartWork: (
+    workId: string,
+    data: {
+      tema: string
+      tipoTrabalho: string
+      curso: string
+      semanas: number
+      enunciado: string
+      nomeAluno: string
+      instituicao: string
+      orientador: string
+    },
+  ) => void
 }
 
 export default function WorkCards({
@@ -40,13 +61,37 @@ export default function WorkCards({
   onEditWork,
   onDeleteWork,
   onContinueWork,
+  onStartWork,
 }: WorkCardsProps) {
   const [showWorkDataDialog, setShowWorkDataDialog] = useState(false)
+  const [showStartWorkModal, setShowStartWorkModal] = useState(false)
   const [selectedWorkId, setSelectedWorkId] = useState<string | null>(null)
+
+  const handleStartWork = (workId: string) => {
+    setSelectedWorkId(workId)
+    setShowStartWorkModal(true)
+  }
 
   const handleContinueWork = (workId: string) => {
     setSelectedWorkId(workId)
     setShowWorkDataDialog(true)
+  }
+
+  const handleStartWorkSubmit = (data: {
+    tema: string
+    tipoTrabalho: string
+    curso: string
+    semanas: number
+    enunciado: string
+    nomeAluno: string
+    instituicao: string
+    orientador: string
+  }) => {
+    if (selectedWorkId) {
+      onStartWork(selectedWorkId, data)
+      setShowStartWorkModal(false)
+      setSelectedWorkId(null)
+    }
   }
 
   const handleWorkDataSubmit = (data: {
@@ -219,12 +264,16 @@ export default function WorkCards({
                   </div>
                 </div>
 
-                {/* Botão Continuar - sempre alinhado na parte inferior */}
+                {/* Botão Iniciar/Continuar - sempre alinhado na parte inferior */}
                 <Button
                   onClick={(e) => {
                     e.stopPropagation()
                     if (trabalhoAtual === trabalho.id) {
-                      handleContinueWork(trabalho.id)
+                      if (trabalho.status === 'novo') {
+                        handleStartWork(trabalho.id)
+                      } else {
+                        handleContinueWork(trabalho.id)
+                      }
                     } else {
                       trocarTrabalho(trabalho.id)
                     }
@@ -235,8 +284,12 @@ export default function WorkCards({
                       : 'bg-gray-200 text-gray-500 hover:bg-gray-300 cursor-pointer'
                   }`}
                 >
-                  Continuar
-                  <ArrowRight className="ml-2 h-4 w-4" />
+                  {trabalho.status === 'novo' ? 'Iniciar' : 'Continuar'}
+                  {trabalho.status === 'novo' ? (
+                    <Play className="ml-2 h-4 w-4" />
+                  ) : (
+                    <ArrowRight className="ml-2 h-4 w-4" />
+                  )}
                 </Button>
               </div>
             ))}
@@ -252,6 +305,17 @@ export default function WorkCards({
           setSelectedWorkId(null)
         }}
         onContinue={handleWorkDataSubmit}
+      />
+
+      {/* Modal para iniciar trabalho */}
+      <StartWorkModal
+        isOpen={showStartWorkModal}
+        onClose={() => {
+          setShowStartWorkModal(false)
+          setSelectedWorkId(null)
+        }}
+        onStart={handleStartWorkSubmit}
+        workTitle={trabalhos.find((t) => t.id === selectedWorkId)?.titulo || ''}
       />
     </>
   )

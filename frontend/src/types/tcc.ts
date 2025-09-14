@@ -13,6 +13,8 @@ export interface TccData {
   dataCriacao: string
   ultimaModificacao: string
   progresso: number
+  // Status do trabalho
+  status: 'novo' | 'iniciado' | 'em_andamento' | 'concluido'
   // Novos campos para formatação ABNT
   nomeAluno?: string
   tema?: string
