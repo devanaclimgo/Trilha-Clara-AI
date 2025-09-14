@@ -20,6 +20,7 @@ import { Checkbox } from '@/components/ui/checkbox'
 import { Eye, EyeOff, Mail, Lock, User, ArrowLeft } from 'lucide-react'
 import { useToast } from '@/hooks/use-toast'
 import { GoogleButton } from '@/components/ui/google-button'
+import { TermsDialog } from '@/components/ui/terms-dialog'
 
 export default function SignupPage() {
   const { toast } = useToast()
@@ -340,26 +341,24 @@ export default function SignupPage() {
                 />
                 <Label htmlFor="terms" className="text-sm leading-relaxed">
                   Aceito os{' '}
-                  <Link
-                    href="/terms"
-                    className="text-primary hover:text-primary/80 transition-colors"
-                  >
-                    termos de uso
-                  </Link>{' '}
+                  <TermsDialog type="terms">
+                    <span className="text-primary hover:text-primary/80 transition-colors cursor-pointer underline">
+                      termos de uso
+                    </span>
+                  </TermsDialog>{' '}
                   e{' '}
-                  <Link
-                    href="/privacy"
-                    className="text-primary hover:text-primary/80 transition-colors"
-                  >
-                    política de privacidade
-                  </Link>
+                  <TermsDialog type="privacy">
+                    <span className="text-primary hover:text-primary/80 transition-colors cursor-pointer underline">
+                      política de privacidade
+                    </span>
+                  </TermsDialog>
                 </Label>
               </div>
 
               <Button
                 type="submit"
                 className="w-full rounded-xl py-6 text-base font-medium shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-[1.02]"
-                disabled={isLoading}
+                disabled={isLoading || !formData.acceptTerms}
               >
                 {isLoading ? 'Criando conta...' : 'Criar conta'}
               </Button>
