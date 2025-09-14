@@ -20,7 +20,7 @@ const Hero = () => {
             size="lg"
             className="text-lg px-8 py-6 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105"
           >
-            <Link href="/signup">Começar Agora</Link>
+            <Link href="/signup">Criar Conta</Link>
           </Button>
           <Button
             asChild

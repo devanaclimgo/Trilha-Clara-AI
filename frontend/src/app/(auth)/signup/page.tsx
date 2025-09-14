@@ -81,7 +81,7 @@ export default function SignupPage() {
         // Save token in localStorage (or cookie)
         localStorage.setItem('token', data.token)
         setTimeout(() => {
-          window.location.href = '/dashboard'
+          window.location.href = '/simple-tcc'
         }, 1500)
       } else {
         const errorMessage = data.errors
@@ -143,7 +143,7 @@ export default function SignupPage() {
           })
           localStorage.setItem('token', data.token)
           setTimeout(() => {
-            window.location.href = '/dashboard'
+            window.location.href = '/simple-tcc'
           }, 1500)
         } else {
           const errorMessage =

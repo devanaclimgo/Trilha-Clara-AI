@@ -132,4 +132,141 @@ class GeminiService
 
     chat!(messages)
   end
+
+  # Gerar estrutura ABNT para formulário simples
+  def gerar_estrutura_abnt!(nome:, faculdade:, curso:, materia:, tema:, tipo_trabalho:)
+    cache_key = "gemini_abnt_#{Digest::MD5.hexdigest("#{nome}_#{faculdade}_#{curso}_#{materia}_#{tema}_#{tipo_trabalho}")}"
+    cached = Rails.cache.read(cache_key)
+    return cached if cached
+
+    messages = [
+      { role: "system", content: "Você ajuda estudantes brasileiros a criar estruturas ABNT para trabalhos acadêmicos. Sempre responda em português e em JSON válido com as chaves: estrutura, cronograma, sugestoes." },
+      { role: "user", content: <<~TXT }
+        Dados do trabalho:
+        - Nome do aluno: #{nome}
+        - Faculdade: #{faculdade}
+        - Curso: #{curso}
+        - Matéria: #{materia}
+        - Tema: #{tema}
+        - Tipo de trabalho: #{tipo_trabalho}
+
+        Tarefa: Gere uma estrutura ABNT completa para este trabalho acadêmico.
+
+        Devolva no seguinte formato JSON:
+
+        {
+          "estrutura": [
+            "1. INTRODUÇÃO",
+            "1.1 Contextualização do problema",
+            "1.2 Justificativa",
+            "1.3 Objetivos",
+            "1.4 Metodologia",
+            "2. REFERENCIAL TEÓRICO",
+            "2.1 Conceitos fundamentais",
+            "2.2 Estado da arte",
+            "3. METODOLOGIA",
+            "3.1 Tipo de pesquisa",
+            "3.2 População e amostra",
+            "3.3 Instrumentos de coleta",
+            "3.4 Procedimentos",
+            "4. RESULTADOS E DISCUSSÃO",
+            "4.1 Apresentação dos dados",
+            "4.2 Análise dos resultados",
+            "4.3 Discussão",
+            "5. CONSIDERAÇÕES FINAIS",
+            "5.1 Conclusões",
+            "5.2 Limitações",
+            "5.3 Sugestões para trabalhos futuros",
+            "REFERÊNCIAS",
+            "APÊNDICES",
+            "ANEXOS"
+          ],
+          "cronograma": [
+            { "semana": 1, "atividade": "Definição do tema e problema de pesquisa" },
+            { "semana": 2, "atividade": "Revisão bibliográfica inicial" },
+            { "semana": 3, "atividade": "Elaboração do projeto de pesquisa" },
+            { "semana": 4, "atividade": "Aprovação do projeto pelo orientador" },
+            { "semana": 5, "atividade": "Coleta de dados" },
+            { "semana": 6, "atividade": "Análise dos dados" },
+            { "semana": 7, "atividade": "Redação do trabalho" },
+            { "semana": 8, "atividade": "Revisão final e formatação ABNT" }
+          ],
+          "sugestoes": [
+            "Consulte as normas ABNT mais recentes",
+            "Mantenha consistência na formatação",
+            "Revise a ortografia e gramática",
+            "Verifique as citações e referências"
+          ]
+        }
+
+        - "estrutura": Estrutura completa seguindo padrões ABNT
+        - "cronograma": Cronograma de 8 semanas com atividades práticas
+        - "sugestoes": Dicas importantes para o desenvolvimento do trabalho
+      TXT
+    ]
+
+    result = chat!(messages, max_output_tokens: 2000)
+
+    begin
+      # Tenta extrair JSON do resultado se estiver dentro de markdown
+      json_match = result.match(/```json\s*(\{.*?\})\s*```/m)
+      json_string = json_match ? json_match[1] : result
+      
+      parsed = JSON.parse(json_string)
+      Rails.cache.write(cache_key, parsed, expires_in: 1.week)
+      parsed
+    rescue JSON::ParserError => e
+      Rails.logger.error "Erro ao fazer parse do JSON: #{e.message}"
+      Rails.logger.error "Resultado bruto: #{result}"
+      
+      # Fallback: estrutura básica ABNT
+      fallback_data = {
+        "estrutura" => [
+          "1. INTRODUÇÃO",
+          "1.1 Contextualização do problema",
+          "1.2 Justificativa",
+          "1.3 Objetivos",
+          "1.4 Metodologia",
+          "2. REFERENCIAL TEÓRICO",
+          "2.1 Conceitos fundamentais",
+          "2.2 Estado da arte",
+          "3. METODOLOGIA",
+          "3.1 Tipo de pesquisa",
+          "3.2 População e amostra",
+          "3.3 Instrumentos de coleta",
+          "3.4 Procedimentos",
+          "4. RESULTADOS E DISCUSSÃO",
+          "4.1 Apresentação dos dados",
+          "4.2 Análise dos resultados",
+          "4.3 Discussão",
+          "5. CONSIDERAÇÕES FINAIS",
+          "5.1 Conclusões",
+          "5.2 Limitações",
+          "5.3 Sugestões para trabalhos futuros",
+          "REFERÊNCIAS",
+          "APÊNDICES",
+          "ANEXOS"
+        ],
+        "cronograma" => [
+          { "semana" => 1, "atividade" => "Definição do tema e problema de pesquisa" },
+          { "semana" => 2, "atividade" => "Revisão bibliográfica inicial" },
+          { "semana" => 3, "atividade" => "Elaboração do projeto de pesquisa" },
+          { "semana" => 4, "atividade" => "Aprovação do projeto pelo orientador" },
+          { "semana" => 5, "atividade" => "Coleta de dados" },
+          { "semana" => 6, "atividade" => "Análise dos dados" },
+          { "semana" => 7, "atividade" => "Redação do trabalho" },
+          { "semana" => 8, "atividade" => "Revisão final e formatação ABNT" }
+        ],
+        "sugestoes" => [
+          "Consulte as normas ABNT mais recentes",
+          "Mantenha consistência na formatação",
+          "Revise a ortografia e gramática",
+          "Verifique as citações e referências"
+        ]
+      }
+      
+      Rails.cache.write(cache_key, fallback_data, expires_in: 1.hour)
+      fallback_data
+    end
+  end
 end

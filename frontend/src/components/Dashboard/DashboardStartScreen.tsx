@@ -32,6 +32,7 @@ import DashboardProfileScreen from './DashboardProfileScreen'
 import DashboardSupportScreen from './DashboardSupportScreen'
 import InfoButton from '../InfoButton'
 import { useTccData } from '@/hooks/useTccData'
+import { useAuth } from '@/hooks/useAuth'
 import { TccData } from '@/types/tcc'
 
 export default function DashboardStartScreen() {
@@ -54,6 +55,7 @@ export default function DashboardStartScreen() {
   const [selectedWork, setSelectedWork] = useState<TccData | null>(null)
   const [showAllNotes, setShowAllNotes] = useState(false)
 
+  const { logout } = useAuth()
   const {
     trabalhos,
     trabalhoAtual,
@@ -136,8 +138,7 @@ export default function DashboardStartScreen() {
   }
 
   const handleLogout = () => {
-    // Redirecionar para login
-    window.location.href = '/login'
+    logout()
   }
 
   const handleShowAllNotes = () => {
@@ -249,6 +250,16 @@ export default function DashboardStartScreen() {
           {currentScreen === 'main' &&
             (!hasCompletedInitialData || showStepByStep) && (
               <>
+                {!hasCompletedInitialData && (
+                  <div className="text-center mb-8">
+                    <h1 className="text-4xl font-bold gradient-text mb-4">
+                      Bem-vindo! Vamos começar seu trabalho 🚀
+                    </h1>
+                    <p className="text-lg text-gray-600">
+                      Preencha os dados abaixo para começar seu TCC
+                    </p>
+                  </div>
+                )}
                 {hasCompletedInitialData && showStepByStep && (
                   <div className="flex items-center justify-between mb-6">
                     <Button

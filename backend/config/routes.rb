@@ -11,7 +11,10 @@ Rails.application.routes.draw do
   end
 
   namespace :api, defaults: { format: :json } do
-    post "tcc/criar", to: "tcc#criar"
+    post "tcc", to: "tcc#criar"
+    post "tcc/criar", to: "tcc#criar" # Compatibilidade com versão antiga
+    get "tcc/:id/export_word", to: "tcc#export_word"
+    get "tcc/:id/export_pdf", to: "tcc#export_pdf"
     
     # Profile routes
     get "profile", to: "profile#show"
