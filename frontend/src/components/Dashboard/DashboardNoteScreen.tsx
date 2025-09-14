@@ -17,6 +17,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from '../ui/dialog'
+import { formatNoteDate } from '@/lib/dateUtils'
 
 interface TccData {
   id: string
@@ -42,6 +43,7 @@ export default function NotesScreen({
   trabalhoAtual,
   showAllNotes = false,
   allNotes = [],
+  savedNotesWithDates = [],
 }: {
   savedNotes: string[]
   onRemoveNote: (index: number) => void
@@ -53,9 +55,13 @@ export default function NotesScreen({
     workId: string
     workTitle: string
     workCourse: string
-    note: string
+    note: {
+      text: string
+      createdAt: string
+    }
     noteIndex: number
   }>
+  savedNotesWithDates?: Array<{ text: string; createdAt: string }>
 }) {
   const [newNote, setNewNote] = useState('')
   const [dialogOpen, setDialogOpen] = useState(false)
@@ -238,6 +244,10 @@ export default function NotesScreen({
                         </span>
                         <span>•</span>
                         <span>{getCursoDisplayName(noteData.workCourse)}</span>
+                        <span>•</span>
+                        <span className="text-gray-500">
+                          {formatNoteDate(noteData.note.createdAt)}
+                        </span>
                       </div>
                       <div className="ml-auto">
                         <Button
@@ -253,7 +263,7 @@ export default function NotesScreen({
 
                     {/* Conteúdo da anotação com quebras de linha */}
                     <div className="text-gray-700 leading-relaxed whitespace-pre-line">
-                      {formatNoteText(noteData.note)}
+                      {formatNoteText(noteData.note.text)}
                     </div>
                   </CardContent>
                 </Card>
@@ -261,47 +271,64 @@ export default function NotesScreen({
             </div>
           ) : (
             <div className="grid gap-4 max-w-4xl mx-auto">
-              {savedNotes.map((note, index) => (
-                <Card
-                  key={index}
-                  className="rounded-2xl shadow-lg bg-slate-50/80 backdrop-blur-sm border-slate-200/20 hover:shadow-xl transition-all duration-300"
-                >
-                  <CardContent className="p-6">
-                    {/* Header com indicador de trabalho */}
-                    {trabalhoAtual && (
-                      <div className="flex items-center gap-2 mb-4 pb-3 border-b border-slate-200/30">
-                        <div className="p-1.5 rounded-lg gradient-bg">
-                          <BookOpen className="h-3 w-3 text-white" />
-                        </div>
-                        <div className="flex items-center gap-2 text-xs text-gray-600">
-                          <span className="font-medium">
-                            {trabalhoAtual.titulo || 'Trabalho sem título'}
-                          </span>
-                          <span>•</span>
-                          <span>
-                            {getCursoDisplayName(trabalhoAtual.curso)}
-                          </span>
-                        </div>
-                        <div className="ml-auto">
-                          <Button
-                            variant="ghost"
-                            size="sm"
-                            onClick={() => onRemoveNote(index)}
-                            className="rounded-xl hover:bg-red-50 text-red-600 hover:text-red-700 p-2"
-                          >
-                            <Trash2 className="h-4 w-4" />
-                          </Button>
-                        </div>
-                      </div>
-                    )}
+              {(savedNotesWithDates.length > 0
+                ? savedNotesWithDates
+                : savedNotes.map((text) => ({ text, createdAt: '' }))
+              ).map((note, index) => {
+                // Verificação de compatibilidade para anotações antigas
+                const noteText = typeof note === 'string' ? note : note.text
+                const noteDate = typeof note === 'string' ? '' : note.createdAt
 
-                    {/* Conteúdo da anotação com quebras de linha */}
-                    <div className="text-gray-700 leading-relaxed whitespace-pre-line">
-                      {formatNoteText(note)}
-                    </div>
-                  </CardContent>
-                </Card>
-              ))}
+                return (
+                  <Card
+                    key={index}
+                    className="rounded-2xl shadow-lg bg-slate-50/80 backdrop-blur-sm border-slate-200/20 hover:shadow-xl transition-all duration-300"
+                  >
+                    <CardContent className="p-6">
+                      {/* Header com indicador de trabalho */}
+                      {trabalhoAtual && (
+                        <div className="flex items-center gap-2 mb-4 pb-3 border-b border-slate-200/30">
+                          <div className="p-1.5 rounded-lg gradient-bg">
+                            <BookOpen className="h-3 w-3 text-white" />
+                          </div>
+                          <div className="flex items-center gap-2 text-xs text-gray-600">
+                            <span className="font-medium">
+                              {trabalhoAtual.titulo || 'Trabalho sem título'}
+                            </span>
+                            <span>•</span>
+                            <span>
+                              {getCursoDisplayName(trabalhoAtual.curso)}
+                            </span>
+                            {noteDate && (
+                              <>
+                                <span>•</span>
+                                <span className="text-gray-500">
+                                  {formatNoteDate(noteDate)}
+                                </span>
+                              </>
+                            )}
+                          </div>
+                          <div className="ml-auto">
+                            <Button
+                              variant="ghost"
+                              size="sm"
+                              onClick={() => onRemoveNote(index)}
+                              className="rounded-xl hover:bg-red-50 text-red-600 hover:text-red-700 p-2"
+                            >
+                              <Trash2 className="h-4 w-4" />
+                            </Button>
+                          </div>
+                        </div>
+                      )}
+
+                      {/* Conteúdo da anotação com quebras de linha */}
+                      <div className="text-gray-700 leading-relaxed whitespace-pre-line">
+                        {formatNoteText(noteText)}
+                      </div>
+                    </CardContent>
+                  </Card>
+                )
+              })}
             </div>
           )}
         </div>

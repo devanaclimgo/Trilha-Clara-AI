@@ -67,7 +67,8 @@ export default function DashboardStartScreen() {
     saveNote,
     removeNote,
     getCurrentWorkNotes,
-    getAllNotes,
+    getCurrentWorkNotesWithDates,
+    getAllNotesWithDates,
     deletarTrabalho,
   } = useTccData()
 
@@ -166,6 +167,7 @@ export default function DashboardStartScreen() {
         currentStep={currentStep}
         steps={steps}
         getCurrentWorkNotes={getCurrentWorkNotes}
+        getCurrentWorkNotesWithDates={getCurrentWorkNotesWithDates}
         getProgressPercentage={getProgressPercentage}
         onShowAllNotes={handleShowAllNotes}
         onLogout={handleLogout}
@@ -220,6 +222,7 @@ export default function DashboardStartScreen() {
                 {trabalhoAtual && (
                   <QuickAccessCards
                     getCurrentWorkNotes={getCurrentWorkNotes}
+                    getCurrentWorkNotesWithDates={getCurrentWorkNotesWithDates}
                     setCurrentScreen={(screen: string) =>
                       setCurrentScreen(
                         screen as
@@ -237,7 +240,10 @@ export default function DashboardStartScreen() {
                 )}
 
                 {/* Recent Activity */}
-                <RecentActivity getCurrentWorkNotes={getCurrentWorkNotes} />
+                <RecentActivity
+                  getCurrentWorkNotes={getCurrentWorkNotes}
+                  getCurrentWorkNotesWithDates={getCurrentWorkNotesWithDates}
+                />
               </div>
             )}
           {currentScreen === 'main' &&
@@ -318,6 +324,7 @@ export default function DashboardStartScreen() {
           {currentScreen === 'notes' && (
             <NotesScreen
               savedNotes={getCurrentWorkNotes()}
+              savedNotesWithDates={getCurrentWorkNotesWithDates()}
               onRemoveNote={removeNote}
               onAddNote={saveNote}
               onBackToHome={
@@ -330,7 +337,7 @@ export default function DashboardStartScreen() {
               }
               trabalhoAtual={tccData.id ? tccData : undefined}
               showAllNotes={showAllNotes}
-              allNotes={getAllNotes()}
+              allNotes={getAllNotesWithDates()}
             />
           )}
           {currentScreen === 'explanation' && (

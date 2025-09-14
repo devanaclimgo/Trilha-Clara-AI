@@ -15,8 +15,13 @@ export interface TccData {
   progresso: number
 }
 
+export interface NoteItem {
+  text: string
+  createdAt: string
+}
+
 export interface NotesData {
-  [workId: string]: string[]
+  [workId: string]: NoteItem[]
 }
 
 export interface DashboardState {

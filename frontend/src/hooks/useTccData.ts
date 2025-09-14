@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { TccData, NotesData } from '@/types/tcc'
+import { TccData, NotesData, NoteItem } from '@/types/tcc'
 
 export const useTccData = () => {
   const [trabalhos, setTrabalhos] = useState<TccData[]>([])
@@ -9,6 +9,7 @@ export const useTccData = () => {
     titulo: '',
     curso: '',
     subtitulo: '',
+    tipoTrabalho: '',
     explicacao: [],
     sugestoes: [],
     dica: '',
@@ -39,7 +40,29 @@ export const useTccData = () => {
     }
 
     if (savedNotesData) {
-      setSavedNotes(JSON.parse(savedNotesData))
+      const parsedNotes = JSON.parse(savedNotesData)
+
+      // Migração: converter anotações antigas (string[]) para novo formato (NoteItem[])
+      const migratedNotes: NotesData = {}
+      Object.entries(parsedNotes).forEach(([workId, notes]) => {
+        if (Array.isArray(notes)) {
+          migratedNotes[workId] = notes.map((note) => {
+            if (typeof note === 'string') {
+              // Anotação antiga - converter para novo formato
+              return {
+                text: note,
+                createdAt: new Date().toISOString(), // Data atual como fallback
+              }
+            }
+            // Já está no novo formato
+            return note
+          })
+        }
+      })
+
+      setSavedNotes(migratedNotes)
+      // Salvar a versão migrada de volta no localStorage
+      localStorage.setItem('tcc-notes', JSON.stringify(migratedNotes))
     }
   }, [])
 
@@ -69,6 +92,7 @@ export const useTccData = () => {
       dataCriacao: new Date().toISOString(),
       ultimaModificacao: new Date().toISOString(),
       progresso: 0,
+      tipoTrabalho: '',
     }
 
     const trabalhosAtualizados = [...trabalhos, novoTrabalho]
@@ -101,10 +125,15 @@ export const useTccData = () => {
   const saveNote = (note: string) => {
     if (!trabalhoAtual) return
 
+    const noteItem: NoteItem = {
+      text: note,
+      createdAt: new Date().toISOString(),
+    }
+
     setSavedNotes((prev) => {
       const newNotes = {
         ...prev,
-        [trabalhoAtual]: [...(prev[trabalhoAtual] || []), note],
+        [trabalhoAtual]: [...(prev[trabalhoAtual] || []), noteItem],
       }
       localStorage.setItem('tcc-notes', JSON.stringify(newNotes))
       return newNotes
@@ -126,7 +155,43 @@ export const useTccData = () => {
   }
 
   const getCurrentWorkNotes = () => {
-    return trabalhoAtual ? savedNotes[trabalhoAtual] || [] : []
+    if (!trabalhoAtual) return []
+    const notes = savedNotes[trabalhoAtual] || []
+    return notes.map((note) => note.text)
+  }
+
+  const getCurrentWorkNotesWithDates = () => {
+    if (!trabalhoAtual) return []
+    return savedNotes[trabalhoAtual] || []
+  }
+
+  const getAllNotesWithDates = () => {
+    const allNotes: Array<{
+      workId: string
+      workTitle: string
+      workCourse: string
+      note: NoteItem
+      noteIndex: number
+    }> = []
+
+    trabalhos.forEach((work) => {
+      const workNotes = savedNotes[work.id] || []
+      workNotes.forEach((note, index) => {
+        allNotes.push({
+          workId: work.id,
+          workTitle: work.titulo,
+          workCourse: work.curso,
+          note,
+          noteIndex: index,
+        })
+      })
+    })
+
+    return allNotes.sort(
+      (a, b) =>
+        new Date(b.note.createdAt).getTime() -
+        new Date(a.note.createdAt).getTime(),
+    )
   }
 
   const getAllNotes = () => {
@@ -146,7 +211,7 @@ export const useTccData = () => {
             workId,
             workTitle: work.titulo || 'Trabalho sem título',
             workCourse: work.curso,
-            note,
+            note: note.text,
             noteIndex,
           })
         })
@@ -172,6 +237,7 @@ export const useTccData = () => {
           titulo: '',
           curso: '',
           subtitulo: '',
+          tipoTrabalho: '',
           explicacao: [],
           sugestoes: [],
           dica: '',
@@ -201,7 +267,9 @@ export const useTccData = () => {
     saveNote,
     removeNote,
     getCurrentWorkNotes,
+    getCurrentWorkNotesWithDates,
     getAllNotes,
+    getAllNotesWithDates,
     deletarTrabalho,
   }
 }

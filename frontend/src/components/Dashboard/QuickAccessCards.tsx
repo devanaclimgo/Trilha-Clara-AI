@@ -1,14 +1,20 @@
 'use client'
 
 import { FileText, BookOpen, Edit3, Calendar } from 'lucide-react'
+import { formatNoteDateRelative } from '@/lib/dateUtils'
 
 interface QuickAccessCardsProps {
   getCurrentWorkNotes: () => string[]
+  getCurrentWorkNotesWithDates?: () => Array<{
+    text: string
+    createdAt: string
+  }>
   setCurrentScreen: (screen: string) => void
 }
 
 export default function QuickAccessCards({
   getCurrentWorkNotes,
+  getCurrentWorkNotesWithDates,
   setCurrentScreen,
 }: QuickAccessCardsProps) {
   return (
@@ -37,6 +43,15 @@ export default function QuickAccessCards({
           <p className="text-gray-600 text-sm">
             Revise suas anotações e ideias importantes
           </p>
+          {getCurrentWorkNotesWithDates &&
+            getCurrentWorkNotesWithDates().length > 0 && (
+              <p className="text-xs text-gray-500 mt-2">
+                Última anotação:{' '}
+                {formatNoteDateRelative(
+                  getCurrentWorkNotesWithDates()[0].createdAt,
+                )}
+              </p>
+            )}
         </div>
 
         {/* Explanation Card */}

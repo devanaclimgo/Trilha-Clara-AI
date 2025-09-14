@@ -16,6 +16,7 @@ import {
 } from 'lucide-react'
 import LogoutButton from '../LogoutButton'
 import DonationSection from '../DonationSection'
+import { formatNoteDateShort } from '@/lib/dateUtils'
 
 interface DashboardSidebarProps {
   sidebarOpen: boolean
@@ -26,6 +27,10 @@ interface DashboardSidebarProps {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   steps: Array<{ id: number; title: string; icon: any }>
   getCurrentWorkNotes: () => string[]
+  getCurrentWorkNotesWithDates?: () => Array<{
+    text: string
+    createdAt: string
+  }>
   getProgressPercentage: () => number
   onShowAllNotes: () => void
   onLogout: () => void
@@ -38,6 +43,7 @@ export default function DashboardSidebar({
   currentStep,
   steps,
   getCurrentWorkNotes,
+  getCurrentWorkNotesWithDates,
   getProgressPercentage,
   onShowAllNotes,
   onLogout,
@@ -167,16 +173,38 @@ export default function DashboardSidebar({
                   Nenhuma anotação salva ainda
                 </p>
               ) : (
-                getCurrentWorkNotes()
+                (getCurrentWorkNotesWithDates
+                  ? getCurrentWorkNotesWithDates()
+                  : getCurrentWorkNotes().map((text) => ({
+                      text,
+                      createdAt: '',
+                    }))
+                )
                   .slice(0, 3)
-                  .map((note, index) => (
-                    <div
-                      key={index}
-                      className="p-3 bg-gradient-to-r from-purple-50 to-pink-50 rounded-xl border border-purple-100 text-sm"
-                    >
-                      {note.length > 50 ? `${note.substring(0, 50)}...` : note}
-                    </div>
-                  ))
+                  .map((note, index) => {
+                    // Verificação de compatibilidade para anotações antigas
+                    const noteText = typeof note === 'string' ? note : note.text
+                    const noteDate =
+                      typeof note === 'string' ? '' : note.createdAt
+
+                    return (
+                      <div
+                        key={index}
+                        className="p-3 bg-gradient-to-r from-purple-50 to-pink-50 rounded-xl border border-purple-100 text-sm"
+                      >
+                        <div className="text-gray-700">
+                          {noteText && noteText.length > 50
+                            ? `${noteText.substring(0, 50)}...`
+                            : noteText}
+                        </div>
+                        {noteDate && (
+                          <div className="text-xs text-gray-500 mt-1">
+                            {formatNoteDateShort(noteDate)}
+                          </div>
+                        )}
+                      </div>
+                    )
+                  })
               )}
             </div>
           </div>
