@@ -380,7 +380,7 @@ export default function WorkEditPage() {
               <Button
                 variant="ghost"
                 onClick={() => router.push('/dashboard')}
-                className="flex items-center gap-2 hover:bg-slate-100 rounded-xl"
+                className="flex items-center border gap-2 hover:bg-purple-50 border-purple-200 hover:border-purple-300 hover:text-purple-600 rounded-xl"
               >
                 <ArrowLeft className="h-4 w-4" />
                 Voltar
