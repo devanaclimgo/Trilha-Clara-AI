@@ -1,5 +1,6 @@
 'use client'
 
+import { useState } from 'react'
 import { Button } from '@/components/ui/button'
 import { FileText, ArrowRight, Edit3, Trash2, MoreVertical } from 'lucide-react'
 import {
@@ -9,6 +10,7 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu'
 import { TccData } from '@/types/tcc'
+import WorkDataDialog from './WorkDataDialog'
 
 interface WorkCardsProps {
   trabalhos: TccData[]
@@ -18,6 +20,16 @@ interface WorkCardsProps {
   setShowStepByStep: (show: boolean) => void
   onEditWork: (work: TccData) => void
   onDeleteWork: (work: TccData) => void
+  onContinueWork: (
+    workId: string,
+    data: {
+      tema: string
+      tipoTrabalho: string
+      curso: string
+      semanas: number
+      enunciado: string
+    },
+  ) => void
 }
 
 export default function WorkCards({
@@ -25,10 +37,32 @@ export default function WorkCards({
   trabalhoAtual,
   trocarTrabalho,
   setShowNewProjectForm,
-  setShowStepByStep,
   onEditWork,
   onDeleteWork,
+  onContinueWork,
 }: WorkCardsProps) {
+  const [showWorkDataDialog, setShowWorkDataDialog] = useState(false)
+  const [selectedWorkId, setSelectedWorkId] = useState<string | null>(null)
+
+  const handleContinueWork = (workId: string) => {
+    setSelectedWorkId(workId)
+    setShowWorkDataDialog(true)
+  }
+
+  const handleWorkDataSubmit = (data: {
+    tema: string
+    tipoTrabalho: string
+    curso: string
+    semanas: number
+    enunciado: string
+  }) => {
+    if (selectedWorkId) {
+      onContinueWork(selectedWorkId, data)
+      setShowWorkDataDialog(false)
+      setSelectedWorkId(null)
+    }
+  }
+
   const getCursoDisplayName = (curso: string) => {
     const cursoMap: { [key: string]: string } = {
       medicina: 'Medicina',
@@ -190,7 +224,7 @@ export default function WorkCards({
                   onClick={(e) => {
                     e.stopPropagation()
                     if (trabalhoAtual === trabalho.id) {
-                      setShowStepByStep(true)
+                      handleContinueWork(trabalho.id)
                     } else {
                       trocarTrabalho(trabalho.id)
                     }
@@ -209,6 +243,16 @@ export default function WorkCards({
           </div>
         )}
       </div>
+
+      {/* Dialog para configurar dados do trabalho */}
+      <WorkDataDialog
+        isOpen={showWorkDataDialog}
+        onClose={() => {
+          setShowWorkDataDialog(false)
+          setSelectedWorkId(null)
+        }}
+        onContinue={handleWorkDataSubmit}
+      />
     </>
   )
 }

@@ -42,6 +42,11 @@ export default function DashboardStartScreen() {
   const [showDeleteWorkModal, setShowDeleteWorkModal] = useState(false)
   const [selectedWork, setSelectedWork] = useState<TccData | null>(null)
   const [showAllNotes, setShowAllNotes] = useState(false)
+  const [loadingStates, setLoadingStates] = useState({
+    explanation: { isLoading: false, isCompleted: false },
+    structure: { isLoading: false, isCompleted: false },
+    timeline: { isLoading: false, isCompleted: false },
+  })
 
   const { logout } = useAuth()
   const {
@@ -133,6 +138,160 @@ export default function DashboardStartScreen() {
     setCurrentScreen('notes')
   }
 
+  const handleContinueWork = async (
+    workId: string,
+    data: {
+      tema: string
+      tipoTrabalho: string
+      curso: string
+      semanas: number
+      enunciado: string
+    },
+  ) => {
+    // Trocar para o trabalho selecionado
+    trocarTrabalho(workId)
+
+    // Atualizar dados do trabalho
+    const updatedData = {
+      ...tccData,
+      tema: data.tema,
+      tipoTrabalho: data.tipoTrabalho,
+      curso: data.curso,
+      subtitulo: data.enunciado,
+      progresso: 10,
+      ultimaModificacao: new Date().toISOString(),
+    }
+    setTccData(updatedData)
+    salvarTrabalho(updatedData)
+
+    // Iniciar loading states
+    setLoadingStates({
+      explanation: { isLoading: true, isCompleted: false },
+      structure: { isLoading: true, isCompleted: false },
+      timeline: { isLoading: true, isCompleted: false },
+    })
+
+    // Simular geração de conteúdo pela IA
+    try {
+      // Simular delay para geração da explicação
+      await new Promise((resolve) => setTimeout(resolve, 2000))
+
+      // Simular geração da explicação
+      const explicacaoGerada = [
+        `Com base no tema "${data.tema}", este trabalho tem como objetivo principal analisar e compreender os aspectos fundamentais da questão proposta.`,
+        `A metodologia sugerida envolve pesquisa bibliográfica, análise de dados e elaboração de conclusões baseadas em evidências científicas.`,
+        `O prazo de ${data.semanas} semanas permite um desenvolvimento adequado do trabalho, com fases bem definidas para cada etapa.`,
+      ]
+
+      const sugestoes = [
+        `Foque na relevância do tema para o curso de ${data.curso}`,
+        `Considere as diretrizes específicas para ${data.tipoTrabalho}`,
+        `Mantenha um cronograma realista considerando o prazo de ${data.semanas} semanas`,
+      ]
+
+      const dica = `Para um ${data.tipoTrabalho} em ${data.curso}, é importante seguir as normas ABNT e manter consistência metodológica.`
+
+      // Atualizar com explicação
+      const dataWithExplanation = {
+        ...updatedData,
+        explicacao: explicacaoGerada,
+        sugestoes: sugestoes,
+        dica: dica,
+        progresso: 30,
+      }
+      setTccData(dataWithExplanation)
+      salvarTrabalho(dataWithExplanation)
+
+      setLoadingStates((prev) => ({
+        ...prev,
+        explanation: { isLoading: false, isCompleted: true },
+      }))
+
+      // Simular delay para geração da estrutura
+      await new Promise((resolve) => setTimeout(resolve, 1500))
+
+      // Simular geração da estrutura
+      const estruturaGerada = [
+        'Introdução - Apresentação do tema, justificativa e objetivos (2 semanas)',
+        'Revisão de Literatura - Fundamentação teórica e estado da arte (3 semanas)',
+        'Metodologia - Descrição dos métodos e procedimentos utilizados (2 semanas)',
+        'Desenvolvimento - Análise e discussão dos resultados (4 semanas)',
+        'Conclusão - Síntese dos resultados e considerações finais (1 semana)',
+      ]
+
+      const dataWithStructure = {
+        ...dataWithExplanation,
+        estrutura: estruturaGerada,
+        progresso: 60,
+      }
+      setTccData(dataWithStructure)
+      salvarTrabalho(dataWithStructure)
+
+      setLoadingStates((prev) => ({
+        ...prev,
+        structure: { isLoading: false, isCompleted: true },
+      }))
+
+      // Simular delay para geração do cronograma
+      await new Promise((resolve) => setTimeout(resolve, 1500))
+
+      // Simular geração do cronograma
+      const cronogramaGerado = [
+        {
+          atividade: 'Pesquisa bibliográfica',
+          prazo: 'Semana 1-2',
+          status: 'pendente',
+        },
+        {
+          atividade: 'Elaboração da introdução',
+          prazo: 'Semana 3-4',
+          status: 'pendente',
+        },
+        {
+          atividade: 'Revisão de literatura',
+          prazo: 'Semana 5-7',
+          status: 'pendente',
+        },
+        {
+          atividade: 'Desenvolvimento metodológico',
+          prazo: 'Semana 8-9',
+          status: 'pendente',
+        },
+        {
+          atividade: 'Análise e discussão',
+          prazo: 'Semana 10-11',
+          status: 'pendente',
+        },
+        {
+          atividade: 'Conclusão e revisão final',
+          prazo: 'Semana 12',
+          status: 'pendente',
+        },
+      ]
+
+      const dataWithTimeline = {
+        ...dataWithStructure,
+        cronograma: cronogramaGerado,
+        progresso: 80,
+      }
+      setTccData(dataWithTimeline)
+      salvarTrabalho(dataWithTimeline)
+
+      setLoadingStates((prev) => ({
+        ...prev,
+        timeline: { isLoading: false, isCompleted: true },
+      }))
+    } catch (error) {
+      console.error('Erro ao gerar conteúdo:', error)
+      // Reset loading states em caso de erro
+      setLoadingStates({
+        explanation: { isLoading: false, isCompleted: false },
+        structure: { isLoading: false, isCompleted: false },
+        timeline: { isLoading: false, isCompleted: false },
+      })
+    }
+  }
+
   return (
     <div className="min-h-screen flex gradient-trilha-soft">
       <DashboardSidebar
@@ -183,7 +342,7 @@ export default function DashboardStartScreen() {
                 </h1>
                 <p className="text-lg text-gray-600">
                   {hasCompletedInitialData
-                    ? 'Continue de onde parou no seu TCC'
+                    ? 'Continue de onde parou no seu trabalho acadêmico'
                     : 'Crie seu primeiro trabalho acadêmico para começar'}
                 </p>
               </div>
@@ -194,9 +353,10 @@ export default function DashboardStartScreen() {
                 trabalhoAtual={trabalhoAtual}
                 trocarTrabalho={handleTrocarTrabalho}
                 setShowNewProjectForm={setShowNewProjectForm}
-                setShowStepByStep={() => {}} // Função vazia pois não usamos mais o fluxo step-by-step
+                setShowStepByStep={() => {}}
                 onEditWork={handleEditWork}
                 onDeleteWork={handleDeleteWork}
+                onContinueWork={handleContinueWork}
               />
 
               {/* Overview Cards - sempre visíveis */}
@@ -205,6 +365,7 @@ export default function DashboardStartScreen() {
                 onViewStructure={() => setCurrentScreen('structure')}
                 onViewTimeline={() => setCurrentScreen('timeline')}
                 hasData={!!trabalhoAtual}
+                loadingStates={loadingStates}
               />
 
               {/* TCC Data Card - sempre visível */}

@@ -9,12 +9,18 @@ import {
   CardTitle,
 } from '@/components/ui/card'
 import { BookOpen, Edit3, Calendar, FileText, Eye } from 'lucide-react'
+import LoadingStatus from './LoadingStatus'
 
 interface OverviewCardsProps {
   onViewExplanation: () => void
   onViewStructure: () => void
   onViewTimeline: () => void
   hasData: boolean
+  loadingStates?: {
+    explanation: { isLoading: boolean; isCompleted: boolean }
+    structure: { isLoading: boolean; isCompleted: boolean }
+    timeline: { isLoading: boolean; isCompleted: boolean }
+  }
 }
 
 export default function OverviewCards({
@@ -22,6 +28,7 @@ export default function OverviewCards({
   onViewStructure,
   onViewTimeline,
   hasData,
+  loadingStates,
 }: OverviewCardsProps) {
   const cards = [
     {
@@ -32,6 +39,7 @@ export default function OverviewCards({
       color: 'from-blue-500 to-cyan-500',
       bgColor: 'from-blue-50 to-cyan-50',
       borderColor: 'border-blue-200',
+      loadingKey: 'explanation' as const,
     },
     {
       title: 'Estrutura Sugerida',
@@ -41,6 +49,7 @@ export default function OverviewCards({
       color: 'from-purple-500 to-pink-500',
       bgColor: 'from-purple-50 to-pink-50',
       borderColor: 'border-purple-200',
+      loadingKey: 'structure' as const,
     },
     {
       title: 'Cronograma',
@@ -50,6 +59,7 @@ export default function OverviewCards({
       color: 'from-green-500 to-emerald-500',
       bgColor: 'from-green-50 to-emerald-50',
       borderColor: 'border-green-200',
+      loadingKey: 'timeline' as const,
     },
   ]
 
@@ -90,11 +100,18 @@ export default function OverviewCards({
                 >
                   <card.icon className="h-6 w-6 text-white" />
                 </div>
-                <div>
+                <div className="flex-1">
                   <CardTitle className="text-lg font-bold text-gray-800 group-hover:text-gray-900 transition-colors">
                     {card.title}
                   </CardTitle>
                 </div>
+                {loadingStates && (
+                  <LoadingStatus
+                    isLoading={loadingStates[card.loadingKey].isLoading}
+                    isCompleted={loadingStates[card.loadingKey].isCompleted}
+                    loadingText="IA gerando..."
+                  />
+                )}
               </div>
             </CardHeader>
             <CardContent className="pt-0">
