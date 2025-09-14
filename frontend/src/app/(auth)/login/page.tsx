@@ -172,16 +172,18 @@ export default function LoginPage() {
     <div className="min-h-screen bg-gradient-to-br from-primary/20 via-secondary/20 to-accent/20 flex items-center justify-center p-4">
       <div className="w-full max-w-md">
         {/* Back to home */}
-        <Button
-          asChild
-          variant="ghost"
-          className="mb-6 bg-primary/10 hover:bg-purple-50 border-purple-200 hover:border-purple-300 hover:text-purple-600 transition-all duration-300 rounded-xl"
-        >
-          <Link href="/" className="flex items-center gap-2">
-            <ArrowLeft className="w-4 h-4" />
-            Voltar ao início
-          </Link>
-        </Button>
+        <div className="mb-6">
+          <Button
+            asChild
+            variant="outline"
+            className="rounded-xl hover:bg-purple-50 border-purple-200 hover:border-purple-300 hover:text-purple-600 flex items-center gap-2 px-4 py-2"
+          >
+            <Link href="/" className="flex items-center gap-2">
+              <ArrowLeft className="h-4 w-4" />
+              <span className="text-sm font-medium">Voltar ao início</span>
+            </Link>
+          </Button>
+        </div>
 
         <Card className="rounded-2xl shadow-2xl border-0 bg-card/90 backdrop-blur-sm">
           <CardHeader className="text-center pb-6">
