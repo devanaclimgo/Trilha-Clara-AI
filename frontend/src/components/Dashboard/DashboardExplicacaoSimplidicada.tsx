@@ -1,4 +1,3 @@
-import { ArrowRight } from 'lucide-react'
 import { Button } from '../ui/button'
 import { Card, CardContent, CardHeader, CardTitle } from '../ui/card'
 import { useState } from 'react'
@@ -7,7 +6,6 @@ interface ExplicacaoSimplificadaProps {
   explicacao: string | string[]
   sugestoes: string[]
   dica: string
-  onNext: () => void
   onSaveNote: (note: string) => void
 }
 
@@ -15,7 +13,6 @@ export default function ExplicacaoSimplificada({
   explicacao,
   sugestoes,
   dica,
-  onNext,
   onSaveNote,
 }: ExplicacaoSimplificadaProps) {
   const [isAnimating, setIsAnimating] = useState(false)
@@ -94,15 +91,6 @@ export default function ExplicacaoSimplificada({
             ✅ Dica importante:
           </h3>
           <p className="text-blue-800 text-sm">{dica}</p>
-        </div>
-        <div className="flex justify-center pt-6">
-          <Button
-            onClick={onNext}
-            className="px-8 py-3 rounded-2xl gradient-bg text-white font-medium hover:scale-105 hover:shadow-lg transition-all duration-300"
-          >
-            Ir para Estrutura do TCC
-            <ArrowRight className="ml-2 h-4 w-4" />
-          </Button>
         </div>
       </CardContent>
     </Card>

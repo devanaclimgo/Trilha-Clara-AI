@@ -1,16 +1,14 @@
 import { useState } from 'react'
 import { Card, CardContent, CardHeader, CardTitle } from '../ui/card'
 import { Button } from '../ui/button'
-import { ArrowRight, Edit3 } from 'lucide-react'
+import { Edit3 } from 'lucide-react'
 
 interface EstruturaSugeridaProps {
   estrutura: string[] | string
-  onNext: () => void
 }
 
 export default function EstruturaSugerida({
   estrutura: estruturaProp,
-  onNext,
 }: EstruturaSugeridaProps) {
   // Converte estrutura para array se necessário
   const estruturaInicial = Array.isArray(estruturaProp)
@@ -75,13 +73,6 @@ export default function EstruturaSugerida({
           >
             <Edit3 className="mr-2 h-4 w-4" />
             {editando ? 'Salvar' : 'Editar'}
-          </Button>
-          <Button
-            onClick={onNext}
-            className="px-8 py-3 rounded-2xl gradient-bg text-white font-medium hover:scale-105 hover:shadow-lg transition-all duration-300"
-          >
-            Continuar
-            <ArrowRight className="ml-2 h-4 w-4" />
           </Button>
         </div>
       </CardContent>
