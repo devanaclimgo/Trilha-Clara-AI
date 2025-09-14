@@ -119,31 +119,31 @@ export default function InserirDados({
                 return
               setIsLoading(true)
               try {
-                const res = await fetch('http://localhost:4000/api/tcc.json', {
-                  method: 'POST',
-                  headers: {
-                    'Content-Type': 'application/json',
-                    Accept: 'application/json',
-                    Authorization: `Bearer ${localStorage.getItem('token')}`,
-                  },
-                  body: JSON.stringify({
-                    tcc: {
+                const res = await fetch(
+                  'http://localhost:4000/api/tcc/criar.json',
+                  {
+                    method: 'POST',
+                    headers: {
+                      'Content-Type': 'application/json',
+                      Accept: 'application/json',
+                    },
+                    body: JSON.stringify({
                       nome: titulo,
                       faculdade: 'Universidade', // Pode ser um campo do formulário
                       curso: curso,
                       materia: curso, // Usando curso como matéria por enquanto
                       tema: tema,
                       tipo_trabalho: tipoTrabalho,
-                    },
-                  }),
-                })
+                    }),
+                  },
+                )
 
                 const tccData = await res.json()
 
                 if (onSaveData) {
                   onSaveData(
                     {
-                      titulo: tccData.titulo,
+                      titulo: tccData.tema, // Usando tema como título
                       curso: tccData.curso,
                       tipoTrabalho: tccData.tipo_trabalho,
                       status: 'em_andamento',
@@ -153,8 +153,10 @@ export default function InserirDados({
                       estrutura: tccData.estrutura,
                       cronograma: tccData.cronograma,
                       id: tccData.id,
-                      dataCriacao: tccData.created_at,
-                      ultimaModificacao: tccData.updated_at,
+                      dataCriacao:
+                        tccData.created_at || new Date().toISOString(),
+                      ultimaModificacao:
+                        tccData.updated_at || new Date().toISOString(),
                       progresso: 0,
                       tema: tccData.tema,
                       nomeAluno: tccData.nome,

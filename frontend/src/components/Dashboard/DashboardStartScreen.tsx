@@ -177,22 +177,22 @@ export default function DashboardStartScreen() {
       // Simular delay para geração da explicação
       await new Promise((resolve) => setTimeout(resolve, 2000))
 
-      // Simular geração da explicação baseada no enunciado
+      // Simular geração da explicação baseada no tema
       const explicacaoGerada = [
-        `Com base no enunciado fornecido, este ${data.tipoTrabalho} tem como objetivo principal analisar e compreender os aspectos fundamentais da questão proposta.`,
+        `Com base no tema fornecido, este ${data.tipoTrabalho} tem como objetivo principal analisar e compreender os aspectos fundamentais de: ${data.tema}.`,
         `A metodologia sugerida envolve pesquisa bibliográfica, análise de dados e elaboração de conclusões baseadas em evidências científicas, adaptada ao contexto de ${data.curso}.`,
         `O prazo de ${data.semanas} semanas permite um desenvolvimento adequado do trabalho, com fases bem definidas para cada etapa do processo de pesquisa.`,
-        `O trabalho "${data.tema}" é relevante para a área de ${data.curso} e contribui para o conhecimento acadêmico na área específica.`,
+        `O tema "${data.tema}" é relevante para a área de ${data.curso} e contribui para o conhecimento acadêmico na área específica.`,
       ]
 
       const sugestoes = [
-        `Foque na relevância do enunciado para o curso de ${data.curso}`,
+        `Foque na relevância do tema "${data.tema}" para o curso de ${data.curso}`,
         `Considere as diretrizes específicas para ${data.tipoTrabalho} e as normas da instituição`,
         `Mantenha um cronograma realista considerando o prazo de ${data.semanas} semanas`,
-        `Desenvolva uma metodologia adequada ao tipo de pesquisa necessária para abordar o enunciado`,
+        `Desenvolva uma metodologia adequada ao tipo de pesquisa necessária para abordar o tema`,
       ]
 
-      const dica = `Para um ${data.tipoTrabalho} baseado no enunciado fornecido em ${data.curso}, é importante seguir as normas ABNT, manter consistência metodológica e focar na contribuição científica do trabalho.`
+      const dica = `Para um ${data.tipoTrabalho} baseado no tema "${data.tema}" em ${data.curso}, é importante seguir as normas ABNT, manter consistência metodológica e focar na contribuição científica do trabalho.`
 
       // Atualizar com explicação
       const dataWithExplanation = {
@@ -213,13 +213,13 @@ export default function DashboardStartScreen() {
       // Simular delay para geração da estrutura
       await new Promise((resolve) => setTimeout(resolve, 1500))
 
-      // Simular geração da estrutura baseada no enunciado
+      // Simular geração da estrutura baseada no tema
       const estruturaGerada = [
         `Introdução - Apresentação do trabalho "${data.tema}", justificativa e objetivos específicos (2 semanas)`,
-        `Revisão de Literatura - Fundamentação teórica baseada no enunciado e estado da arte na área (3 semanas)`,
-        `Metodologia - Descrição dos métodos e procedimentos para abordar o enunciado (2 semanas)`,
-        `Desenvolvimento - Análise e discussão dos resultados relacionados ao enunciado proposto (4 semanas)`,
-        `Conclusão - Síntese dos resultados e considerações finais baseadas no enunciado (1 semana)`,
+        `Revisão de Literatura - Fundamentação teórica baseada no tema e estado da arte na área (3 semanas)`,
+        `Metodologia - Descrição dos métodos e procedimentos para abordar o tema (2 semanas)`,
+        `Desenvolvimento - Análise e discussão dos resultados relacionados ao tema proposto (4 semanas)`,
+        `Conclusão - Síntese dos resultados e considerações finais baseadas no tema (1 semana)`,
       ]
 
       const dataWithStructure = {
@@ -238,12 +238,12 @@ export default function DashboardStartScreen() {
       // Simular delay para geração do cronograma
       await new Promise((resolve) => setTimeout(resolve, 1500))
 
-      // Simular geração do cronograma baseado no enunciado
+      // Simular geração do cronograma baseado no tema
       const cronogramaGerado = [
         {
           id: 1,
           title: `Pesquisa Bibliográfica - ${data.tema}`,
-          description: `Coleta e análise de referências relevantes baseadas no enunciado fornecido`,
+          description: `Coleta e análise de referências relevantes baseadas no tema fornecido`,
           startDate: new Date().toISOString(),
           endDate: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toISOString(),
           status: 'pending',
@@ -251,7 +251,7 @@ export default function DashboardStartScreen() {
         {
           id: 2,
           title: `Elaboração da Introdução - ${data.tema}`,
-          description: `Desenvolvimento da introdução e justificativa baseada no enunciado`,
+          description: `Desenvolvimento da introdução e justificativa baseada no tema`,
           startDate: new Date(
             Date.now() + 7 * 24 * 60 * 60 * 1000,
           ).toISOString(),
@@ -263,7 +263,7 @@ export default function DashboardStartScreen() {
         {
           id: 3,
           title: `Desenvolvimento do Conteúdo - ${data.tema}`,
-          description: `Escrita das seções principais do trabalho baseado no enunciado`,
+          description: `Escrita das seções principais do trabalho baseado no tema`,
           startDate: new Date(
             Date.now() + 14 * 24 * 60 * 60 * 1000,
           ).toISOString(),
@@ -275,7 +275,7 @@ export default function DashboardStartScreen() {
         {
           id: 4,
           title: `Revisão e Formatação - ${data.tema}`,
-          description: `Revisão final e formatação ABNT do trabalho baseado no enunciado`,
+          description: `Revisão final e formatação ABNT do trabalho baseado no tema`,
           startDate: new Date(
             Date.now() + 28 * 24 * 60 * 60 * 1000,
           ).toISOString(),
