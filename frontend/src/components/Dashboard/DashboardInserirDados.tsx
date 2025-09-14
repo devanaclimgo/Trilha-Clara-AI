@@ -14,9 +14,10 @@ export default function InserirDados({
   onNext,
   onSaveData,
 }: InserirDadosProps) {
+  const [titulo, setTitulo] = useState('')
   const [curso, setCurso] = useState('')
   const [tipoTrabalho, setTipoTrabalho] = useState('')
-  const [subtitulo, setSubtitulo] = useState('')
+  const [tema, setTema] = useState('')
   const [isLoading, setIsLoading] = useState(false)
 
   return (
@@ -30,6 +31,19 @@ export default function InserirDados({
         </p>
       </CardHeader>
       <CardContent className="space-y-6">
+        <div>
+          <label className="block text-sm font-medium mb-2">
+            Título do Trabalho
+          </label>
+          <input
+            type="text"
+            value={titulo}
+            onChange={(e) => setTitulo(e.target.value)}
+            className="w-full p-4 rounded-2xl border border-slate-200 bg-slate-50/60 backdrop-blur-sm focus:ring-2 focus:ring-purple-500/20 focus:border-purple-500 transition-all duration-300"
+            placeholder="Ex: Análise de Impacto Ambiental"
+          />
+        </div>
+
         <div>
           <label className="block text-sm font-medium mb-2">Curso</label>
           <select
@@ -53,9 +67,10 @@ export default function InserirDados({
             <option value="outros">Outros</option>
           </select>
         </div>
+
         <div>
           <label className="block text-sm font-medium mb-2">
-            Tipo de trabalho
+            Tipo de Trabalho
           </label>
           <select
             value={tipoTrabalho}
@@ -63,9 +78,11 @@ export default function InserirDados({
             className="w-full p-4 rounded-2xl border border-slate-200 bg-slate-50/60 backdrop-blur-sm focus:ring-2 focus:ring-purple-500/20 focus:border-purple-500 transition-all duration-300"
           >
             <option value="">Selecione o tipo de trabalho</option>
+            <option value="tcc">TCC (Trabalho de Conclusão de Curso)</option>
             <option value="artigo-cientifico">Artigo Científico</option>
             <option value="monografia">Monografia</option>
-            <option value="trabalho-monolitico">Trabalho Monolítico</option>
+            <option value="dissertacao">Dissertação</option>
+            <option value="tese">Tese</option>
             <option value="projeto-experimental">Projeto Experimental</option>
             <option value="estudo-de-caso">Estudo de Caso</option>
             <option value="pesquisa-aplicada">Pesquisa Aplicada</option>
@@ -76,22 +93,29 @@ export default function InserirDados({
             <option value="outros">Outros</option>
           </select>
         </div>
+
         <div>
           <label className="block text-sm font-medium mb-2">
-            Subtítulo do trabalho
+            Tema do Trabalho
           </label>
           <textarea
-            value={subtitulo}
-            onChange={(e) => setSubtitulo(e.target.value)}
-            placeholder="Cole aqui o subtítulo do seu TCC conforme fornecido pelo professor..."
-            rows={8}
+            value={tema}
+            onChange={(e) => setTema(e.target.value)}
+            placeholder="Descreva o tema principal do seu trabalho..."
+            rows={6}
             className="w-full p-4 rounded-2xl border border-slate-200 bg-slate-50/60 backdrop-blur-sm focus:ring-2 focus:ring-purple-500/20 focus:border-purple-500 transition-all duration-300 resize-none"
           />
         </div>
         <div className="flex justify-center pt-4">
           <Button
             onClick={async () => {
-              if (!curso || !tipoTrabalho || !subtitulo.trim() || isLoading)
+              if (
+                !titulo.trim() ||
+                !curso ||
+                !tipoTrabalho ||
+                !tema.trim() ||
+                isLoading
+              )
                 return
               setIsLoading(true)
               try {
@@ -103,7 +127,7 @@ export default function InserirDados({
                       'Content-Type': 'application/json',
                       Accept: 'application/json',
                     },
-                    body: JSON.stringify({ curso, tipoTrabalho, subtitulo }),
+                    body: JSON.stringify({ titulo, curso, tipoTrabalho, tema }),
                   },
                 )
 
@@ -112,16 +136,16 @@ export default function InserirDados({
                 if (onSaveData) {
                   onSaveData(
                     {
+                      titulo,
                       curso,
                       tipoTrabalho,
-                      subtitulo,
+                      subtitulo: tema, // Usando tema como subtítulo temporariamente
                       explicacao: data.explicacao,
                       sugestoes: data.sugestoes,
                       dica: data.dica,
                       estrutura: data.estrutura,
                       cronograma: data.cronograma,
                       id: '',
-                      titulo: '',
                       dataCriacao: '',
                       ultimaModificacao: '',
                       progresso: 0,
@@ -136,7 +160,13 @@ export default function InserirDados({
                 setIsLoading(false)
               }
             }}
-            disabled={!curso || !tipoTrabalho || !subtitulo.trim() || isLoading}
+            disabled={
+              !titulo.trim() ||
+              !curso ||
+              !tipoTrabalho ||
+              !tema.trim() ||
+              isLoading
+            }
             className="px-8 py-3 rounded-2xl gradient-bg text-white font-medium hover:scale-105 hover:shadow-lg transition-all duration-300 disabled:opacity-50 disabled:hover:scale-100"
           >
             Continuar
