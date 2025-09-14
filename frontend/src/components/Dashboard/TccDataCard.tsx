@@ -147,7 +147,7 @@ export default function TccDataCard({
                       onChange={(e) =>
                         setFormData({ ...formData, nomeAluno: e.target.value })
                       }
-                      className="pl-10 rounded-xl border-2 focus:border-orange-300 transition-colors"
+                      className="pl-10 rounded-xl border-2 bg-white focus:border-orange-300 transition-colors"
                       placeholder="Seu nome completo"
                     />
                   </div>
@@ -168,7 +168,7 @@ export default function TccDataCard({
                       onChange={(e) =>
                         setFormData({ ...formData, tema: e.target.value })
                       }
-                      className="pl-10 rounded-xl border-2 focus:border-orange-300 transition-colors"
+                      className="pl-10 rounded-xl border-2 bg-white focus:border-orange-300 transition-colors"
                       placeholder="Título do seu trabalho"
                     />
                   </div>
@@ -189,7 +189,7 @@ export default function TccDataCard({
                       onChange={(e) =>
                         setFormData({ ...formData, curso: e.target.value })
                       }
-                      className="pl-10 rounded-xl border-2 focus:border-orange-300 transition-colors"
+                      className="pl-10 rounded-xl border-2 bg-white focus:border-orange-300 transition-colors"
                       placeholder="Nome do curso"
                     />
                   </div>
@@ -213,7 +213,7 @@ export default function TccDataCard({
                           instituicao: e.target.value,
                         })
                       }
-                      className="pl-10 rounded-xl border-2 focus:border-orange-300 transition-colors"
+                      className="pl-10 rounded-xl border-2 bg-white focus:border-orange-300 transition-colors"
                       placeholder="Nome da faculdade/universidade"
                     />
                   </div>
@@ -232,7 +232,7 @@ export default function TccDataCard({
                       setFormData({ ...formData, tipoTrabalho: value })
                     }
                   >
-                    <SelectTrigger className="rounded-xl border-2 focus:border-orange-300 transition-colors">
+                    <SelectTrigger className="rounded-xl border-2 bg-white focus:border-orange-300 transition-colors">
                       <SelectValue placeholder="Selecione o tipo" />
                     </SelectTrigger>
                     <SelectContent>
@@ -258,7 +258,7 @@ export default function TccDataCard({
                     onChange={(e) =>
                       setFormData({ ...formData, orientador: e.target.value })
                     }
-                    className="rounded-xl border-2 focus:border-orange-300 transition-colors"
+                    className="rounded-xl border-2 bg-white focus:border-orange-300 transition-colors"
                     placeholder="Nome do orientador"
                   />
                 </div>
@@ -276,7 +276,7 @@ export default function TccDataCard({
                     onChange={(e) =>
                       setFormData({ ...formData, coorientador: e.target.value })
                     }
-                    className="rounded-xl border-2 focus:border-orange-300 transition-colors"
+                    className="rounded-xl border-2 bg-white focus:border-orange-300 transition-colors"
                     placeholder="Nome do coorientador (opcional)"
                   />
                 </div>
@@ -297,7 +297,7 @@ export default function TccDataCard({
                         palavrasChave: e.target.value,
                       })
                     }
-                    className="rounded-xl border-2 focus:border-orange-300 transition-colors"
+                    className="rounded-xl border-2 bg-white focus:border-orange-300 transition-colors"
                     placeholder="Palavra1, Palavra2, Palavra3"
                   />
                 </div>
@@ -316,7 +316,7 @@ export default function TccDataCard({
                   onChange={(e) =>
                     setFormData({ ...formData, resumo: e.target.value })
                   }
-                  className="rounded-xl border-2 focus:border-orange-300 transition-colors min-h-[120px]"
+                  className="rounded-xl border-2 bg-white focus:border-orange-300 transition-colors min-h-[120px]"
                   placeholder="Escreva um breve resumo do seu trabalho..."
                 />
               </div>
