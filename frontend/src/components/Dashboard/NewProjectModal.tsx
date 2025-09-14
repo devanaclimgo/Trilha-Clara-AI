@@ -7,7 +7,7 @@ import { X } from 'lucide-react'
 interface NewProjectModalProps {
   show: boolean
   onClose: () => void
-  onCreateProject: (titulo: string, curso: string, subtitulo: string) => void
+  onCreateProject: (titulo: string, curso: string) => void
 }
 
 export default function NewProjectModal({
@@ -18,20 +18,19 @@ export default function NewProjectModal({
   const [formData, setFormData] = useState({
     titulo: '',
     curso: '',
-    subtitulo: '',
   })
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
-    if (formData.titulo && formData.curso && formData.subtitulo) {
-      onCreateProject(formData.titulo, formData.curso, formData.subtitulo)
-      setFormData({ titulo: '', curso: '', subtitulo: '' })
+    if (formData.titulo && formData.curso) {
+      onCreateProject(formData.titulo, formData.curso)
+      setFormData({ titulo: '', curso: '' })
       onClose()
     }
   }
 
   const handleCancel = () => {
-    setFormData({ titulo: '', curso: '', subtitulo: '' })
+    setFormData({ titulo: '', curso: '' })
     onClose()
   }
 
@@ -94,22 +93,6 @@ export default function NewProjectModal({
               </option>
               <option value="outros">Outros</option>
             </select>
-          </div>
-
-          <div>
-            <label className="block text-sm font-medium mb-2">
-              Subtítulo do Trabalho
-            </label>
-            <textarea
-              placeholder="Cole aqui o subtitulo do seu TCC conforme fornecido pelo professor..."
-              rows={4}
-              value={formData.subtitulo}
-              onChange={(e) =>
-                setFormData({ ...formData, subtitulo: e.target.value })
-              }
-              className="w-full p-3 rounded-xl border border-slate-200 bg-slate-50/60 backdrop-blur-sm focus:ring-2 focus:ring-purple-500/20 focus:border-purple-500 transition-all duration-300 resize-none"
-              required
-            />
           </div>
 
           <div className="flex gap-3 pt-4">

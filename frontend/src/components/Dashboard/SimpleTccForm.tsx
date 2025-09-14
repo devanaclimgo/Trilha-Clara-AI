@@ -13,10 +13,9 @@ export default function SimpleTccForm({ onSuccess }: SimpleTccFormProps) {
   const [formData, setFormData] = useState({
     titulo: '',
     curso: '',
-    subtitulo: '',
   })
   const [isLoading, setIsLoading] = useState(false)
-  const [tccId, setTccId] = useState<string | null>(null)
+  const [, setTccId] = useState<string | null>(null)
   const [error, setError] = useState<string | null>(null)
 
   const handleInputChange = (field: string, value: string) => {
@@ -111,19 +110,6 @@ export default function SimpleTccForm({ onSuccess }: SimpleTccFormProps) {
                 </option>
                 <option value="outros">Outros</option>
               </select>
-            </div>
-
-            <div>
-              <label className="block text-sm font-medium mb-2">
-                Subtítulo/Descrição
-              </label>
-              <textarea
-                value={formData.subtitulo}
-                onChange={(e) => handleInputChange('subtitulo', e.target.value)}
-                className="w-full p-4 rounded-2xl border border-slate-200 bg-slate-50/60 backdrop-blur-sm focus:ring-2 focus:ring-purple-500/20 focus:border-purple-500 transition-all duration-300 resize-none"
-                placeholder="Breve descrição sobre o que é o trabalho..."
-                rows={3}
-              />
             </div>
 
             {error && (

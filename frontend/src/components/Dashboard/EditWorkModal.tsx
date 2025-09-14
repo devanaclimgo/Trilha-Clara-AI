@@ -21,7 +21,6 @@ export default function EditWorkModal({
   const [formData, setFormData] = useState({
     titulo: '',
     curso: '',
-    subtitulo: '',
   })
 
   useEffect(() => {
@@ -29,18 +28,16 @@ export default function EditWorkModal({
       setFormData({
         titulo: work.titulo,
         curso: work.curso,
-        subtitulo: work.subtitulo,
       })
     }
   }, [work])
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
-    if (work && formData.titulo && formData.curso && formData.subtitulo) {
+    if (work && formData.titulo && formData.curso) {
       onSave(work.id, {
         titulo: formData.titulo,
         curso: formData.curso,
-        subtitulo: formData.subtitulo,
         ultimaModificacao: new Date().toISOString(),
       })
       onClose()
@@ -52,7 +49,6 @@ export default function EditWorkModal({
       setFormData({
         titulo: work.titulo,
         curso: work.curso,
-        subtitulo: work.subtitulo,
       })
     }
     onClose()
@@ -117,22 +113,6 @@ export default function EditWorkModal({
               </option>
               <option value="outros">Outros</option>
             </select>
-          </div>
-
-          <div>
-            <label className="block text-sm font-medium mb-2">
-              Subtítulo do Trabalho
-            </label>
-            <textarea
-              placeholder="Cole aqui o subtítulo do seu TCC conforme fornecido pelo professor..."
-              rows={4}
-              value={formData.subtitulo}
-              onChange={(e) =>
-                setFormData({ ...formData, subtitulo: e.target.value })
-              }
-              className="w-full p-3 rounded-xl border border-slate-200 bg-slate-50/60 backdrop-blur-sm focus:ring-2 focus:ring-purple-500/20 focus:border-purple-500 transition-all duration-300 resize-none"
-              required
-            />
           </div>
 
           <div className="flex gap-3 pt-4">

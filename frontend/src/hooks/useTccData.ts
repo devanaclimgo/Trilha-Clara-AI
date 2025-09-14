@@ -8,7 +8,6 @@ export const useTccData = () => {
     id: '',
     titulo: '',
     curso: '',
-    subtitulo: '',
     tipoTrabalho: '',
     explicacao: [],
     sugestoes: [],
@@ -74,17 +73,12 @@ export const useTccData = () => {
     localStorage.setItem('tcc-trabalhos', JSON.stringify(trabalhosAtualizados))
   }
 
-  const criarNovoTrabalho = (
-    titulo: string,
-    curso: string,
-    subtitulo: string,
-  ) => {
+  const criarNovoTrabalho = (titulo: string, curso: string, enunciado: string) => {
     const novoId = `tcc-${Date.now()}`
     const novoTrabalho: TccData = {
       id: novoId,
       titulo,
       curso,
-      subtitulo,
       explicacao: [],
       sugestoes: [],
       dica: '',
@@ -243,7 +237,6 @@ export const useTccData = () => {
           id: '',
           titulo: '',
           curso: '',
-          subtitulo: '',
           tipoTrabalho: '',
           explicacao: [],
           sugestoes: [],

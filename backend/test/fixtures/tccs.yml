@@ -1,0 +1,19 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  nome: MyString
+  faculdade: MyString
+  curso: MyString
+  materia: MyString
+  tema: MyString
+  tipo_trabalho: MyString
+  user: one
+
+two:
+  nome: MyString
+  faculdade: MyString
+  curso: MyString
+  materia: MyString
+  tema: MyString
+  tipo_trabalho: MyString
+  user: two

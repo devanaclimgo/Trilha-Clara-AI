@@ -58,7 +58,6 @@ export default function DashboardStartScreen() {
     salvarTrabalho,
     criarNovoTrabalho,
     trocarTrabalho,
-    atualizarProgresso,
     saveNote,
     removeNote,
     getCurrentWorkNotes,
@@ -86,12 +85,8 @@ export default function DashboardStartScreen() {
     return Math.round((currentStep / steps.length) * 100)
   }
 
-  const handleCriarNovoTrabalho = (
-    titulo: string,
-    curso: string,
-    enunciado: string,
-  ) => {
-    criarNovoTrabalho(titulo, curso, enunciado)
+  const handleCriarNovoTrabalho = (titulo: string, curso: string) => {
+    criarNovoTrabalho(titulo, curso, '')
     setShowNewProjectForm(false)
   }
 
@@ -160,7 +155,6 @@ export default function DashboardStartScreen() {
       tema: data.tema,
       tipoTrabalho: data.tipoTrabalho,
       curso: data.curso,
-      subtitulo: data.enunciado,
       progresso: 5,
       status: 'iniciado' as const,
       ultimaModificacao: new Date().toISOString(),
@@ -183,20 +177,22 @@ export default function DashboardStartScreen() {
       // Simular delay para geração da explicação
       await new Promise((resolve) => setTimeout(resolve, 2000))
 
-      // Simular geração da explicação
+      // Simular geração da explicação baseada no enunciado
       const explicacaoGerada = [
-        `Com base no tema "${data.tema}", este trabalho tem como objetivo principal analisar e compreender os aspectos fundamentais da questão proposta.`,
-        `A metodologia sugerida envolve pesquisa bibliográfica, análise de dados e elaboração de conclusões baseadas em evidências científicas.`,
-        `O prazo de ${data.semanas} semanas permite um desenvolvimento adequado do trabalho, com fases bem definidas para cada etapa.`,
+        `Com base no enunciado fornecido, este ${data.tipoTrabalho} tem como objetivo principal analisar e compreender os aspectos fundamentais da questão proposta.`,
+        `A metodologia sugerida envolve pesquisa bibliográfica, análise de dados e elaboração de conclusões baseadas em evidências científicas, adaptada ao contexto de ${data.curso}.`,
+        `O prazo de ${data.semanas} semanas permite um desenvolvimento adequado do trabalho, com fases bem definidas para cada etapa do processo de pesquisa.`,
+        `O trabalho "${data.tema}" é relevante para a área de ${data.curso} e contribui para o conhecimento acadêmico na área específica.`,
       ]
 
       const sugestoes = [
-        `Foque na relevância do tema para o curso de ${data.curso}`,
-        `Considere as diretrizes específicas para ${data.tipoTrabalho}`,
+        `Foque na relevância do enunciado para o curso de ${data.curso}`,
+        `Considere as diretrizes específicas para ${data.tipoTrabalho} e as normas da instituição`,
         `Mantenha um cronograma realista considerando o prazo de ${data.semanas} semanas`,
+        `Desenvolva uma metodologia adequada ao tipo de pesquisa necessária para abordar o enunciado`,
       ]
 
-      const dica = `Para um ${data.tipoTrabalho} em ${data.curso}, é importante seguir as normas ABNT e manter consistência metodológica.`
+      const dica = `Para um ${data.tipoTrabalho} baseado no enunciado fornecido em ${data.curso}, é importante seguir as normas ABNT, manter consistência metodológica e focar na contribuição científica do trabalho.`
 
       // Atualizar com explicação
       const dataWithExplanation = {
@@ -217,13 +213,13 @@ export default function DashboardStartScreen() {
       // Simular delay para geração da estrutura
       await new Promise((resolve) => setTimeout(resolve, 1500))
 
-      // Simular geração da estrutura
+      // Simular geração da estrutura baseada no enunciado
       const estruturaGerada = [
-        'Introdução - Apresentação do tema, justificativa e objetivos (2 semanas)',
-        'Revisão de Literatura - Fundamentação teórica e estado da arte (3 semanas)',
-        'Metodologia - Descrição dos métodos e procedimentos utilizados (2 semanas)',
-        'Desenvolvimento - Análise e discussão dos resultados (4 semanas)',
-        'Conclusão - Síntese dos resultados e considerações finais (1 semana)',
+        `Introdução - Apresentação do trabalho "${data.tema}", justificativa e objetivos específicos (2 semanas)`,
+        `Revisão de Literatura - Fundamentação teórica baseada no enunciado e estado da arte na área (3 semanas)`,
+        `Metodologia - Descrição dos métodos e procedimentos para abordar o enunciado (2 semanas)`,
+        `Desenvolvimento - Análise e discussão dos resultados relacionados ao enunciado proposto (4 semanas)`,
+        `Conclusão - Síntese dos resultados e considerações finais baseadas no enunciado (1 semana)`,
       ]
 
       const dataWithStructure = {
@@ -242,20 +238,20 @@ export default function DashboardStartScreen() {
       // Simular delay para geração do cronograma
       await new Promise((resolve) => setTimeout(resolve, 1500))
 
-      // Simular geração do cronograma
+      // Simular geração do cronograma baseado no enunciado
       const cronogramaGerado = [
         {
           id: 1,
-          title: 'Pesquisa Bibliográfica',
-          description: 'Coleta e análise de referências relevantes',
+          title: `Pesquisa Bibliográfica - ${data.tema}`,
+          description: `Coleta e análise de referências relevantes baseadas no enunciado fornecido`,
           startDate: new Date().toISOString(),
           endDate: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toISOString(),
           status: 'pending',
         },
         {
           id: 2,
-          title: 'Elaboração da Introdução',
-          description: 'Desenvolvimento da introdução e justificativa',
+          title: `Elaboração da Introdução - ${data.tema}`,
+          description: `Desenvolvimento da introdução e justificativa baseada no enunciado`,
           startDate: new Date(
             Date.now() + 7 * 24 * 60 * 60 * 1000,
           ).toISOString(),
@@ -266,8 +262,8 @@ export default function DashboardStartScreen() {
         },
         {
           id: 3,
-          title: 'Desenvolvimento do Conteúdo',
-          description: 'Escrita das seções principais do trabalho',
+          title: `Desenvolvimento do Conteúdo - ${data.tema}`,
+          description: `Escrita das seções principais do trabalho baseado no enunciado`,
           startDate: new Date(
             Date.now() + 14 * 24 * 60 * 60 * 1000,
           ).toISOString(),
@@ -278,8 +274,8 @@ export default function DashboardStartScreen() {
         },
         {
           id: 4,
-          title: 'Revisão e Formatação',
-          description: 'Revisão final e formatação ABNT',
+          title: `Revisão e Formatação - ${data.tema}`,
+          description: `Revisão final e formatação ABNT do trabalho baseado no enunciado`,
           startDate: new Date(
             Date.now() + 28 * 24 * 60 * 60 * 1000,
           ).toISOString(),
@@ -332,7 +328,6 @@ export default function DashboardStartScreen() {
       tema: data.tema,
       tipoTrabalho: data.tipoTrabalho,
       curso: data.curso,
-      subtitulo: data.enunciado,
       progresso: 10,
       ultimaModificacao: new Date().toISOString(),
     }
@@ -341,28 +336,6 @@ export default function DashboardStartScreen() {
 
     // Redirecionar para a página de edição
     window.location.href = `/work-edit/${workId}`
-  }
-
-  const handleUpdateWork = (
-    workId: string,
-    field: keyof TccData,
-    value: string | number,
-  ) => {
-    // Encontrar o trabalho e atualizá-lo
-    const trabalho = trabalhos.find((t) => t.id === workId)
-    if (trabalho) {
-      const updatedTrabalho = {
-        ...trabalho,
-        [field]: value,
-        ultimaModificacao: new Date().toISOString(),
-      }
-      salvarTrabalho(updatedTrabalho)
-
-      // Se for o trabalho atual, atualizar também o tccData
-      if (trabalhoAtual === workId) {
-        setTccData(updatedTrabalho)
-      }
-    }
   }
 
   return (
@@ -431,7 +404,6 @@ export default function DashboardStartScreen() {
                 onDeleteWork={handleDeleteWork}
                 onContinueWork={handleContinueWork}
                 onStartWork={handleStartWork}
-                onUpdateWork={handleUpdateWork}
               />
 
               {/* Overview Cards - sempre visíveis */}

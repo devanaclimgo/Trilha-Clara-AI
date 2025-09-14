@@ -23,7 +23,6 @@ interface TccData {
   id: string
   titulo: string
   curso: string
-  subtitulo: string
   explicacao: string | string[]
   sugestoes: string[]
   dica: string

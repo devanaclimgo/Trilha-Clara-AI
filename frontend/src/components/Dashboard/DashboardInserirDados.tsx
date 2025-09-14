@@ -119,38 +119,48 @@ export default function InserirDados({
                 return
               setIsLoading(true)
               try {
-                const res = await fetch(
-                  'http://localhost:4000/api/tcc/criar.json',
-                  {
-                    method: 'POST',
-                    headers: {
-                      'Content-Type': 'application/json',
-                      Accept: 'application/json',
-                    },
-                    body: JSON.stringify({ titulo, curso, tipoTrabalho, tema }),
+                const res = await fetch('http://localhost:4000/api/tcc.json', {
+                  method: 'POST',
+                  headers: {
+                    'Content-Type': 'application/json',
+                    Accept: 'application/json',
+                    Authorization: `Bearer ${localStorage.getItem('token')}`,
                   },
-                )
+                  body: JSON.stringify({
+                    tcc: {
+                      nome: titulo,
+                      faculdade: 'Universidade', // Pode ser um campo do formulário
+                      curso: curso,
+                      materia: curso, // Usando curso como matéria por enquanto
+                      tema: tema,
+                      tipo_trabalho: tipoTrabalho,
+                    },
+                  }),
+                })
 
-                const data = await res.json()
+                const tccData = await res.json()
 
                 if (onSaveData) {
                   onSaveData(
                     {
-                      titulo,
-                      curso,
-                      tipoTrabalho,
-                      subtitulo: tema, // Usando tema como subtítulo temporariamente
-                      explicacao: data.explicacao,
-                      sugestoes: data.sugestoes,
-                      dica: data.dica,
-                      estrutura: data.estrutura,
-                      cronograma: data.cronograma,
-                      id: '',
-                      dataCriacao: '',
-                      ultimaModificacao: '',
+                      titulo: tccData.titulo,
+                      curso: tccData.curso,
+                      tipoTrabalho: tccData.tipo_trabalho,
+                      status: 'em_andamento',
+                      explicacao: tccData.explicacao,
+                      sugestoes: tccData.sugestoes,
+                      dica: tccData.dica,
+                      estrutura: tccData.estrutura,
+                      cronograma: tccData.cronograma,
+                      id: tccData.id,
+                      dataCriacao: tccData.created_at,
+                      ultimaModificacao: tccData.updated_at,
                       progresso: 0,
+                      tema: tccData.tema,
+                      nomeAluno: tccData.nome,
+                      instituicao: tccData.faculdade,
                     },
-                    data.explicacao,
+                    tccData.explicacao,
                   )
                 }
                 onNext()

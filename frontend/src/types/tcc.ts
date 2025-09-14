@@ -3,7 +3,6 @@ export interface TccData {
   titulo: string
   curso: string
   tipoTrabalho: string
-  subtitulo: string
   explicacao: string | string[]
   sugestoes: string[]
   dica: string
