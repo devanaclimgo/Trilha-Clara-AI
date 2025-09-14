@@ -1,0 +1,122 @@
+'use client'
+
+import { Button } from '@/components/ui/button'
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from '@/components/ui/card'
+import { BookOpen, Edit3, Calendar, FileText, Eye } from 'lucide-react'
+
+interface OverviewCardsProps {
+  onViewExplanation: () => void
+  onViewStructure: () => void
+  onViewTimeline: () => void
+  hasData: boolean
+}
+
+export default function OverviewCards({
+  onViewExplanation,
+  onViewStructure,
+  onViewTimeline,
+  hasData,
+}: OverviewCardsProps) {
+  const cards = [
+    {
+      title: 'Explicação Simplificada',
+      description: 'Entenda o que o professor pediu de forma clara e objetiva',
+      icon: BookOpen,
+      onClick: onViewExplanation,
+      color: 'from-blue-500 to-cyan-500',
+      bgColor: 'from-blue-50 to-cyan-50',
+      borderColor: 'border-blue-200',
+    },
+    {
+      title: 'Estrutura Sugerida',
+      description: 'Veja como organizar seu TCC com a estrutura recomendada',
+      icon: Edit3,
+      onClick: onViewStructure,
+      color: 'from-purple-500 to-pink-500',
+      bgColor: 'from-purple-50 to-pink-50',
+      borderColor: 'border-purple-200',
+    },
+    {
+      title: 'Cronograma',
+      description: 'Acompanhe suas atividades e prazos de forma organizada',
+      icon: Calendar,
+      onClick: onViewTimeline,
+      color: 'from-green-500 to-emerald-500',
+      bgColor: 'from-green-50 to-emerald-50',
+      borderColor: 'border-green-200',
+    },
+  ]
+
+  if (!hasData) {
+    return (
+      <div className="mb-8">
+        <h2 className="text-2xl font-bold gradient-text mb-6">Visão Geral</h2>
+        <div className="text-center py-12 bg-slate-50/80 backdrop-blur-sm rounded-2xl border border-slate-200/20">
+          <div className="p-4 rounded-full bg-gradient-to-r from-gray-400 to-gray-500 w-16 h-16 mx-auto mb-4 flex items-center justify-center">
+            <FileText className="h-8 w-8 text-white" />
+          </div>
+          <h3 className="text-xl font-bold text-gray-800 mb-2">
+            Crie um trabalho primeiro
+          </h3>
+          <p className="text-gray-600">
+            Para visualizar a estrutura, cronograma e explicação, você precisa
+            criar um trabalho acadêmico.
+          </p>
+        </div>
+      </div>
+    )
+  }
+
+  return (
+    <div className="mb-8">
+      <h2 className="text-2xl font-bold gradient-text mb-6">Visão Geral</h2>
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {cards.map((card, index) => (
+          <Card
+            key={index}
+            className={`bg-gradient-to-br ${card.bgColor} border ${card.borderColor} hover:shadow-xl transition-all duration-300 cursor-pointer group`}
+            onClick={card.onClick}
+          >
+            <CardHeader className="pb-4">
+              <div className="flex items-center gap-4">
+                <div
+                  className={`p-3 rounded-2xl bg-gradient-to-r ${card.color} shadow-lg`}
+                >
+                  <card.icon className="h-6 w-6 text-white" />
+                </div>
+                <div>
+                  <CardTitle className="text-lg font-bold text-gray-800 group-hover:text-gray-900 transition-colors">
+                    {card.title}
+                  </CardTitle>
+                </div>
+              </div>
+            </CardHeader>
+            <CardContent className="pt-0">
+              <CardDescription className="text-gray-600 mb-4 leading-relaxed">
+                {card.description}
+              </CardDescription>
+              <Button
+                variant="outline"
+                size="sm"
+                className={`w-full border-2 ${card.borderColor} hover:bg-white/50 transition-all duration-300 group-hover:scale-105`}
+                onClick={(e) => {
+                  e.stopPropagation()
+                  card.onClick()
+                }}
+              >
+                <Eye className="h-4 w-4 mr-2" />
+                Visualizar
+              </Button>
+            </CardContent>
+          </Card>
+        ))}
+      </div>
+    </div>
+  )
+}

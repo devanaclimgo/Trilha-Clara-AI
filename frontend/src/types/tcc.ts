@@ -13,6 +13,14 @@ export interface TccData {
   dataCriacao: string
   ultimaModificacao: string
   progresso: number
+  // Novos campos para formatação ABNT
+  nomeAluno?: string
+  tema?: string
+  instituicao?: string
+  orientador?: string
+  coorientador?: string
+  palavrasChave?: string
+  resumo?: string
 }
 
 export interface NoteItem {

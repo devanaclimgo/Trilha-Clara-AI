@@ -13,6 +13,7 @@ import {
   StickyNote,
   X,
   CheckCircle,
+  Home,
 } from 'lucide-react'
 import LogoutButton from '../LogoutButton'
 import DonationSection from '../DonationSection'
@@ -39,6 +40,7 @@ interface DashboardSidebarProps {
 export default function DashboardSidebar({
   sidebarOpen,
   setSidebarOpen,
+  currentScreen,
   setCurrentScreen,
   currentStep,
   steps,
@@ -51,6 +53,11 @@ export default function DashboardSidebar({
   const sidebarRef = useRef<HTMLDivElement>(null)
 
   const menuItems = [
+    {
+      title: 'Início',
+      icon: Home,
+      id: 'main',
+    },
     {
       title: 'Anotações',
       icon: FileText,
@@ -136,7 +143,11 @@ export default function DashboardSidebar({
                 <Button
                   key={item.id}
                   variant="ghost"
-                  className="w-full justify-start gap-3 p-3 rounded-xl hover:bg-purple-50 hover:text-purple-600 transition-all"
+                  className={`w-full justify-start gap-3 p-3 rounded-xl transition-all ${
+                    currentScreen === item.id
+                      ? 'bg-gradient-to-r from-purple-50 to-blue-50 border border-purple-200 text-purple-700'
+                      : 'hover:bg-purple-50 hover:text-purple-600'
+                  }`}
                   onClick={() => {
                     setCurrentScreen(item.id)
                     setSidebarOpen(false)

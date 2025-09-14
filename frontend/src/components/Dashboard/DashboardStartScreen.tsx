@@ -1,33 +1,22 @@
 'use client'
 
 import { useState } from 'react'
-import {
-  ArrowLeft,
-  Clock,
-  Download,
-  FileText,
-  BookOpen,
-  Edit3,
-} from 'lucide-react'
-import { Button } from '@/components/ui/button'
+import { Clock, Download, FileText, BookOpen, Edit3 } from 'lucide-react'
 import DashboardHeader from './DashboardHeader'
 import DashboardSidebar from './DashboardSidebar'
 import WorkCards from './WorkCards'
 import QuickAccessCards from './QuickAccessCards'
-import ProgressOverview from './ProgressOverview'
 import RecentActivity from './RecentActivity'
-import StepProgress from './StepProgress'
+import OverviewCards from './OverviewCards'
+import TccDataCard from './TccDataCard'
 import ContentPage from './ContentPage'
 import NewProjectModal from './NewProjectModal'
 import EditWorkModal from './EditWorkModal'
 import DeleteWorkModal from './DeleteWorkModal'
 import TimelineScreen from './DashboardTimelineScreen'
 import NotesScreen from './DashboardNoteScreen'
-import InserirDados from './DashboardInserirDados'
 import ExplicacaoSimplificada from './DashboardExplicacaoSimplidicada'
 import Estruturasugerida from './DashboardEstruturaSugerida'
-import Cronograma from './DashboardCronograma'
-import ExportacaoABNT from './DashboardExportacaoABNT'
 import DashboardProfileScreen from './DashboardProfileScreen'
 import DashboardSupportScreen from './DashboardSupportScreen'
 import InfoButton from '../InfoButton'
@@ -48,7 +37,6 @@ export default function DashboardStartScreen() {
     | 'profile'
     | 'support'
   >('main')
-  const [showStepByStep, setShowStepByStep] = useState(false)
   const [showNewProjectForm, setShowNewProjectForm] = useState(false)
   const [showEditWorkModal, setShowEditWorkModal] = useState(false)
   const [showDeleteWorkModal, setShowDeleteWorkModal] = useState(false)
@@ -99,7 +87,6 @@ export default function DashboardStartScreen() {
     enunciado: string,
   ) => {
     criarNovoTrabalho(titulo, curso, enunciado)
-    setCurrentStep(1)
     setShowNewProjectForm(false)
   }
 
@@ -185,151 +172,80 @@ export default function DashboardStartScreen() {
           currentScreen={currentScreen}
         />
         <div className="container mx-auto px-4 py-8">
-          {currentScreen === 'main' &&
-            hasCompletedInitialData &&
-            !showStepByStep && (
-              <div className="max-w-6xl mx-auto space-y-12">
-                {/* Welcome Header */}
-                <div className="text-center mb-8">
-                  <h1 className="text-4xl font-bold gradient-text mb-4">
-                    Bem-vindo de volta! 👋
-                  </h1>
-                  <p className="text-lg text-gray-600">
-                    Continue de onde parou no seu TCC
-                  </p>
-                </div>
+          {currentScreen === 'main' && (
+            <div className="max-w-6xl mx-auto space-y-12">
+              {/* Welcome Header */}
+              <div className="text-center mb-8">
+                <h1 className="text-4xl font-bold gradient-text mb-4">
+                  {hasCompletedInitialData
+                    ? 'Bem-vindo de volta! 👋'
+                    : 'Bem-vindo! Vamos começar seu trabalho 🚀'}
+                </h1>
+                <p className="text-lg text-gray-600">
+                  {hasCompletedInitialData
+                    ? 'Continue de onde parou no seu TCC'
+                    : 'Crie seu primeiro trabalho acadêmico para começar'}
+                </p>
+              </div>
 
-                {/* Progress Overview */}
-                <ProgressOverview
-                  currentStep={currentStep}
-                  steps={steps}
-                  getProgressPercentage={getProgressPercentage}
-                />
+              {/* Work Cards */}
+              <WorkCards
+                trabalhos={trabalhos}
+                trabalhoAtual={trabalhoAtual}
+                trocarTrabalho={handleTrocarTrabalho}
+                setShowNewProjectForm={setShowNewProjectForm}
+                setShowStepByStep={() => {}} // Função vazia pois não usamos mais o fluxo step-by-step
+                onEditWork={handleEditWork}
+                onDeleteWork={handleDeleteWork}
+              />
 
-                {/* Work Cards */}
-                <WorkCards
-                  trabalhos={trabalhos}
-                  trabalhoAtual={trabalhoAtual}
-                  trocarTrabalho={handleTrocarTrabalho}
-                  setShowNewProjectForm={setShowNewProjectForm}
-                  setShowStepByStep={setShowStepByStep}
-                  onEditWork={handleEditWork}
-                  onDeleteWork={handleDeleteWork}
-                />
+              {/* Overview Cards - sempre visíveis */}
+              <OverviewCards
+                onViewExplanation={() => setCurrentScreen('explanation')}
+                onViewStructure={() => setCurrentScreen('structure')}
+                onViewTimeline={() => setCurrentScreen('timeline')}
+                hasData={!!trabalhoAtual}
+              />
 
-                {/* Quick Access Cards */}
-                {trabalhoAtual && (
-                  <QuickAccessCards
-                    getCurrentWorkNotes={getCurrentWorkNotes}
-                    getCurrentWorkNotesWithDates={getCurrentWorkNotesWithDates}
-                    setCurrentScreen={(screen: string) =>
-                      setCurrentScreen(
-                        screen as
-                          | 'main'
-                          | 'notes'
-                          | 'explanation'
-                          | 'structure'
-                          | 'timeline'
-                          | 'settings'
-                          | 'profile'
-                          | 'support',
-                      )
-                    }
-                  />
-                )}
+              {/* TCC Data Card - sempre visível */}
+              <TccDataCard
+                tccData={tccData}
+                onSaveData={(data) => {
+                  const updatedData = { ...tccData, ...data }
+                  setTccData(updatedData)
+                  salvarTrabalho(updatedData)
+                }}
+                hasData={!!trabalhoAtual}
+              />
 
-                {/* Recent Activity */}
-                <RecentActivity
+              {/* Quick Access Cards - só aparece se tem trabalho */}
+              {trabalhoAtual && (
+                <QuickAccessCards
                   getCurrentWorkNotes={getCurrentWorkNotes}
                   getCurrentWorkNotesWithDates={getCurrentWorkNotesWithDates}
+                  setCurrentScreen={(screen: string) =>
+                    setCurrentScreen(
+                      screen as
+                        | 'main'
+                        | 'notes'
+                        | 'explanation'
+                        | 'structure'
+                        | 'timeline'
+                        | 'settings'
+                        | 'profile'
+                        | 'support',
+                    )
+                  }
                 />
-              </div>
-            )}
-          {currentScreen === 'main' &&
-            (!hasCompletedInitialData || showStepByStep) && (
-              <>
-                {!hasCompletedInitialData && (
-                  <div className="text-center mb-8">
-                    <h1 className="text-4xl font-bold gradient-text mb-4">
-                      Bem-vindo! Vamos começar seu trabalho 🚀
-                    </h1>
-                    <p className="text-lg text-gray-600">
-                      Preencha os dados abaixo para começar seu TCC
-                    </p>
-                  </div>
-                )}
-                {hasCompletedInitialData && showStepByStep && (
-                  <div className="flex items-center justify-between mb-6">
-                    <Button
-                      variant="outline"
-                      onClick={() => setShowStepByStep(false)}
-                      className="rounded-xl hover:bg-purple-50 border-purple-200 hover:border-purple-300 hover:text-purple-600 flex items-center gap-2 px-4 py-2"
-                    >
-                      <ArrowLeft className="h-4 w-4" />
-                      <span className="text-sm font-medium">
-                        Voltar ao início
-                      </span>
-                    </Button>
-                  </div>
-                )}
-                <StepProgress currentStep={currentStep} steps={steps} />
-                <div className="max-w-4xl mx-auto">
-                  {currentStep === 1 && (
-                    <InserirDados
-                      onNext={() => setCurrentStep(2)}
-                      onSaveData={(data: TccData, explicacaoGerada: string) => {
-                        const trabalhoAtualizado = {
-                          ...tccData,
-                          curso: data.curso,
-                          subtitulo: data.subtitulo,
-                          explicacao: explicacaoGerada,
-                          sugestoes: data.sugestoes,
-                          dica: data.dica,
-                          estrutura: data.estrutura,
-                          cronograma: data.cronograma,
-                          progresso: 20, // 20% após inserir dados
-                          ultimaModificacao: new Date().toISOString(),
-                        }
-                        setTccData(trabalhoAtualizado)
-                        salvarTrabalho(trabalhoAtualizado)
-                      }}
-                    />
-                  )}
-                  {currentStep === 2 && (
-                    <ExplicacaoSimplificada
-                      explicacao={tccData.explicacao || []}
-                      sugestoes={tccData.sugestoes || []}
-                      dica={tccData.dica || ''}
-                      onNext={() => {
-                        setCurrentStep(3)
-                        atualizarProgresso(40) // 40% após explicação
-                      }}
-                      onSaveNote={saveNote}
-                    />
-                  )}
+              )}
 
-                  {currentStep === 3 && (
-                    <Estruturasugerida
-                      estrutura={tccData.estrutura || []}
-                      onNext={() => {
-                        setCurrentStep(4)
-                        atualizarProgresso(60) // 60% após estrutura
-                      }}
-                    />
-                  )}
-                  {currentStep === 4 && (
-                    <Cronograma
-                      atividades={tccData.cronograma || []}
-                      onNext={() => {
-                        setCurrentStep(5)
-                        atualizarProgresso(80) // 80% após cronograma
-                      }}
-                    />
-                  )}
-                  {currentStep === 5 && <ExportacaoABNT />}
-                </div>
-              </>
-            )}
+              {/* Recent Activity - sempre visível */}
+              <RecentActivity
+                getCurrentWorkNotes={getCurrentWorkNotes}
+                getCurrentWorkNotesWithDates={getCurrentWorkNotesWithDates}
+              />
+            </div>
+          )}
           {currentScreen === 'notes' && (
             <NotesScreen
               savedNotes={getCurrentWorkNotes()}
