@@ -13,10 +13,6 @@ export function useAuth() {
       const token = localStorage.getItem('token')
       if (token) {
         setIsAuthenticated(true)
-        // Se estiver na home e estiver logado, redirecionar para dashboard
-        if (window.location.pathname === '/') {
-          router.push('/dashboard')
-        }
       } else {
         setIsAuthenticated(false)
       }
@@ -24,7 +20,7 @@ export function useAuth() {
     }
 
     checkAuth()
-  }, [router])
+  }, [])
 
   const logout = () => {
     localStorage.removeItem('token')

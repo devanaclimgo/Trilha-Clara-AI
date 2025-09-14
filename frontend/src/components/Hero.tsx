@@ -14,21 +14,13 @@ const Hero = () => {
           Simplifique sua jornada acadêmica. Organize, estruture e finalize seu
           TCC com confiança e clareza.
         </p>
-        <div className="flex flex-col sm:flex-row gap-4 justify-center">
+        <div className="flex justify-center">
           <Button
             asChild
             size="lg"
-            className="text-lg px-8 py-6 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105"
+            className="text-lg px-12 py-6 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105"
           >
-            <Link href="/signup">Criar Conta</Link>
-          </Button>
-          <Button
-            asChild
-            variant="outline"
-            size="lg"
-            className="text-lg px-8 py-6 rounded-2xl border-2 hover:bg-primary/20 transition-all duration-300 bg-white/50"
-          >
-            <Link href="/login">Fazer Login</Link>
+            <Link href="/login">Começar Agora</Link>
           </Button>
         </div>
       </div>
