@@ -29,6 +29,7 @@ import Estruturasugerida from './DashboardEstruturaSugerida'
 import Cronograma from './DashboardCronograma'
 import ExportacaoABNT from './DashboardExportacaoABNT'
 import DashboardProfileScreen from './DashboardProfileScreen'
+import DashboardSupportScreen from './DashboardSupportScreen'
 import InfoButton from '../InfoButton'
 import { useTccData } from '@/hooks/useTccData'
 import { TccData } from '@/types/tcc'
@@ -396,18 +397,9 @@ export default function DashboardStartScreen() {
             />
           )}
           {currentScreen === 'support' && (
-            <ContentPage
-              title="Suporte"
-              description="Central de suporte"
-              hasCompletedInitialData={hasCompletedInitialData}
+            <DashboardSupportScreen
               onBackToHome={() => setCurrentScreen('main')}
-            >
-              <div className="bg-slate-50/80 backdrop-blur-sm rounded-2xl p-8 shadow-lg border border-slate-200/20">
-                <p className="text-gray-600">
-                  Central de suporte em desenvolvimento...
-                </p>
-              </div>
-            </ContentPage>
+            />
           )}
 
           {/* Modal para Novo Trabalho */}
