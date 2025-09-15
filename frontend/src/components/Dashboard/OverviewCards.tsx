@@ -47,6 +47,7 @@ export default function OverviewCards({
       color: 'from-blue-500 to-cyan-500',
       bgColor: 'from-blue-50 to-cyan-50',
       borderColor: 'border-blue-200',
+      hoverColor: 'hover:border-blue-300 hover:text-blue-600',
       loadingKey: 'explanation' as const,
     },
     {
@@ -57,6 +58,7 @@ export default function OverviewCards({
       color: 'from-purple-500 to-pink-500',
       bgColor: 'from-purple-50 to-pink-50',
       borderColor: 'border-purple-200',
+      hoverColor: 'hover:border-purple-300 hover:text-purple-600',
       loadingKey: 'structure' as const,
     },
     {
@@ -67,6 +69,7 @@ export default function OverviewCards({
       color: 'from-green-500 to-emerald-500',
       bgColor: 'from-green-50 to-emerald-50',
       borderColor: 'border-green-200',
+      hoverColor: 'hover:border-green-300 hover:text-green-600',
       loadingKey: 'timeline' as const,
     },
   ]
@@ -132,13 +135,13 @@ export default function OverviewCards({
               <Button
                 variant="outline"
                 size="sm"
-                className={`w-full border-2 ${card.borderColor} hover:bg-white/50 transition-all duration-300 group-hover:scale-105`}
+              className={`w-full border-2 ${card.borderColor} hover:bg-white/50 transition-all duration-300 group-hover:scale-105 ${card.hoverColor}`}
                 onClick={(e) => {
                   e.stopPropagation()
                   card.onClick()
                 }}
               >
-                <Eye className="h-4 w-4 mr-2" />
+                <Eye className={`h-4 w-4 mr-2 ${card.hoverColor}`} />
                 Visualizar
               </Button>
             </CardContent>
