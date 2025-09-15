@@ -66,11 +66,38 @@ export const useTccData = () => {
     }
   }, [])
 
-  const salvarTrabalho = (trabalho: TccData) => {
+  const salvarTrabalho = async (trabalho: TccData) => {
     const trabalhosAtualizados = trabalhos.filter((t) => t.id !== trabalho.id)
     trabalhosAtualizados.push(trabalho)
     setTrabalhos(trabalhosAtualizados)
     localStorage.setItem('tcc-trabalhos', JSON.stringify(trabalhosAtualizados))
+
+    // Sincronizar com a API se o trabalho tiver ID da API
+    if (trabalho.id && trabalho.id.startsWith('tcc_')) {
+      try {
+        const token = localStorage.getItem('token')
+        if (token) {
+          await fetch(`http://localhost:4000/api/tcc/${trabalho.id}`, {
+            method: 'PUT',
+            headers: {
+              Authorization: `Bearer ${token}`,
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+              titulo: trabalho.titulo,
+              tema: trabalho.tema,
+              tipo_trabalho: trabalho.tipoTrabalho,
+              curso: trabalho.curso,
+              nome: trabalho.nomeAluno,
+              faculdade: trabalho.instituicao,
+              orientador: trabalho.orientador,
+            }),
+          })
+        }
+      } catch (error) {
+        console.error('Erro ao sincronizar com API:', error)
+      }
+    }
   }
 
   const criarNovoTrabalho = (titulo: string, curso: string, tema: string) => {
@@ -254,6 +281,49 @@ export const useTccData = () => {
     }
   }
 
+  const carregarDadosDaAPI = async (trabalhoId: string) => {
+    try {
+      const token = localStorage.getItem('token')
+      if (!token) return null
+
+      const response = await fetch(
+        `http://localhost:4000/api/tcc/${trabalhoId}`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            'Content-Type': 'application/json',
+          },
+        },
+      )
+
+      if (response.ok) {
+        const data = await response.json()
+        return {
+          id: data.id,
+          titulo: data.titulo || data.tema,
+          tema: data.tema,
+          tipoTrabalho: data.tipo_trabalho,
+          curso: data.curso,
+          nomeAluno: data.nome,
+          instituicao: data.faculdade,
+          orientador: data.orientador || '',
+          status: 'em_andamento' as const,
+          progresso: 45,
+          dataCriacao: data.created_at,
+          explicacao: [],
+          estrutura: [],
+          cronograma: [],
+          sugestoes: [],
+          dica: '',
+          ultimaModificacao: data.updated_at,
+        }
+      }
+    } catch (error) {
+      console.error('Erro ao carregar dados da API:', error)
+    }
+    return null
+  }
+
   return {
     trabalhos,
     trabalhoAtual,
@@ -274,5 +344,6 @@ export const useTccData = () => {
     getAllNotes,
     getAllNotesWithDates,
     deletarTrabalho,
+    carregarDadosDaAPI,
   }
 }

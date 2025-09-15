@@ -63,7 +63,7 @@ class Api::WorkContentController < ApplicationController
   end
 
   # GET /api/work/:id/content
-  def get_content
+  def content
     render json: {
       resumo: @work.resumo,
       introducao: @work.introducao,

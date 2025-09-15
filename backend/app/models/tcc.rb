@@ -2,7 +2,6 @@ class Tcc < ApplicationRecord
   belongs_to :user
 
   # Campos de conteúdo do trabalho
-  validates :titulo, presence: true
   validates :tema, presence: true
   validates :tipo_trabalho, presence: true
   validates :curso, presence: true

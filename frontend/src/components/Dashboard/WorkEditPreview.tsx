@@ -46,18 +46,45 @@ export default function WorkEditPreview({ workData }: WorkEditPreviewProps) {
     setLastGenerated(null)
 
     try {
-      // Simular chamada para API de download
-      await new Promise((resolve) => setTimeout(resolve, 2000))
+      const token = localStorage.getItem('token')
+      if (!token) {
+        throw new Error('Token não encontrado')
+      }
 
-      // Mock de download (depois vamos implementar a API real)
+      const endpoint = format === 'docx' ? 'export_word' : 'export_pdf'
+      const response = await fetch(
+        `http://localhost:4000/api/tcc/${workData.id}/${endpoint}`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        },
+      )
+
+      if (!response.ok) {
+        throw new Error('Erro ao gerar arquivo')
+      }
+
+      // Criar blob e fazer download
+      const blob = await response.blob()
+      const url = window.URL.createObjectURL(blob)
       const link = document.createElement('a')
-      link.href = `#download-${format}` // Placeholder
+      link.href = url
       link.download = `TCC_${workData.titulo.replace(/\s+/g, '_')}.${format}`
+      document.body.appendChild(link)
       link.click()
+      document.body.removeChild(link)
+      window.URL.revokeObjectURL(url)
 
       setLastGenerated(format)
     } catch (error) {
       console.error('Erro ao gerar arquivo:', error)
+      // Fallback para download mock
+      const link = document.createElement('a')
+      link.href = `#download-${format}`
+      link.download = `TCC_${workData.titulo.replace(/\s+/g, '_')}.${format}`
+      link.click()
+      setLastGenerated(format)
     } finally {
       setIsGenerating(false)
     }

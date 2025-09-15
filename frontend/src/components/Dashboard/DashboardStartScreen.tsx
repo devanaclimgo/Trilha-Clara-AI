@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Clock, Download, FileText, BookOpen, Edit3 } from 'lucide-react'
 import DashboardHeader from './DashboardHeader'
 import DashboardSidebar from './DashboardSidebar'
@@ -64,6 +64,7 @@ export default function DashboardStartScreen() {
     getCurrentWorkNotesWithDates,
     getAllNotesWithDates,
     deletarTrabalho,
+    carregarDadosDaAPI,
   } = useTccData()
 
   // Função para trocar trabalho e voltar para main
@@ -231,6 +232,21 @@ export default function DashboardStartScreen() {
     trocarTrabalho(workId)
     setCurrentScreen('explanation')
   }
+
+  // Carregar dados da API quando necessário
+  useEffect(() => {
+    const loadDataFromAPI = async () => {
+      if (trabalhoAtual && trabalhoAtual.startsWith('tcc_')) {
+        const apiData = await carregarDadosDaAPI(trabalhoAtual)
+        if (apiData) {
+          setTccData(apiData)
+          salvarTrabalho(apiData)
+        }
+      }
+    }
+
+    loadDataFromAPI()
+  }, [trabalhoAtual, carregarDadosDaAPI, setTccData, salvarTrabalho])
 
   return (
     <div className="min-h-screen flex gradient-trilha-soft">

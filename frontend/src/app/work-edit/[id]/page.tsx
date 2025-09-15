@@ -4,11 +4,22 @@ import { useState, useEffect } from 'react'
 import { useParams, useRouter } from 'next/navigation'
 import { Button } from '@/components/ui/button'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
-import { ArrowLeft, FileText, Download, Eye } from 'lucide-react'
+import {
+  ArrowLeft,
+  FileText,
+  Download,
+  Eye,
+  Clock,
+  BookOpen,
+  Edit3,
+} from 'lucide-react'
 import { TccData } from '@/types/tcc'
 import WorkEditBasicInfo from '@/components/Dashboard/WorkEditBasicInfo'
 import WorkEditContent from '@/components/Dashboard/WorkEditContent'
 import WorkEditPreview from '@/components/Dashboard/WorkEditPreview'
+import DashboardSidebar from '@/components/Dashboard/DashboardSidebar'
+import { useTccData } from '@/hooks/useTccData'
+import { useAuth } from '@/hooks/useAuth'
 
 export default function WorkEditPage() {
   const params = useParams()
@@ -18,12 +29,58 @@ export default function WorkEditPage() {
   const [workData, setWorkData] = useState<TccData | null>(null)
   const [loading, setLoading] = useState(true)
   const [activeTab, setActiveTab] = useState('basic')
+  const [sidebarOpen, setSidebarOpen] = useState(false)
+  const [currentScreen, setCurrentScreen] = useState<
+    | 'main'
+    | 'notes'
+    | 'explanation'
+    | 'structure'
+    | 'timeline'
+    | 'settings'
+    | 'profile'
+    | 'support'
+  >('main')
+
+  const { logout } = useAuth()
+  const {
+    tccData,
+    getCurrentWorkNotes,
+    getCurrentWorkNotesWithDates,
+    carregarDadosDaAPI,
+  } = useTccData()
+
+  const steps = [
+    { id: 1, title: 'Inserir Dados', icon: FileText },
+    { id: 2, title: 'Explicação', icon: BookOpen },
+    { id: 3, title: 'Estrutura', icon: Edit3 },
+    { id: 4, title: 'Cronograma', icon: Clock },
+    { id: 5, title: 'Exportar', icon: Download },
+  ]
+
+  const getProgressPercentage = () => {
+    return Math.round((2 / steps.length) * 100) // Assumindo que estamos no passo 2 (conteúdo)
+  }
 
   useEffect(() => {
     // Buscar dados do trabalho
     const fetchWorkData = async () => {
       try {
-        // Simular busca dos dados (depois vamos implementar a API real)
+        // Primeiro tenta carregar do hook (dados locais)
+        if (tccData && tccData.id === workId) {
+          setWorkData(tccData)
+          setLoading(false)
+          return
+        }
+
+        // Se não encontrar localmente, busca na API
+        const apiData = await carregarDadosDaAPI(workId)
+        if (apiData) {
+          setWorkData(apiData)
+          setLoading(false)
+          return
+        }
+
+        // Fallback para dados mock em caso de erro
         const mockData: TccData = {
           id: workId,
           titulo: 'TCC sobre Inteligência Artificial',
@@ -46,6 +103,27 @@ export default function WorkEditPage() {
         setWorkData(mockData)
       } catch (error) {
         console.error('Erro ao buscar dados do trabalho:', error)
+        // Fallback para dados mock em caso de erro
+        const mockData: TccData = {
+          id: workId,
+          titulo: 'TCC sobre Inteligência Artificial',
+          tema: 'Aplicação de Inteligência Artificial na Educação: Desafios e Oportunidades',
+          tipoTrabalho: 'tcc',
+          curso: 'desenvolvimento-de-sistemas',
+          nomeAluno: 'João Silva',
+          instituicao: 'Universidade Federal',
+          orientador: 'Dr. Maria Santos',
+          status: 'em_andamento',
+          progresso: 45,
+          dataCriacao: new Date().toISOString(),
+          explicacao: [],
+          estrutura: [],
+          cronograma: [],
+          sugestoes: [],
+          dica: '',
+          ultimaModificacao: new Date().toISOString(),
+        }
+        setWorkData(mockData)
       } finally {
         setLoading(false)
       }
@@ -54,7 +132,7 @@ export default function WorkEditPage() {
     if (workId) {
       fetchWorkData()
     }
-  }, [workId])
+  }, [workId, tccData, carregarDadosDaAPI])
 
   if (loading) {
     return (
@@ -86,80 +164,121 @@ export default function WorkEditPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-purple-50 via-blue-50 to-cyan-50">
-      {/* Header */}
-      <div className="bg-white/80 backdrop-blur-sm border-b border-gray-200/20 sticky top-0 z-10">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center gap-4">
-              <Button
-                variant="ghost"
-                onClick={() => router.push('/dashboard')}
-                className="hover:bg-purple-50 border border-purple-200 hover:border-purple-300 hover:text-purple-600 hover:scale-105 transition-all duration-300"
-              >
-                <ArrowLeft className="h-4 w-4 mr-2" />
-                Voltar
-              </Button>
-              <div>
-                <h1 className="text-2xl font-bold gradient-text">
-                  {workData.titulo}
-                </h1>
-                <p className="text-gray-600 text-sm">
-                  Editando trabalho acadêmico
-                </p>
+    <div className="min-h-screen flex gradient-trilha-soft">
+      <DashboardSidebar
+        sidebarOpen={sidebarOpen}
+        setSidebarOpen={setSidebarOpen}
+        currentScreen={currentScreen}
+        setCurrentScreen={(screen: string) =>
+          setCurrentScreen(
+            screen as
+              | 'main'
+              | 'notes'
+              | 'explanation'
+              | 'structure'
+              | 'timeline'
+              | 'settings'
+              | 'profile'
+              | 'support',
+          )
+        }
+        currentStep={2}
+        steps={steps}
+        getCurrentWorkNotes={getCurrentWorkNotes}
+        getCurrentWorkNotesWithDates={getCurrentWorkNotesWithDates}
+        getProgressPercentage={getProgressPercentage}
+        onShowAllNotes={() => setCurrentScreen('notes')}
+        onLogout={logout}
+      />
+      {sidebarOpen && (
+        <div
+          className="fixed inset-0 bg-black/20 backdrop-blur-sm z-40 lg:hidden"
+          onClick={() => setSidebarOpen(false)}
+        />
+      )}
+      <div className="flex-1">
+        {/* Header */}
+        <div className="bg-white/80 backdrop-blur-sm border-b border-gray-200/20 sticky top-0 z-10">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-4">
+                <Button
+                  variant="ghost"
+                  onClick={() => setSidebarOpen(!sidebarOpen)}
+                  className="lg:hidden hover:bg-purple-50 border border-purple-200 hover:border-purple-300 hover:text-purple-600 hover:scale-105 transition-all duration-300"
+                >
+                  <FileText className="h-4 w-4 mr-2" />
+                  Menu
+                </Button>
+                <Button
+                  variant="ghost"
+                  onClick={() => router.push('/dashboard')}
+                  className="hover:bg-purple-50 border border-purple-200 hover:border-purple-300 hover:text-purple-600 hover:scale-105 transition-all duration-300"
+                >
+                  <ArrowLeft className="h-4 w-4 mr-2" />
+                  Voltar
+                </Button>
+                <div>
+                  <h1 className="text-2xl font-bold gradient-text">
+                    {workData.titulo}
+                  </h1>
+                  <p className="text-gray-600 text-sm">
+                    Editando trabalho acadêmico
+                  </p>
+                </div>
               </div>
-            </div>
-            <div className="flex items-center gap-2">
-              <Button
-                variant="outline"
-                className="hover:bg-purple-50 hover:text-purple-600 border border-purple-200 hover:border-purple-300 hover:scale-105 transition-all duration-300"
-              >
-                <Eye className="h-4 w-4 mr-2" />
-                Preview
-              </Button>
-              <Button className="gradient-bg text-white hover:scale-105 transition-all duration-300">
-                <Download className="h-4 w-4 mr-2" />
-                Baixar
-              </Button>
+              <div className="flex items-center gap-2">
+                <Button
+                  variant="outline"
+                  className="hover:bg-purple-50 hover:text-purple-600 border border-purple-200 hover:border-purple-300 hover:scale-105 transition-all duration-300"
+                >
+                  <Eye className="h-4 w-4 mr-2" />
+                  Preview
+                </Button>
+                <Button className="gradient-bg text-white hover:scale-105 transition-all duration-300">
+                  <Download className="h-4 w-4 mr-2" />
+                  Baixar
+                </Button>
+              </div>
             </div>
           </div>
         </div>
-      </div>
 
-      {/* Content */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <Tabs
-          value={activeTab}
-          onValueChange={setActiveTab}
-          className="space-y-6"
-        >
-          <TabsList className="grid w-full grid-cols-3 bg-gray-50 backdrop-blur-sm">
-            <TabsTrigger value="basic" className="flex items-center gap-2">
-              <FileText className="h-4 w-4 text-purple-600" />
-              Dados Básicos
-            </TabsTrigger>
-            <TabsTrigger value="content" className="flex items-center gap-2">
-              <FileText className="h-4 w-4 text-purple-600" />
-              Conteúdo
-            </TabsTrigger>
-            <TabsTrigger value="preview" className="flex items-center gap-2">
-              <Eye className="h-4 w-4 text-purple-600" />
-              Preview
-            </TabsTrigger>
-          </TabsList>
+        {/* Content */}
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+          <Tabs
+            value={activeTab}
+            onValueChange={setActiveTab}
+            className="space-y-6"
+          >
+            <TabsList className="grid w-full grid-cols-3 bg-gray-50 backdrop-blur-sm">
+              <TabsTrigger value="basic" className="flex items-center gap-2">
+                <FileText className="h-4 w-4 text-purple-600" />
+                Dados Básicos
+              </TabsTrigger>
+              <TabsTrigger value="content" className="flex items-center gap-2">
+                <FileText className="h-4 w-4 text-purple-600" />
+                Conteúdo
+              </TabsTrigger>
+              <TabsTrigger value="preview" className="flex items-center gap-2">
+                <Eye className="h-4 w-4 text-purple-600" />
+                Preview
+              </TabsTrigger>
+            </TabsList>
 
-          <TabsContent value="basic" className="space-y-6">
-            <WorkEditBasicInfo workData={workData} />
-          </TabsContent>
+            <TabsContent value="basic" className="space-y-6">
+              <WorkEditBasicInfo workData={workData} />
+            </TabsContent>
 
-          <TabsContent value="content" className="space-y-6">
-            <WorkEditContent workData={workData} />
-          </TabsContent>
+            <TabsContent value="content" className="space-y-6">
+              <WorkEditContent workData={workData} />
+            </TabsContent>
 
-          <TabsContent value="preview" className="space-y-6">
-            <WorkEditPreview workData={workData} />
-          </TabsContent>
-        </Tabs>
+            <TabsContent value="preview" className="space-y-6">
+              <WorkEditPreview workData={workData} />
+            </TabsContent>
+          </Tabs>
+        </div>
       </div>
     </div>
   )

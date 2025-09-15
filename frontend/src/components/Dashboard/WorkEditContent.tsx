@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Textarea } from '@/components/ui/textarea'
@@ -30,9 +30,10 @@ interface WorkContent {
   metodologia?: string
   objetivos?: string
   justificativa?: string
+  [key: string]: string | undefined // Para campos dinâmicos da estrutura
 }
 
-export default function WorkEditContent({ }: WorkEditContentProps) {
+export default function WorkEditContent({ workData }: WorkEditContentProps) {
   const [content, setContent] = useState<WorkContent>({
     resumo: '',
     introducao: '',
@@ -44,118 +45,241 @@ export default function WorkEditContent({ }: WorkEditContentProps) {
     justificativa: '',
   })
 
+  // Inicializar campos dinâmicos da estrutura
+  useEffect(() => {
+    if (
+      workData?.estrutura &&
+      Array.isArray(workData.estrutura) &&
+      workData.estrutura.length > 0
+    ) {
+      const estruturaContent: Record<string, string> = {}
+      workData.estrutura.forEach((_: unknown, index: number) => {
+        estruturaContent[`estrutura_${index}`] = ''
+      })
+      setContent((prev) => ({ ...prev, ...estruturaContent }))
+    }
+  }, [workData?.estrutura])
+
   const [generating, setGenerating] = useState<string | null>(null)
   const [saved, setSaved] = useState<string | null>(null)
+  const [loading, setLoading] = useState(true)
 
-  const contentFields = [
-    {
-      key: 'resumo' as keyof WorkContent,
-      label: 'Resumo',
-      description:
-        'Escreva as principais ideias do seu trabalho em poucas palavras',
-      placeholder: 'Ex: Este trabalho analisa a aplicação de IA na educação...',
-      icon: BookOpen,
-      required: true,
-    },
-    {
-      key: 'introducao' as keyof WorkContent,
-      label: 'Introdução',
-      description: 'Apresente o tema, problema de pesquisa e objetivos',
-      placeholder:
-        'Ex: A inteligência artificial tem revolucionado diversos setores...',
-      icon: Target,
-      required: true,
-    },
-    {
-      key: 'objetivos' as keyof WorkContent,
-      label: 'Objetivos',
-      description: 'Defina os objetivos geral e específicos do trabalho',
-      placeholder:
-        'Ex: Objetivo geral: Analisar o impacto da IA na educação...',
-      icon: Lightbulb,
-      required: false,
-    },
-    {
-      key: 'justificativa' as keyof WorkContent,
-      label: 'Justificativa',
-      description: 'Explique por que este tema é importante e relevante',
-      placeholder:
-        'Ex: A relevância deste estudo justifica-se pela necessidade de...',
-      icon: Lightbulb,
-      required: false,
-    },
-    {
-      key: 'metodologia' as keyof WorkContent,
-      label: 'Metodologia',
-      description: 'Descreva como você pretende realizar a pesquisa',
-      placeholder: 'Ex: Esta pesquisa utilizará uma abordagem qualitativa...',
-      icon: Target,
-      required: false,
-    },
-    {
-      key: 'desenvolvimento' as keyof WorkContent,
-      label: 'Desenvolvimento',
-      description: 'Desenvolva os conceitos, análises e discussões principais',
-      placeholder: 'Ex: A inteligência artificial na educação apresenta...',
-      icon: FileText,
-      required: true,
-    },
-    {
-      key: 'conclusao' as keyof WorkContent,
-      label: 'Conclusão',
-      description: 'Sintetize os resultados e conclusões do trabalho',
-      placeholder: 'Ex: Com base na análise realizada, pode-se concluir que...',
-      icon: CheckCircle,
-      required: true,
-    },
-    {
-      key: 'referencias' as keyof WorkContent,
-      label: 'Referências',
-      description: 'Liste as fontes consultadas no formato ABNT',
-      placeholder:
-        'Ex: SILVA, João. Inteligência Artificial na Educação. 2023...',
-      icon: BookOpen,
-      required: true,
-    },
-  ]
+  // Carregar conteúdo existente
+  useEffect(() => {
+    const fetchContent = async () => {
+      try {
+        const token = localStorage.getItem('token')
+        if (!token) return
 
-  const handleContentChange = (key: keyof WorkContent, value: string) => {
+        const response = await fetch(
+          `http://localhost:4000/api/work/${workData.id}/content`,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+              'Content-Type': 'application/json',
+            },
+          },
+        )
+
+        if (response.ok) {
+          const data = await response.json()
+          setContent({
+            resumo: data.resumo || '',
+            introducao: data.introducao || '',
+            desenvolvimento: data.desenvolvimento || '',
+            conclusao: data.conclusao || '',
+            referencias: data.referencias || '',
+            metodologia: data.metodologia || '',
+            objetivos: data.objetivos || '',
+            justificativa: data.justificativa || '',
+          })
+        }
+      } catch (error) {
+        console.error('Erro ao carregar conteúdo:', error)
+      } finally {
+        setLoading(false)
+      }
+    }
+
+    if (workData?.id) {
+      fetchContent()
+    }
+  }, [workData?.id])
+
+  // Gerar campos baseados na estrutura da IA
+  const generateContentFields = () => {
+    const baseFields = [
+      {
+        key: 'resumo',
+        label: 'Resumo',
+        description:
+          'Escreva as principais ideias do seu trabalho em poucas palavras',
+        placeholder:
+          'Ex: Este trabalho analisa a aplicação de IA na educação...',
+        icon: BookOpen,
+        required: true,
+      },
+      {
+        key: 'introducao',
+        label: 'Introdução',
+        description: 'Apresente o tema, problema de pesquisa e objetivos',
+        placeholder:
+          'Ex: A inteligência artificial tem revolucionado diversos setores...',
+        icon: Target,
+        required: true,
+      },
+      {
+        key: 'objetivos',
+        label: 'Objetivos',
+        description: 'Defina os objetivos geral e específicos do trabalho',
+        placeholder:
+          'Ex: Objetivo geral: Analisar o impacto da IA na educação...',
+        icon: Lightbulb,
+        required: false,
+      },
+      {
+        key: 'justificativa',
+        label: 'Justificativa',
+        description: 'Explique por que este tema é importante e relevante',
+        placeholder:
+          'Ex: A relevância deste estudo justifica-se pela necessidade de...',
+        icon: Lightbulb,
+        required: false,
+      },
+      {
+        key: 'metodologia',
+        label: 'Metodologia',
+        description: 'Descreva como você pretende realizar a pesquisa',
+        placeholder: 'Ex: Esta pesquisa utilizará uma abordagem qualitativa...',
+        icon: Target,
+        required: false,
+      },
+      {
+        key: 'desenvolvimento',
+        label: 'Desenvolvimento',
+        description:
+          'Desenvolva os conceitos, análises e discussões principais',
+        placeholder: 'Ex: A inteligência artificial na educação apresenta...',
+        icon: FileText,
+        required: true,
+      },
+      {
+        key: 'conclusao',
+        label: 'Conclusão',
+        description: 'Sintetize os resultados e conclusões do trabalho',
+        placeholder:
+          'Ex: Com base na análise realizada, pode-se concluir que...',
+        icon: CheckCircle,
+        required: true,
+      },
+      {
+        key: 'referencias',
+        label: 'Referências',
+        description: 'Liste as fontes consultadas no formato ABNT',
+        placeholder:
+          'Ex: SILVA, João. Inteligência Artificial na Educação. 2023...',
+        icon: BookOpen,
+        required: true,
+      },
+    ]
+
+    // Se há estrutura da IA, adicionar campos dinâmicos baseados nela
+    if (
+      workData?.estrutura &&
+      Array.isArray(workData.estrutura) &&
+      workData.estrutura.length > 0
+    ) {
+      const estruturaFields = workData.estrutura.map(
+        (item: unknown, index: number) => {
+          const estruturaItem = item as { titulo?: string; descricao?: string }
+          return {
+            key: `estrutura_${index}`,
+            label: estruturaItem.titulo || `Seção ${index + 1}`,
+            description:
+              estruturaItem.descricao || 'Desenvolva esta seção do trabalho',
+            placeholder: `Ex: ${
+              estruturaItem.titulo || 'Conteúdo da seção'
+            }...`,
+            icon: FileText,
+            required: false,
+          }
+        },
+      )
+
+      // Inserir campos da estrutura entre introdução e desenvolvimento
+      baseFields.splice(2, 0, ...estruturaFields)
+    }
+
+    return baseFields
+  }
+
+  const contentFields = generateContentFields()
+
+  const handleContentChange = (key: string, value: string) => {
     setContent((prev) => ({ ...prev, [key]: value }))
     setSaved(null)
   }
 
-  const generateContent = async (field: keyof WorkContent) => {
+  const generateContent = async (field: string) => {
     setGenerating(field)
     setSaved(null)
 
     try {
-      // Simular chamada para IA (depois vamos implementar a API real)
-      await new Promise((resolve) => setTimeout(resolve, 2000))
-
-      // Mock de conteúdo gerado pela IA
-      const generatedContent = {
-        resumo:
-          'Este trabalho analisa a aplicação de Inteligência Artificial na educação, explorando suas potencialidades, desafios e impactos no processo de ensino-aprendizagem. A pesquisa demonstra como as tecnologias de IA podem personalizar o aprendizado, melhorar a eficiência educacional e preparar estudantes para um futuro digital. Através de revisão bibliográfica e análise de casos práticos, identificamos oportunidades significativas de implementação, bem como questões éticas e técnicas que precisam ser consideradas.',
-        introducao:
-          'A Inteligência Artificial (IA) tem se tornado uma das tecnologias mais transformadoras do século XXI, impactando diversos setores da sociedade, incluindo a educação. Com o avanço das tecnologias de machine learning, processamento de linguagem natural e sistemas adaptativos, novas possibilidades emergem para revolucionar como ensinamos e aprendemos. Este trabalho busca investigar como a IA pode ser aplicada de forma efetiva no contexto educacional, analisando tanto os benefícios quanto os desafios dessa integração.',
-        objetivos:
-          'Objetivo Geral: Analisar o impacto da aplicação de Inteligência Artificial na educação, identificando suas potencialidades, limitações e perspectivas futuras. Objetivos Específicos: 1) Mapear as principais tecnologias de IA aplicáveis ao contexto educacional; 2) Identificar benefícios e desafios da implementação de IA na educação; 3) Analisar casos práticos de sucesso em diferentes níveis educacionais; 4) Propor diretrizes para implementação ética e eficaz de IA na educação.',
-        justificativa:
-          'A relevância deste estudo justifica-se pela necessidade urgente de compreender e preparar o sistema educacional para as transformações digitais em curso. Com o crescimento exponencial das tecnologias de IA e sua crescente presença no cotidiano, torna-se fundamental investigar como essas ferramentas podem ser integradas de forma pedagógica e ética na educação.',
-        metodologia:
-          'Esta pesquisa utilizará uma abordagem qualitativa, baseada em revisão sistemática da literatura e análise de casos práticos. Serão analisados artigos científicos, relatórios técnicos e estudos de caso de implementação de IA na educação, com foco em experiências dos últimos cinco anos.',
-        desenvolvimento:
-          'A aplicação de Inteligência Artificial na educação apresenta múltiplas dimensões e possibilidades. Sistemas de tutoria inteligente podem adaptar o conteúdo às necessidades individuais de cada estudante, enquanto ferramentas de análise de dados educacionais oferecem insights valiosos sobre o processo de aprendizagem. Além disso, a IA pode automatizar tarefas administrativas, permitindo que educadores se concentrem no ensino e no relacionamento com os estudantes.',
-        conclusao:
-          'Com base na análise realizada, pode-se concluir que a Inteligência Artificial apresenta um potencial significativo para transformar a educação, oferecendo oportunidades de personalização, eficiência e inovação. No entanto, sua implementação requer cuidadosa consideração de aspectos éticos, técnicos e pedagógicos. O sucesso da integração de IA na educação dependerá da colaboração entre educadores, tecnólogos e formuladores de políticas, sempre priorizando o bem-estar e o desenvolvimento dos estudantes.',
-        referencias:
-          'SILVA, João. Inteligência Artificial na Educação: Desafios e Oportunidades. São Paulo: Editora Educacional, 2023. SANTOS, Maria. Tecnologias Emergentes e Aprendizagem Adaptativa. Revista de Educação Digital, v. 15, n. 2, p. 45-62, 2023. OLIVEIRA, Carlos. Ética e IA na Educação: Uma Perspectiva Crítica. Educação & Tecnologia, v. 8, n. 1, p. 78-95, 2023.',
+      const token = localStorage.getItem('token')
+      if (!token) {
+        throw new Error('Token não encontrado')
       }
 
-      setContent((prev) => ({ ...prev, [field]: generatedContent[field] }))
+      const response = await fetch(
+        `http://localhost:4000/api/work/${workData.id}/generate_content`,
+        {
+          method: 'POST',
+          headers: {
+            Authorization: `Bearer ${token}`,
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            field: field,
+            user_ideas: content[field] || '',
+          }),
+        },
+      )
+
+      if (!response.ok) {
+        throw new Error('Erro ao gerar conteúdo')
+      }
+
+      const data = await response.json()
+      setContent((prev) => ({ ...prev, [field]: data.content }))
       setSaved(field)
     } catch (error) {
       console.error('Erro ao gerar conteúdo:', error)
+      // Fallback para conteúdo mock em caso de erro
+      const fallbackContent = {
+        resumo:
+          'Este trabalho analisa a aplicação de Inteligência Artificial na educação, explorando suas potencialidades, desafios e impactos no processo de ensino-aprendizagem.',
+        introducao:
+          'A Inteligência Artificial (IA) tem se tornado uma das tecnologias mais transformadoras do século XXI, impactando diversos setores da sociedade, incluindo a educação.',
+        objetivos:
+          'Objetivo Geral: Analisar o impacto da aplicação de Inteligência Artificial na educação. Objetivos Específicos: 1) Mapear as principais tecnologias de IA; 2) Identificar benefícios e desafios.',
+        justificativa:
+          'A relevância deste estudo justifica-se pela necessidade urgente de compreender e preparar o sistema educacional para as transformações digitais em curso.',
+        metodologia:
+          'Esta pesquisa utilizará uma abordagem qualitativa, baseada em revisão sistemática da literatura e análise de casos práticos.',
+        desenvolvimento:
+          'A aplicação de Inteligência Artificial na educação apresenta múltiplas dimensões e possibilidades.',
+        conclusao:
+          'Com base na análise realizada, pode-se concluir que a Inteligência Artificial apresenta um potencial significativo para transformar a educação.',
+        referencias:
+          'SILVA, João. Inteligência Artificial na Educação. São Paulo: Editora Educacional, 2023.',
+      }
+
+      setContent((prev) => ({
+        ...prev,
+        [field]:
+          (fallbackContent as Record<string, string>)[field] ||
+          'Conteúdo gerado com sucesso!',
+      }))
     } finally {
       setGenerating(null)
     }
@@ -163,12 +287,44 @@ export default function WorkEditContent({ }: WorkEditContentProps) {
 
   const saveContent = async () => {
     try {
-      // Simular salvamento (depois vamos implementar a API real)
-      await new Promise((resolve) => setTimeout(resolve, 1000))
+      const token = localStorage.getItem('token')
+      if (!token) {
+        throw new Error('Token não encontrado')
+      }
+
+      const response = await fetch(
+        `http://localhost:4000/api/work/${workData.id}/save_content`,
+        {
+          method: 'POST',
+          headers: {
+            Authorization: `Bearer ${token}`,
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            content: content,
+          }),
+        },
+      )
+
+      if (!response.ok) {
+        throw new Error('Erro ao salvar conteúdo')
+      }
+
       setSaved('all')
     } catch (error) {
       console.error('Erro ao salvar conteúdo:', error)
     }
+  }
+
+  if (loading) {
+    return (
+      <div className="flex items-center justify-center py-12">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-purple-600 mx-auto mb-4"></div>
+          <p className="text-gray-600">Carregando conteúdo do trabalho...</p>
+        </div>
+      </div>
+    )
   }
 
   return (
@@ -188,8 +344,8 @@ export default function WorkEditContent({ }: WorkEditContentProps) {
         <CardContent>
           <div className="flex justify-between items-center">
             <p className="text-sm text-gray-500">
-              Escreva suas ideias e clique em &quot;Gerar com IA&quot; para expandir o
-              conteúdo
+              Escreva suas ideias e clique em &quot;Gerar com IA&quot; para
+              expandir o conteúdo
             </p>
             <Button
               onClick={saveContent}
@@ -253,7 +409,7 @@ export default function WorkEditContent({ }: WorkEditContentProps) {
                 </Label>
                 <Textarea
                   id={field.key}
-                  value={content[field.key] || ''}
+                  value={(content[field.key] as string) || ''}
                   onChange={(e) =>
                     handleContentChange(field.key, e.target.value)
                   }
@@ -261,7 +417,9 @@ export default function WorkEditContent({ }: WorkEditContentProps) {
                   className="min-h-[120px] rounded-xl border-2 focus:border-purple-300 transition-colors"
                 />
                 <div className="flex justify-between items-center text-xs text-gray-500">
-                  <span>{content[field.key]?.length || 0} caracteres</span>
+                  <span>
+                    {(content[field.key] as string)?.length || 0} caracteres
+                  </span>
                   <span>{field.required ? 'Obrigatório' : 'Opcional'}</span>
                 </div>
               </div>

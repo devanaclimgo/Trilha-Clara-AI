@@ -1,6 +1,8 @@
 class Api::TccController < ApplicationController
-  before_action :authenticate_user!, except: [:criar]
+  before_action :authenticate_user!, except: [:criar, :test_export]
   before_action :set_tcc, only: [:show, :export_word, :export_pdf]
+  
+  skip_before_action :authenticate_user!, only: [:test_export]
 
   rescue_from StandardError do |e|
     render json: { error: e.message }, status: :internal_server_error
@@ -136,6 +138,8 @@ class Api::TccController < ApplicationController
 
   # GET /tcc/:id/export_word
   def export_word
+    Rails.logger.info "Iniciando geração de arquivo Word para TCC ID: #{@tcc.id}"
+    
     # Gerar arquivo .docx usando caracal
     doc = Caracal::Document.new do |docx|
       # Cabeçalho
@@ -163,14 +167,74 @@ class Api::TccController < ApplicationController
     filename = "TCC_#{@tcc.id}_#{Time.current.strftime('%Y%m%d_%H%M%S')}.docx"
     file_path = Rails.root.join('tmp', filename)
     
-    File.open(file_path, 'wb') do |f|
-      f.write(doc.render)
-    end
+    # Garantir que o diretório tmp existe
+    FileUtils.mkdir_p(Rails.root.join('tmp'))
+    
+    Rails.logger.info "Salvando arquivo em: #{file_path}"
+    
+    # Salvar o arquivo usando o método save do Caracal
+    doc.save(file_path.to_s)
 
+    Rails.logger.info "Arquivo salvo com sucesso. Enviando para download..."
+    
     send_file file_path, 
               filename: filename,
               type: 'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
               disposition: 'attachment'
+  rescue => e
+    Rails.logger.error "Erro ao gerar arquivo Word: #{e.message}"
+    Rails.logger.error e.backtrace.join("\n")
+    render json: { error: "Erro ao gerar arquivo Word: #{e.message}" }, status: :internal_server_error
+  end
+
+  # GET /tcc/test_export
+  def test_export
+    Rails.logger.info "Testando geração de arquivo Word"
+    
+    # Gerar arquivo .docx usando caracal
+    doc = Caracal::Document.new do |docx|
+      # Cabeçalho
+      docx.h1 "Teste de Geração de Arquivo Word", size: 18, bold: true, color: '2c3e50'
+      docx.p
+      docx.p "Nome: Usuário Teste", size: 12
+      docx.p "Faculdade: Universidade Teste", size: 12
+      docx.p "Curso: Curso Teste", size: 12
+      docx.p "Matéria: Matéria Teste", size: 12
+      docx.p "Tipo de Trabalho: TCC", size: 12
+      docx.p
+      
+      # Estrutura do trabalho
+      docx.h2 "Estrutura do Trabalho", size: 16, bold: true, color: '34495e'
+      docx.p "1. Introdução"
+      docx.p "2. Desenvolvimento"
+      docx.p "3. Conclusão"
+      docx.p "4. Referências"
+    end
+
+    # Salvar arquivo temporário
+    filename = "TCC_Teste_#{Time.current.strftime('%Y%m%d_%H%M%S')}.docx"
+    file_path = Rails.root.join('tmp', filename)
+    
+    # Garantir que o diretório tmp existe
+    FileUtils.mkdir_p(Rails.root.join('tmp'))
+    
+    Rails.logger.info "Salvando arquivo de teste em: #{file_path}"
+    
+    # Salvar o arquivo
+    File.open(file_path, 'wb') do |f|
+      f.write(doc.render)
+    end
+
+    Rails.logger.info "Arquivo de teste salvo com sucesso. Enviando para download..."
+    
+    send_file file_path, 
+              filename: filename,
+              type: 'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+              disposition: 'attachment'
+  rescue => e
+    Rails.logger.error "Erro ao gerar arquivo de teste: #{e.message}"
+    Rails.logger.error e.backtrace.join("\n")
+    render json: { error: "Erro ao gerar arquivo de teste: #{e.message}" }, status: :internal_server_error
   end
 
   # GET /tcc/:id/export_pdf
@@ -199,6 +263,10 @@ class Api::TccController < ApplicationController
     docx_filename = "TCC_#{@tcc.id}_#{Time.current.strftime('%Y%m%d_%H%M%S')}.docx"
     docx_path = Rails.root.join('tmp', docx_filename)
     
+    # Garantir que o diretório tmp existe
+    FileUtils.mkdir_p(Rails.root.join('tmp'))
+    
+    # Salvar o arquivo
     File.open(docx_path, 'wb') do |f|
       f.write(doc.render)
     end
@@ -222,6 +290,9 @@ class Api::TccController < ApplicationController
     else
       render json: { error: 'Erro ao gerar PDF' }, status: :internal_server_error
     end
+  rescue => e
+    Rails.logger.error "Erro ao gerar arquivo PDF: #{e.message}"
+    render json: { error: "Erro ao gerar arquivo PDF: #{e.message}" }, status: :internal_server_error
   end
 
   private

@@ -20,7 +20,7 @@ Rails.application.routes.draw do
     end
     
     # Work content routes
-    resources :work, only: [] do
+    resources :work, controller: 'work_content', only: [] do
       member do
         post :generate_content
         post :save_content
@@ -30,6 +30,9 @@ Rails.application.routes.draw do
     
     # Compatibilidade com versão antiga
     post "tcc/criar", to: "tcc#criar"
+    
+    # Teste de export
+    get "test/export", to: "test#export_test"
     
     # Profile routes
     get "profile", to: "profile#show"
