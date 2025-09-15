@@ -22,6 +22,9 @@ export interface TccData {
   coorientador?: string
   palavrasChave?: string
   resumo?: string
+
+  notas?: string[]
+  notasWithDates?: { note: string; date: string }[]
 }
 
 export interface NoteItem {

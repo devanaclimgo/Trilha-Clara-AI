@@ -136,11 +136,11 @@ export default function DashboardStartScreen() {
   const handleStartWork = async (
     workId: string,
     data: {
+      titulo: string
       tema: string
       tipoTrabalho: string
       curso: string
       semanas: number
-      enunciado: string
       nomeAluno: string
       instituicao: string
       orientador: string
@@ -172,133 +172,50 @@ export default function DashboardStartScreen() {
       timeline: { isLoading: true, isCompleted: false },
     })
 
-    // Simular geração de conteúdo pela IA
+    // Chamar API real para gerar conteúdo pela IA
     try {
-      // Simular delay para geração da explicação
-      await new Promise((resolve) => setTimeout(resolve, 2000))
+      // Chamar API do backend para gerar explicação, estrutura e cronograma
+      const response = await fetch('http://localhost:4000/api/tcc/criar.json', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json',
+        },
+        body: JSON.stringify({
+          nome: data.nomeAluno,
+          faculdade: data.instituicao,
+          curso: data.curso,
+          materia: data.curso,
+          tema: data.tema,
+          tipo_trabalho: data.tipoTrabalho,
+        }),
+      })
 
-      // Simular geração da explicação baseada no tema
-      const explicacaoGerada = [
-        `Com base no tema fornecido, este ${data.tipoTrabalho} tem como objetivo principal analisar e compreender os aspectos fundamentais de: ${data.tema}.`,
-        `A metodologia sugerida envolve pesquisa bibliográfica, análise de dados e elaboração de conclusões baseadas em evidências científicas, adaptada ao contexto de ${data.curso}.`,
-        `O prazo de ${data.semanas} semanas permite um desenvolvimento adequado do trabalho, com fases bem definidas para cada etapa do processo de pesquisa.`,
-        `O tema "${data.tema}" é relevante para a área de ${data.curso} e contribui para o conhecimento acadêmico na área específica.`,
-      ]
+      if (!response.ok) {
+        throw new Error('Erro ao gerar conteúdo')
+      }
 
-      const sugestoes = [
-        `Foque na relevância do tema "${data.tema}" para o curso de ${data.curso}`,
-        `Considere as diretrizes específicas para ${data.tipoTrabalho} e as normas da instituição`,
-        `Mantenha um cronograma realista considerando o prazo de ${data.semanas} semanas`,
-        `Desenvolva uma metodologia adequada ao tipo de pesquisa necessária para abordar o tema`,
-      ]
+      const apiData = await response.json()
 
-      const dica = `Para um ${data.tipoTrabalho} baseado no tema "${data.tema}" em ${data.curso}, é importante seguir as normas ABNT, manter consistência metodológica e focar na contribuição científica do trabalho.`
-
-      // Atualizar com explicação
-      const dataWithExplanation = {
+      // Atualizar com dados da API
+      const dataWithApiContent = {
         ...updatedData,
-        explicacao: explicacaoGerada,
-        sugestoes: sugestoes,
-        dica: dica,
-        progresso: 30,
-      }
-      setTccData(dataWithExplanation)
-      salvarTrabalho(dataWithExplanation)
-
-      setLoadingStates((prev) => ({
-        ...prev,
-        explanation: { isLoading: false, isCompleted: true },
-      }))
-
-      // Simular delay para geração da estrutura
-      await new Promise((resolve) => setTimeout(resolve, 1500))
-
-      // Simular geração da estrutura baseada no tema
-      const estruturaGerada = [
-        `Introdução - Apresentação do trabalho "${data.tema}", justificativa e objetivos específicos (2 semanas)`,
-        `Revisão de Literatura - Fundamentação teórica baseada no tema e estado da arte na área (3 semanas)`,
-        `Metodologia - Descrição dos métodos e procedimentos para abordar o tema (2 semanas)`,
-        `Desenvolvimento - Análise e discussão dos resultados relacionados ao tema proposto (4 semanas)`,
-        `Conclusão - Síntese dos resultados e considerações finais baseadas no tema (1 semana)`,
-      ]
-
-      const dataWithStructure = {
-        ...dataWithExplanation,
-        estrutura: estruturaGerada,
-        progresso: 60,
-      }
-      setTccData(dataWithStructure)
-      salvarTrabalho(dataWithStructure)
-
-      setLoadingStates((prev) => ({
-        ...prev,
-        structure: { isLoading: false, isCompleted: true },
-      }))
-
-      // Simular delay para geração do cronograma
-      await new Promise((resolve) => setTimeout(resolve, 1500))
-
-      // Simular geração do cronograma baseado no tema
-      const cronogramaGerado = [
-        {
-          id: 1,
-          title: `Pesquisa Bibliográfica - ${data.tema}`,
-          description: `Coleta e análise de referências relevantes baseadas no tema fornecido`,
-          startDate: new Date().toISOString(),
-          endDate: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toISOString(),
-          status: 'pending',
-        },
-        {
-          id: 2,
-          title: `Elaboração da Introdução - ${data.tema}`,
-          description: `Desenvolvimento da introdução e justificativa baseada no tema`,
-          startDate: new Date(
-            Date.now() + 7 * 24 * 60 * 60 * 1000,
-          ).toISOString(),
-          endDate: new Date(
-            Date.now() + 14 * 24 * 60 * 60 * 1000,
-          ).toISOString(),
-          status: 'pending',
-        },
-        {
-          id: 3,
-          title: `Desenvolvimento do Conteúdo - ${data.tema}`,
-          description: `Escrita das seções principais do trabalho baseado no tema`,
-          startDate: new Date(
-            Date.now() + 14 * 24 * 60 * 60 * 1000,
-          ).toISOString(),
-          endDate: new Date(
-            Date.now() + 28 * 24 * 60 * 60 * 1000,
-          ).toISOString(),
-          status: 'pending',
-        },
-        {
-          id: 4,
-          title: `Revisão e Formatação - ${data.tema}`,
-          description: `Revisão final e formatação ABNT do trabalho baseado no tema`,
-          startDate: new Date(
-            Date.now() + 28 * 24 * 60 * 60 * 1000,
-          ).toISOString(),
-          endDate: new Date(
-            Date.now() + 35 * 24 * 60 * 60 * 1000,
-          ).toISOString(),
-          status: 'pending',
-        },
-      ]
-
-      const finalData = {
-        ...dataWithStructure,
-        cronograma: cronogramaGerado,
+        explicacao: apiData.explicacao || [],
+        sugestoes: apiData.sugestoes || [],
+        dica: apiData.dica || '',
+        estrutura: apiData.estrutura || [],
+        cronograma: apiData.cronograma || [],
         progresso: 100,
         status: 'em_andamento' as const,
       }
-      setTccData(finalData)
-      salvarTrabalho(finalData)
+      setTccData(dataWithApiContent)
+      salvarTrabalho(dataWithApiContent)
 
-      setLoadingStates((prev) => ({
-        ...prev,
+      setLoadingStates({
+        explanation: { isLoading: false, isCompleted: true },
+        structure: { isLoading: false, isCompleted: true },
         timeline: { isLoading: false, isCompleted: true },
-      }))
+      })
     } catch (error) {
       console.error('Erro ao gerar conteúdo:', error)
       setLoadingStates({
@@ -309,33 +226,10 @@ export default function DashboardStartScreen() {
     }
   }
 
-  const handleContinueWork = async (
-    workId: string,
-    data: {
-      tema: string
-      tipoTrabalho: string
-      curso: string
-      semanas: number
-      enunciado: string
-    },
-  ) => {
+  const handleContinueWork = (workId: string) => {
     // Trocar para o trabalho selecionado
     trocarTrabalho(workId)
-
-    // Atualizar dados do trabalho
-    const updatedData = {
-      ...tccData,
-      tema: data.tema,
-      tipoTrabalho: data.tipoTrabalho,
-      curso: data.curso,
-      progresso: 10,
-      ultimaModificacao: new Date().toISOString(),
-    }
-    setTccData(updatedData)
-    salvarTrabalho(updatedData)
-
-    // Redirecionar para a página de edição
-    window.location.href = `/work-edit/${workId}`
+    setCurrentScreen('explanation')
   }
 
   return (
@@ -396,8 +290,9 @@ export default function DashboardStartScreen() {
               {/* Work Cards */}
               <WorkCards
                 trabalhos={trabalhos}
-                trabalhoAtual={trabalhoAtual}
+                trabalhoAtual={trabalhoAtual || undefined}
                 trocarTrabalho={handleTrocarTrabalho}
+                onCriarNovo={() => setShowNewProjectForm(true)}
                 setShowNewProjectForm={setShowNewProjectForm}
                 setShowStepByStep={() => {}}
                 onEditWork={handleEditWork}
@@ -511,6 +406,8 @@ export default function DashboardStartScreen() {
           )}
           {currentScreen === 'timeline' && (
             <TimelineScreen
+              cronograma={tccData?.cronograma || []}
+              loadingStates={loadingStates}
               onBackToHome={
                 hasCompletedInitialData
                   ? () => setCurrentScreen('main')

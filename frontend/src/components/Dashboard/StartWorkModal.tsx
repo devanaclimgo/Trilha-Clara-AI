@@ -32,11 +32,11 @@ interface StartWorkModalProps {
   isOpen: boolean
   onClose: () => void
   onStart: (data: {
-    tema: string
+    titulo: string
     tipoTrabalho: string
     curso: string
     semanas: number
-    enunciado: string
+    tema: string
     nomeAluno: string
     instituicao: string
     orientador: string
@@ -51,11 +51,11 @@ export default function StartWorkModal({
   workTitle,
 }: StartWorkModalProps) {
   const [formData, setFormData] = useState({
-    tema: '',
+    titulo: '',
     tipoTrabalho: '',
     curso: '',
     semanas: 12,
-    enunciado: '',
+    tema: '',
     nomeAluno: '',
     instituicao: '',
     orientador: '',
@@ -89,10 +89,10 @@ export default function StartWorkModal({
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
     if (
-      formData.tema &&
+      formData.titulo &&
       formData.tipoTrabalho &&
       formData.curso &&
-      formData.enunciado &&
+      formData.tema &&
       formData.nomeAluno &&
       formData.instituicao
     ) {
@@ -102,11 +102,11 @@ export default function StartWorkModal({
 
   const handleClose = () => {
     setFormData({
-      tema: '',
+      titulo: '',
       tipoTrabalho: '',
       curso: '',
       semanas: 12,
-      enunciado: '',
+      tema: '',
       nomeAluno: '',
       instituicao: '',
       orientador: '',
@@ -136,10 +136,10 @@ export default function StartWorkModal({
             </h3>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              {/* Tema do Trabalho */}
+              {/* Título do Trabalho */}
               <div className="space-y-2">
                 <Label
-                  htmlFor="tema"
+                  htmlFor="titulo"
                   className="text-sm font-medium text-gray-700"
                 >
                   Título do Trabalho *
@@ -147,10 +147,10 @@ export default function StartWorkModal({
                 <div className="relative">
                   <BookOpen className="absolute left-3 top-3 w-4 h-4 text-gray-400" />
                   <Input
-                    id="tema"
-                    value={formData.tema}
+                    id="titulo"
+                    value={formData.titulo}
                     onChange={(e) =>
-                      setFormData({ ...formData, tema: e.target.value })
+                      setFormData({ ...formData, titulo: e.target.value })
                     }
                     className="pl-10 rounded-xl border-2 focus:border-purple-300 transition-colors"
                     placeholder="Título do seu trabalho"
@@ -245,22 +245,22 @@ export default function StartWorkModal({
               </div>
             </div>
 
-            {/* Enunciado/Descrição */}
+            {/* Tema/Enunciado */}
             <div className="space-y-2">
               <Label
-                htmlFor="enunciado"
+                htmlFor="tema"
                 className="text-sm font-medium text-gray-700"
               >
-                Enunciado/Descrição do Trabalho *
+                Tema/Enunciado do Trabalho *
               </Label>
               <Textarea
-                id="enunciado"
-                value={formData.enunciado}
+                id="tema"
+                value={formData.tema}
                 onChange={(e) =>
-                  setFormData({ ...formData, enunciado: e.target.value })
+                  setFormData({ ...formData, tema: e.target.value })
                 }
                 className="rounded-xl border-2 focus:border-purple-300 transition-colors min-h-[120px]"
-                placeholder="Descreva o que o professor pediu, os objetivos do trabalho, metodologia sugerida, etc..."
+                placeholder="Descreva o tema completo do seu trabalho, o que o professor pediu, os objetivos, metodologia sugerida, etc..."
                 required
               />
             </div>
@@ -349,7 +349,7 @@ export default function StartWorkModal({
               type="button"
               variant="outline"
               onClick={handleClose}
-              className="rounded-xl hover:bg-gray-50"
+              className="rounded-xl hover:bg-purple-50 border-purple-200 hover:border-purple-300 hover:text-purple-600"
             >
               Cancelar
             </Button>

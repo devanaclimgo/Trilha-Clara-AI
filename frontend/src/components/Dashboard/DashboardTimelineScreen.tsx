@@ -1,13 +1,18 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { useState } from 'react'
 import { Card, CardContent } from '../ui/card'
 import { Check, ArrowLeft } from 'lucide-react'
 import { Button } from '../ui/button'
 
-export default function TimelineScreen({
-  onBackToHome,
-}: {
+interface TimelineScreenProps {
+  cronograma: any[]
+  loadingStates: any
   onBackToHome?: () => void
-}) {
+}
+
+export default function TimelineScreen({
+  onBackToHome
+}: TimelineScreenProps) {
   const [completedTasks, setCompletedTasks] = useState<number[]>([1, 2])
 
   const atividades = [

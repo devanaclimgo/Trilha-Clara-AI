@@ -199,3 +199,42 @@ Processing by Api::TccController#criar as JSON
 Completed 200 OK in 14125ms (Views: 1.0ms | ActiveRecord: 4.2ms (0 queries, 0 cached) | GC: 0.0ms)
 
 
+Started POST "/api/tcc/criar.json" for ::1 at 2025-09-14 19:50:57 -0300
+Processing by Api::TccController#criar as JSON
+  Parameters: {"nome"=>"Teste Título", "faculdade"=>"Universidade", "curso"=>"publicidade", "materia"=>"publicidade", "tema"=>"Análise da eficácia das campanhas publicitárias digitais nas redes sociais", "tipo_trabalho"=>"artigo", "tcc"=>{"nome"=>"Teste Título", "faculdade"=>"Universidade", "curso"=>"publicidade", "materia"=>"publicidade", "tema"=>"Análise da eficácia das campanhas publicitárias digitais nas redes sociais", "tipo_trabalho"=>"artigo"}}
+Completed 200 OK in 14991ms (Views: 1.7ms | ActiveRecord: 13.9ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/api/tcc/criar.json" for ::1 at 2025-09-14 20:03:31 -0300
+Processing by Api::TccController#criar as JSON
+  Parameters: {"nome"=>"João Silva", "faculdade"=>"Universidade Federal", "curso"=>"publicidade", "materia"=>"publicidade", "tema"=>"Análise da eficácia das campanhas publicitárias digitais nas redes sociais Instagram e TikTok para o público jovem de 18-25 anos, considerando métricas de engajamento, conversão e ROI", "tipo_trabalho"=>"artigo", "tcc"=>{"nome"=>"João Silva", "faculdade"=>"Universidade Federal", "curso"=>"publicidade", "materia"=>"publicidade", "tema"=>"Análise da eficácia das campanhas publicitárias digitais nas redes sociais Instagram e TikTok para o público jovem de 18-25 anos, considerando métricas de engajamento, conversão e ROI", "tipo_trabalho"=>"artigo"}}
+Completed 200 OK in 15281ms (Views: 1.5ms | ActiveRecord: 23.8ms (0 queries, 0 cached) | GC: 2.2ms)
+
+
+Started POST "/api/tcc/criar.json" for ::1 at 2025-09-14 20:19:03 -0300
+Processing by Api::TccController#criar as JSON
+  Parameters: {"nome"=>"Lara Santana", "faculdade"=>"Estácio de Sá", "curso"=>"publicidade", "materia"=>"publicidade", "tema"=>"Análise da eficácia das campanhas publicitárias digitais nas redes sociais Instagram e TikTok para o público jovem de 18-25 anos, considerando métricas de engajamento, conversão e ROI", "tipo_trabalho"=>"artigo", "tcc"=>{"nome"=>"Lara Santana", "faculdade"=>"Estácio de Sá", "curso"=>"publicidade", "materia"=>"publicidade", "tema"=>"Análise da eficácia das campanhas publicitárias digitais nas redes sociais Instagram e TikTok para o público jovem de 18-25 anos, considerando métricas de engajamento, conversão e ROI", "tipo_trabalho"=>"artigo"}}
+Completed 200 OK in 9248ms (Views: 1.3ms | ActiveRecord: 15.3ms (0 queries, 0 cached) | GC: 5.5ms)
+
+
+[dotenv] Set [36mDEVISE_JWT_SECRET_KEY[0m, [36mGOOGLE_CLIENT_ID[0m, [36mGOOGLE_CLIENT_SECRET[0m, and [36mGEMINI_API_KEY[0m
+[dotenv] Loaded [33m.env[0m
+[dotenv] Loaded [33m.env[0m
+Started POST "/api/tcc/criar.json" for ::1 at 2025-09-14 20:19:37 -0300
+Processing by Api::TccController#criar as JSON
+  Parameters: {"nome"=>"Lara Santana", "faculdade"=>"Estácio de Sá", "curso"=>"publicidade", "materia"=>"publicidade", "tema"=>"Análise da eficácia das campanhas publicitárias digitais nas redes sociais Instagram e TikTok para o público jovem de 18-25 anos, considerando métricas de engajamento, conversão e ROI", "tipo_trabalho"=>"artigo", "tcc"=>{"nome"=>"Lara Santana", "faculdade"=>"Estácio de Sá", "curso"=>"publicidade", "materia"=>"publicidade", "tema"=>"Análise da eficácia das campanhas publicitárias digitais nas redes sociais Instagram e TikTok para o público jovem de 18-25 anos, considerando métricas de engajamento, conversão e ROI", "tipo_trabalho"=>"artigo"}}
+Completed 200 OK in 5ms (Views: 0.3ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/api/tcc/criar.json" for 127.0.0.1 at 2025-09-14 20:30:57 -0300
+Processing by Api::TccController#criar as JSON
+  Parameters: {"nome"=>"Lara Santana", "faculdade"=>"Estácio de Sá", "curso"=>"publicidade", "materia"=>"publicidade", "tema"=>"Análise da eficácia das campanhas publicitárias digitais nas redes sociais Instagram e TikTok para o público jovem de 18-25 anos, considerando métricas de engajamento, conversão e ROI", "tipo_trabalho"=>"artigo", "tcc"=>{"nome"=>"Lara Santana", "faculdade"=>"Estácio de Sá", "curso"=>"publicidade", "materia"=>"publicidade", "tema"=>"Análise da eficácia das campanhas publicitárias digitais nas redes sociais Instagram e TikTok para o público jovem de 18-25 anos, considerando métricas de engajamento, conversão e ROI", "tipo_trabalho"=>"artigo"}}
+Completed 200 OK in 15ms (Views: 2.0ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/api/tcc/criar.json" for 127.0.0.1 at 2025-09-14 21:02:20 -0300
+Processing by Api::TccController#criar as JSON
+  Parameters: {"nome"=>"Lara Santana", "faculdade"=>"Estácio de Sá", "curso"=>"publicidade", "materia"=>"publicidade", "tema"=>"Analise a eficácia das campanhas publicitárias digitais voltadas para redes sociais, considerando o engajamento do público-alvo e a construção de marca. Avalie estratégias de storytelling, uso de influenciadores e métricas de desempenho, propondo melhorias baseadas em referências teóricas do marketing e comunicação.", "tipo_trabalho"=>"artigo", "tcc"=>{"nome"=>"Lara Santana", "faculdade"=>"Estácio de Sá", "curso"=>"publicidade", "materia"=>"publicidade", "tema"=>"Analise a eficácia das campanhas publicitárias digitais voltadas para redes sociais, considerando o engajamento do público-alvo e a construção de marca. Avalie estratégias de storytelling, uso de influenciadores e métricas de desempenho, propondo melhorias baseadas em referências teóricas do marketing e comunicação.", "tipo_trabalho"=>"artigo"}}
+Completed 200 OK in 15972ms (Views: 3.8ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+

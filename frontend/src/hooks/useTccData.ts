@@ -73,12 +73,13 @@ export const useTccData = () => {
     localStorage.setItem('tcc-trabalhos', JSON.stringify(trabalhosAtualizados))
   }
 
-  const criarNovoTrabalho = (titulo: string, curso: string, enunciado: string) => {
+  const criarNovoTrabalho = (titulo: string, curso: string, tema: string) => {
     const novoId = `tcc-${Date.now()}`
     const novoTrabalho: TccData = {
       id: novoId,
       titulo,
       curso,
+      tema,
       explicacao: [],
       sugestoes: [],
       dica: '',

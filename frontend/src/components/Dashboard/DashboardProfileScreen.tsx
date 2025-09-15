@@ -27,6 +27,7 @@ interface UserProfile {
 
 interface DashboardProfileScreenProps {
   onBackToHome?: () => void
+  onLogout?: () => void
 }
 
 export default function DashboardProfileScreen({

@@ -21,30 +21,22 @@ import StartWorkModal from './StartWorkModal'
 
 interface WorkCardsProps {
   trabalhos: TccData[]
-  trabalhoAtual: string | null
-  trocarTrabalho: (workId: string) => void
-  setShowNewProjectForm: (show: boolean) => void
-  setShowStepByStep: (show: boolean) => void
+  trabalhoAtual?: string
+  trocarTrabalho: (id: string) => void
+  onCriarNovo: () => void
+  setShowNewProjectForm: (value: boolean) => void
+  setShowStepByStep: () => void
   onEditWork: (work: TccData) => void
   onDeleteWork: (work: TccData) => void
-  onContinueWork: (
-    workId: string,
-    data: {
-      tema: string
-      tipoTrabalho: string
-      curso: string
-      semanas: number
-      enunciado: string
-    },
-  ) => void
+  onContinueWork: (id: string) => void
   onStartWork: (
     workId: string,
     data: {
+      titulo: string
       tema: string
       tipoTrabalho: string
       curso: string
       semanas: number
-      enunciado: string
       nomeAluno: string
       instituicao: string
       orientador: string
@@ -71,21 +63,15 @@ export default function WorkCards({
   }
 
   const handleContinueWork = (workId: string) => {
-    onContinueWork(workId, {
-      tema: trabalhos.find((t) => t.id === workId)?.tema || '',
-      tipoTrabalho: trabalhos.find((t) => t.id === workId)?.tipoTrabalho || '',
-      curso: trabalhos.find((t) => t.id === workId)?.curso || '',
-      semanas: 12, // Valor padrão
-      enunciado: '', // Campo não existe na interface
-    })
+    onContinueWork(workId)
   }
 
   const handleStartWorkSubmit = (data: {
+    titulo: string
     tema: string
     tipoTrabalho: string
     curso: string
     semanas: number
-    enunciado: string
     nomeAluno: string
     instituicao: string
     orientador: string
@@ -180,7 +166,7 @@ export default function WorkCards({
                         <Button
                           variant="ghost"
                           size="sm"
-                          className="h-8 w-8 p-0 rounded-xl hover:bg-gray-100"
+                          className="h-8 w-8 p-0 rounded-xl hover:bg-purple-50 border-purple-200 hover:border-purple-300 hover:text-purple-600"
                           onClick={(e) => e.stopPropagation()}
                         >
                           <MoreVertical className="h-4 w-4" />

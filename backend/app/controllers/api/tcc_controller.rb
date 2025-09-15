@@ -41,7 +41,7 @@ class Api::TccController < ApplicationController
       # Fluxo novo - formulário simples
       # Primeiro gera a explicação simplificada baseada no tema
       explicacao_dados = gemini.simplificar_enunciado!(
-        enunciado: "Desenvolver um #{tipo_trabalho || 'trabalho acadêmico'} sobre #{tema} na disciplina de #{materia}",
+        enunciado: tema, # Usar diretamente o tema detalhado
         curso: curso,
         tipo_trabalho: tipo_trabalho
       )
@@ -83,7 +83,7 @@ class Api::TccController < ApplicationController
       
       # Gerar explicação simplificada baseada no tema
       explicacao_dados = gemini.simplificar_enunciado!(
-        enunciado: "Desenvolver um #{@tcc.tipo_trabalho || 'trabalho acadêmico'} sobre #{@tcc.tema} na disciplina de #{@tcc.materia}",
+        enunciado: @tcc.tema, # Usar diretamente o tema detalhado
         curso: @tcc.curso,
         tipo_trabalho: @tcc.tipo_trabalho
       )

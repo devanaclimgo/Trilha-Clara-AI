@@ -61,6 +61,8 @@ export default function NotesScreen({
     noteIndex: number
   }>
   savedNotesWithDates?: Array<{ text: string; createdAt: string }>
+
+  onCloseAllNotes?: () => void
 }) {
   const [newNote, setNewNote] = useState('')
   const [dialogOpen, setDialogOpen] = useState(false)
