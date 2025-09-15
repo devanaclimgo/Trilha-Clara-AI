@@ -238,3 +238,963 @@ Processing by Api::TccController#criar as JSON
 Completed 200 OK in 15972ms (Views: 3.8ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
 
 
+[dotenv] Set [36mDEVISE_JWT_SECRET_KEY[0m, [36mGOOGLE_CLIENT_ID[0m, [36mGOOGLE_CLIENT_SECRET[0m, and [36mGEMINI_API_KEY[0m
+[dotenv] Loaded [33m.env[0m
+[dotenv] Loaded [33m.env[0m
+Started POST "/api/tcc/criar.json" for 127.0.0.1 at 2025-09-15 13:55:58 -0300
+  [1m[36mActiveRecord::SchemaMigration Load (7.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='Backend'*/[0m
+Processing by Api::TccController#criar as JSON
+  Parameters: {"nome"=>"Lara Santana", "faculdade"=>"Estácio de Sá", "curso"=>"publicidade", "materia"=>"publicidade", "tema"=>"Analise a eficácia das campanhas publicitárias digitais voltadas para redes sociais, considerando o engajamento do público-alvo e a construção de marca. Avalie estratégias de storytelling, uso de influenciadores e métricas de desempenho, propondo melhorias baseadas em referências teóricas do marketing e comunicação.", "tipo_trabalho"=>"artigo", "tcc"=>{"nome"=>"Lara Santana", "faculdade"=>"Estácio de Sá", "curso"=>"publicidade", "materia"=>"publicidade", "tema"=>"Analise a eficácia das campanhas publicitárias digitais voltadas para redes sociais, considerando o engajamento do público-alvo e a construção de marca. Avalie estratégias de storytelling, uso de influenciadores e métricas de desempenho, propondo melhorias baseadas em referências teóricas do marketing e comunicação.", "tipo_trabalho"=>"artigo"}}
+Erro ao fazer parse do JSON: unexpected character: 'Erro:' at line 1 column 1
+Resultado bruto: Erro: resposta inválida
+Erro ao fazer parse do JSON: unexpected character: 'Erro:' at line 1 column 1
+Resultado bruto: Erro: resposta inválida
+Completed 200 OK in 2048ms (Views: 3.8ms | ActiveRecord: 52.8ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/api/tcc/criar.json" for 127.0.0.1 at 2025-09-15 14:04:14 -0300
+Processing by Api::TccController#criar as JSON
+  Parameters: {"nome"=>"Lara Santana", "faculdade"=>"Estácio de Sá", "curso"=>"publicidade", "materia"=>"publicidade", "tema"=>"Analise a eficácia das campanhas publicitárias digitais voltadas para redes sociais, considerando o engajamento do público-alvo e a construção de marca. Avalie estratégias de storytelling, uso de influenciadores e métricas de desempenho, propondo melhorias baseadas em referências teóricas do marketing e comunicação.", "tipo_trabalho"=>"artigo", "tcc"=>{"nome"=>"Lara Santana", "faculdade"=>"Estácio de Sá", "curso"=>"publicidade", "materia"=>"publicidade", "tema"=>"Analise a eficácia das campanhas publicitárias digitais voltadas para redes sociais, considerando o engajamento do público-alvo e a construção de marca. Avalie estratégias de storytelling, uso de influenciadores e métricas de desempenho, propondo melhorias baseadas em referências teóricas do marketing e comunicação.", "tipo_trabalho"=>"artigo"}}
+Completed 200 OK in 15ms (Views: 1.3ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/api/tcc/criar.json" for 127.0.0.1 at 2025-09-15 14:06:21 -0300
+Processing by Api::TccController#criar as JSON
+  Parameters: {"nome"=>"Lara Santana", "faculdade"=>"Estácio de Sá", "curso"=>"publicidade", "materia"=>"publicidade", "tema"=>"Analise a eficácia das campanhas publicitárias digitais voltadas para redes sociais, considerando o engajamento do público-alvo e a construção de marca. Avalie estratégias de storytelling, uso de influenciadores e métricas de desempenho, propondo melhorias baseadas em referências teóricas do marketing e comunicação.", "tipo_trabalho"=>"artigo", "tcc"=>{"nome"=>"Lara Santana", "faculdade"=>"Estácio de Sá", "curso"=>"publicidade", "materia"=>"publicidade", "tema"=>"Analise a eficácia das campanhas publicitárias digitais voltadas para redes sociais, considerando o engajamento do público-alvo e a construção de marca. Avalie estratégias de storytelling, uso de influenciadores e métricas de desempenho, propondo melhorias baseadas em referências teóricas do marketing e comunicação.", "tipo_trabalho"=>"artigo"}}
+Completed 200 OK in 4ms (Views: 0.2ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+[dotenv] Set [36mDEVISE_JWT_SECRET_KEY[0m, [36mGOOGLE_CLIENT_ID[0m, [36mGOOGLE_CLIENT_SECRET[0m, and [36mGEMINI_API_KEY[0m
+[dotenv] Loaded [33m.env[0m
+[dotenv] Loaded [33m.env[0m
+[dotenv] Set [36mDEVISE_JWT_SECRET_KEY[0m, [36mGOOGLE_CLIENT_ID[0m, [36mGOOGLE_CLIENT_SECRET[0m, and [36mGEMINI_API_KEY[0m
+[dotenv] Loaded [33m.env[0m
+[dotenv] Loaded [33m.env[0m
+  [1m[35m (0.9ms)[0m  [1m[34mSELECT pg_try_advisory_lock(5073945470573576205) /*application='Backend'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (1.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='Backend'*/[0m
+  [1m[36mActiveRecord::InternalMetadata Load (2.0ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = 'environment' ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1 /*application='Backend'*/[0m
+Migrating to AddContentFieldsToTccs (20250915173609)
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN /*application='Backend'*/[0m
+  [1m[35m (6.7ms)[0m  [1m[35mALTER TABLE "tccs" ADD "resumo" text /*application='Backend'*/[0m
+  [1m[35m (0.7ms)[0m  [1m[35mALTER TABLE "tccs" ADD "introducao" text /*application='Backend'*/[0m
+  [1m[35m (0.7ms)[0m  [1m[35mALTER TABLE "tccs" ADD "objetivos" text /*application='Backend'*/[0m
+  [1m[35m (0.5ms)[0m  [1m[35mALTER TABLE "tccs" ADD "justificativa" text /*application='Backend'*/[0m
+  [1m[35m (0.7ms)[0m  [1m[35mALTER TABLE "tccs" ADD "metodologia" text /*application='Backend'*/[0m
+  [1m[35m (1.0ms)[0m  [1m[35mALTER TABLE "tccs" ADD "desenvolvimento" text /*application='Backend'*/[0m
+  [1m[35m (0.8ms)[0m  [1m[35mALTER TABLE "tccs" ADD "conclusao" text /*application='Backend'*/[0m
+  [1m[35m (0.8ms)[0m  [1m[35mALTER TABLE "tccs" ADD "referencias" text /*application='Backend'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.8ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20250915173609') RETURNING "version" /*application='Backend'*/[0m
+  [1m[36mTRANSACTION (3.1ms)[0m  [1m[35mCOMMIT /*application='Backend'*/[0m
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT pg_advisory_unlock(5073945470573576205) /*application='Backend'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='Backend'*/[0m
+Started GET "/api/profile" for ::1 at 2025-09-15 14:37:54 -0300
+  [1m[36mActiveRecord::SchemaMigration Load (1.9ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='Backend'*/[0m
+Processing by Api::ProfileController#show as JSON
+Completed 401 Unauthorized in 15ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/api/work/1/content" for ::1 at 2025-09-15 15:13:58 -0300
+  
+ActionController::RoutingError (uninitialized constant Api::WorkController)
+Caused by: ActionDispatch::MissingController (uninitialized constant Api::WorkController)
+Caused by: NameError (uninitialized constant Api::WorkController)
+
+Information for: ActionController::RoutingError (uninitialized constant Api::WorkController):
+  
+
+Information for cause: ActionDispatch::MissingController (uninitialized constant Api::WorkController):
+  
+actionpack (8.0.2.1) lib/action_dispatch/http/request.rb:102:in `rescue in controller_class_for'
+actionpack (8.0.2.1) lib/action_dispatch/http/request.rb:98:in `controller_class_for'
+actionpack (8.0.2.1) lib/action_dispatch/http/request.rb:91:in `controller_class'
+actionpack (8.0.2.1) lib/action_dispatch/routing/route_set.rb:61:in `controller'
+actionpack (8.0.2.1) lib/action_dispatch/routing/route_set.rb:48:in `serve'
+actionpack (8.0.2.1) lib/action_dispatch/journey/router.rb:53:in `block in serve'
+actionpack (8.0.2.1) lib/action_dispatch/journey/router.rb:133:in `block in find_routes'
+actionpack (8.0.2.1) lib/action_dispatch/journey/router.rb:126:in `each'
+actionpack (8.0.2.1) lib/action_dispatch/journey/router.rb:126:in `find_routes'
+actionpack (8.0.2.1) lib/action_dispatch/journey/router.rb:34:in `serve'
+actionpack (8.0.2.1) lib/action_dispatch/routing/route_set.rb:908:in `call'
+railties (8.0.2.1) lib/rails/engine/lazy_route_set.rb:68:in `call'
+omniauth (2.1.3) lib/omniauth/strategy.rb:202:in `call!'
+omniauth (2.1.3) lib/omniauth/strategy.rb:169:in `call'
+omniauth (2.1.3) lib/omniauth/builder.rb:44:in `call'
+warden-jwt_auth (0.11.0) lib/warden/jwt_auth/middleware/token_dispatcher.rb:20:in `call'
+warden-jwt_auth (0.11.0) lib/warden/jwt_auth/middleware/revocation_manager.rb:21:in `call'
+rack (3.2.0) lib/rack/builder.rb:283:in `call'
+warden-jwt_auth (0.11.0) lib/warden/jwt_auth/middleware.rb:22:in `call'
+actionpack (8.0.2.1) lib/action_dispatch/middleware/cookies.rb:706:in `call'
+rack-session (2.1.1) lib/rack/session/abstract/id.rb:274:in `context'
+rack-session (2.1.1) lib/rack/session/abstract/id.rb:268:in `call'
+warden (1.2.9) lib/warden/manager.rb:36:in `block in call'
+warden (1.2.9) lib/warden/manager.rb:34:in `catch'
+warden (1.2.9) lib/warden/manager.rb:34:in `call'
+rack (3.2.0) lib/rack/etag.rb:29:in `call'
+rack (3.2.0) lib/rack/conditional_get.rb:31:in `call'
+rack (3.2.0) lib/rack/head.rb:15:in `call'
+activerecord (8.0.2.1) lib/active_record/migration.rb:671:in `call'
+actionpack (8.0.2.1) lib/action_dispatch/middleware/callbacks.rb:31:in `block in call'
+activesupport (8.0.2.1) lib/active_support/callbacks.rb:100:in `run_callbacks'
+actionpack (8.0.2.1) lib/action_dispatch/middleware/callbacks.rb:30:in `call'
+actionpack (8.0.2.1) lib/action_dispatch/middleware/executor.rb:16:in `call'
+actionpack (8.0.2.1) lib/action_dispatch/middleware/actionable_exceptions.rb:18:in `call'
+actionpack (8.0.2.1) lib/action_dispatch/middleware/debug_exceptions.rb:31:in `call'
+actionpack (8.0.2.1) lib/action_dispatch/middleware/show_exceptions.rb:32:in `call'
+railties (8.0.2.1) lib/rails/rack/logger.rb:41:in `call_app'
+railties (8.0.2.1) lib/rails/rack/logger.rb:29:in `call'
+actionpack (8.0.2.1) lib/action_dispatch/middleware/remote_ip.rb:96:in `call'
+actionpack (8.0.2.1) lib/action_dispatch/middleware/request_id.rb:34:in `call'
+rack (3.2.0) lib/rack/runtime.rb:24:in `call'
+actionpack (8.0.2.1) lib/action_dispatch/middleware/server_timing.rb:61:in `block in call'
+actionpack (8.0.2.1) lib/action_dispatch/middleware/server_timing.rb:26:in `collect_events'
+actionpack (8.0.2.1) lib/action_dispatch/middleware/server_timing.rb:60:in `call'
+actionpack (8.0.2.1) lib/action_dispatch/middleware/executor.rb:16:in `call'
+actionpack (8.0.2.1) lib/action_dispatch/middleware/static.rb:27:in `call'
+rack (3.2.0) lib/rack/sendfile.rb:114:in `call'
+rack-cors (3.0.0) lib/rack/cors.rb:102:in `call'
+railties (8.0.2.1) lib/rails/engine.rb:535:in `call'
+puma (6.6.1) lib/puma/configuration.rb:279:in `call'
+puma (6.6.1) lib/puma/request.rb:99:in `block in handle_request'
+puma (6.6.1) lib/puma/thread_pool.rb:390:in `with_force_shutdown'
+puma (6.6.1) lib/puma/request.rb:98:in `handle_request'
+puma (6.6.1) lib/puma/server.rb:472:in `process_client'
+puma (6.6.1) lib/puma/server.rb:254:in `block in run'
+puma (6.6.1) lib/puma/thread_pool.rb:167:in `block in spawn_thread'
+
+Information for cause: NameError (uninitialized constant Api::WorkController):
+  
+activesupport (8.0.2.1) lib/active_support/inflector/methods.rb:290:in `constantize'
+activesupport (8.0.2.1) lib/active_support/core_ext/string/inflections.rb:74:in `constantize'
+actionpack (8.0.2.1) lib/action_dispatch/http/request.rb:99:in `controller_class_for'
+actionpack (8.0.2.1) lib/action_dispatch/http/request.rb:91:in `controller_class'
+actionpack (8.0.2.1) lib/action_dispatch/routing/route_set.rb:61:in `controller'
+actionpack (8.0.2.1) lib/action_dispatch/routing/route_set.rb:48:in `serve'
+actionpack (8.0.2.1) lib/action_dispatch/journey/router.rb:53:in `block in serve'
+actionpack (8.0.2.1) lib/action_dispatch/journey/router.rb:133:in `block in find_routes'
+actionpack (8.0.2.1) lib/action_dispatch/journey/router.rb:126:in `each'
+actionpack (8.0.2.1) lib/action_dispatch/journey/router.rb:126:in `find_routes'
+actionpack (8.0.2.1) lib/action_dispatch/journey/router.rb:34:in `serve'
+actionpack (8.0.2.1) lib/action_dispatch/routing/route_set.rb:908:in `call'
+railties (8.0.2.1) lib/rails/engine/lazy_route_set.rb:68:in `call'
+omniauth (2.1.3) lib/omniauth/strategy.rb:202:in `call!'
+omniauth (2.1.3) lib/omniauth/strategy.rb:169:in `call'
+omniauth (2.1.3) lib/omniauth/builder.rb:44:in `call'
+warden-jwt_auth (0.11.0) lib/warden/jwt_auth/middleware/token_dispatcher.rb:20:in `call'
+warden-jwt_auth (0.11.0) lib/warden/jwt_auth/middleware/revocation_manager.rb:21:in `call'
+rack (3.2.0) lib/rack/builder.rb:283:in `call'
+warden-jwt_auth (0.11.0) lib/warden/jwt_auth/middleware.rb:22:in `call'
+actionpack (8.0.2.1) lib/action_dispatch/middleware/cookies.rb:706:in `call'
+rack-session (2.1.1) lib/rack/session/abstract/id.rb:274:in `context'
+rack-session (2.1.1) lib/rack/session/abstract/id.rb:268:in `call'
+warden (1.2.9) lib/warden/manager.rb:36:in `block in call'
+warden (1.2.9) lib/warden/manager.rb:34:in `catch'
+warden (1.2.9) lib/warden/manager.rb:34:in `call'
+rack (3.2.0) lib/rack/etag.rb:29:in `call'
+rack (3.2.0) lib/rack/conditional_get.rb:31:in `call'
+rack (3.2.0) lib/rack/head.rb:15:in `call'
+activerecord (8.0.2.1) lib/active_record/migration.rb:671:in `call'
+actionpack (8.0.2.1) lib/action_dispatch/middleware/callbacks.rb:31:in `block in call'
+activesupport (8.0.2.1) lib/active_support/callbacks.rb:100:in `run_callbacks'
+actionpack (8.0.2.1) lib/action_dispatch/middleware/callbacks.rb:30:in `call'
+actionpack (8.0.2.1) lib/action_dispatch/middleware/executor.rb:16:in `call'
+actionpack (8.0.2.1) lib/action_dispatch/middleware/actionable_exceptions.rb:18:in `call'
+actionpack (8.0.2.1) lib/action_dispatch/middleware/debug_exceptions.rb:31:in `call'
+actionpack (8.0.2.1) lib/action_dispatch/middleware/show_exceptions.rb:32:in `call'
+railties (8.0.2.1) lib/rails/rack/logger.rb:41:in `call_app'
+railties (8.0.2.1) lib/rails/rack/logger.rb:29:in `call'
+actionpack (8.0.2.1) lib/action_dispatch/middleware/remote_ip.rb:96:in `call'
+actionpack (8.0.2.1) lib/action_dispatch/middleware/request_id.rb:34:in `call'
+rack (3.2.0) lib/rack/runtime.rb:24:in `call'
+actionpack (8.0.2.1) lib/action_dispatch/middleware/server_timing.rb:61:in `block in call'
+actionpack (8.0.2.1) lib/action_dispatch/middleware/server_timing.rb:26:in `collect_events'
+actionpack (8.0.2.1) lib/action_dispatch/middleware/server_timing.rb:60:in `call'
+actionpack (8.0.2.1) lib/action_dispatch/middleware/executor.rb:16:in `call'
+actionpack (8.0.2.1) lib/action_dispatch/middleware/static.rb:27:in `call'
+rack (3.2.0) lib/rack/sendfile.rb:114:in `call'
+rack-cors (3.0.0) lib/rack/cors.rb:102:in `call'
+railties (8.0.2.1) lib/rails/engine.rb:535:in `call'
+puma (6.6.1) lib/puma/configuration.rb:279:in `call'
+puma (6.6.1) lib/puma/request.rb:99:in `block in handle_request'
+puma (6.6.1) lib/puma/thread_pool.rb:390:in `with_force_shutdown'
+puma (6.6.1) lib/puma/request.rb:98:in `handle_request'
+puma (6.6.1) lib/puma/server.rb:472:in `process_client'
+puma (6.6.1) lib/puma/server.rb:254:in `block in run'
+puma (6.6.1) lib/puma/thread_pool.rb:167:in `block in spawn_thread'
+[dotenv] Set [36mDEVISE_JWT_SECRET_KEY[0m, [36mGOOGLE_CLIENT_ID[0m, [36mGOOGLE_CLIENT_SECRET[0m, and [36mGEMINI_API_KEY[0m
+[dotenv] Loaded [33m.env[0m
+[dotenv] Loaded [33m.env[0m
+Started GET "/api/work/1/content" for ::1 at 2025-09-15 15:14:31 -0300
+  [1m[36mActiveRecord::SchemaMigration Load (1.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='Backend'*/[0m
+  
+ActionController::RoutingError (uninitialized constant Api::WorkController)
+Caused by: ActionDispatch::MissingController (uninitialized constant Api::WorkController)
+Caused by: NameError (uninitialized constant Api::WorkController)
+
+Information for: ActionController::RoutingError (uninitialized constant Api::WorkController):
+  
+
+Information for cause: ActionDispatch::MissingController (uninitialized constant Api::WorkController):
+  
+actionpack (8.0.2.1) lib/action_dispatch/http/request.rb:102:in `rescue in controller_class_for'
+actionpack (8.0.2.1) lib/action_dispatch/http/request.rb:98:in `controller_class_for'
+actionpack (8.0.2.1) lib/action_dispatch/http/request.rb:91:in `controller_class'
+actionpack (8.0.2.1) lib/action_dispatch/routing/route_set.rb:61:in `controller'
+actionpack (8.0.2.1) lib/action_dispatch/routing/route_set.rb:48:in `serve'
+actionpack (8.0.2.1) lib/action_dispatch/journey/router.rb:53:in `block in serve'
+actionpack (8.0.2.1) lib/action_dispatch/journey/router.rb:133:in `block in find_routes'
+actionpack (8.0.2.1) lib/action_dispatch/journey/router.rb:126:in `each'
+actionpack (8.0.2.1) lib/action_dispatch/journey/router.rb:126:in `find_routes'
+actionpack (8.0.2.1) lib/action_dispatch/journey/router.rb:34:in `serve'
+actionpack (8.0.2.1) lib/action_dispatch/routing/route_set.rb:908:in `call'
+railties (8.0.2.1) lib/rails/engine/lazy_route_set.rb:68:in `call'
+omniauth (2.1.3) lib/omniauth/strategy.rb:202:in `call!'
+omniauth (2.1.3) lib/omniauth/strategy.rb:169:in `call'
+omniauth (2.1.3) lib/omniauth/builder.rb:44:in `call'
+warden-jwt_auth (0.11.0) lib/warden/jwt_auth/middleware/token_dispatcher.rb:20:in `call'
+warden-jwt_auth (0.11.0) lib/warden/jwt_auth/middleware/revocation_manager.rb:21:in `call'
+rack (3.2.0) lib/rack/builder.rb:283:in `call'
+warden-jwt_auth (0.11.0) lib/warden/jwt_auth/middleware.rb:22:in `call'
+actionpack (8.0.2.1) lib/action_dispatch/middleware/cookies.rb:706:in `call'
+rack-session (2.1.1) lib/rack/session/abstract/id.rb:274:in `context'
+rack-session (2.1.1) lib/rack/session/abstract/id.rb:268:in `call'
+warden (1.2.9) lib/warden/manager.rb:36:in `block in call'
+warden (1.2.9) lib/warden/manager.rb:34:in `catch'
+warden (1.2.9) lib/warden/manager.rb:34:in `call'
+rack (3.2.0) lib/rack/etag.rb:29:in `call'
+rack (3.2.0) lib/rack/conditional_get.rb:31:in `call'
+rack (3.2.0) lib/rack/head.rb:15:in `call'
+activerecord (8.0.2.1) lib/active_record/migration.rb:671:in `call'
+actionpack (8.0.2.1) lib/action_dispatch/middleware/callbacks.rb:31:in `block in call'
+activesupport (8.0.2.1) lib/active_support/callbacks.rb:100:in `run_callbacks'
+actionpack (8.0.2.1) lib/action_dispatch/middleware/callbacks.rb:30:in `call'
+actionpack (8.0.2.1) lib/action_dispatch/middleware/executor.rb:16:in `call'
+actionpack (8.0.2.1) lib/action_dispatch/middleware/actionable_exceptions.rb:18:in `call'
+actionpack (8.0.2.1) lib/action_dispatch/middleware/debug_exceptions.rb:31:in `call'
+actionpack (8.0.2.1) lib/action_dispatch/middleware/show_exceptions.rb:32:in `call'
+railties (8.0.2.1) lib/rails/rack/logger.rb:41:in `call_app'
+railties (8.0.2.1) lib/rails/rack/logger.rb:29:in `call'
+actionpack (8.0.2.1) lib/action_dispatch/middleware/remote_ip.rb:96:in `call'
+actionpack (8.0.2.1) lib/action_dispatch/middleware/request_id.rb:34:in `call'
+rack (3.2.0) lib/rack/runtime.rb:24:in `call'
+actionpack (8.0.2.1) lib/action_dispatch/middleware/server_timing.rb:61:in `block in call'
+actionpack (8.0.2.1) lib/action_dispatch/middleware/server_timing.rb:26:in `collect_events'
+actionpack (8.0.2.1) lib/action_dispatch/middleware/server_timing.rb:60:in `call'
+actionpack (8.0.2.1) lib/action_dispatch/middleware/executor.rb:16:in `call'
+actionpack (8.0.2.1) lib/action_dispatch/middleware/static.rb:27:in `call'
+rack (3.2.0) lib/rack/sendfile.rb:114:in `call'
+rack-cors (3.0.0) lib/rack/cors.rb:102:in `call'
+railties (8.0.2.1) lib/rails/engine.rb:535:in `call'
+puma (6.6.1) lib/puma/configuration.rb:279:in `call'
+puma (6.6.1) lib/puma/request.rb:99:in `block in handle_request'
+puma (6.6.1) lib/puma/thread_pool.rb:390:in `with_force_shutdown'
+puma (6.6.1) lib/puma/request.rb:98:in `handle_request'
+puma (6.6.1) lib/puma/server.rb:472:in `process_client'
+puma (6.6.1) lib/puma/server.rb:254:in `block in run'
+puma (6.6.1) lib/puma/thread_pool.rb:167:in `block in spawn_thread'
+
+Information for cause: NameError (uninitialized constant Api::WorkController):
+  
+activesupport (8.0.2.1) lib/active_support/inflector/methods.rb:290:in `constantize'
+activesupport (8.0.2.1) lib/active_support/core_ext/string/inflections.rb:74:in `constantize'
+actionpack (8.0.2.1) lib/action_dispatch/http/request.rb:99:in `controller_class_for'
+actionpack (8.0.2.1) lib/action_dispatch/http/request.rb:91:in `controller_class'
+actionpack (8.0.2.1) lib/action_dispatch/routing/route_set.rb:61:in `controller'
+actionpack (8.0.2.1) lib/action_dispatch/routing/route_set.rb:48:in `serve'
+actionpack (8.0.2.1) lib/action_dispatch/journey/router.rb:53:in `block in serve'
+actionpack (8.0.2.1) lib/action_dispatch/journey/router.rb:133:in `block in find_routes'
+actionpack (8.0.2.1) lib/action_dispatch/journey/router.rb:126:in `each'
+actionpack (8.0.2.1) lib/action_dispatch/journey/router.rb:126:in `find_routes'
+actionpack (8.0.2.1) lib/action_dispatch/journey/router.rb:34:in `serve'
+actionpack (8.0.2.1) lib/action_dispatch/routing/route_set.rb:908:in `call'
+railties (8.0.2.1) lib/rails/engine/lazy_route_set.rb:68:in `call'
+omniauth (2.1.3) lib/omniauth/strategy.rb:202:in `call!'
+omniauth (2.1.3) lib/omniauth/strategy.rb:169:in `call'
+omniauth (2.1.3) lib/omniauth/builder.rb:44:in `call'
+warden-jwt_auth (0.11.0) lib/warden/jwt_auth/middleware/token_dispatcher.rb:20:in `call'
+warden-jwt_auth (0.11.0) lib/warden/jwt_auth/middleware/revocation_manager.rb:21:in `call'
+rack (3.2.0) lib/rack/builder.rb:283:in `call'
+warden-jwt_auth (0.11.0) lib/warden/jwt_auth/middleware.rb:22:in `call'
+actionpack (8.0.2.1) lib/action_dispatch/middleware/cookies.rb:706:in `call'
+rack-session (2.1.1) lib/rack/session/abstract/id.rb:274:in `context'
+rack-session (2.1.1) lib/rack/session/abstract/id.rb:268:in `call'
+warden (1.2.9) lib/warden/manager.rb:36:in `block in call'
+warden (1.2.9) lib/warden/manager.rb:34:in `catch'
+warden (1.2.9) lib/warden/manager.rb:34:in `call'
+rack (3.2.0) lib/rack/etag.rb:29:in `call'
+rack (3.2.0) lib/rack/conditional_get.rb:31:in `call'
+rack (3.2.0) lib/rack/head.rb:15:in `call'
+activerecord (8.0.2.1) lib/active_record/migration.rb:671:in `call'
+actionpack (8.0.2.1) lib/action_dispatch/middleware/callbacks.rb:31:in `block in call'
+activesupport (8.0.2.1) lib/active_support/callbacks.rb:100:in `run_callbacks'
+actionpack (8.0.2.1) lib/action_dispatch/middleware/callbacks.rb:30:in `call'
+actionpack (8.0.2.1) lib/action_dispatch/middleware/executor.rb:16:in `call'
+actionpack (8.0.2.1) lib/action_dispatch/middleware/actionable_exceptions.rb:18:in `call'
+actionpack (8.0.2.1) lib/action_dispatch/middleware/debug_exceptions.rb:31:in `call'
+actionpack (8.0.2.1) lib/action_dispatch/middleware/show_exceptions.rb:32:in `call'
+railties (8.0.2.1) lib/rails/rack/logger.rb:41:in `call_app'
+railties (8.0.2.1) lib/rails/rack/logger.rb:29:in `call'
+actionpack (8.0.2.1) lib/action_dispatch/middleware/remote_ip.rb:96:in `call'
+actionpack (8.0.2.1) lib/action_dispatch/middleware/request_id.rb:34:in `call'
+rack (3.2.0) lib/rack/runtime.rb:24:in `call'
+actionpack (8.0.2.1) lib/action_dispatch/middleware/server_timing.rb:61:in `block in call'
+actionpack (8.0.2.1) lib/action_dispatch/middleware/server_timing.rb:26:in `collect_events'
+actionpack (8.0.2.1) lib/action_dispatch/middleware/server_timing.rb:60:in `call'
+actionpack (8.0.2.1) lib/action_dispatch/middleware/executor.rb:16:in `call'
+actionpack (8.0.2.1) lib/action_dispatch/middleware/static.rb:27:in `call'
+rack (3.2.0) lib/rack/sendfile.rb:114:in `call'
+rack-cors (3.0.0) lib/rack/cors.rb:102:in `call'
+railties (8.0.2.1) lib/rails/engine.rb:535:in `call'
+puma (6.6.1) lib/puma/configuration.rb:279:in `call'
+puma (6.6.1) lib/puma/request.rb:99:in `block in handle_request'
+puma (6.6.1) lib/puma/thread_pool.rb:390:in `with_force_shutdown'
+puma (6.6.1) lib/puma/request.rb:98:in `handle_request'
+puma (6.6.1) lib/puma/server.rb:472:in `process_client'
+puma (6.6.1) lib/puma/server.rb:254:in `block in run'
+puma (6.6.1) lib/puma/thread_pool.rb:167:in `block in spawn_thread'
+Started GET "/api/work/1/content" for ::1 at 2025-09-15 15:14:50 -0300
+  
+AbstractController::ActionNotFound (The action 'content' could not be found for Api::WorkContentController):
+  
+actionpack (8.0.2.1) lib/abstract_controller/base.rb:158:in `process'
+actionpack (8.0.2.1) lib/action_controller/metal.rb:252:in `dispatch'
+actionpack (8.0.2.1) lib/action_controller/metal.rb:335:in `dispatch'
+actionpack (8.0.2.1) lib/action_dispatch/routing/route_set.rb:67:in `dispatch'
+actionpack (8.0.2.1) lib/action_dispatch/routing/route_set.rb:50:in `serve'
+actionpack (8.0.2.1) lib/action_dispatch/journey/router.rb:53:in `block in serve'
+actionpack (8.0.2.1) lib/action_dispatch/journey/router.rb:133:in `block in find_routes'
+actionpack (8.0.2.1) lib/action_dispatch/journey/router.rb:126:in `each'
+actionpack (8.0.2.1) lib/action_dispatch/journey/router.rb:126:in `find_routes'
+actionpack (8.0.2.1) lib/action_dispatch/journey/router.rb:34:in `serve'
+actionpack (8.0.2.1) lib/action_dispatch/routing/route_set.rb:908:in `call'
+railties (8.0.2.1) lib/rails/engine/lazy_route_set.rb:68:in `call'
+omniauth (2.1.3) lib/omniauth/strategy.rb:202:in `call!'
+omniauth (2.1.3) lib/omniauth/strategy.rb:169:in `call'
+omniauth (2.1.3) lib/omniauth/builder.rb:44:in `call'
+warden-jwt_auth (0.11.0) lib/warden/jwt_auth/middleware/token_dispatcher.rb:20:in `call'
+warden-jwt_auth (0.11.0) lib/warden/jwt_auth/middleware/revocation_manager.rb:21:in `call'
+rack (3.2.0) lib/rack/builder.rb:283:in `call'
+warden-jwt_auth (0.11.0) lib/warden/jwt_auth/middleware.rb:22:in `call'
+actionpack (8.0.2.1) lib/action_dispatch/middleware/cookies.rb:706:in `call'
+rack-session (2.1.1) lib/rack/session/abstract/id.rb:274:in `context'
+rack-session (2.1.1) lib/rack/session/abstract/id.rb:268:in `call'
+warden (1.2.9) lib/warden/manager.rb:36:in `block in call'
+warden (1.2.9) lib/warden/manager.rb:34:in `catch'
+warden (1.2.9) lib/warden/manager.rb:34:in `call'
+rack (3.2.0) lib/rack/etag.rb:29:in `call'
+rack (3.2.0) lib/rack/conditional_get.rb:31:in `call'
+rack (3.2.0) lib/rack/head.rb:15:in `call'
+activerecord (8.0.2.1) lib/active_record/migration.rb:671:in `call'
+actionpack (8.0.2.1) lib/action_dispatch/middleware/callbacks.rb:31:in `block in call'
+activesupport (8.0.2.1) lib/active_support/callbacks.rb:100:in `run_callbacks'
+actionpack (8.0.2.1) lib/action_dispatch/middleware/callbacks.rb:30:in `call'
+actionpack (8.0.2.1) lib/action_dispatch/middleware/executor.rb:16:in `call'
+actionpack (8.0.2.1) lib/action_dispatch/middleware/actionable_exceptions.rb:18:in `call'
+actionpack (8.0.2.1) lib/action_dispatch/middleware/debug_exceptions.rb:31:in `call'
+actionpack (8.0.2.1) lib/action_dispatch/middleware/show_exceptions.rb:32:in `call'
+railties (8.0.2.1) lib/rails/rack/logger.rb:41:in `call_app'
+railties (8.0.2.1) lib/rails/rack/logger.rb:29:in `call'
+actionpack (8.0.2.1) lib/action_dispatch/middleware/remote_ip.rb:96:in `call'
+actionpack (8.0.2.1) lib/action_dispatch/middleware/request_id.rb:34:in `call'
+rack (3.2.0) lib/rack/runtime.rb:24:in `call'
+actionpack (8.0.2.1) lib/action_dispatch/middleware/server_timing.rb:61:in `block in call'
+actionpack (8.0.2.1) lib/action_dispatch/middleware/server_timing.rb:26:in `collect_events'
+actionpack (8.0.2.1) lib/action_dispatch/middleware/server_timing.rb:60:in `call'
+actionpack (8.0.2.1) lib/action_dispatch/middleware/executor.rb:16:in `call'
+actionpack (8.0.2.1) lib/action_dispatch/middleware/static.rb:27:in `call'
+rack (3.2.0) lib/rack/sendfile.rb:114:in `call'
+rack-cors (3.0.0) lib/rack/cors.rb:102:in `call'
+railties (8.0.2.1) lib/rails/engine.rb:535:in `call'
+puma (6.6.1) lib/puma/configuration.rb:279:in `call'
+puma (6.6.1) lib/puma/request.rb:99:in `block in handle_request'
+puma (6.6.1) lib/puma/thread_pool.rb:390:in `with_force_shutdown'
+puma (6.6.1) lib/puma/request.rb:98:in `handle_request'
+puma (6.6.1) lib/puma/server.rb:472:in `process_client'
+puma (6.6.1) lib/puma/server.rb:254:in `block in run'
+puma (6.6.1) lib/puma/thread_pool.rb:167:in `block in spawn_thread'
+Started GET "/api/work/1/content" for ::1 at 2025-09-15 15:15:08 -0300
+Processing by Api::WorkContentController#content as JSON
+  Parameters: {"id"=>"1"}
+Completed 401 Unauthorized in 3ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/api/tcc/criar.json" for 127.0.0.1 at 2025-09-15 15:34:36 -0300
+Processing by Api::TccController#show as JSON
+  Parameters: {"id"=>"criar"}
+Completed 401 Unauthorized in 3ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/favicon.ico" for 127.0.0.1 at 2025-09-15 15:34:36 -0300
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+[dotenv] Set [36mDEVISE_JWT_SECRET_KEY[0m, [36mGOOGLE_CLIENT_ID[0m, [36mGOOGLE_CLIENT_SECRET[0m, and [36mGEMINI_API_KEY[0m
+[dotenv] Loaded [33m.env[0m
+[dotenv] Loaded [33m.env[0m
+[dotenv] Set [36mDEVISE_JWT_SECRET_KEY[0m, [36mGOOGLE_CLIENT_ID[0m, [36mGOOGLE_CLIENT_SECRET[0m, and [36mGEMINI_API_KEY[0m
+[dotenv] Loaded [33m.env[0m
+[dotenv] Loaded [33m.env[0m
+[dotenv] Set [36mDEVISE_JWT_SECRET_KEY[0m, [36mGOOGLE_CLIENT_ID[0m, [36mGOOGLE_CLIENT_SECRET[0m, and [36mGEMINI_API_KEY[0m
+[dotenv] Loaded [33m.env[0m
+[dotenv] Loaded [33m.env[0m
+[dotenv] Set [36mDEVISE_JWT_SECRET_KEY[0m, [36mGOOGLE_CLIENT_ID[0m, [36mGOOGLE_CLIENT_SECRET[0m, and [36mGEMINI_API_KEY[0m
+[dotenv] Loaded [33m.env[0m
+[dotenv] Loaded [33m.env[0m
+[dotenv] Set [36mDEVISE_JWT_SECRET_KEY[0m, [36mGOOGLE_CLIENT_ID[0m, [36mGOOGLE_CLIENT_SECRET[0m, and [36mGEMINI_API_KEY[0m
+[dotenv] Loaded [33m.env[0m
+[dotenv] Loaded [33m.env[0m
+[dotenv] Set [36mDEVISE_JWT_SECRET_KEY[0m, [36mGOOGLE_CLIENT_ID[0m, [36mGOOGLE_CLIENT_SECRET[0m, and [36mGEMINI_API_KEY[0m
+[dotenv] Loaded [33m.env[0m
+[dotenv] Loaded [33m.env[0m
+[dotenv] Set [36mDEVISE_JWT_SECRET_KEY[0m, [36mGOOGLE_CLIENT_ID[0m, [36mGOOGLE_CLIENT_SECRET[0m, and [36mGEMINI_API_KEY[0m
+[dotenv] Loaded [33m.env[0m
+[dotenv] Loaded [33m.env[0m
+[dotenv] Set [36mDEVISE_JWT_SECRET_KEY[0m, [36mGOOGLE_CLIENT_ID[0m, [36mGOOGLE_CLIENT_SECRET[0m, and [36mGEMINI_API_KEY[0m
+[dotenv] Loaded [33m.env[0m
+[dotenv] Loaded [33m.env[0m
+[dotenv] Set [36mDEVISE_JWT_SECRET_KEY[0m, [36mGOOGLE_CLIENT_ID[0m, [36mGOOGLE_CLIENT_SECRET[0m, and [36mGEMINI_API_KEY[0m
+[dotenv] Loaded [33m.env[0m
+[dotenv] Loaded [33m.env[0m
+[dotenv] Set [36mDEVISE_JWT_SECRET_KEY[0m, [36mGOOGLE_CLIENT_ID[0m, [36mGOOGLE_CLIENT_SECRET[0m, and [36mGEMINI_API_KEY[0m
+[dotenv] Loaded [33m.env[0m
+[dotenv] Loaded [33m.env[0m
+[dotenv] Set [36mDEVISE_JWT_SECRET_KEY[0m, [36mGOOGLE_CLIENT_ID[0m, [36mGOOGLE_CLIENT_SECRET[0m, and [36mGEMINI_API_KEY[0m
+[dotenv] Loaded [33m.env[0m
+[dotenv] Loaded [33m.env[0m
+[dotenv] Set [36mDEVISE_JWT_SECRET_KEY[0m, [36mGOOGLE_CLIENT_ID[0m, [36mGOOGLE_CLIENT_SECRET[0m, and [36mGEMINI_API_KEY[0m
+[dotenv] Loaded [33m.env[0m
+[dotenv] Loaded [33m.env[0m
+[dotenv] Set [36mDEVISE_JWT_SECRET_KEY[0m, [36mGOOGLE_CLIENT_ID[0m, [36mGOOGLE_CLIENT_SECRET[0m, and [36mGEMINI_API_KEY[0m
+[dotenv] Loaded [33m.env[0m
+[dotenv] Loaded [33m.env[0m
+[dotenv] Set [36mDEVISE_JWT_SECRET_KEY[0m, [36mGOOGLE_CLIENT_ID[0m, [36mGOOGLE_CLIENT_SECRET[0m, and [36mGEMINI_API_KEY[0m
+[dotenv] Loaded [33m.env[0m
+[dotenv] Loaded [33m.env[0m
+[dotenv] Set [36mDEVISE_JWT_SECRET_KEY[0m, [36mGOOGLE_CLIENT_ID[0m, [36mGOOGLE_CLIENT_SECRET[0m, and [36mGEMINI_API_KEY[0m
+[dotenv] Loaded [33m.env[0m
+[dotenv] Loaded [33m.env[0m
+Started POST "/api/tcc/criar.json" for 127.0.0.1 at 2025-09-15 15:55:01 -0300
+  [1m[36mActiveRecord::SchemaMigration Load (1.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='Backend'*/[0m
+Processing by Api::TccController#criar as JSON
+  Parameters: {"nome"=>"Lara Santana", "faculdade"=>"Estácio de Sá", "curso"=>"publicidade", "materia"=>"publicidade", "tema"=>"Analise a eficácia das campanhas publicitárias digitais voltadas para redes sociais, considerando o engajamento do público-alvo e a construção de marca. Avalie estratégias de storytelling, uso de influenciadores e métricas de desempenho, propondo melhorias baseadas em referências teóricas do marketing e comunicação.", "tipo_trabalho"=>"artigo", "tcc"=>{"nome"=>"Lara Santana", "faculdade"=>"Estácio de Sá", "curso"=>"publicidade", "materia"=>"publicidade", "tema"=>"Analise a eficácia das campanhas publicitárias digitais voltadas para redes sociais, considerando o engajamento do público-alvo e a construção de marca. Avalie estratégias de storytelling, uso de influenciadores e métricas de desempenho, propondo melhorias baseadas em referências teóricas do marketing e comunicação.", "tipo_trabalho"=>"artigo"}}
+Completed 200 OK in 17507ms (Views: 1.2ms | ActiveRecord: 47.8ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/api/tcc/tcc-1757962478488" for 127.0.0.1 at 2025-09-15 15:55:50 -0300
+Processing by Api::TccController#show as JSON
+  Parameters: {"id"=>"tcc-1757962478488", "tcc"=>{}}
+Completed 401 Unauthorized in 11ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/api/work/tcc-1757962478488/content" for 127.0.0.1 at 2025-09-15 15:56:00 -0300
+Processing by Api::WorkContentController#content as JSON
+  Parameters: {"id"=>"tcc-1757962478488", "work_content"=>{}}
+Completed 401 Unauthorized in 2ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/api/work/tcc-1757962478488/content" for 127.0.0.1 at 2025-09-15 15:56:00 -0300
+Processing by Api::WorkContentController#content as JSON
+  Parameters: {"id"=>"tcc-1757962478488", "work_content"=>{}}
+Completed 401 Unauthorized in 2ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/api/work/tcc-1757962478488/content" for 127.0.0.1 at 2025-09-15 15:56:06 -0300
+Started GET "/api/work/tcc-1757962478488/content" for 127.0.0.1 at 2025-09-15 15:56:06 -0300
+Processing by Api::WorkContentController#content as JSON
+  Parameters: {"id"=>"tcc-1757962478488", "work_content"=>{}}
+Completed 401 Unauthorized in 3ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Processing by Api::WorkContentController#content as JSON
+  Parameters: {"id"=>"tcc-1757962478488", "work_content"=>{}}
+Completed 401 Unauthorized in 2ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/api/work/tcc-1757962478488/content" for 127.0.0.1 at 2025-09-15 15:56:09 -0300
+Started GET "/api/work/tcc-1757962478488/content" for 127.0.0.1 at 2025-09-15 15:56:09 -0300
+Processing by Api::WorkContentController#content as JSON
+  Parameters: {"id"=>"tcc-1757962478488", "work_content"=>{}}
+Completed 401 Unauthorized in 3ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Processing by Api::WorkContentController#content as JSON
+  Parameters: {"id"=>"tcc-1757962478488", "work_content"=>{}}
+Completed 401 Unauthorized in 2ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+[dotenv] Set [36mDEVISE_JWT_SECRET_KEY[0m, [36mGOOGLE_CLIENT_ID[0m, [36mGOOGLE_CLIENT_SECRET[0m, and [36mGEMINI_API_KEY[0m
+[dotenv] Loaded [33m.env[0m
+[dotenv] Loaded [33m.env[0m
+Started GET "/api/tcc/tcc-1757962478488" for 127.0.0.1 at 2025-09-15 15:57:53 -0300
+  [1m[36mActiveRecord::SchemaMigration Load (0.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='Backend'*/[0m
+Processing by Api::TccController#show as JSON
+  Parameters: {"id"=>"tcc-1757962478488", "tcc"=>{}}
+Completed 401 Unauthorized in 5ms (ActiveRecord: 17.9ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/api/work/tcc-1757962478488/content" for 127.0.0.1 at 2025-09-15 15:58:05 -0300
+Started GET "/api/work/tcc-1757962478488/content" for 127.0.0.1 at 2025-09-15 15:58:05 -0300
+Processing by Api::WorkContentController#content as JSON
+  Parameters: {"id"=>"tcc-1757962478488", "work_content"=>{}}
+Completed 401 Unauthorized in 2ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Processing by Api::WorkContentController#content as JSON
+  Parameters: {"id"=>"tcc-1757962478488", "work_content"=>{}}
+Completed 401 Unauthorized in 3ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/api/work/tcc-1757962478488/save_content" for 127.0.0.1 at 2025-09-15 15:58:12 -0300
+Processing by Api::WorkContentController#save_content as JSON
+  Parameters: {"content"=>{"resumo"=>"", "introducao"=>"", "desenvolvimento"=>"", "conclusao"=>"", "referencias"=>"", "metodologia"=>"", "objetivos"=>"", "justificativa"=>""}, "id"=>"tcc-1757962478488", "work_content"=>{"content"=>{"resumo"=>"", "introducao"=>"", "desenvolvimento"=>"", "conclusao"=>"", "referencias"=>"", "metodologia"=>"", "objetivos"=>"", "justificativa"=>""}}}
+Completed 401 Unauthorized in 1ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/api/tcc/tcc-1757962478488/export_word" for 127.0.0.1 at 2025-09-15 15:58:21 -0300
+Processing by Api::TccController#export_word as JSON
+  Parameters: {"id"=>"tcc-1757962478488"}
+Completed 401 Unauthorized in 4ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/api/tcc/tcc-1757962478488/export_pdf" for 127.0.0.1 at 2025-09-15 15:58:30 -0300
+Processing by Api::TccController#export_pdf as JSON
+  Parameters: {"id"=>"tcc-1757962478488"}
+Completed 401 Unauthorized in 6ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/api/work/tcc-1757962478488/content" for 127.0.0.1 at 2025-09-15 16:00:31 -0300
+Started GET "/api/work/tcc-1757962478488/content" for 127.0.0.1 at 2025-09-15 16:00:31 -0300
+Processing by Api::WorkContentController#content as JSON
+  Parameters: {"id"=>"tcc-1757962478488", "work_content"=>{}}
+Completed 401 Unauthorized in 2ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Processing by Api::WorkContentController#content as JSON
+  Parameters: {"id"=>"tcc-1757962478488", "work_content"=>{}}
+Completed 401 Unauthorized in 2ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/api/tcc/tcc-1757962478488" for 127.0.0.1 at 2025-09-15 16:00:45 -0300
+Processing by Api::TccController#show as JSON
+  Parameters: {"id"=>"tcc-1757962478488", "tcc"=>{}}
+Completed 401 Unauthorized in 2ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/api/profile" for 127.0.0.1 at 2025-09-15 16:01:30 -0300
+Processing by Api::ProfileController#show as JSON
+  Parameters: {"profile"=>{}}
+Completed 401 Unauthorized in 5ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/api/profile" for 127.0.0.1 at 2025-09-15 16:01:30 -0300
+Processing by Api::ProfileController#show as JSON
+  Parameters: {"profile"=>{}}
+Completed 401 Unauthorized in 2ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+[dotenv] Set [36mDEVISE_JWT_SECRET_KEY[0m, [36mGOOGLE_CLIENT_ID[0m, [36mGOOGLE_CLIENT_SECRET[0m, and [36mGEMINI_API_KEY[0m
+[dotenv] Loaded [33m.env[0m
+[dotenv] Loaded [33m.env[0m
+[dotenv] Set [36mDEVISE_JWT_SECRET_KEY[0m, [36mGOOGLE_CLIENT_ID[0m, [36mGOOGLE_CLIENT_SECRET[0m, and [36mGEMINI_API_KEY[0m
+[dotenv] Loaded [33m.env[0m
+[dotenv] Loaded [33m.env[0m
+[dotenv] Set [36mDEVISE_JWT_SECRET_KEY[0m, [36mGOOGLE_CLIENT_ID[0m, [36mGOOGLE_CLIENT_SECRET[0m, and [36mGEMINI_API_KEY[0m
+[dotenv] Loaded [33m.env[0m
+[dotenv] Loaded [33m.env[0m
+Started GET "/api/tcc/tcc-1757962478488" for 127.0.0.1 at 2025-09-15 16:18:39 -0300
+  [1m[36mActiveRecord::SchemaMigration Load (0.9ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='Backend'*/[0m
+Processing by Api::TccController#show as JSON
+  Parameters: {"id"=>"tcc-1757962478488", "tcc"=>{}}
+Completed 401 Unauthorized in 11ms (ActiveRecord: 93.7ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/api/work/tcc-1757962478488/content" for 127.0.0.1 at 2025-09-15 16:18:53 -0300
+Started GET "/api/work/tcc-1757962478488/content" for 127.0.0.1 at 2025-09-15 16:18:54 -0300
+Processing by Api::WorkContentController#content as JSON
+Processing by Api::WorkContentController#content as JSON
+  Parameters: {"id"=>"tcc-1757962478488", "work_content"=>{}}
+  Parameters: {"id"=>"tcc-1757962478488", "work_content"=>{}}
+Completed 401 Unauthorized in 3ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Completed 401 Unauthorized in 8ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/api/tcc/tcc-1757962478488/export_word" for 127.0.0.1 at 2025-09-15 16:19:57 -0300
+Processing by Api::TccController#export_word as JSON
+  Parameters: {"id"=>"tcc-1757962478488"}
+Completed 401 Unauthorized in 2ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/api/tcc/test_id/export_word" for ::1 at 2025-09-15 16:21:56 -0300
+Processing by Api::TccController#export_word as JSON
+  Parameters: {"id"=>"test_id"}
+Completed 401 Unauthorized in 1ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/api/tcc/test_export" for ::1 at 2025-09-15 16:23:07 -0300
+Processing by Api::TccController#show as JSON
+  Parameters: {"id"=>"test_export"}
+Completed 401 Unauthorized in 2ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+[dotenv] Set [36mDEVISE_JWT_SECRET_KEY[0m, [36mGOOGLE_CLIENT_ID[0m, [36mGOOGLE_CLIENT_SECRET[0m, and [36mGEMINI_API_KEY[0m
+[dotenv] Loaded [33m.env[0m
+[dotenv] Loaded [33m.env[0m
+[dotenv] Set [36mDEVISE_JWT_SECRET_KEY[0m, [36mGOOGLE_CLIENT_ID[0m, [36mGOOGLE_CLIENT_SECRET[0m, and [36mGEMINI_API_KEY[0m
+[dotenv] Loaded [33m.env[0m
+[dotenv] Loaded [33m.env[0m
+Started GET "/api/tcc/test_export" for ::1 at 2025-09-15 16:23:35 -0300
+Processing by Api::TccController#show as JSON
+  Parameters: {"id"=>"test_export"}
+Completed 401 Unauthorized in 3ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/api/tcc/test_export" for ::1 at 2025-09-15 16:23:47 -0300
+Processing by Api::TccController#show as JSON
+  Parameters: {"id"=>"test_export"}
+Completed 401 Unauthorized in 2ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/api/test/export" for ::1 at 2025-09-15 16:24:09 -0300
+  
+ArgumentError (Before process_action callback :authenticate_user! has not been defined):
+  
+app/controllers/api/test_controller.rb:2:in `<class:TestController>'
+app/controllers/api/test_controller.rb:1:in `<main>'
+Started GET "/api/test/export" for ::1 at 2025-09-15 16:24:19 -0300
+Processing by Api::TestController#export_test as JSON
+Testando geração de arquivo Word
+Salvando arquivo de teste em: /home/ana/Documents/Programming/Trilha Clara/AI TCC Effortless/backend/tmp/TCC_Teste_20250915_192419.docx
+Erro ao gerar arquivo de teste: wrong number of arguments (given 1, expected 0)
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/caracal-1.4.1/lib/caracal/document.rb:159:in `save'
+/home/ana/Documents/Programming/Trilha Clara/AI TCC Effortless/backend/app/controllers/api/test_controller.rb:36:in `export_test'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/action_controller/metal/basic_implicit_render.rb:8:in `send_action'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/abstract_controller/base.rb:226:in `process_action'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/action_controller/metal/rendering.rb:193:in `process_action'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/abstract_controller/callbacks.rb:261:in `block in process_action'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/activesupport-8.0.2.1/lib/active_support/callbacks.rb:100:in `run_callbacks'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/abstract_controller/callbacks.rb:260:in `process_action'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/action_controller/metal/rescue.rb:27:in `process_action'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/action_controller/metal/instrumentation.rb:76:in `block in process_action'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/activesupport-8.0.2.1/lib/active_support/notifications.rb:210:in `block in instrument'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/activesupport-8.0.2.1/lib/active_support/notifications/instrumenter.rb:58:in `instrument'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/activesupport-8.0.2.1/lib/active_support/notifications.rb:210:in `instrument'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/action_controller/metal/instrumentation.rb:75:in `process_action'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/action_controller/metal/params_wrapper.rb:259:in `process_action'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/activerecord-8.0.2.1/lib/active_record/railties/controller_runtime.rb:39:in `process_action'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/abstract_controller/base.rb:163:in `process'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/action_controller/metal.rb:252:in `dispatch'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/action_controller/metal.rb:335:in `dispatch'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/action_dispatch/routing/route_set.rb:67:in `dispatch'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/action_dispatch/routing/route_set.rb:50:in `serve'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/action_dispatch/journey/router.rb:53:in `block in serve'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/action_dispatch/journey/router.rb:133:in `block in find_routes'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/action_dispatch/journey/router.rb:126:in `each'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/action_dispatch/journey/router.rb:126:in `find_routes'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/action_dispatch/journey/router.rb:34:in `serve'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/action_dispatch/routing/route_set.rb:908:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/railties-8.0.2.1/lib/rails/engine/lazy_route_set.rb:68:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/omniauth-2.1.3/lib/omniauth/strategy.rb:202:in `call!'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/omniauth-2.1.3/lib/omniauth/strategy.rb:169:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/omniauth-2.1.3/lib/omniauth/builder.rb:44:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/warden-jwt_auth-0.11.0/lib/warden/jwt_auth/middleware/token_dispatcher.rb:20:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/warden-jwt_auth-0.11.0/lib/warden/jwt_auth/middleware/revocation_manager.rb:21:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/rack-3.2.0/lib/rack/builder.rb:283:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/warden-jwt_auth-0.11.0/lib/warden/jwt_auth/middleware.rb:22:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/action_dispatch/middleware/cookies.rb:706:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/rack-session-2.1.1/lib/rack/session/abstract/id.rb:274:in `context'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/rack-session-2.1.1/lib/rack/session/abstract/id.rb:268:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/warden-1.2.9/lib/warden/manager.rb:36:in `block in call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/warden-1.2.9/lib/warden/manager.rb:34:in `catch'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/warden-1.2.9/lib/warden/manager.rb:34:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/rack-3.2.0/lib/rack/etag.rb:29:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/rack-3.2.0/lib/rack/conditional_get.rb:31:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/rack-3.2.0/lib/rack/head.rb:15:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/activerecord-8.0.2.1/lib/active_record/migration.rb:671:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/action_dispatch/middleware/callbacks.rb:31:in `block in call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/activesupport-8.0.2.1/lib/active_support/callbacks.rb:100:in `run_callbacks'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/action_dispatch/middleware/callbacks.rb:30:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/action_dispatch/middleware/executor.rb:16:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/action_dispatch/middleware/actionable_exceptions.rb:18:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/action_dispatch/middleware/debug_exceptions.rb:31:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/action_dispatch/middleware/show_exceptions.rb:32:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/railties-8.0.2.1/lib/rails/rack/logger.rb:41:in `call_app'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/railties-8.0.2.1/lib/rails/rack/logger.rb:29:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/action_dispatch/middleware/remote_ip.rb:96:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/action_dispatch/middleware/request_id.rb:34:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/rack-3.2.0/lib/rack/runtime.rb:24:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/action_dispatch/middleware/server_timing.rb:61:in `block in call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/action_dispatch/middleware/server_timing.rb:26:in `collect_events'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/action_dispatch/middleware/server_timing.rb:60:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/action_dispatch/middleware/executor.rb:16:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/action_dispatch/middleware/static.rb:27:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/rack-3.2.0/lib/rack/sendfile.rb:114:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/rack-cors-3.0.0/lib/rack/cors.rb:102:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/railties-8.0.2.1/lib/rails/engine.rb:535:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/puma-6.6.1/lib/puma/configuration.rb:279:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/puma-6.6.1/lib/puma/request.rb:99:in `block in handle_request'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/puma-6.6.1/lib/puma/thread_pool.rb:390:in `with_force_shutdown'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/puma-6.6.1/lib/puma/request.rb:98:in `handle_request'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/puma-6.6.1/lib/puma/server.rb:472:in `process_client'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/puma-6.6.1/lib/puma/server.rb:254:in `block in run'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/puma-6.6.1/lib/puma/thread_pool.rb:167:in `block in spawn_thread'
+Completed 500 Internal Server Error in 17ms (Views: 0.3ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.7ms)
+
+
+Started GET "/api/test/export" for ::1 at 2025-09-15 16:24:31 -0300
+Processing by Api::TestController#export_test as JSON
+Testando geração de arquivo Word
+Salvando arquivo de teste em: /home/ana/Documents/Programming/Trilha Clara/AI TCC Effortless/backend/tmp/TCC_Teste_20250915_192431.docx
+Arquivo de teste salvo com sucesso. Enviando para download...
+Sent file /home/ana/Documents/Programming/Trilha Clara/AI TCC Effortless/backend/tmp/TCC_Teste_20250915_192431.docx (1.1ms)
+Completed 200 OK in 40ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 7.9ms)
+
+
+[dotenv] Set [36mDEVISE_JWT_SECRET_KEY[0m, [36mGOOGLE_CLIENT_ID[0m, [36mGOOGLE_CLIENT_SECRET[0m, and [36mGEMINI_API_KEY[0m
+[dotenv] Loaded [33m.env[0m
+[dotenv] Loaded [33m.env[0m
+[dotenv] Set [36mDEVISE_JWT_SECRET_KEY[0m, [36mGOOGLE_CLIENT_ID[0m, [36mGOOGLE_CLIENT_SECRET[0m, and [36mGEMINI_API_KEY[0m
+[dotenv] Loaded [33m.env[0m
+[dotenv] Loaded [33m.env[0m
+  [1m[36mActiveStorage::Blob Count (3.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "active_storage_blobs" WHERE (filename LIKE '%.docx') /*application='Backend'*/[0m
+[dotenv] Set [36mDEVISE_JWT_SECRET_KEY[0m, [36mGOOGLE_CLIENT_ID[0m, [36mGOOGLE_CLIENT_SECRET[0m, and [36mGEMINI_API_KEY[0m
+[dotenv] Loaded [33m.env[0m
+[dotenv] Loaded [33m.env[0m
+  [1m[36mUser Load (7.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = 'test@example.com' LIMIT 1 /*application='Backend'*/[0m
+[dotenv] Set [36mDEVISE_JWT_SECRET_KEY[0m, [36mGOOGLE_CLIENT_ID[0m, [36mGOOGLE_CLIENT_SECRET[0m, and [36mGEMINI_API_KEY[0m
+[dotenv] Loaded [33m.env[0m
+[dotenv] Loaded [33m.env[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.9ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='Backend'*/[0m
+[dotenv] Set [36mDEVISE_JWT_SECRET_KEY[0m, [36mGOOGLE_CLIENT_ID[0m, [36mGOOGLE_CLIENT_SECRET[0m, and [36mGEMINI_API_KEY[0m
+[dotenv] Loaded [33m.env[0m
+[dotenv] Loaded [33m.env[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.9ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='Backend'*/[0m
+[dotenv] Set [36mDEVISE_JWT_SECRET_KEY[0m, [36mGOOGLE_CLIENT_ID[0m, [36mGOOGLE_CLIENT_SECRET[0m, and [36mGEMINI_API_KEY[0m
+[dotenv] Loaded [33m.env[0m
+[dotenv] Loaded [33m.env[0m
+  [1m[36mUser Load (3.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = 'test@example.com' LIMIT 1 /*application='Backend'*/[0m
+[dotenv] Set [36mDEVISE_JWT_SECRET_KEY[0m, [36mGOOGLE_CLIENT_ID[0m, [36mGOOGLE_CLIENT_SECRET[0m, and [36mGEMINI_API_KEY[0m
+[dotenv] Loaded [33m.env[0m
+[dotenv] Loaded [33m.env[0m
+  [1m[36mUser Load (2.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = 'test@example.com' LIMIT 1 /*application='Backend'*/[0m
+  [1m[36mTRANSACTION (0.5ms)[0m  [1m[35mBEGIN /*application='Backend'*/[0m
+  [1m[36mTcc Create (9.9ms)[0m  [1m[32mINSERT INTO "tccs" ("nome", "faculdade", "curso", "materia", "tema", "tipo_trabalho", "user_id", "created_at", "updated_at", "resumo", "introducao", "objetivos", "justificativa", "metodologia", "desenvolvimento", "conclusao", "referencias") VALUES ('João Silva', 'Universidade Federal', 'Ciência da Computação', 'Inteligência Artificial', 'Aplicação de Inteligência Artificial na Educação: Desafios e Oportunidades', 'tcc', 1, '2025-09-15 19:29:02.405300', '2025-09-15 19:29:02.405300', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL) RETURNING "id" /*application='Backend'*/[0m
+  [1m[36mTRANSACTION (2.3ms)[0m  [1m[35mCOMMIT /*application='Backend'*/[0m
+[dotenv] Set [36mDEVISE_JWT_SECRET_KEY[0m, [36mGOOGLE_CLIENT_ID[0m, [36mGOOGLE_CLIENT_SECRET[0m, and [36mGEMINI_API_KEY[0m
+[dotenv] Loaded [33m.env[0m
+[dotenv] Loaded [33m.env[0m
+  [1m[36mUser Load (2.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = 'test@example.com' LIMIT 1 /*application='Backend'*/[0m
+Started GET "/api/tcc/1/export_word" for ::1 at 2025-09-15 16:29:20 -0300
+Processing by Api::TccController#export_word as JSON
+  Parameters: {"id"=>"1"}
+Completed 401 Unauthorized in 4ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/api/tcc/1/export_word" for ::1 at 2025-09-15 16:30:19 -0300
+Processing by Api::TccController#export_word as JSON
+  Parameters: {"id"=>"1"}
+Completed 401 Unauthorized in 1ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+[dotenv] Set [36mDEVISE_JWT_SECRET_KEY[0m, [36mGOOGLE_CLIENT_ID[0m, [36mGOOGLE_CLIENT_SECRET[0m, and [36mGEMINI_API_KEY[0m
+[dotenv] Loaded [33m.env[0m
+[dotenv] Loaded [33m.env[0m
+  [1m[36mUser Load (4.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = 'test@example.com' LIMIT 1 /*application='Backend'*/[0m
+Started GET "/api/tcc/1/export_word" for ::1 at 2025-09-15 16:30:39 -0300
+Processing by Api::TccController#export_word as JSON
+  Parameters: {"id"=>"1"}
+Completed 401 Unauthorized in 1ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+[dotenv] Set [36mDEVISE_JWT_SECRET_KEY[0m, [36mGOOGLE_CLIENT_ID[0m, [36mGOOGLE_CLIENT_SECRET[0m, and [36mGEMINI_API_KEY[0m
+[dotenv] Loaded [33m.env[0m
+[dotenv] Loaded [33m.env[0m
+  [1m[36mUser Load (1.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = 'test@example.com' LIMIT 1 /*application='Backend'*/[0m
+Started GET "/api/tcc/1/export_word" for ::1 at 2025-09-15 16:31:05 -0300
+Processing by Api::TccController#export_word as JSON
+  Parameters: {"id"=>"1"}
+Completed 401 Unauthorized in 2ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+[dotenv] Set [36mDEVISE_JWT_SECRET_KEY[0m, [36mGOOGLE_CLIENT_ID[0m, [36mGOOGLE_CLIENT_SECRET[0m, and [36mGEMINI_API_KEY[0m
+[dotenv] Loaded [33m.env[0m
+[dotenv] Loaded [33m.env[0m
+  [1m[36mUser Load (3.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = 'test@example.com' LIMIT 1 /*application='Backend'*/[0m
+[dotenv] Set [36mDEVISE_JWT_SECRET_KEY[0m, [36mGOOGLE_CLIENT_ID[0m, [36mGOOGLE_CLIENT_SECRET[0m, and [36mGEMINI_API_KEY[0m
+[dotenv] Loaded [33m.env[0m
+[dotenv] Loaded [33m.env[0m
+  [1m[36mUser Load (4.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = 'test@example.com' LIMIT 1 /*application='Backend'*/[0m
+Started GET "/api/tcc/1/export_word" for ::1 at 2025-09-15 16:32:08 -0300
+Processing by Api::TccController#export_word as JSON
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (1.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 1 LIMIT 1 /*action='export_word',application='Backend',controller='tcc'*/[0m
+  [1m[36mJwtDenylist Exists? (4.4ms)[0m  [1m[34mSELECT 1 AS one FROM "jwt_denylists" WHERE "jwt_denylists"."jti" = 'b9a079d7-ffbd-4852-aa01-79af7628dde9' LIMIT 1 /*action='export_word',application='Backend',controller='tcc'*/[0m
+Completed 500 Internal Server Error in 88ms (Views: 0.2ms | ActiveRecord: 14.3ms (2 queries, 0 cached) | GC: 16.7ms)
+
+
+Started GET "/api/tcc/1/export_word" for ::1 at 2025-09-15 16:34:22 -0300
+Processing by Api::TccController#export_word as JSON
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (3.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 1 LIMIT 1 /*action='export_word',application='Backend',controller='tcc'*/[0m
+  [1m[36mJwtDenylist Exists? (1.2ms)[0m  [1m[34mSELECT 1 AS one FROM "jwt_denylists" WHERE "jwt_denylists"."jti" = 'b9a079d7-ffbd-4852-aa01-79af7628dde9' LIMIT 1 /*action='export_word',application='Backend',controller='tcc'*/[0m
+  [1m[36mTcc Load (2.7ms)[0m  [1m[34mSELECT "tccs".* FROM "tccs" WHERE "tccs"."user_id" = 1 AND "tccs"."id" = 1 LIMIT 1 /*action='export_word',application='Backend',controller='tcc'*/[0m
+  ↳ app/controllers/api/tcc_controller.rb:301:in `set_tcc'
+Iniciando geração de arquivo Word para TCC ID: 1
+Salvando arquivo em: /home/ana/Documents/Programming/Trilha Clara/AI TCC Effortless/backend/tmp/TCC_1_20250915_193423.docx
+Arquivo salvo com sucesso. Enviando para download...
+Sent file /home/ana/Documents/Programming/Trilha Clara/AI TCC Effortless/backend/tmp/TCC_1_20250915_193423.docx (3.1ms)
+Completed 200 OK in 467ms (ActiveRecord: 31.4ms (3 queries, 0 cached) | GC: 4.1ms)
+
+
+Started GET "/api/tcc/1/export_word" for ::1 at 2025-09-15 16:36:14 -0300
+Processing by Api::TccController#export_word as JSON
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (4.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 1 LIMIT 1 /*action='export_word',application='Backend',controller='tcc'*/[0m
+  [1m[36mJwtDenylist Exists? (0.7ms)[0m  [1m[34mSELECT 1 AS one FROM "jwt_denylists" WHERE "jwt_denylists"."jti" = 'b9a079d7-ffbd-4852-aa01-79af7628dde9' LIMIT 1 /*action='export_word',application='Backend',controller='tcc'*/[0m
+  [1m[36mTcc Load (1.9ms)[0m  [1m[34mSELECT "tccs".* FROM "tccs" WHERE "tccs"."user_id" = 1 AND "tccs"."id" = 1 LIMIT 1 /*action='export_word',application='Backend',controller='tcc'*/[0m
+  ↳ app/controllers/api/tcc_controller.rb:303:in `set_tcc'
+Iniciando geração de arquivo Word para TCC ID: 1
+Salvando arquivo em: /home/ana/Documents/Programming/Trilha Clara/AI TCC Effortless/backend/tmp/TCC_1_20250915_193614.docx
+Arquivo salvo com sucesso. Enviando para download...
+Sent file /home/ana/Documents/Programming/Trilha Clara/AI TCC Effortless/backend/tmp/TCC_1_20250915_193614.docx (0.5ms)
+Completed 200 OK in 280ms (ActiveRecord: 28.6ms (3 queries, 0 cached) | GC: 5.4ms)
+
+
+[dotenv] Set [36mDEVISE_JWT_SECRET_KEY[0m, [36mGOOGLE_CLIENT_ID[0m, [36mGOOGLE_CLIENT_SECRET[0m, and [36mGEMINI_API_KEY[0m
+[dotenv] Loaded [33m.env[0m
+[dotenv] Loaded [33m.env[0m
+Started GET "/api/tcc/1/export_word" for ::1 at 2025-09-15 16:40:14 -0300
+Processing by Api::TccController#export_word as JSON
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 1 LIMIT 1 /*action='export_word',application='Backend',controller='tcc'*/[0m
+  [1m[36mJwtDenylist Exists? (0.4ms)[0m  [1m[34mSELECT 1 AS one FROM "jwt_denylists" WHERE "jwt_denylists"."jti" = 'b9a079d7-ffbd-4852-aa01-79af7628dde9' LIMIT 1 /*action='export_word',application='Backend',controller='tcc'*/[0m
+  [1m[36mTcc Load (0.3ms)[0m  [1m[34mSELECT "tccs".* FROM "tccs" WHERE "tccs"."user_id" = 1 AND "tccs"."id" = 1 LIMIT 1 /*action='export_word',application='Backend',controller='tcc'*/[0m
+  ↳ app/controllers/api/tcc_controller.rb:303:in `set_tcc'
+Iniciando geração de arquivo Word para TCC ID: 1
+Salvando arquivo em: /home/ana/Documents/Programming/Trilha Clara/AI TCC Effortless/backend/tmp/TCC_1_20250915_194014.docx
+Arquivo salvo com sucesso. Enviando para download...
+Sent file /home/ana/Documents/Programming/Trilha Clara/AI TCC Effortless/backend/tmp/TCC_1_20250915_194014.docx (0.2ms)
+Completed 200 OK in 58ms (ActiveRecord: 8.8ms (3 queries, 0 cached) | GC: 1.4ms)
+
+
+Started GET "/api/tcc/1/export_word" for ::1 at 2025-09-15 16:40:39 -0300
+Processing by Api::TccController#export_word as JSON
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 1 LIMIT 1 /*action='export_word',application='Backend',controller='tcc'*/[0m
+  [1m[36mJwtDenylist Exists? (0.6ms)[0m  [1m[34mSELECT 1 AS one FROM "jwt_denylists" WHERE "jwt_denylists"."jti" = 'b9a079d7-ffbd-4852-aa01-79af7628dde9' LIMIT 1 /*action='export_word',application='Backend',controller='tcc'*/[0m
+  [1m[36mTcc Load (0.7ms)[0m  [1m[34mSELECT "tccs".* FROM "tccs" WHERE "tccs"."user_id" = 1 AND "tccs"."id" = 1 LIMIT 1 /*action='export_word',application='Backend',controller='tcc'*/[0m
+  ↳ app/controllers/api/tcc_controller.rb:301:in `set_tcc'
+Iniciando geração de arquivo Word para TCC ID: 1
+Salvando arquivo em: /home/ana/Documents/Programming/Trilha Clara/AI TCC Effortless/backend/tmp/TCC_1_20250915_194040.docx
+Erro ao gerar arquivo Word: wrong number of arguments (given 1, expected 0)
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/caracal-1.4.1/lib/caracal/document.rb:159:in `save'
+/home/ana/Documents/Programming/Trilha Clara/AI TCC Effortless/backend/app/controllers/api/tcc_controller.rb:176:in `export_word'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/action_controller/metal/basic_implicit_render.rb:8:in `send_action'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/abstract_controller/base.rb:226:in `process_action'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/action_controller/metal/rendering.rb:193:in `process_action'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/abstract_controller/callbacks.rb:261:in `block in process_action'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/activesupport-8.0.2.1/lib/active_support/callbacks.rb:109:in `run_callbacks'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/abstract_controller/callbacks.rb:260:in `process_action'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/action_controller/metal/rescue.rb:27:in `process_action'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/action_controller/metal/instrumentation.rb:76:in `block in process_action'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/activesupport-8.0.2.1/lib/active_support/notifications.rb:210:in `block in instrument'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/activesupport-8.0.2.1/lib/active_support/notifications/instrumenter.rb:58:in `instrument'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/activesupport-8.0.2.1/lib/active_support/notifications.rb:210:in `instrument'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/action_controller/metal/instrumentation.rb:75:in `process_action'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/action_controller/metal/params_wrapper.rb:259:in `process_action'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/activerecord-8.0.2.1/lib/active_record/railties/controller_runtime.rb:39:in `process_action'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/abstract_controller/base.rb:163:in `process'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/action_controller/metal.rb:252:in `dispatch'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/action_controller/metal.rb:335:in `dispatch'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/action_dispatch/routing/route_set.rb:67:in `dispatch'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/action_dispatch/routing/route_set.rb:50:in `serve'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/action_dispatch/journey/router.rb:53:in `block in serve'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/action_dispatch/journey/router.rb:133:in `block in find_routes'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/action_dispatch/journey/router.rb:126:in `each'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/action_dispatch/journey/router.rb:126:in `find_routes'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/action_dispatch/journey/router.rb:34:in `serve'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/action_dispatch/routing/route_set.rb:908:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/railties-8.0.2.1/lib/rails/engine/lazy_route_set.rb:68:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/omniauth-2.1.3/lib/omniauth/strategy.rb:202:in `call!'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/omniauth-2.1.3/lib/omniauth/strategy.rb:169:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/omniauth-2.1.3/lib/omniauth/builder.rb:44:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/warden-jwt_auth-0.11.0/lib/warden/jwt_auth/middleware/token_dispatcher.rb:20:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/warden-jwt_auth-0.11.0/lib/warden/jwt_auth/middleware/revocation_manager.rb:21:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/rack-3.2.0/lib/rack/builder.rb:283:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/warden-jwt_auth-0.11.0/lib/warden/jwt_auth/middleware.rb:22:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/action_dispatch/middleware/cookies.rb:706:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/rack-session-2.1.1/lib/rack/session/abstract/id.rb:274:in `context'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/rack-session-2.1.1/lib/rack/session/abstract/id.rb:268:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/warden-1.2.9/lib/warden/manager.rb:36:in `block in call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/warden-1.2.9/lib/warden/manager.rb:34:in `catch'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/warden-1.2.9/lib/warden/manager.rb:34:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/rack-3.2.0/lib/rack/etag.rb:29:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/rack-3.2.0/lib/rack/conditional_get.rb:31:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/rack-3.2.0/lib/rack/head.rb:15:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/activerecord-8.0.2.1/lib/active_record/migration.rb:671:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/action_dispatch/middleware/callbacks.rb:31:in `block in call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/activesupport-8.0.2.1/lib/active_support/callbacks.rb:100:in `run_callbacks'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/action_dispatch/middleware/callbacks.rb:30:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/action_dispatch/middleware/executor.rb:16:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/action_dispatch/middleware/actionable_exceptions.rb:18:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/action_dispatch/middleware/debug_exceptions.rb:31:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/action_dispatch/middleware/show_exceptions.rb:32:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/railties-8.0.2.1/lib/rails/rack/logger.rb:41:in `call_app'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/railties-8.0.2.1/lib/rails/rack/logger.rb:29:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/action_dispatch/middleware/remote_ip.rb:96:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/action_dispatch/middleware/request_id.rb:34:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/rack-3.2.0/lib/rack/runtime.rb:24:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/action_dispatch/middleware/server_timing.rb:61:in `block in call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/action_dispatch/middleware/server_timing.rb:26:in `collect_events'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/action_dispatch/middleware/server_timing.rb:60:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/action_dispatch/middleware/executor.rb:16:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/action_dispatch/middleware/static.rb:27:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/rack-3.2.0/lib/rack/sendfile.rb:114:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/rack-cors-3.0.0/lib/rack/cors.rb:102:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/railties-8.0.2.1/lib/rails/engine.rb:535:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/puma-6.6.1/lib/puma/configuration.rb:279:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/puma-6.6.1/lib/puma/request.rb:99:in `block in handle_request'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/puma-6.6.1/lib/puma/thread_pool.rb:390:in `with_force_shutdown'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/puma-6.6.1/lib/puma/request.rb:98:in `handle_request'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/puma-6.6.1/lib/puma/server.rb:472:in `process_client'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/puma-6.6.1/lib/puma/server.rb:254:in `block in run'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/puma-6.6.1/lib/puma/thread_pool.rb:167:in `block in spawn_thread'
+Completed 500 Internal Server Error in 88ms (Views: 0.7ms | ActiveRecord: 26.6ms (3 queries, 0 cached) | GC: 17.6ms)
+
+
+Started GET "/api/tcc/tcc-1757962478488" for 127.0.0.1 at 2025-09-15 16:51:48 -0300
+Processing by Api::TccController#show as JSON
+  Parameters: {"id"=>"tcc-1757962478488", "tcc"=>{}}
+Completed 401 Unauthorized in 14ms (ActiveRecord: 49.9ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/api/work/tcc-1757962478488/content" for 127.0.0.1 at 2025-09-15 16:51:51 -0300
+Started GET "/api/work/tcc-1757962478488/content" for 127.0.0.1 at 2025-09-15 16:51:51 -0300
+Processing by Api::WorkContentController#content as JSON
+  Parameters: {"id"=>"tcc-1757962478488", "work_content"=>{}}
+Processing by Api::WorkContentController#content as JSON
+Completed 401 Unauthorized in 5ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+  Parameters: {"id"=>"tcc-1757962478488", "work_content"=>{}}
+Completed 401 Unauthorized in 3ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/api/tcc/tcc-1757962478488/export_word" for 127.0.0.1 at 2025-09-15 16:51:59 -0300
+Processing by Api::TccController#export_word as JSON
+  Parameters: {"id"=>"tcc-1757962478488"}
+Completed 401 Unauthorized in 1ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/api/tcc/tcc-1757962478488" for 127.0.0.1 at 2025-09-15 16:52:16 -0300
+Processing by Api::TccController#show as JSON
+  Parameters: {"id"=>"tcc-1757962478488", "tcc"=>{}}
+Completed 401 Unauthorized in 3ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/api/tcc/tcc-1757962478488/export_pdf" for 127.0.0.1 at 2025-09-15 16:52:22 -0300
+Processing by Api::TccController#export_pdf as JSON
+  Parameters: {"id"=>"tcc-1757962478488"}
+Completed 401 Unauthorized in 2ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
