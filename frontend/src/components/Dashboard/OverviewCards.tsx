@@ -107,35 +107,37 @@ export default function OverviewCards({
             className={`bg-gradient-to-br ${card.bgColor} border ${card.borderColor} hover:shadow-xl transition-all duration-300 cursor-pointer group`}
             onClick={card.onClick}
           >
-            <CardHeader className="pb-4">
-              <div className="flex items-center gap-4">
+            <CardHeader className="pb-3">
+              <div className="flex items-start gap-4">
                 <div
-                  className={`p-3 rounded-2xl bg-gradient-to-r ${card.color} shadow-lg`}
+                  className={`p-3 rounded-2xl bg-gradient-to-r ${card.color} shadow-lg flex-shrink-0`}
                 >
                   <card.icon className="h-6 w-6 text-white" />
                 </div>
-                <div className="flex-1">
-                  <CardTitle className="text-lg font-bold text-gray-800 group-hover:text-gray-900 transition-colors">
+                <div className="flex-1 min-w-0">
+                  <CardTitle className="text-lg font-bold text-gray-800 group-hover:text-gray-900 transition-colors mb-2">
                     {card.title}
                   </CardTitle>
+                  <CardDescription className="text-gray-600 leading-relaxed text-sm mb-3">
+                    {card.description}
+                  </CardDescription>
+                  {loadingStates && (
+                    <div className="flex justify-end">
+                      <LoadingStatus
+                        isLoading={loadingStates[card.loadingKey].isLoading}
+                        isCompleted={loadingStates[card.loadingKey].isCompleted}
+                        loadingText="IA gerando..."
+                      />
+                    </div>
+                  )}
                 </div>
-                {loadingStates && (
-                  <LoadingStatus
-                    isLoading={loadingStates[card.loadingKey].isLoading}
-                    isCompleted={loadingStates[card.loadingKey].isCompleted}
-                    loadingText="IA gerando..."
-                  />
-                )}
               </div>
             </CardHeader>
-            <CardContent className="pt-0">
-              <CardDescription className="text-gray-600 mb-4 leading-relaxed">
-                {card.description}
-              </CardDescription>
+            <CardContent className="pt-0 pb-4">
               <Button
                 variant="outline"
                 size="sm"
-              className={`w-full border-2 ${card.borderColor} hover:bg-white/50 transition-all duration-300 group-hover:scale-105 ${card.hoverColor}`}
+                className={`w-full border-2 ${card.borderColor} hover:bg-white/50 transition-all duration-300 group-hover:scale-105 ${card.hoverColor}`}
                 onClick={(e) => {
                   e.stopPropagation()
                   card.onClick()
