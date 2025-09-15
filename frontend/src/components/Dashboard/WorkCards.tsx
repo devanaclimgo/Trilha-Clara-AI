@@ -51,7 +51,6 @@ export default function WorkCards({
   setShowNewProjectForm,
   onEditWork,
   onDeleteWork,
-  onContinueWork,
   onStartWork,
 }: WorkCardsProps) {
   const [showStartWorkModal, setShowStartWorkModal] = useState(false)
@@ -63,7 +62,8 @@ export default function WorkCards({
   }
 
   const handleContinueWork = (workId: string) => {
-    onContinueWork(workId)
+    // Redirecionar para a página de edição do trabalho
+    window.location.href = `/work-edit/${workId}`
   }
 
   const handleStartWorkSubmit = (data: {

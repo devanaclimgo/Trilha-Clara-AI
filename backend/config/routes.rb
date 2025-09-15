@@ -19,6 +19,15 @@ Rails.application.routes.draw do
       end
     end
     
+    # Work content routes
+    resources :work, only: [] do
+      member do
+        post :generate_content
+        post :save_content
+        get :content
+      end
+    end
+    
     # Compatibilidade com versão antiga
     post "tcc/criar", to: "tcc#criar"
     
