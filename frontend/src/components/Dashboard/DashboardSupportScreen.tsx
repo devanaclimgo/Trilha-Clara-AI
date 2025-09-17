@@ -1,9 +1,6 @@
 'use client'
 
-import { useState } from 'react'
 import { Button } from '@/components/ui/button'
-import { Input } from '@/components/ui/input'
-import { Textarea } from '@/components/ui/textarea'
 import {
   Card,
   CardContent,
@@ -11,8 +8,20 @@ import {
   CardHeader,
   CardTitle,
 } from '@/components/ui/card'
-import { ArrowLeft, Mail, Send, CheckCircle, AlertCircle } from 'lucide-react'
-import { toast } from '@/hooks/use-toast'
+import {
+  ArrowLeft,
+  Mail,
+  AlertCircle,
+  ChevronDown,
+  ChevronUp,
+  HelpCircle,
+  BookOpen,
+  FileText,
+  Download,
+  Eye,
+  Settings,
+} from 'lucide-react'
+import { useState } from 'react'
 
 interface DashboardSupportScreenProps {
   onBackToHome: () => void
@@ -21,127 +30,118 @@ interface DashboardSupportScreenProps {
 export default function DashboardSupportScreen({
   onBackToHome,
 }: DashboardSupportScreenProps) {
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    subject: '',
-    message: '',
-  })
-  const [isSubmitting, setIsSubmitting] = useState(false)
-  const [isSubmitted, setIsSubmitted] = useState(false)
+  const [openItems, setOpenItems] = useState<string[]>([])
 
-  const handleInputChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
-  ) => {
-    const { name, value } = e.target
-    setFormData((prev) => ({
-      ...prev,
-      [name]: value,
-    }))
-  }
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
-
-    if (
-      !formData.name.trim() ||
-      !formData.email.trim() ||
-      !formData.message.trim()
-    ) {
-      toast({
-        title: 'Campos obrigatórios',
-        description: 'Por favor, preencha todos os campos obrigatórios.',
-        variant: 'error',
-      })
-      return
-    }
-
-    setIsSubmitting(true)
-
-    try {
-      // Simular envio do email (aqui você pode integrar com um serviço de email)
-      await new Promise((resolve) => setTimeout(resolve, 2000))
-
-      setIsSubmitted(true)
-      toast({
-        title: 'Mensagem enviada!',
-        description:
-          'Sua mensagem foi enviada com sucesso. Responderemos em breve!',
-      })
-
-      // Reset form
-      setFormData({
-        name: '',
-        email: '',
-        subject: '',
-        message: '',
-      })
-      // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    } catch (error) {
-      toast({
-        title: 'Erro ao enviar',
-        description: 'Ocorreu um erro ao enviar sua mensagem. Tente novamente.',
-        variant: 'error',
-      })
-    } finally {
-      setIsSubmitting(false)
-    }
-  }
-
-  if (isSubmitted) {
-    return (
-      <div className="min-h-screen flex flex-col">
-        <div className="flex-1">
-          <div className="container mx-auto px-0 py-8">
-            <div className="mb-6">
-              <Button
-                variant="outline"
-                onClick={onBackToHome}
-                className="rounded-xl hover:bg-purple-50 border-purple-200 hover:border-purple-300 hover:text-purple-600 flex items-center gap-2 px-4 py-2"
-              >
-                <ArrowLeft className="h-4 w-4" />
-                <span className="text-sm font-medium">Voltar ao início</span>
-              </Button>
-            </div>
-
-            <div className="max-w-4xl mx-auto space-y-6">
-              <div className="flex items-center justify-between mb-6">
-                <div>
-                  <h2 className="text-2xl font-bold gradient-text">Suporte</h2>
-                  <p className="text-muted-foreground">Central de suporte</p>
-                </div>
-              </div>
-
-              <div className="flex items-center justify-center py-12">
-                <Card className="w-full max-w-md text-center">
-                  <CardContent className="pt-6">
-                    <div className="flex justify-center mb-4">
-                      <div className="p-3 rounded-full bg-green-100">
-                        <CheckCircle className="h-8 w-8 text-green-600" />
-                      </div>
-                    </div>
-                    <h3 className="text-xl font-semibold text-gray-900 mb-2">
-                      Mensagem Enviada!
-                    </h3>
-                    <p className="text-gray-600 mb-6">
-                      Sua mensagem foi enviada com sucesso. Responderemos em
-                      breve!
-                    </p>
-                    <Button
-                      onClick={() => setIsSubmitted(false)}
-                      className="w-full rounded-xl bg-purple-600 hover:bg-purple-700 text-white"
-                    >
-                      Enviar Nova Mensagem
-                    </Button>
-                  </CardContent>
-                </Card>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+  const toggleItem = (itemId: string) => {
+    setOpenItems((prev) =>
+      prev.includes(itemId)
+        ? prev.filter((id) => id !== itemId)
+        : [...prev, itemId],
     )
   }
+
+  const faqData = [
+    {
+      id: 'getting-started',
+      title: 'Primeiros Passos',
+      icon: BookOpen,
+      questions: [
+        {
+          id: 'how-to-create-work',
+          question: 'Como criar um novo trabalho?',
+          answer:
+            'Clique no botão "Novo Trabalho" na tela inicial, preencha os dados básicos (título, tipo de trabalho, curso) e clique em "Criar". O sistema irá gerar automaticamente uma estrutura sugerida para seu trabalho.',
+        },
+        {
+          id: 'what-is-ai-help',
+          question: 'Como a IA pode me ajudar?',
+          answer:
+            'A IA do Trilha Clara pode gerar conteúdo para cada seção do seu trabalho, criar estruturas personalizadas, sugerir cronogramas e formatar automaticamente seguindo as normas ABNT. Basta clicar em "Gerar com IA" em qualquer campo de conteúdo.',
+        },
+        {
+          id: 'work-types',
+          question: 'Quais tipos de trabalho são suportados?',
+          answer:
+            'Atualmente suportamos TCC, Monografia, Dissertação e Tese. Cada tipo tem estruturas e formatações específicas adaptadas para suas necessidades acadêmicas.',
+        },
+      ],
+    },
+    {
+      id: 'content-creation',
+      title: 'Criação de Conteúdo',
+      icon: FileText,
+      questions: [
+        {
+          id: 'how-to-generate-content',
+          question: 'Como gerar conteúdo com IA?',
+          answer:
+            'Na aba "Conteúdo", expanda o card desejado, escreva suas ideias iniciais no campo de texto e clique em "Gerar com IA". A IA irá expandir e melhorar seu conteúdo baseado no tema do trabalho.',
+        },
+        {
+          id: 'reorder-sections',
+          question: 'Posso reordenar as seções do trabalho?',
+          answer:
+            'Sim! Use as 6 bolinhas (ícone de arrastar) que aparecem no hover de cada card para reordenar as seções conforme sua preferência. A ordem será mantida na preview e no documento final.',
+        },
+        {
+          id: 'required-fields',
+          question: 'Preciso preencher todos os campos?',
+          answer:
+            'Não! Você pode preencher apenas os campos que desejar. A preview e o download funcionarão com qualquer quantidade de conteúdo preenchido. Os campos obrigatórios são apenas sugeridos.',
+        },
+      ],
+    },
+    {
+      id: 'preview-download',
+      title: 'Preview e Download',
+      icon: Download,
+      questions: [
+        {
+          id: 'preview-types',
+          question: 'Qual a diferença entre as previews?',
+          answer:
+            'A preview na aba "Preview" mostra uma visualização simplificada com cores e indicações. O "Preview do Trabalho" no cabeçalho mostra exatamente como ficará o documento final formatado em ABNT.',
+        },
+        {
+          id: 'download-formats',
+          question: 'Em quais formatos posso baixar?',
+          answer:
+            'Você pode baixar seu trabalho em DOCX (Word) e PDF. Ambos seguem a formatação ABNT completa com numeração de páginas, referências e estrutura acadêmica adequada.',
+        },
+        {
+          id: 'page-navigation',
+          question: 'Como navegar pelas páginas no preview?',
+          answer:
+            'No modal de preview ABNT, use as setas de navegação no cabeçalho para ver diferentes páginas do documento. O sistema calcula automaticamente quantas páginas seu trabalho terá.',
+        },
+      ],
+    },
+    {
+      id: 'technical-issues',
+      title: 'Problemas Técnicos',
+      icon: Settings,
+      questions: [
+        {
+          id: 'save-progress',
+          question: 'Meu progresso é salvo automaticamente?',
+          answer:
+            'Sim! O sistema salva automaticamente suas alterações. Você também pode clicar em "Salvar Tudo" para garantir que tudo foi salvo. Seus dados ficam seguros na nuvem.',
+        },
+        {
+          id: 'browser-compatibility',
+          question: 'Qual navegador devo usar?',
+          answer:
+            'Recomendamos Chrome, Firefox, Safari ou Edge atualizados. O Trilha Clara funciona melhor em navegadores modernos com suporte a JavaScript ES6+.',
+        },
+        {
+          id: 'data-security',
+          question: 'Meus dados estão seguros?',
+          answer:
+            'Sim! Todos os dados são criptografados e armazenados de forma segura. Não compartilhamos suas informações com terceiros e seguimos as melhores práticas de segurança.',
+        },
+      ],
+    },
+  ]
 
   return (
     <div className="min-h-screen flex flex-col">
@@ -166,8 +166,66 @@ export default function DashboardSupportScreen({
               </div>
             </div>
 
+            {/* FAQ Section */}
+            <Card className="bg-gradient-to-br from-purple-50 to-blue-50 border-purple-200 mb-8">
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2 text-purple-800">
+                  <HelpCircle className="h-5 w-5" />
+                  Perguntas Frequentes
+                </CardTitle>
+                <CardDescription className="text-purple-600">
+                  Encontre respostas rápidas para as dúvidas mais comuns
+                </CardDescription>
+              </CardHeader>
+              <CardContent>
+                <div className="space-y-4">
+                  {faqData.map((category) => (
+                    <div
+                      key={category.id}
+                      className="border border-purple-100 rounded-xl overflow-hidden"
+                    >
+                      <Button
+                        variant="ghost"
+                        onClick={() => toggleItem(category.id)}
+                        className="w-full justify-between p-4 h-auto bg-white/60 hover:bg-white/80 border-0 rounded-none"
+                      >
+                        <div className="flex items-center gap-3">
+                          <category.icon className="h-5 w-5 text-purple-600" />
+                          <span className="font-medium text-gray-800">
+                            {category.title}
+                          </span>
+                        </div>
+                        {openItems.includes(category.id) ? (
+                          <ChevronUp className="h-4 w-4 text-purple-600" />
+                        ) : (
+                          <ChevronDown className="h-4 w-4 text-purple-600" />
+                        )}
+                      </Button>
+                      {openItems.includes(category.id) && (
+                        <div className="mt-2 space-y-2 p-4 bg-white/40 backdrop-blur-sm">
+                          {category.questions.map((question) => (
+                            <div
+                              key={question.id}
+                              className="bg-white/60 backdrop-blur-sm rounded-lg p-4 border border-purple-100"
+                            >
+                              <h4 className="font-medium text-gray-800 mb-2">
+                                {question.question}
+                              </h4>
+                              <p className="text-sm text-gray-600 leading-relaxed">
+                                {question.answer}
+                              </p>
+                            </div>
+                          ))}
+                        </div>
+                      )}
+                    </div>
+                  ))}
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* Contact Section */}
             <div className="grid md:grid-cols-2 gap-8">
-              {/* Informações de Contato */}
               <Card className="bg-gradient-to-br from-purple-50 to-blue-50 border-purple-200">
                 <CardHeader>
                   <CardTitle className="flex items-center gap-2 text-purple-800">
@@ -175,8 +233,7 @@ export default function DashboardSupportScreen({
                     Entre em Contato
                   </CardTitle>
                   <CardDescription className="text-purple-600">
-                    Estou aqui para ajudar você com qualquer dúvida sobre o
-                    Trilha Clara
+                    Não encontrou sua resposta? Estou aqui para ajudar!
                   </CardDescription>
                 </CardHeader>
                 <CardContent className="space-y-4">
@@ -212,108 +269,49 @@ export default function DashboardSupportScreen({
                 </CardContent>
               </Card>
 
-              {/* Formulário de Contato */}
-              <Card>
+              <Card className="bg-gradient-to-br from-green-50 to-emerald-50 border-green-200">
                 <CardHeader>
-                  <CardTitle>Envie sua Mensagem</CardTitle>
-                  <CardDescription>
-                    Preencha o formulário abaixo e eu responderei o mais rápido
-                    possível
+                  <CardTitle className="flex items-center gap-2 text-green-800">
+                    <Eye className="h-5 w-5" />
+                    Dicas de Uso
+                  </CardTitle>
+                  <CardDescription className="text-green-600">
+                    Aproveite ao máximo o Trilha Clara
                   </CardDescription>
                 </CardHeader>
-                <CardContent>
-                  <form onSubmit={handleSubmit} className="space-y-4">
-                    <div className="grid grid-cols-2 gap-4">
-                      <div>
-                        <label
-                          htmlFor="name"
-                          className="text-sm font-medium text-gray-700 mb-1 block"
-                        >
-                          Nome *
-                        </label>
-                        <Input
-                          id="name"
-                          name="name"
-                          value={formData.name}
-                          onChange={handleInputChange}
-                          placeholder="Seu nome completo"
-                          className="rounded-xl border-gray-200 focus:border-purple-400 focus:ring-purple-400"
-                          required
-                        />
+                <CardContent className="space-y-4">
+                  <div className="bg-white/60 backdrop-blur-sm rounded-xl p-4 border border-green-100">
+                    <div className="flex items-center gap-3">
+                      <div className="p-2 rounded-lg bg-green-100">
+                        <FileText className="h-4 w-4 text-green-600" />
                       </div>
                       <div>
-                        <label
-                          htmlFor="email"
-                          className="text-sm font-medium text-gray-700 mb-1 block"
-                        >
-                          Email *
-                        </label>
-                        <Input
-                          id="email"
-                          name="email"
-                          type="email"
-                          value={formData.email}
-                          onChange={handleInputChange}
-                          placeholder="seu@email.com"
-                          className="rounded-xl border-gray-200 focus:border-purple-400 focus:ring-purple-400"
-                          required
-                        />
+                        <p className="text-sm font-medium text-gray-700">
+                          Use a IA estrategicamente
+                        </p>
+                        <p className="text-sm text-green-600">
+                          Escreva suas ideias primeiro, depois use a IA para
+                          expandir
+                        </p>
                       </div>
                     </div>
+                  </div>
 
-                    <div>
-                      <label
-                        htmlFor="subject"
-                        className="text-sm font-medium text-gray-700 mb-1 block"
-                      >
-                        Assunto
-                      </label>
-                      <Input
-                        id="subject"
-                        name="subject"
-                        value={formData.subject}
-                        onChange={handleInputChange}
-                        placeholder="Qual é o assunto da sua mensagem?"
-                        className="rounded-xl border-gray-200 focus:border-purple-400 focus:ring-purple-400"
-                      />
+                  <div className="bg-white/60 backdrop-blur-sm rounded-xl p-4 border border-green-100">
+                    <div className="flex items-center gap-3">
+                      <div className="p-2 rounded-lg bg-emerald-100">
+                        <Download className="h-4 w-4 text-emerald-600" />
+                      </div>
+                      <div>
+                        <p className="text-sm font-medium text-gray-700">
+                          Preview antes de baixar
+                        </p>
+                        <p className="text-sm text-emerald-600">
+                          Use o preview ABNT para verificar a formatação final
+                        </p>
+                      </div>
                     </div>
-
-                    <div>
-                      <label
-                        htmlFor="message"
-                        className="text-sm font-medium text-gray-700 mb-1 block"
-                      >
-                        Mensagem *
-                      </label>
-                      <Textarea
-                        id="message"
-                        name="message"
-                        value={formData.message}
-                        onChange={handleInputChange}
-                        placeholder="Descreva sua dúvida ou problema detalhadamente..."
-                        className="rounded-xl border-gray-200 focus:border-purple-400 focus:ring-purple-400 min-h-[120px]"
-                        required
-                      />
-                    </div>
-
-                    <Button
-                      type="submit"
-                      disabled={isSubmitting}
-                      className="w-full rounded-xl bg-purple-600 hover:bg-purple-700 text-white transition-all duration-200 disabled:opacity-50"
-                    >
-                      {isSubmitting ? (
-                        <div className="flex items-center gap-2">
-                          <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" />
-                          Enviando...
-                        </div>
-                      ) : (
-                        <div className="flex items-center gap-2">
-                          <Send className="h-4 w-4" />
-                          Enviar Mensagem
-                        </div>
-                      )}
-                    </Button>
-                  </form>
+                  </div>
                 </CardContent>
               </Card>
             </div>
