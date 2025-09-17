@@ -1198,3 +1198,247 @@ Processing by Api::TccController#export_pdf as JSON
 Completed 401 Unauthorized in 2ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
 
 
+[dotenv] Set [36mDEVISE_JWT_SECRET_KEY[0m, [36mGOOGLE_CLIENT_ID[0m, [36mGOOGLE_CLIENT_SECRET[0m, and [36mGEMINI_API_KEY[0m
+[dotenv] Loaded [33m.env[0m
+[dotenv] Loaded [33m.env[0m
+Started GET "/api/tcc/tcc-1757962478488" for 127.0.0.1 at 2025-09-16 20:54:45 -0300
+  [1m[36mActiveRecord::SchemaMigration Load (7.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='Backend'*/[0m
+Processing by Api::TccController#show as JSON
+  Parameters: {"id"=>"tcc-1757962478488", "tcc"=>{}}
+Completed 401 Unauthorized in 28ms (ActiveRecord: 89.6ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/api/work/tcc-1757962478488/content" for 127.0.0.1 at 2025-09-16 20:54:55 -0300
+Processing by Api::WorkContentController#content as JSON
+  Parameters: {"id"=>"tcc-1757962478488", "work_content"=>{}}
+Completed 401 Unauthorized in 4ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/api/work/tcc-1757962478488/content" for 127.0.0.1 at 2025-09-16 20:54:55 -0300
+Processing by Api::WorkContentController#content as JSON
+  Parameters: {"id"=>"tcc-1757962478488", "work_content"=>{}}
+Completed 401 Unauthorized in 4ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/api/tcc/tcc-1757962478488" for 127.0.0.1 at 2025-09-16 21:07:51 -0300
+Processing by Api::TccController#show as JSON
+  Parameters: {"id"=>"tcc-1757962478488", "tcc"=>{}}
+Completed 401 Unauthorized in 6ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/api/work/tcc-1757962478488/content" for 127.0.0.1 at 2025-09-16 21:12:46 -0300
+Processing by Api::WorkContentController#content as JSON
+  Parameters: {"id"=>"tcc-1757962478488", "work_content"=>{}}
+Completed 401 Unauthorized in 4ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/api/work/tcc-1757962478488/content" for 127.0.0.1 at 2025-09-16 21:12:46 -0300
+Processing by Api::WorkContentController#content as JSON
+  Parameters: {"id"=>"tcc-1757962478488", "work_content"=>{}}
+Completed 401 Unauthorized in 16ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/api/work/tcc-1757962478488/content" for 127.0.0.1 at 2025-09-16 21:12:59 -0300
+Processing by Api::WorkContentController#content as JSON
+  Parameters: {"id"=>"tcc-1757962478488", "work_content"=>{}}
+Completed 401 Unauthorized in 4ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/api/work/tcc-1757962478488/content" for 127.0.0.1 at 2025-09-16 21:13:16 -0300
+Processing by Api::WorkContentController#content as JSON
+  Parameters: {"id"=>"tcc-1757962478488", "work_content"=>{}}
+Completed 401 Unauthorized in 4ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/api/work/tcc-1757962478488/content" for 127.0.0.1 at 2025-09-16 21:13:18 -0300
+Processing by Api::WorkContentController#content as JSON
+  Parameters: {"id"=>"tcc-1757962478488", "work_content"=>{}}
+Completed 401 Unauthorized in 4ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/api/work/tcc-1757962478488/content" for 127.0.0.1 at 2025-09-16 21:13:20 -0300
+Processing by Api::WorkContentController#content as JSON
+  Parameters: {"id"=>"tcc-1757962478488", "work_content"=>{}}
+Completed 401 Unauthorized in 11ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/api/tcc/tcc-1757962478488" for 127.0.0.1 at 2025-09-16 21:14:58 -0300
+Processing by Api::TccController#show as JSON
+  Parameters: {"id"=>"tcc-1757962478488", "tcc"=>{}}
+Completed 401 Unauthorized in 6ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/api/tcc/tcc-1757962478488" for 127.0.0.1 at 2025-09-16 21:14:59 -0300
+Processing by Api::TccController#show as JSON
+  Parameters: {"id"=>"tcc-1757962478488", "tcc"=>{}}
+Completed 401 Unauthorized in 199ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 117.2ms)
+
+
+Started GET "/api/work/tcc-1757962478488/content" for 127.0.0.1 at 2025-09-16 21:15:12 -0300
+Processing by Api::WorkContentController#content as JSON
+  Parameters: {"id"=>"tcc-1757962478488", "work_content"=>{}}
+Completed 401 Unauthorized in 4ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/api/work/tcc-1757962478488/content" for 127.0.0.1 at 2025-09-16 21:15:16 -0300
+Processing by Api::WorkContentController#content as JSON
+  Parameters: {"id"=>"tcc-1757962478488", "work_content"=>{}}
+Completed 401 Unauthorized in 2ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/api/work/tcc-1757962478488/content" for 127.0.0.1 at 2025-09-16 21:18:17 -0300
+Processing by Api::WorkContentController#content as JSON
+  Parameters: {"id"=>"tcc-1757962478488", "work_content"=>{}}
+Completed 401 Unauthorized in 10ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/api/work/tcc-1757962478488/content" for 127.0.0.1 at 2025-09-16 21:18:35 -0300
+Processing by Api::WorkContentController#content as JSON
+  Parameters: {"id"=>"tcc-1757962478488", "work_content"=>{}}
+Completed 401 Unauthorized in 14ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/api/work/tcc-1757962478488/content" for 127.0.0.1 at 2025-09-16 21:27:57 -0300
+Started GET "/api/work/tcc-1757962478488/content" for 127.0.0.1 at 2025-09-16 21:27:57 -0300
+Processing by Api::WorkContentController#content as JSON
+  Parameters: {"id"=>"tcc-1757962478488", "work_content"=>{}}
+Completed 401 Unauthorized in 7ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 3.5ms)
+
+
+Processing by Api::WorkContentController#content as JSON
+  Parameters: {"id"=>"tcc-1757962478488", "work_content"=>{}}
+Completed 401 Unauthorized in 4ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/api/work/tcc-1757962478488/content" for 127.0.0.1 at 2025-09-16 21:28:53 -0300
+Started GET "/api/work/tcc-1757962478488/content" for 127.0.0.1 at 2025-09-16 21:28:53 -0300
+Processing by Api::WorkContentController#content as JSON
+  Parameters: {"id"=>"tcc-1757962478488", "work_content"=>{}}
+Completed 401 Unauthorized in 1ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Processing by Api::WorkContentController#content as JSON
+  Parameters: {"id"=>"tcc-1757962478488", "work_content"=>{}}
+Completed 401 Unauthorized in 3ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/api/work/tcc-1757962478488/save_content" for 127.0.0.1 at 2025-09-16 21:28:55 -0300
+Processing by Api::WorkContentController#save_content as JSON
+  Parameters: {"content"=>{"resumo"=>"", "introducao"=>"", "desenvolvimento"=>"", "conclusao"=>"", "referencias"=>"", "metodologia"=>"", "objetivos"=>"", "justificativa"=>"", "estrutura_0"=>"", "estrutura_1"=>"", "estrutura_2"=>"", "estrutura_3"=>"", "estrutura_4"=>"", "estrutura_5"=>"", "estrutura_6"=>"", "estrutura_7"=>"", "estrutura_8"=>"", "estrutura_9"=>"", "estrutura_10"=>"", "estrutura_11"=>"", "estrutura_12"=>"", "estrutura_13"=>"", "estrutura_14"=>"", "estrutura_15"=>"", "estrutura_16"=>"", "estrutura_17"=>"", "estrutura_18"=>"", "estrutura_19"=>"", "estrutura_20"=>"", "estrutura_21"=>"", "estrutura_22"=>"", "estrutura_23"=>""}, "id"=>"tcc-1757962478488", "work_content"=>{"content"=>{"resumo"=>"", "introducao"=>"", "desenvolvimento"=>"", "conclusao"=>"", "referencias"=>"", "metodologia"=>"", "objetivos"=>"", "justificativa"=>"", "estrutura_0"=>"", "estrutura_1"=>"", "estrutura_2"=>"", "estrutura_3"=>"", "estrutura_4"=>"", "estrutura_5"=>"", "estrutura_6"=>"", "estrutura_7"=>"", "estrutura_8"=>"", "estrutura_9"=>"", "estrutura_10"=>"", "estrutura_11"=>"", "estrutura_12"=>"", "estrutura_13"=>"", "estrutura_14"=>"", "estrutura_15"=>"", "estrutura_16"=>"", "estrutura_17"=>"", "estrutura_18"=>"", "estrutura_19"=>"", "estrutura_20"=>"", "estrutura_21"=>"", "estrutura_22"=>"", "estrutura_23"=>""}}}
+Completed 401 Unauthorized in 4ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/api/work/tcc-1757962478488/content" for 127.0.0.1 at 2025-09-16 21:29:01 -0300
+Processing by Api::WorkContentController#content as JSON
+  Parameters: {"id"=>"tcc-1757962478488", "work_content"=>{}}
+Completed 401 Unauthorized in 4ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/api/tcc/tcc-1757962478488/export_word" for 127.0.0.1 at 2025-09-16 21:29:12 -0300
+Processing by Api::TccController#export_word as JSON
+  Parameters: {"id"=>"tcc-1757962478488"}
+Completed 401 Unauthorized in 2ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/api/tcc/tcc-1757962478488/export_pdf" for 127.0.0.1 at 2025-09-16 21:29:13 -0300
+Processing by Api::TccController#export_pdf as JSON
+  Parameters: {"id"=>"tcc-1757962478488"}
+Completed 401 Unauthorized in 2ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/api/work/tcc-1757962478488/content" for 127.0.0.1 at 2025-09-16 21:29:52 -0300
+Processing by Api::WorkContentController#content as JSON
+  Parameters: {"id"=>"tcc-1757962478488", "work_content"=>{}}
+Completed 401 Unauthorized in 1ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/api/work/tcc-1757962478488/content" for 127.0.0.1 at 2025-09-16 21:31:07 -0300
+Processing by Api::WorkContentController#content as JSON
+  Parameters: {"id"=>"tcc-1757962478488", "work_content"=>{}}
+Completed 401 Unauthorized in 1ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/api/work/tcc-1757962478488/content" for 127.0.0.1 at 2025-09-16 21:31:14 -0300
+Started GET "/api/work/tcc-1757962478488/content" for 127.0.0.1 at 2025-09-16 21:31:14 -0300
+Processing by Api::WorkContentController#content as JSON
+  Parameters: {"id"=>"tcc-1757962478488", "work_content"=>{}}
+Completed 401 Unauthorized in 2ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Processing by Api::WorkContentController#content as JSON
+  Parameters: {"id"=>"tcc-1757962478488", "work_content"=>{}}
+Completed 401 Unauthorized in 1ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/api/work/tcc-1757962478488/content" for 127.0.0.1 at 2025-09-16 21:37:09 -0300
+Processing by Api::WorkContentController#content as JSON
+  Parameters: {"id"=>"tcc-1757962478488", "work_content"=>{}}
+Completed 401 Unauthorized in 2ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/api/work/tcc-1757962478488/content" for 127.0.0.1 at 2025-09-16 21:37:39 -0300
+Processing by Api::WorkContentController#content as JSON
+  Parameters: {"id"=>"tcc-1757962478488", "work_content"=>{}}
+Completed 401 Unauthorized in 49ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/api/work/tcc-1757962478488/content" for 127.0.0.1 at 2025-09-16 21:37:40 -0300
+Processing by Api::WorkContentController#content as JSON
+  Parameters: {"id"=>"tcc-1757962478488", "work_content"=>{}}
+Completed 401 Unauthorized in 1ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/api/work/tcc-1757962478488/content" for 127.0.0.1 at 2025-09-16 21:37:47 -0300
+Processing by Api::WorkContentController#content as JSON
+  Parameters: {"id"=>"tcc-1757962478488", "work_content"=>{}}
+Completed 401 Unauthorized in 1ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/api/work/tcc-1757962478488/content" for 127.0.0.1 at 2025-09-16 21:37:48 -0300
+Processing by Api::WorkContentController#content as JSON
+  Parameters: {"id"=>"tcc-1757962478488", "work_content"=>{}}
+Completed 401 Unauthorized in 1ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/api/work/tcc-1757962478488/content" for 127.0.0.1 at 2025-09-16 21:38:33 -0300
+Processing by Api::WorkContentController#content as JSON
+  Parameters: {"id"=>"tcc-1757962478488", "work_content"=>{}}
+Completed 401 Unauthorized in 1ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/api/work/tcc-1757962478488/content" for 127.0.0.1 at 2025-09-16 21:38:33 -0300
+Processing by Api::WorkContentController#content as JSON
+  Parameters: {"id"=>"tcc-1757962478488", "work_content"=>{}}
+Completed 401 Unauthorized in 1ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/api/work/tcc-1757962478488/content" for 127.0.0.1 at 2025-09-16 21:38:39 -0300
+Processing by Api::WorkContentController#content as JSON
+  Parameters: {"id"=>"tcc-1757962478488", "work_content"=>{}}
+Completed 401 Unauthorized in 1ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/api/work/tcc-1757962478488/content" for 127.0.0.1 at 2025-09-16 21:38:39 -0300
+Processing by Api::WorkContentController#content as JSON
+  Parameters: {"id"=>"tcc-1757962478488", "work_content"=>{}}
+Completed 401 Unauthorized in 1ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/api/work/tcc-1757962478488/content" for 127.0.0.1 at 2025-09-16 21:48:23 -0300
+Started GET "/api/work/tcc-1757962478488/content" for 127.0.0.1 at 2025-09-16 21:48:23 -0300
+Processing by Api::WorkContentController#content as JSON
+  Parameters: {"id"=>"tcc-1757962478488", "work_content"=>{}}
+Completed 401 Unauthorized in 0ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Processing by Api::WorkContentController#content as JSON
+  Parameters: {"id"=>"tcc-1757962478488", "work_content"=>{}}
+Completed 401 Unauthorized in 1ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/api/work/tcc-1757962478488/content" for 127.0.0.1 at 2025-09-16 21:48:38 -0300
+Processing by Api::WorkContentController#content as JSON
+  Parameters: {"id"=>"tcc-1757962478488", "work_content"=>{}}
+Completed 401 Unauthorized in 3ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
