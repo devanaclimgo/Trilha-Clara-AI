@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { TccData } from '@/types/tcc'
@@ -28,22 +28,93 @@ export default function WorkEditPreview({
   const [isGenerating, setIsGenerating] = useState(false)
   const [lastGenerated, setLastGenerated] = useState<string | null>(null)
 
-  // Mock de conteúdo do trabalho (depois vamos buscar da API)
-  const workContent = {
-    resumo:
-      'Este trabalho analisa a aplicação de Inteligência Artificial na educação, explorando suas potencialidades, desafios e impactos no processo de ensino-aprendizagem. A pesquisa demonstra como as tecnologias de IA podem personalizar o aprendizado, melhorar a eficiência educacional e preparar estudantes para um futuro digital.',
-    introducao:
-      'A Inteligência Artificial (IA) tem se tornado uma das tecnologias mais transformadoras do século XXI, impactando diversos setores da sociedade, incluindo a educação. Com o avanço das tecnologias de machine learning, processamento de linguagem natural e sistemas adaptativos, novas possibilidades emergem para revolucionar como ensinamos e aprendemos.',
-    objetivos:
-      'Objetivo Geral: Analisar o impacto da aplicação de Inteligência Artificial na educação, identificando suas potencialidades, limitações e perspectivas futuras. Objetivos Específicos: 1) Mapear as principais tecnologias de IA aplicáveis ao contexto educacional; 2) Identificar benefícios e desafios da implementação de IA na educação.',
-    metodologia:
-      'Esta pesquisa utilizará uma abordagem qualitativa, baseada em revisão sistemática da literatura e análise de casos práticos. Serão analisados artigos científicos, relatórios técnicos e estudos de caso de implementação de IA na educação.',
-    desenvolvimento:
-      'A aplicação de Inteligência Artificial na educação apresenta múltiplas dimensões e possibilidades. Sistemas de tutoria inteligente podem adaptar o conteúdo às necessidades individuais de cada estudante, enquanto ferramentas de análise de dados educacionais oferecem insights valiosos sobre o processo de aprendizagem.',
-    conclusao:
-      'Com base na análise realizada, pode-se concluir que a Inteligência Artificial apresenta um potencial significativo para transformar a educação, oferecendo oportunidades de personalização, eficiência e inovação. No entanto, sua implementação requer cuidadosa consideração de aspectos éticos, técnicos e pedagógicos.',
-    referencias:
-      'SILVA, João. Inteligência Artificial na Educação: Desafios e Oportunidades. São Paulo: Editora Educacional, 2023. SANTOS, Maria. Tecnologias Emergentes e Aprendizagem Adaptativa. Revista de Educação Digital, v. 15, n. 2, p. 45-62, 2023.',
+  const [workContent, setWorkContent] = useState({
+    resumo: '',
+    introducao: '',
+    objetivos: '',
+    metodologia: '',
+    desenvolvimento: '',
+    conclusao: '',
+    referencias: '',
+  })
+
+  // Carregar conteúdo do trabalho
+  useEffect(() => {
+    const fetchContent = async () => {
+      try {
+        const token = localStorage.getItem('token')
+        if (!token) return
+
+        const response = await fetch(
+          `http://localhost:4000/api/work/${workData.id}/content`,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+              'Content-Type': 'application/json',
+            },
+          },
+        )
+
+        if (response.ok) {
+          const data = await response.json()
+          setWorkContent({
+            resumo: data.resumo || '',
+            introducao: data.introducao || '',
+            objetivos: data.objetivos || '',
+            metodologia: data.metodologia || '',
+            desenvolvimento: data.desenvolvimento || '',
+            conclusao: data.conclusao || '',
+            referencias: data.referencias || '',
+          })
+        } else {
+          // Fallback para conteúdo mock
+          setWorkContent({
+            resumo:
+              'Este trabalho analisa a aplicação de Inteligência Artificial na educação, explorando suas potencialidades, desafios e impactos no processo de ensino-aprendizagem.',
+            introducao:
+              'A Inteligência Artificial (IA) tem se tornado uma das tecnologias mais transformadoras do século XXI, impactando diversos setores da sociedade, incluindo a educação.',
+            objetivos:
+              'Objetivo Geral: Analisar o impacto da aplicação de Inteligência Artificial na educação.',
+            metodologia:
+              'Esta pesquisa utilizará uma abordagem qualitativa, baseada em revisão sistemática da literatura.',
+            desenvolvimento:
+              'A aplicação de Inteligência Artificial na educação apresenta múltiplas dimensões e possibilidades.',
+            conclusao:
+              'Com base na análise realizada, pode-se concluir que a Inteligência Artificial apresenta um potencial significativo para transformar a educação.',
+            referencias:
+              'SILVA, João. Inteligência Artificial na Educação. São Paulo: Editora Educacional, 2023.',
+          })
+        }
+      } catch (error) {
+        console.error('Erro ao carregar conteúdo:', error)
+        // Fallback para conteúdo mock
+        setWorkContent({
+          resumo:
+            'Este trabalho analisa a aplicação de Inteligência Artificial na educação.',
+          introducao:
+            'A Inteligência Artificial (IA) tem se tornado uma das tecnologias mais transformadoras do século XXI.',
+          objetivos:
+            'Objetivo Geral: Analisar o impacto da aplicação de Inteligência Artificial na educação.',
+          metodologia: 'Esta pesquisa utilizará uma abordagem qualitativa.',
+          desenvolvimento:
+            'A aplicação de Inteligência Artificial na educação apresenta múltiplas dimensões.',
+          conclusao:
+            'Com base na análise realizada, pode-se concluir que a Inteligência Artificial apresenta um potencial significativo.',
+          referencias:
+            'SILVA, João. Inteligência Artificial na Educação. São Paulo: Editora Educacional, 2023.',
+        })
+      }
+    }
+
+    if (workData?.id) {
+      fetchContent()
+    }
+  }, [workData?.id])
+
+  // Função para verificar se um campo está preenchido
+  const isFieldFilled = (field: string) => {
+    const value = workContent[field as keyof typeof workContent]
+    return value && value.trim().length > 0
   }
 
   const handleDownload = async (format: 'docx' | 'pdf') => {
@@ -191,100 +262,143 @@ export default function WorkEditPreview({
           {/* Conteúdo do trabalho */}
           <div className="space-y-6 text-justify">
             {/* Resumo */}
-            <section className="p-4 bg-blue-50 rounded-lg border-l-4 border-blue-400">
-              <h2 className="text-lg font-bold text-blue-800 mb-3 flex items-center gap-2">
-                📋 Resumo
-              </h2>
-              <p className="text-gray-700 leading-relaxed text-sm">
-                {workContent.resumo}
-              </p>
-              <div className="mt-2 text-xs text-blue-600 font-medium">
-                Resumo executivo do trabalho
-              </div>
-            </section>
+            {isFieldFilled('resumo') && (
+              <section className="p-4 bg-blue-50 rounded-lg border-l-4 border-blue-400">
+                <h2 className="text-lg font-bold text-blue-800 mb-3 flex items-center gap-2">
+                  📋 Resumo
+                </h2>
+                <p className="text-gray-700 leading-relaxed text-sm">
+                  {workContent.resumo}
+                </p>
+                <div className="mt-2 text-xs text-blue-600 font-medium">
+                  Resumo executivo do trabalho
+                </div>
+              </section>
+            )}
 
             {/* Introdução */}
-            <section className="p-4 bg-green-50 rounded-lg border-l-4 border-green-400">
-              <h2 className="text-lg font-bold text-green-800 mb-3 flex items-center gap-2">
-                1. 📖 Introdução
-              </h2>
-              <p className="text-gray-700 leading-relaxed text-sm">
-                {workContent.introducao}
-              </p>
-              <div className="mt-2 text-xs text-green-600 font-medium">
-                Apresentação do tema e problema de pesquisa
-              </div>
-            </section>
+            {isFieldFilled('introducao') && (
+              <section className="p-4 bg-green-50 rounded-lg border-l-4 border-green-400">
+                <h2 className="text-lg font-bold text-green-800 mb-3 flex items-center gap-2">
+                  1. 📖 Introdução
+                </h2>
+                <p className="text-gray-700 leading-relaxed text-sm">
+                  {workContent.introducao}
+                </p>
+                <div className="mt-2 text-xs text-green-600 font-medium">
+                  Apresentação do tema e problema de pesquisa
+                </div>
+              </section>
+            )}
 
             {/* Objetivos */}
-            <section className="p-4 bg-yellow-50 rounded-lg border-l-4 border-yellow-400">
-              <h2 className="text-lg font-bold text-yellow-800 mb-3 flex items-center gap-2">
-                2. 🎯 Objetivos
-              </h2>
-              <p className="text-gray-700 leading-relaxed text-sm">
-                {workContent.objetivos}
-              </p>
-              <div className="mt-2 text-xs text-yellow-600 font-medium">
-                Objetivos geral e específicos
-              </div>
-            </section>
+            {isFieldFilled('objetivos') && (
+              <section className="p-4 bg-yellow-50 rounded-lg border-l-4 border-yellow-400">
+                <h2 className="text-lg font-bold text-yellow-800 mb-3 flex items-center gap-2">
+                  2. 🎯 Objetivos
+                </h2>
+                <p className="text-gray-700 leading-relaxed text-sm">
+                  {workContent.objetivos}
+                </p>
+                <div className="mt-2 text-xs text-yellow-600 font-medium">
+                  Objetivos geral e específicos
+                </div>
+              </section>
+            )}
 
             {/* Metodologia */}
-            <section className="p-4 bg-orange-50 rounded-lg border-l-4 border-orange-400">
-              <h2 className="text-lg font-bold text-orange-800 mb-3 flex items-center gap-2">
-                3. 🔬 Metodologia
-              </h2>
-              <p className="text-gray-700 leading-relaxed text-sm">
-                {workContent.metodologia}
-              </p>
-              <div className="mt-2 text-xs text-orange-600 font-medium">
-                Como a pesquisa será realizada
-              </div>
-            </section>
+            {isFieldFilled('metodologia') && (
+              <section className="p-4 bg-orange-50 rounded-lg border-l-4 border-orange-400">
+                <h2 className="text-lg font-bold text-orange-800 mb-3 flex items-center gap-2">
+                  3. 🔬 Metodologia
+                </h2>
+                <p className="text-gray-700 leading-relaxed text-sm">
+                  {workContent.metodologia}
+                </p>
+                <div className="mt-2 text-xs text-orange-600 font-medium">
+                  Como a pesquisa será realizada
+                </div>
+              </section>
+            )}
 
             {/* Desenvolvimento */}
-            <section className="p-4 bg-purple-50 rounded-lg border-l-4 border-purple-400">
-              <h2 className="text-lg font-bold text-purple-800 mb-3 flex items-center gap-2">
-                4. 📝 Desenvolvimento
-              </h2>
-              <p className="text-gray-700 leading-relaxed text-sm">
-                {workContent.desenvolvimento}
-              </p>
-              <div className="mt-2 text-xs text-purple-600 font-medium">
-                Desenvolvimento dos conceitos e análises principais
-              </div>
-            </section>
+            {isFieldFilled('desenvolvimento') && (
+              <section className="p-4 bg-purple-50 rounded-lg border-l-4 border-purple-400">
+                <h2 className="text-lg font-bold text-purple-800 mb-3 flex items-center gap-2">
+                  4. 📝 Desenvolvimento
+                </h2>
+                <p className="text-gray-700 leading-relaxed text-sm">
+                  {workContent.desenvolvimento}
+                </p>
+                <div className="mt-2 text-xs text-purple-600 font-medium">
+                  Desenvolvimento dos conceitos e análises principais
+                </div>
+              </section>
+            )}
 
             {/* Conclusão */}
-            <section className="p-4 bg-red-50 rounded-lg border-l-4 border-red-400">
-              <h2 className="text-lg font-bold text-red-800 mb-3 flex items-center gap-2">
-                5. ✅ Conclusão
-              </h2>
-              <p className="text-gray-700 leading-relaxed text-sm">
-                {workContent.conclusao}
-              </p>
-              <div className="mt-2 text-xs text-red-600 font-medium">
-                Síntese dos resultados e conclusões
-              </div>
-            </section>
+            {isFieldFilled('conclusao') && (
+              <section className="p-4 bg-red-50 rounded-lg border-l-4 border-red-400">
+                <h2 className="text-lg font-bold text-red-800 mb-3 flex items-center gap-2">
+                  5. ✅ Conclusão
+                </h2>
+                <p className="text-gray-700 leading-relaxed text-sm">
+                  {workContent.conclusao}
+                </p>
+                <div className="mt-2 text-xs text-red-600 font-medium">
+                  Síntese dos resultados e conclusões
+                </div>
+              </section>
+            )}
 
             {/* Referências */}
-            <section className="p-4 bg-gray-50 rounded-lg border-l-4 border-gray-400">
-              <h2 className="text-lg font-bold text-gray-800 mb-3 flex items-center gap-2">
-                📚 Referências
-              </h2>
-              <div className="text-gray-700 leading-relaxed text-sm">
-                {workContent.referencias.split('. ').map((ref, index) => (
-                  <p key={index} className="mb-2">
-                    {ref}
-                    {ref.endsWith('.') ? '' : '.'}
+            {isFieldFilled('referencias') && (
+              <section className="p-4 bg-gray-50 rounded-lg border-l-4 border-gray-400">
+                <h2 className="text-lg font-bold text-gray-800 mb-3 flex items-center gap-2">
+                  📚 Referências
+                </h2>
+                <div className="text-gray-700 leading-relaxed text-sm">
+                  {workContent.referencias.split('. ').map((ref, index) => (
+                    <p key={index} className="mb-2">
+                      {ref}
+                      {ref.endsWith('.') ? '' : '.'}
+                    </p>
+                  ))}
+                </div>
+                <div className="mt-2 text-xs text-gray-600 font-medium">
+                  Fontes consultadas no formato ABNT
+                </div>
+              </section>
+            )}
+
+            {/* Mensagem quando nenhum campo está preenchido */}
+            {!isFieldFilled('resumo') &&
+              !isFieldFilled('introducao') &&
+              !isFieldFilled('objetivos') &&
+              !isFieldFilled('metodologia') &&
+              !isFieldFilled('desenvolvimento') &&
+              !isFieldFilled('conclusao') &&
+              !isFieldFilled('referencias') && (
+                <div className="text-center py-12">
+                  <div className="text-gray-400 mb-4">
+                    <FileText className="h-16 w-16 mx-auto" />
+                  </div>
+                  <h3 className="text-lg font-medium text-gray-600 mb-2">
+                    Nenhum conteúdo preenchido ainda
+                  </h3>
+                  <p className="text-gray-500 mb-4">
+                    Preencha pelo menos um campo na aba &quot;Conteúdo&quot;
+                    para ver a preview aqui.
                   </p>
-                ))}
-              </div>
-              <div className="mt-2 text-xs text-gray-600 font-medium">
-                Fontes consultadas no formato ABNT
-              </div>
-            </section>
+                  <Button
+                    onClick={onEditClick}
+                    className="gradient-bg text-white hover:scale-105 transition-all duration-300"
+                  >
+                    <Edit3 className="h-4 w-4 mr-2" />
+                    Ir para Edição
+                  </Button>
+                </div>
+              )}
           </div>
         </CardContent>
       </Card>

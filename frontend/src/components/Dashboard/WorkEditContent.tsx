@@ -15,7 +15,27 @@ import {
   Lightbulb,
   Target,
   CheckCircle,
+  ChevronDown,
+  ChevronUp,
+  GripVertical,
 } from 'lucide-react'
+import {
+  DndContext,
+  closestCenter,
+  KeyboardSensor,
+  PointerSensor,
+  useSensor,
+  useSensors,
+  DragEndEvent,
+} from '@dnd-kit/core'
+import {
+  arrayMove,
+  SortableContext,
+  sortableKeyboardCoordinates,
+  verticalListSortingStrategy,
+} from '@dnd-kit/sortable'
+import { useSortable } from '@dnd-kit/sortable'
+import { CSS } from '@dnd-kit/utilities'
 
 interface WorkEditContentProps {
   workData: TccData
@@ -31,6 +51,150 @@ interface WorkContent {
   objetivos?: string
   justificativa?: string
   [key: string]: string | undefined // Para campos dinâmicos da estrutura
+}
+
+interface ContentField {
+  key: string
+  label: string
+  description: string
+  placeholder: string
+  icon: React.ComponentType<{ className?: string }>
+  required: boolean
+  id: string
+}
+
+interface SortableFieldProps {
+  field: ContentField
+  content: WorkContent
+  onContentChange: (key: string, value: string) => void
+  onGenerate: (field: string) => void
+  generating: string | null
+  saved: string | null
+  isCollapsed: boolean
+  onToggleCollapse: (fieldKey: string) => void
+}
+
+// Componente SortableField
+function SortableField({
+  field,
+  content,
+  onContentChange,
+  onGenerate,
+  generating,
+  saved,
+  isCollapsed,
+  onToggleCollapse,
+}: SortableFieldProps) {
+  const {
+    attributes,
+    listeners,
+    setNodeRef,
+    transform,
+    transition,
+    isDragging,
+  } = useSortable({ id: field.id })
+
+  const style = {
+    transform: CSS.Transform.toString(transform),
+    transition,
+  }
+
+  const fieldValue = content[field.key]
+  const isFilled = Boolean(fieldValue && fieldValue.trim().length > 0)
+
+  return (
+    <div
+      ref={setNodeRef}
+      style={style}
+      className={`${isDragging ? 'opacity-50' : ''} transition-opacity`}
+    >
+      <Card className="bg-white/80 backdrop-blur-sm border border-gray-200/20 hover:shadow-md transition-shadow">
+        <CardHeader>
+          <div className="flex items-center justify-between">
+            <div className="flex items-center gap-2 flex-1">
+              <div
+                {...attributes}
+                {...listeners}
+                className="cursor-grab hover:cursor-grabbing p-1 hover:bg-gray-100 rounded transition-colors"
+              >
+                <GripVertical className="h-4 w-4 text-gray-400" />
+              </div>
+              <field.icon className="h-5 w-5 text-purple-600" />
+              <CardTitle className="text-lg flex items-center gap-2">
+                {field.label}
+                {field.required && (
+                  <span className="text-red-500 text-sm">*</span>
+                )}
+                {isFilled && (
+                  <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+                )}
+              </CardTitle>
+            </div>
+            <div className="flex items-center gap-2">
+              {saved === field.key && (
+                <span className="text-green-600 text-sm flex items-center gap-1">
+                  <CheckCircle className="h-4 w-4" />
+                  Salvo
+                </span>
+              )}
+              <Button
+                onClick={() => onToggleCollapse(field.id)}
+                variant="ghost"
+                size="sm"
+                className="hover:bg-gray-100"
+              >
+                {isCollapsed ? (
+                  <ChevronDown className="h-4 w-4" />
+                ) : (
+                  <ChevronUp className="h-4 w-4" />
+                )}
+              </Button>
+              <Button
+                onClick={() => onGenerate(field.key)}
+                disabled={generating === field.key}
+                variant="outline"
+                size="sm"
+                className="hover:bg-purple-50 hover:text-purple-600 border-purple-200 hover:border-purple-300 hover:scale-105 transition-all duration-300"
+              >
+                {generating === field.key ? (
+                  <RefreshCw className="h-4 w-4 mr-2 animate-spin" />
+                ) : (
+                  <Wand2 className="h-4 w-4 mr-2" />
+                )}
+                {generating === field.key ? 'Gerando...' : 'Gerar com IA'}
+              </Button>
+            </div>
+          </div>
+          <p className="text-sm text-gray-600">{field.description}</p>
+        </CardHeader>
+        {!isCollapsed && (
+          <CardContent>
+            <div className="space-y-2">
+              <Label
+                htmlFor={field.key}
+                className="text-sm font-medium text-gray-700"
+              >
+                {field.label}
+              </Label>
+              <Textarea
+                id={field.key}
+                value={(content[field.key] as string) || ''}
+                onChange={(e) => onContentChange(field.key, e.target.value)}
+                placeholder={field.placeholder}
+                className="min-h-[120px] rounded-xl border-2 focus:border-purple-300 transition-colors"
+              />
+              <div className="flex justify-between items-center text-xs text-gray-500">
+                <span>
+                  {(content[field.key] as string)?.length || 0} caracteres
+                </span>
+                <span>{field.required ? 'Obrigatório' : 'Opcional'}</span>
+              </div>
+            </div>
+          </CardContent>
+        )}
+      </Card>
+    </div>
+  )
 }
 
 export default function WorkEditContent({ workData }: WorkEditContentProps) {
@@ -63,6 +227,10 @@ export default function WorkEditContent({ workData }: WorkEditContentProps) {
   const [generating, setGenerating] = useState<string | null>(null)
   const [saved, setSaved] = useState<string | null>(null)
   const [loading, setLoading] = useState(true)
+  const [collapsedFields, setCollapsedFields] = useState<
+    Record<string, boolean>
+  >({})
+  const [fieldOrder, setFieldOrder] = useState<string[]>([])
 
   // Carregar conteúdo existente
   useEffect(() => {
@@ -107,8 +275,8 @@ export default function WorkEditContent({ workData }: WorkEditContentProps) {
   }, [workData?.id])
 
   // Gerar campos baseados na estrutura da IA
-  const generateContentFields = () => {
-    const baseFields = [
+  const generateContentFields = (): ContentField[] => {
+    const baseFields: ContentField[] = [
       {
         key: 'resumo',
         label: 'Resumo',
@@ -118,6 +286,7 @@ export default function WorkEditContent({ workData }: WorkEditContentProps) {
           'Ex: Este trabalho analisa a aplicação de IA na educação...',
         icon: BookOpen,
         required: true,
+        id: 'resumo',
       },
       {
         key: 'introducao',
@@ -127,6 +296,7 @@ export default function WorkEditContent({ workData }: WorkEditContentProps) {
           'Ex: A inteligência artificial tem revolucionado diversos setores...',
         icon: Target,
         required: true,
+        id: 'introducao',
       },
       {
         key: 'objetivos',
@@ -136,6 +306,7 @@ export default function WorkEditContent({ workData }: WorkEditContentProps) {
           'Ex: Objetivo geral: Analisar o impacto da IA na educação...',
         icon: Lightbulb,
         required: false,
+        id: 'objetivos',
       },
       {
         key: 'justificativa',
@@ -145,6 +316,7 @@ export default function WorkEditContent({ workData }: WorkEditContentProps) {
           'Ex: A relevância deste estudo justifica-se pela necessidade de...',
         icon: Lightbulb,
         required: false,
+        id: 'justificativa',
       },
       {
         key: 'metodologia',
@@ -153,6 +325,7 @@ export default function WorkEditContent({ workData }: WorkEditContentProps) {
         placeholder: 'Ex: Esta pesquisa utilizará uma abordagem qualitativa...',
         icon: Target,
         required: false,
+        id: 'metodologia',
       },
       {
         key: 'desenvolvimento',
@@ -162,6 +335,7 @@ export default function WorkEditContent({ workData }: WorkEditContentProps) {
         placeholder: 'Ex: A inteligência artificial na educação apresenta...',
         icon: FileText,
         required: true,
+        id: 'desenvolvimento',
       },
       {
         key: 'conclusao',
@@ -171,6 +345,7 @@ export default function WorkEditContent({ workData }: WorkEditContentProps) {
           'Ex: Com base na análise realizada, pode-se concluir que...',
         icon: CheckCircle,
         required: true,
+        id: 'conclusao',
       },
       {
         key: 'referencias',
@@ -180,6 +355,7 @@ export default function WorkEditContent({ workData }: WorkEditContentProps) {
           'Ex: SILVA, João. Inteligência Artificial na Educação. 2023...',
         icon: BookOpen,
         required: true,
+        id: 'referencias',
       },
     ]
 
@@ -189,7 +365,7 @@ export default function WorkEditContent({ workData }: WorkEditContentProps) {
       Array.isArray(workData.estrutura) &&
       workData.estrutura.length > 0
     ) {
-      const estruturaFields = workData.estrutura.map(
+      const estruturaFields: ContentField[] = workData.estrutura.map(
         (item: unknown, index: number) => {
           const estruturaItem = item as { titulo?: string; descricao?: string }
           return {
@@ -202,6 +378,7 @@ export default function WorkEditContent({ workData }: WorkEditContentProps) {
             }...`,
             icon: FileText,
             required: false,
+            id: `estrutura_${index}`,
           }
         },
       )
@@ -215,9 +392,50 @@ export default function WorkEditContent({ workData }: WorkEditContentProps) {
 
   const contentFields = generateContentFields()
 
+  // Inicializar ordem dos campos e estado de colapso
+  useEffect(() => {
+    if (contentFields.length > 0 && fieldOrder.length === 0) {
+      const initialOrder = contentFields.map((field) => field.id)
+      setFieldOrder(initialOrder)
+
+      // Inicializar todos os campos como colapsados
+      const initialCollapsed: Record<string, boolean> = {}
+      contentFields.forEach((field) => {
+        initialCollapsed[field.id] = true
+      })
+      setCollapsedFields(initialCollapsed)
+    }
+  }, [contentFields, fieldOrder.length])
+
   const handleContentChange = (key: string, value: string) => {
     setContent((prev) => ({ ...prev, [key]: value }))
     setSaved(null)
+  }
+
+  const toggleCollapse = (fieldKey: string) => {
+    setCollapsedFields((prev) => ({
+      ...prev,
+      [fieldKey]: !prev[fieldKey],
+    }))
+  }
+
+  const sensors = useSensors(
+    useSensor(PointerSensor),
+    useSensor(KeyboardSensor, {
+      coordinateGetter: sortableKeyboardCoordinates,
+    }),
+  )
+
+  const handleDragEnd = (event: DragEndEvent) => {
+    const { active, over } = event
+
+    if (over && active.id !== over.id) {
+      setFieldOrder((items) => {
+        const oldIndex = items.indexOf(active.id as string)
+        const newIndex = items.indexOf(over.id as string)
+        return arrayMove(items, oldIndex, newIndex)
+      })
+    }
   }
 
   const generateContent = async (field: string) => {
@@ -359,74 +577,37 @@ export default function WorkEditContent({ workData }: WorkEditContentProps) {
       </Card>
 
       {/* Content Fields */}
-      <div className="space-y-6">
-        {contentFields.map((field) => (
-          <Card
-            key={field.key}
-            className="bg-white/80 backdrop-blur-sm border border-gray-200/20"
-          >
-            <CardHeader>
-              <div className="flex items-center justify-between">
-                <div className="flex items-center gap-2">
-                  <field.icon className="h-5 w-5 text-purple-600" />
-                  <CardTitle className="text-lg">{field.label}</CardTitle>
-                  {field.required && (
-                    <span className="text-red-500 text-sm">*</span>
-                  )}
-                </div>
-                <div className="flex items-center gap-2">
-                  {saved === field.key && (
-                    <span className="text-green-600 text-sm flex items-center gap-1">
-                      <CheckCircle className="h-4 w-4" />
-                      Salvo
-                    </span>
-                  )}
-                  <Button
-                    onClick={() => generateContent(field.key)}
-                    disabled={generating === field.key}
-                    variant="outline"
-                    size="sm"
-                    className="hover:bg-purple-50 hover:text-purple-600 border-purple-200 hover:border-purple-300 hover:scale-105 transition-all duration-300"
-                  >
-                    {generating === field.key ? (
-                      <RefreshCw className="h-4 w-4 mr-2 animate-spin" />
-                    ) : (
-                      <Wand2 className="h-4 w-4 mr-2" />
-                    )}
-                    {generating === field.key ? 'Gerando...' : 'Gerar com IA'}
-                  </Button>
-                </div>
-              </div>
-              <p className="text-sm text-gray-600">{field.description}</p>
-            </CardHeader>
-            <CardContent>
-              <div className="space-y-2">
-                <Label
-                  htmlFor={field.key}
-                  className="text-sm font-medium text-gray-700"
-                >
-                  {field.label}
-                </Label>
-                <Textarea
-                  id={field.key}
-                  value={(content[field.key] as string) || ''}
-                  onChange={(e) =>
-                    handleContentChange(field.key, e.target.value)
-                  }
-                  placeholder={field.placeholder}
-                  className="min-h-[120px] rounded-xl border-2 focus:border-purple-300 transition-colors"
+      <DndContext
+        sensors={sensors}
+        collisionDetection={closestCenter}
+        onDragEnd={handleDragEnd}
+      >
+        <SortableContext
+          items={fieldOrder}
+          strategy={verticalListSortingStrategy}
+        >
+          <div className="space-y-6">
+            {fieldOrder.map((fieldId) => {
+              const field = contentFields.find((f) => f.id === fieldId)
+              if (!field) return null
+
+              return (
+                <SortableField
+                  key={field.id}
+                  field={field}
+                  content={content}
+                  onContentChange={handleContentChange}
+                  onGenerate={generateContent}
+                  generating={generating}
+                  saved={saved}
+                  isCollapsed={collapsedFields[field.id] || false}
+                  onToggleCollapse={toggleCollapse}
                 />
-                <div className="flex justify-between items-center text-xs text-gray-500">
-                  <span>
-                    {(content[field.key] as string)?.length || 0} caracteres
-                  </span>
-                  <span>{field.required ? 'Obrigatório' : 'Opcional'}</span>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
-        ))}
-      </div>
+              )
+            })}
+          </div>
+        </SortableContext>
+      </DndContext>
 
       {/* Save All Button */}
       <div className="flex justify-center pt-6">
