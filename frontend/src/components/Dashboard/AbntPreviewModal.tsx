@@ -9,7 +9,7 @@ import {
   DialogTitle,
 } from '@/components/ui/dialog'
 import { TccData } from '@/types/tcc'
-import { FileText, FileDown } from 'lucide-react'
+import { ChevronLeft, ChevronRight } from 'lucide-react'
 
 interface AbntPreviewModalProps {
   isOpen: boolean
@@ -44,8 +44,7 @@ export default function AbntPreviewModal({
     objetivos: '',
     justificativa: '',
   })
-  const [isGenerating, setIsGenerating] = useState(false)
-  const [lastGenerated, setLastGenerated] = useState<string | null>(null)
+  const [currentPage, setCurrentPage] = useState(1)
 
   // Carregar conteúdo do trabalho
   useEffect(() => {
@@ -122,50 +121,6 @@ export default function AbntPreviewModal({
     }
   }, [isOpen, workData?.id])
 
-  const handleDownload = async (format: 'docx' | 'pdf') => {
-    setIsGenerating(true)
-    setLastGenerated(null)
-
-    try {
-      const token = localStorage.getItem('token')
-      if (!token) {
-        throw new Error('Token não encontrado')
-      }
-
-      const endpoint = format === 'docx' ? 'export_word' : 'export_pdf'
-      const response = await fetch(
-        `http://localhost:4000/api/tcc/${workData.id}/${endpoint}`,
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        },
-      )
-
-      if (!response.ok) {
-        throw new Error('Erro ao gerar arquivo')
-      }
-
-      // Criar blob e fazer download
-      const blob = await response.blob()
-      const url = window.URL.createObjectURL(blob)
-      const link = document.createElement('a')
-      link.href = url
-      link.download = `TCC_${workData.titulo.replace(/\s+/g, '_')}.${format}`
-      document.body.appendChild(link)
-      link.click()
-      document.body.removeChild(link)
-      window.URL.revokeObjectURL(url)
-
-      setLastGenerated(format)
-    } catch (error) {
-      console.error('Erro ao gerar arquivo:', error)
-      setLastGenerated(format)
-    } finally {
-      setIsGenerating(false)
-    }
-  }
-
   const formatDate = (dateString: string) => {
     return new Date(dateString).toLocaleDateString('pt-BR', {
       year: 'numeric',
@@ -182,6 +137,26 @@ export default function AbntPreviewModal({
 
   const totalPages = calculatePages()
 
+  // Funções de navegação
+  const goToNextPage = () => {
+    if (currentPage < totalPages) {
+      setCurrentPage(currentPage + 1)
+    }
+  }
+
+  const goToPreviousPage = () => {
+    if (currentPage > 1) {
+      setCurrentPage(currentPage - 1)
+    }
+  }
+
+  // Resetar página quando modal abrir
+  useEffect(() => {
+    if (isOpen) {
+      setCurrentPage(1)
+    }
+  }, [isOpen])
+
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
       <DialogContent className="max-w-6xl max-h-[90vh] overflow-hidden p-0">
@@ -190,41 +165,38 @@ export default function AbntPreviewModal({
             <DialogTitle className="text-xl font-bold text-gray-800">
               Preview do Trabalho - Formatação ABNT
             </DialogTitle>
-            <div className="flex items-center gap-3 pr-6">
-              <Button
-                onClick={() => handleDownload('docx')}
-                disabled={isGenerating}
-                variant="outline"
-                size="sm"
-                className="hover:bg-blue-50 hover:text-blue-600 border-blue-200 hover:border-blue-300"
-              >
-                {isGenerating && lastGenerated === 'docx' ? (
-                  <FileText className="h-4 w-4 mr-2 animate-spin" />
-                ) : (
-                  <FileText className="h-4 w-4 mr-2" />
-                )}
-                DOCX
-              </Button>
-              <Button
-                onClick={() => handleDownload('pdf')}
-                disabled={isGenerating}
-                variant="outline"
-                size="sm"
-                className="hover:bg-red-50 hover:text-red-600 border-red-200 hover:border-red-300"
-              >
-                {isGenerating && lastGenerated === 'pdf' ? (
-                  <FileDown className="h-4 w-4 mr-2 animate-spin" />
-                ) : (
-                  <FileDown className="h-4 w-4 mr-2" />
-                )}
-                PDF
-              </Button>
-            </div>
           </div>
-          <p className="text-sm text-gray-600">
-            Visualização exata do documento final - {totalPages} página
-            {totalPages !== 1 ? 's' : ''}
-          </p>
+          <div className="flex items-center justify-between">
+            <p className="text-sm text-gray-600">
+              Visualização exata do documento final - {totalPages} página
+              {totalPages !== 1 ? 's' : ''}
+            </p>
+            {totalPages > 1 && (
+              <div className="flex items-center gap-2">
+                <Button
+                  onClick={goToPreviousPage}
+                  disabled={currentPage === 1}
+                  variant="outline"
+                  size="sm"
+                  className="hover:bg-gray-50"
+                >
+                  <ChevronLeft className="h-4 w-4" />
+                </Button>
+                <span className="text-sm text-gray-600 min-w-[80px] text-center">
+                  {currentPage} de {totalPages}
+                </span>
+                <Button
+                  onClick={goToNextPage}
+                  disabled={currentPage === totalPages}
+                  variant="outline"
+                  size="sm"
+                  className="hover:bg-gray-50"
+                >
+                  <ChevronRight className="h-4 w-4" />
+                </Button>
+              </div>
+            )}
+          </div>
         </DialogHeader>
 
         <div className="overflow-y-auto max-h-[calc(90vh-120px)]">
@@ -362,24 +334,13 @@ export default function AbntPreviewModal({
             {/* Numeração de páginas simulada */}
             <div className="mt-12 pt-8 border-t border-gray-300">
               <div className="text-center text-xs text-gray-500">
-                <p>Página 1 de {totalPages}</p>
+                <p>
+                  Página {currentPage} de {totalPages}
+                </p>
               </div>
             </div>
           </div>
         </div>
-
-        {/* Status de geração */}
-        {lastGenerated && (
-          <div className="p-4 bg-green-50 border-t border-green-200">
-            <div className="flex items-center gap-2 text-green-700 text-sm">
-              <div className="w-2 h-2 bg-green-500 rounded-full"></div>
-              <span>
-                Arquivo {lastGenerated.toUpperCase()} gerado com sucesso! O
-                download deve começar automaticamente.
-              </span>
-            </div>
-          </div>
-        )}
       </DialogContent>
     </Dialog>
   )

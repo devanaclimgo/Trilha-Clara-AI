@@ -278,7 +278,10 @@ export default function WorkEditPage() {
             </TabsContent>
 
             <TabsContent value="preview" className="space-y-6">
-              <WorkEditPreview workData={workData} />
+              <WorkEditPreview
+                workData={workData}
+                onEditClick={() => setActiveTab('content')}
+              />
             </TabsContent>
           </Tabs>
         </div>

@@ -13,13 +13,18 @@ import {
   Calendar,
   User,
   Building,
+  Edit3,
 } from 'lucide-react'
 
 interface WorkEditPreviewProps {
   workData: TccData
+  onEditClick?: () => void
 }
 
-export default function WorkEditPreview({ workData }: WorkEditPreviewProps) {
+export default function WorkEditPreview({
+  workData,
+  onEditClick,
+}: WorkEditPreviewProps) {
   const [isGenerating, setIsGenerating] = useState(false)
   const [lastGenerated, setLastGenerated] = useState<string | null>(null)
 
@@ -109,6 +114,14 @@ export default function WorkEditPreview({ workData }: WorkEditPreviewProps) {
               Preview do Trabalho
             </CardTitle>
             <div className="flex items-center gap-3">
+              <Button
+                onClick={onEditClick}
+                variant="outline"
+                className="hover:bg-purple-50 hover:text-purple-600 border-purple-200 hover:border-purple-300 hover:scale-105 transition-all duration-300"
+              >
+                <Edit3 className="h-4 w-4 mr-2" />
+                Editar
+              </Button>
               <Button
                 onClick={() => handleDownload('docx')}
                 disabled={isGenerating}
