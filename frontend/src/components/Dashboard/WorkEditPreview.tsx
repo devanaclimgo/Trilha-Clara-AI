@@ -142,7 +142,8 @@ export default function WorkEditPreview({ workData }: WorkEditPreviewProps) {
             </div>
           </div>
           <p className="text-gray-600">
-            Visualize como seu trabalho ficará formatado em ABNT
+            Visualize a estrutura e organização do seu trabalho de forma
+            simplificada
           </p>
         </CardHeader>
       </Card>
@@ -151,7 +152,7 @@ export default function WorkEditPreview({ workData }: WorkEditPreviewProps) {
       <Card className="bg-white border border-gray-200 shadow-lg">
         <CardContent className="p-8">
           {/* Cabeçalho do documento */}
-          <div className="text-center mb-8">
+          <div className="text-center mb-8 p-6 bg-gradient-to-r from-purple-50 to-blue-50 rounded-lg border-2 border-dashed border-purple-200">
             <h1 className="text-2xl font-bold text-gray-800 mb-4">
               {workData.titulo}
             </h1>
@@ -169,80 +170,106 @@ export default function WorkEditPreview({ workData }: WorkEditPreviewProps) {
                 <span>{formatDate(workData.dataCriacao)}</span>
               </div>
             </div>
+            <div className="mt-4 text-xs text-purple-600 font-medium">
+              📄 Título do Trabalho
+            </div>
           </div>
 
           {/* Conteúdo do trabalho */}
-          <div className="space-y-8 text-justify">
+          <div className="space-y-6 text-justify">
             {/* Resumo */}
-            <section>
-              <h2 className="text-xl font-bold text-gray-800 mb-4">Resumo</h2>
-              <p className="text-gray-700 leading-relaxed">
+            <section className="p-4 bg-blue-50 rounded-lg border-l-4 border-blue-400">
+              <h2 className="text-lg font-bold text-blue-800 mb-3 flex items-center gap-2">
+                📋 Resumo
+              </h2>
+              <p className="text-gray-700 leading-relaxed text-sm">
                 {workContent.resumo}
               </p>
+              <div className="mt-2 text-xs text-blue-600 font-medium">
+                Resumo executivo do trabalho
+              </div>
             </section>
 
             {/* Introdução */}
-            <section>
-              <h2 className="text-xl font-bold text-gray-800 mb-4">
-                1. Introdução
+            <section className="p-4 bg-green-50 rounded-lg border-l-4 border-green-400">
+              <h2 className="text-lg font-bold text-green-800 mb-3 flex items-center gap-2">
+                1. 📖 Introdução
               </h2>
-              <p className="text-gray-700 leading-relaxed">
+              <p className="text-gray-700 leading-relaxed text-sm">
                 {workContent.introducao}
               </p>
+              <div className="mt-2 text-xs text-green-600 font-medium">
+                Apresentação do tema e problema de pesquisa
+              </div>
             </section>
 
             {/* Objetivos */}
-            <section>
-              <h2 className="text-xl font-bold text-gray-800 mb-4">
-                2. Objetivos
+            <section className="p-4 bg-yellow-50 rounded-lg border-l-4 border-yellow-400">
+              <h2 className="text-lg font-bold text-yellow-800 mb-3 flex items-center gap-2">
+                2. 🎯 Objetivos
               </h2>
-              <p className="text-gray-700 leading-relaxed">
+              <p className="text-gray-700 leading-relaxed text-sm">
                 {workContent.objetivos}
               </p>
+              <div className="mt-2 text-xs text-yellow-600 font-medium">
+                Objetivos geral e específicos
+              </div>
             </section>
 
             {/* Metodologia */}
-            <section>
-              <h2 className="text-xl font-bold text-gray-800 mb-4">
-                3. Metodologia
+            <section className="p-4 bg-orange-50 rounded-lg border-l-4 border-orange-400">
+              <h2 className="text-lg font-bold text-orange-800 mb-3 flex items-center gap-2">
+                3. 🔬 Metodologia
               </h2>
-              <p className="text-gray-700 leading-relaxed">
+              <p className="text-gray-700 leading-relaxed text-sm">
                 {workContent.metodologia}
               </p>
+              <div className="mt-2 text-xs text-orange-600 font-medium">
+                Como a pesquisa será realizada
+              </div>
             </section>
 
             {/* Desenvolvimento */}
-            <section>
-              <h2 className="text-xl font-bold text-gray-800 mb-4">
-                4. Desenvolvimento
+            <section className="p-4 bg-purple-50 rounded-lg border-l-4 border-purple-400">
+              <h2 className="text-lg font-bold text-purple-800 mb-3 flex items-center gap-2">
+                4. 📝 Desenvolvimento
               </h2>
-              <p className="text-gray-700 leading-relaxed">
+              <p className="text-gray-700 leading-relaxed text-sm">
                 {workContent.desenvolvimento}
               </p>
+              <div className="mt-2 text-xs text-purple-600 font-medium">
+                Desenvolvimento dos conceitos e análises principais
+              </div>
             </section>
 
             {/* Conclusão */}
-            <section>
-              <h2 className="text-xl font-bold text-gray-800 mb-4">
-                5. Conclusão
+            <section className="p-4 bg-red-50 rounded-lg border-l-4 border-red-400">
+              <h2 className="text-lg font-bold text-red-800 mb-3 flex items-center gap-2">
+                5. ✅ Conclusão
               </h2>
-              <p className="text-gray-700 leading-relaxed">
+              <p className="text-gray-700 leading-relaxed text-sm">
                 {workContent.conclusao}
               </p>
+              <div className="mt-2 text-xs text-red-600 font-medium">
+                Síntese dos resultados e conclusões
+              </div>
             </section>
 
             {/* Referências */}
-            <section>
-              <h2 className="text-xl font-bold text-gray-800 mb-4">
-                Referências
+            <section className="p-4 bg-gray-50 rounded-lg border-l-4 border-gray-400">
+              <h2 className="text-lg font-bold text-gray-800 mb-3 flex items-center gap-2">
+                📚 Referências
               </h2>
-              <div className="text-gray-700 leading-relaxed">
+              <div className="text-gray-700 leading-relaxed text-sm">
                 {workContent.referencias.split('. ').map((ref, index) => (
                   <p key={index} className="mb-2">
                     {ref}
                     {ref.endsWith('.') ? '' : '.'}
                   </p>
                 ))}
+              </div>
+              <div className="mt-2 text-xs text-gray-600 font-medium">
+                Fontes consultadas no formato ABNT
               </div>
             </section>
           </div>
@@ -265,13 +292,14 @@ export default function WorkEditPreview({ workData }: WorkEditPreviewProps) {
       )}
 
       {/* Informações adicionais */}
-      <Card className="bg-blue-50 border-blue-200">
+      <Card className="bg-gradient-to-r from-purple-50 to-blue-50 border-purple-200">
         <CardContent className="p-4">
-          <div className="text-sm text-blue-700">
-            <p className="font-medium mb-2">📋 Formatação ABNT</p>
+          <div className="text-sm text-purple-700">
+            <p className="font-medium mb-2">💡 Preview Simplificado</p>
             <p>
-              O documento está formatado seguindo as normas ABNT NBR 14724:2011.
-              As referências seguem o padrão ABNT NBR 6023:2018.
+              Esta é uma visualização simplificada para entender a estrutura do
+              seu trabalho. Para ver a formatação final em ABNT, use o botão
+              &quot;Preview do Trabalho&quot; no cabeçalho.
             </p>
           </div>
         </CardContent>

@@ -17,6 +17,7 @@ import { TccData } from '@/types/tcc'
 import WorkEditBasicInfo from '@/components/Dashboard/WorkEditBasicInfo'
 import WorkEditContent from '@/components/Dashboard/WorkEditContent'
 import WorkEditPreview from '@/components/Dashboard/WorkEditPreview'
+import AbntPreviewModal from '@/components/Dashboard/AbntPreviewModal'
 import DashboardSidebar from '@/components/Dashboard/DashboardSidebar'
 import { useTccData } from '@/hooks/useTccData'
 import { useAuth } from '@/hooks/useAuth'
@@ -30,6 +31,7 @@ export default function WorkEditPage() {
   const [loading, setLoading] = useState(true)
   const [activeTab, setActiveTab] = useState('basic')
   const [sidebarOpen, setSidebarOpen] = useState(false)
+  const [abntPreviewOpen, setAbntPreviewOpen] = useState(false)
   const [currentScreen, setCurrentScreen] = useState<
     | 'main'
     | 'notes'
@@ -230,10 +232,11 @@ export default function WorkEditPage() {
               <div className="flex items-center gap-2">
                 <Button
                   variant="outline"
-                  className="hover:bg-purple-50 hover:text-purple-600 border border-purple-200 hover:border-purple-300 hover:scale-105 transition-all duration-300"
+                  onClick={() => setAbntPreviewOpen(true)}
+                  className="hover:bg-purple-50 hover:text-purple-600 border border-purple-200 hover:border-purple-300 hover:scale-105 active:scale-95 transition-all duration-200"
                 >
                   <Eye className="h-4 w-4 mr-2" />
-                  Preview
+                  Preview do Trabalho
                 </Button>
                 <Button className="gradient-bg text-white hover:scale-105 transition-all duration-300">
                   <Download className="h-4 w-4 mr-2" />
@@ -279,6 +282,15 @@ export default function WorkEditPage() {
             </TabsContent>
           </Tabs>
         </div>
+
+        {/* Modal de Preview ABNT */}
+        {workData && (
+          <AbntPreviewModal
+            isOpen={abntPreviewOpen}
+            onClose={() => setAbntPreviewOpen(false)}
+            workData={workData}
+          />
+        )}
       </div>
     </div>
   )
