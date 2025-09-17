@@ -33,11 +33,14 @@ export default function DashboardSupportScreen({
   const [openItems, setOpenItems] = useState<string[]>([])
 
   const toggleItem = (itemId: string) => {
-    setOpenItems((prev) =>
-      prev.includes(itemId)
-        ? prev.filter((id) => id !== itemId)
-        : [...prev, itemId],
-    )
+    setOpenItems((prev) => {
+      // Se a seção já está aberta, fecha ela
+      if (prev.includes(itemId)) {
+        return prev.filter((id) => id !== itemId)
+      }
+      // Se não está aberta, fecha todas as outras e abre apenas esta
+      return [itemId]
+    })
   }
 
   const faqData = [
@@ -187,26 +190,41 @@ export default function DashboardSupportScreen({
                       <Button
                         variant="ghost"
                         onClick={() => toggleItem(category.id)}
-                        className="w-full justify-between p-4 h-auto bg-white/60 hover:bg-white/80 border-0 rounded-none"
+                        className="w-full justify-between p-4 h-auto bg-white/60 hover:bg-white/80 border-0 rounded-none transition-all duration-200 hover:scale-[1.01]"
                       >
                         <div className="flex items-center gap-3">
-                          <category.icon className="h-5 w-5 text-purple-600" />
+                          <category.icon className="h-5 w-5 text-purple-600 transition-colors duration-200" />
                           <span className="font-medium text-gray-800">
                             {category.title}
                           </span>
                         </div>
-                        {openItems.includes(category.id) ? (
-                          <ChevronUp className="h-4 w-4 text-purple-600" />
-                        ) : (
-                          <ChevronDown className="h-4 w-4 text-purple-600" />
-                        )}
+                        <div className="transition-transform duration-300 ease-in-out">
+                          {openItems.includes(category.id) ? (
+                            <ChevronUp className="h-4 w-4 text-purple-600" />
+                          ) : (
+                            <ChevronDown className="h-4 w-4 text-purple-600" />
+                          )}
+                        </div>
                       </Button>
-                      {openItems.includes(category.id) && (
+                      <div
+                        className={`overflow-hidden transition-all duration-300 ease-in-out ${
+                          openItems.includes(category.id)
+                            ? 'max-h-[1000px] opacity-100'
+                            : 'max-h-0 opacity-0'
+                        }`}
+                      >
                         <div className="mt-2 space-y-2 p-4 bg-white/40 backdrop-blur-sm">
-                          {category.questions.map((question) => (
+                          {category.questions.map((question, index) => (
                             <div
                               key={question.id}
-                              className="bg-white/60 backdrop-blur-sm rounded-lg p-4 border border-purple-100"
+                              className={`bg-white/60 backdrop-blur-sm rounded-lg p-4 border border-purple-100 transform transition-all duration-300 hover:scale-[1.02] hover:shadow-sm ${
+                                openItems.includes(category.id)
+                                  ? 'animate-in slide-in-from-bottom-4 fade-in duration-300'
+                                  : ''
+                              }`}
+                              style={{
+                                transitionDelay: `${index * 50}ms`,
+                              }}
                             >
                               <h4 className="font-medium text-gray-800 mb-2">
                                 {question.question}
@@ -217,7 +235,7 @@ export default function DashboardSupportScreen({
                             </div>
                           ))}
                         </div>
-                      )}
+                      </div>
                     </div>
                   ))}
                 </div>
