@@ -8,7 +8,6 @@ import WorkCards from './WorkCards'
 import QuickAccessCards from './QuickAccessCards'
 import RecentActivity from './RecentActivity'
 import OverviewCards from './OverviewCards'
-import TccDataCard from './TccDataCard'
 import ContentPage from './ContentPage'
 import NewProjectModal from './NewProjectModal'
 import EditWorkModal from './EditWorkModal'
@@ -335,17 +334,6 @@ export default function DashboardStartScreen() {
                     : undefined
                 }
                 loadingStates={loadingStates}
-              />
-
-              {/* TCC Data Card - sempre visível */}
-              <TccDataCard
-                tccData={tccData}
-                onSaveData={(data) => {
-                  const updatedData = { ...tccData, ...data }
-                  setTccData(updatedData)
-                  salvarTrabalho(updatedData)
-                }}
-                hasData={!!trabalhoAtual}
               />
 
               {/* Quick Access Cards - só aparece se tem trabalho */}
