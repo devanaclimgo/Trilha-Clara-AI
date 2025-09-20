@@ -18,6 +18,8 @@ import {
   ChevronDown,
   ChevronUp,
   GripVertical,
+  Trash2,
+  Plus,
 } from 'lucide-react'
 import {
   DndContext,
@@ -61,6 +63,7 @@ interface ContentField {
   icon: React.ComponentType<{ className?: string }>
   required: boolean
   id: string
+  isCustom?: boolean
 }
 
 interface SortableFieldProps {
@@ -72,6 +75,8 @@ interface SortableFieldProps {
   saved: string | null
   isCollapsed: boolean
   onToggleCollapse: (fieldKey: string) => void
+  onLabelChange: (fieldId: string, newLabel: string) => void
+  onDeleteField?: (fieldId: string) => void
 }
 
 // Componente SortableField
@@ -84,6 +89,8 @@ function SortableField({
   saved,
   isCollapsed,
   onToggleCollapse,
+  onLabelChange,
+  onDeleteField,
 }: SortableFieldProps) {
   const {
     attributes,
@@ -101,6 +108,8 @@ function SortableField({
 
   const fieldValue = content[field.key]
   const isFilled = Boolean(fieldValue && fieldValue.trim().length > 0)
+  const [isEditingLabel, setIsEditingLabel] = useState(false)
+  const [tempLabel, setTempLabel] = useState(field.label)
 
   return (
     <div
@@ -120,15 +129,43 @@ function SortableField({
                 <GripVertical className="h-4 w-4 text-gray-400 hover:text-purple-600" />
               </div>
               <field.icon className="h-5 w-5 text-purple-600" />
-              <CardTitle className="text-lg flex items-center gap-2">
-                {field.label}
-                {field.required && (
-                  <span className="text-red-500 text-sm">*</span>
+              <div className="flex-1">
+                {isEditingLabel ? (
+                  <input
+                    value={tempLabel}
+                    onChange={(e) => setTempLabel(e.target.value)}
+                    onBlur={() => {
+                      onLabelChange(field.id, tempLabel)
+                      setIsEditingLabel(false)
+                    }}
+                    onKeyDown={(e) => {
+                      if (e.key === 'Enter') {
+                        onLabelChange(field.id, tempLabel)
+                        setIsEditingLabel(false)
+                      }
+                      if (e.key === 'Escape') {
+                        setTempLabel(field.label)
+                        setIsEditingLabel(false)
+                      }
+                    }}
+                    className="text-lg font-semibold bg-transparent border-none outline-none text-gray-700 w-full"
+                    autoFocus
+                  />
+                ) : (
+                  <CardTitle
+                    className="text-lg font-semibold text-gray-700 cursor-pointer hover:text-purple-600 transition-colors flex items-center gap-2"
+                    onClick={() => setIsEditingLabel(true)}
+                  >
+                    {field.label}
+                    {field.required && (
+                      <span className="text-red-500 text-sm">*</span>
+                    )}
+                    {isFilled && (
+                      <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+                    )}
+                  </CardTitle>
                 )}
-                {isFilled && (
-                  <div className="w-2 h-2 bg-green-500 rounded-full"></div>
-                )}
-              </CardTitle>
+              </div>
             </div>
             <div className="flex items-center gap-2">
               {saved === field.key && (
@@ -136,6 +173,16 @@ function SortableField({
                   <CheckCircle className="h-4 w-4" />
                   Salvo
                 </span>
+              )}
+              {field.isCustom && onDeleteField && (
+                <Button
+                  onClick={() => onDeleteField(field.id)}
+                  variant="ghost"
+                  size="sm"
+                  className="hover:bg-red-100 hover:text-red-600"
+                >
+                  <Trash2 className="h-4 w-4" />
+                </Button>
               )}
               <Button
                 onClick={() => onToggleCollapse(field.id)}
@@ -231,6 +278,9 @@ export default function WorkEditContent({ workData }: WorkEditContentProps) {
     Record<string, boolean>
   >({})
   const [fieldOrder, setFieldOrder] = useState<string[]>([])
+  const [fieldLabels, setFieldLabels] = useState<Record<string, string>>({})
+  const [customFields, setCustomFields] = useState<ContentField[]>([])
+  const [nextCustomId, setNextCustomId] = useState(0)
 
   // Carregar conteúdo existente
   useEffect(() => {
@@ -279,7 +329,7 @@ export default function WorkEditContent({ workData }: WorkEditContentProps) {
     const baseFields: ContentField[] = [
       {
         key: 'resumo',
-        label: 'Resumo',
+        label: fieldLabels.resumo || 'Resumo',
         description:
           'Escreva as principais ideias do seu trabalho em poucas palavras',
         placeholder:
@@ -290,7 +340,7 @@ export default function WorkEditContent({ workData }: WorkEditContentProps) {
       },
       {
         key: 'introducao',
-        label: 'Introdução',
+        label: fieldLabels.introducao || 'Introdução',
         description: 'Apresente o tema, problema de pesquisa e objetivos',
         placeholder:
           'Ex: A inteligência artificial tem revolucionado diversos setores...',
@@ -300,7 +350,7 @@ export default function WorkEditContent({ workData }: WorkEditContentProps) {
       },
       {
         key: 'objetivos',
-        label: 'Objetivos',
+        label: fieldLabels.objetivos || 'Objetivos',
         description: 'Defina os objetivos geral e específicos do trabalho',
         placeholder:
           'Ex: Objetivo geral: Analisar o impacto da IA na educação...',
@@ -310,7 +360,7 @@ export default function WorkEditContent({ workData }: WorkEditContentProps) {
       },
       {
         key: 'justificativa',
-        label: 'Justificativa',
+        label: fieldLabels.justificativa || 'Justificativa',
         description: 'Explique por que este tema é importante e relevante',
         placeholder:
           'Ex: A relevância deste estudo justifica-se pela necessidade de...',
@@ -320,7 +370,7 @@ export default function WorkEditContent({ workData }: WorkEditContentProps) {
       },
       {
         key: 'metodologia',
-        label: 'Metodologia',
+        label: fieldLabels.metodologia || 'Metodologia',
         description: 'Descreva como você pretende realizar a pesquisa',
         placeholder: 'Ex: Esta pesquisa utilizará uma abordagem qualitativa...',
         icon: Target,
@@ -329,7 +379,7 @@ export default function WorkEditContent({ workData }: WorkEditContentProps) {
       },
       {
         key: 'desenvolvimento',
-        label: 'Desenvolvimento',
+        label: fieldLabels.desenvolvimento || 'Desenvolvimento',
         description:
           'Desenvolva os conceitos, análises e discussões principais',
         placeholder: 'Ex: A inteligência artificial na educação apresenta...',
@@ -339,7 +389,7 @@ export default function WorkEditContent({ workData }: WorkEditContentProps) {
       },
       {
         key: 'conclusao',
-        label: 'Conclusão',
+        label: fieldLabels.conclusao || 'Conclusão',
         description: 'Sintetize os resultados e conclusões do trabalho',
         placeholder:
           'Ex: Com base na análise realizada, pode-se concluir que...',
@@ -349,7 +399,7 @@ export default function WorkEditContent({ workData }: WorkEditContentProps) {
       },
       {
         key: 'referencias',
-        label: 'Referências',
+        label: fieldLabels.referencias || 'Referências',
         description: 'Liste as fontes consultadas no formato ABNT',
         placeholder:
           'Ex: SILVA, João. Inteligência Artificial na Educação. 2023...',
@@ -359,35 +409,10 @@ export default function WorkEditContent({ workData }: WorkEditContentProps) {
       },
     ]
 
-    // Se há estrutura da IA, adicionar campos dinâmicos baseados nela
-    if (
-      workData?.estrutura &&
-      Array.isArray(workData.estrutura) &&
-      workData.estrutura.length > 0
-    ) {
-      const estruturaFields: ContentField[] = workData.estrutura.map(
-        (item: unknown, index: number) => {
-          const estruturaItem = item as { titulo?: string; descricao?: string }
-          return {
-            key: `estrutura_${index}`,
-            label: estruturaItem.titulo || `Seção ${index + 1}`,
-            description:
-              estruturaItem.descricao || 'Desenvolva esta seção do trabalho',
-            placeholder: `Ex: ${
-              estruturaItem.titulo || 'Conteúdo da seção'
-            }...`,
-            icon: FileText,
-            required: false,
-            id: `estrutura_${index}`,
-          }
-        },
-      )
+    // Add custom fields to the base fields
+    const allFields = [...baseFields, ...customFields]
 
-      // Inserir campos da estrutura entre introdução e desenvolvimento
-      baseFields.splice(2, 0, ...estruturaFields)
-    }
-
-    return baseFields
+    return allFields
   }
 
   const contentFields = generateContentFields()
@@ -417,6 +442,55 @@ export default function WorkEditContent({ workData }: WorkEditContentProps) {
       ...prev,
       [fieldKey]: !prev[fieldKey],
     }))
+  }
+
+  const handleLabelChange = (fieldId: string, newLabel: string) => {
+    setFieldLabels((prev) => ({
+      ...prev,
+      [fieldId]: newLabel,
+    }))
+  }
+
+  const addCustomField = () => {
+    const newField: ContentField = {
+      key: `custom_${nextCustomId}`,
+      label: `Nova Seção ${nextCustomId + 1}`,
+      description: 'Desenvolva esta seção do trabalho',
+      placeholder: 'Ex: Conteúdo da seção...',
+      icon: FileText,
+      required: false,
+      id: `custom_${nextCustomId}`,
+      isCustom: true,
+    }
+
+    setCustomFields((prev) => [...prev, newField])
+    setFieldOrder((prev) => [...prev, newField.id])
+    setCollapsedFields((prev) => ({ ...prev, [newField.id]: true }))
+    setNextCustomId((prev) => prev + 1)
+  }
+
+  const deleteCustomField = (fieldId: string) => {
+    setCustomFields((prev) => prev.filter((field) => field.id !== fieldId))
+    setFieldOrder((prev) => prev.filter((id) => id !== fieldId))
+    setCollapsedFields((prev) => {
+      const newCollapsed = { ...prev }
+      delete newCollapsed[fieldId]
+      return newCollapsed
+    })
+    setFieldLabels((prev) => {
+      const newLabels = { ...prev }
+      delete newLabels[fieldId]
+      return newLabels
+    })
+    // Remove content for this field
+    setContent((prev) => {
+      const newContent = { ...prev }
+      const field = customFields.find((f) => f.id === fieldId)
+      if (field) {
+        delete newContent[field.key]
+      }
+      return newContent
+    })
   }
 
   const sensors = useSensors(
@@ -602,12 +676,26 @@ export default function WorkEditContent({ workData }: WorkEditContentProps) {
                   saved={saved}
                   isCollapsed={collapsedFields[field.id] || false}
                   onToggleCollapse={toggleCollapse}
+                  onLabelChange={handleLabelChange}
+                  onDeleteField={field.isCustom ? deleteCustomField : undefined}
                 />
               )
             })}
           </div>
         </SortableContext>
       </DndContext>
+
+      {/* Add Section Button */}
+      <div className="flex justify-center">
+        <Button
+          onClick={addCustomField}
+          variant="outline"
+          className="border-2 border-dashed border-purple-200 hover:border-purple-300 hover:bg-purple-50 text-purple-600 hover:text-purple-700 transition-all duration-300"
+        >
+          <Plus className="h-4 w-4 mr-2" />
+          Adicionar Seção
+        </Button>
+      </div>
 
       {/* Save All Button */}
       <div className="flex justify-center pt-6">
