@@ -330,6 +330,10 @@ export default function WorkEditPage() {
             isOpen={abntPreviewOpen}
             onClose={() => setAbntPreviewOpen(false)}
             workData={workData}
+            content={sharedContent}
+            customFields={sharedCustomFields}
+            fieldLabels={sharedFieldLabels}
+            fieldOrder={sharedFieldOrder}
           />
         )}
       </div>

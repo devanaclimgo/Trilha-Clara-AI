@@ -15,6 +15,29 @@ interface AbntPreviewModalProps {
   isOpen: boolean
   onClose: () => void
   workData: TccData
+  content?: {
+    resumo: string
+    introducao: string
+    objetivos: string
+    metodologia: string
+    desenvolvimento: string
+    conclusao: string
+    referencias: string
+    justificativa?: string
+    [key: string]: string | undefined
+  }
+  customFields?: Array<{
+    key: string
+    label: string
+    description: string
+    placeholder: string
+    icon: React.ComponentType<{ className?: string }>
+    required: boolean
+    id: string
+    isCustom?: boolean
+  }>
+  fieldLabels?: Record<string, string>
+  fieldOrder?: string[]
 }
 
 interface WorkContent {
@@ -33,6 +56,10 @@ export default function AbntPreviewModal({
   isOpen,
   onClose,
   workData,
+  content: propContent,
+  customFields = [],
+  fieldLabels = {},
+  fieldOrder = [],
 }: AbntPreviewModalProps) {
   const [content, setContent] = useState<WorkContent>({
     resumo: '',
@@ -46,80 +73,57 @@ export default function AbntPreviewModal({
   })
   const [currentPage, setCurrentPage] = useState(1)
 
-  // Carregar conteúdo do trabalho
+  // Use prop content if available, otherwise fetch from API
   useEffect(() => {
-    const fetchContent = async () => {
-      try {
-        const token = localStorage.getItem('token')
-        if (!token) return
+    if (propContent) {
+      setContent({
+        resumo: propContent.resumo || '',
+        introducao: propContent.introducao || '',
+        desenvolvimento: propContent.desenvolvimento || '',
+        conclusao: propContent.conclusao || '',
+        referencias: propContent.referencias || '',
+        metodologia: propContent.metodologia || '',
+        objetivos: propContent.objetivos || '',
+        justificativa: propContent.justificativa || '',
+      })
+    } else if (isOpen && workData?.id) {
+      // Fallback: fetch content from API
+      const fetchContent = async () => {
+        try {
+          const token = localStorage.getItem('token')
+          if (!token) return
 
-        const response = await fetch(
-          `http://localhost:4000/api/work/${workData.id}/content`,
-          {
-            headers: {
-              Authorization: `Bearer ${token}`,
-              'Content-Type': 'application/json',
+          const response = await fetch(
+            `http://localhost:4000/api/work/${workData.id}/content`,
+            {
+              headers: {
+                Authorization: `Bearer ${token}`,
+                'Content-Type': 'application/json',
+              },
             },
-          },
-        )
+          )
 
-        if (response.ok) {
-          const data = await response.json()
-          setContent({
-            resumo: data.resumo || '',
-            introducao: data.introducao || '',
-            desenvolvimento: data.desenvolvimento || '',
-            conclusao: data.conclusao || '',
-            referencias: data.referencias || '',
-            metodologia: data.metodologia || '',
-            objetivos: data.objetivos || '',
-            justificativa: data.justificativa || '',
-          })
-        } else {
-          // Fallback para conteúdo mock
-          setContent({
-            resumo:
-              'Este trabalho analisa a aplicação de Inteligência Artificial na educação, explorando suas potencialidades, desafios e impactos no processo de ensino-aprendizagem. A pesquisa demonstra como as tecnologias de IA podem personalizar o aprendizado, melhorar a eficiência educacional e preparar estudantes para um futuro digital.',
-            introducao:
-              'A Inteligência Artificial (IA) tem se tornado uma das tecnologias mais transformadoras do século XXI, impactando diversos setores da sociedade, incluindo a educação. Com o avanço das tecnologias de machine learning, processamento de linguagem natural e sistemas adaptativos, novas possibilidades emergem para revolucionar como ensinamos e aprendemos.',
-            objetivos:
-              'Objetivo Geral: Analisar o impacto da aplicação de Inteligência Artificial na educação, identificando suas potencialidades, limitações e perspectivas futuras. Objetivos Específicos: 1) Mapear as principais tecnologias de IA aplicáveis ao contexto educacional; 2) Identificar benefícios e desafios da implementação de IA na educação.',
-            metodologia:
-              'Esta pesquisa utilizará uma abordagem qualitativa, baseada em revisão sistemática da literatura e análise de casos práticos. Serão analisados artigos científicos, relatórios técnicos e estudos de caso de implementação de IA na educação.',
-            desenvolvimento:
-              'A aplicação de Inteligência Artificial na educação apresenta múltiplas dimensões e possibilidades. Sistemas de tutoria inteligente podem adaptar o conteúdo às necessidades individuais de cada estudante, enquanto ferramentas de análise de dados educacionais oferecem insights valiosos sobre o processo de aprendizagem.',
-            conclusao:
-              'Com base na análise realizada, pode-se concluir que a Inteligência Artificial apresenta um potencial significativo para transformar a educação, oferecendo oportunidades de personalização, eficiência e inovação. No entanto, sua implementação requer cuidadosa consideração de aspectos éticos, técnicos e pedagógicos.',
-            referencias:
-              'SILVA, João. Inteligência Artificial na Educação: Desafios e Oportunidades. São Paulo: Editora Educacional, 2023. SANTOS, Maria. Tecnologias Emergentes e Aprendizagem Adaptativa. Revista de Educação Digital, v. 15, n. 2, p. 45-62, 2023.',
-          })
+          if (response.ok) {
+            const data = await response.json()
+            setContent({
+              resumo: data.resumo || '',
+              introducao: data.introducao || '',
+              desenvolvimento: data.desenvolvimento || '',
+              conclusao: data.conclusao || '',
+              referencias: data.referencias || '',
+              metodologia: data.metodologia || '',
+              objetivos: data.objetivos || '',
+              justificativa: data.justificativa || '',
+            })
+          }
+        } catch (error) {
+          console.error('Erro ao carregar conteúdo:', error)
         }
-      } catch (error) {
-        console.error('Erro ao carregar conteúdo:', error)
-        // Fallback para conteúdo mock
-        setContent({
-          resumo:
-            'Este trabalho analisa a aplicação de Inteligência Artificial na educação, explorando suas potencialidades, desafios e impactos no processo de ensino-aprendizagem.',
-          introducao:
-            'A Inteligência Artificial (IA) tem se tornado uma das tecnologias mais transformadoras do século XXI, impactando diversos setores da sociedade, incluindo a educação.',
-          objetivos:
-            'Objetivo Geral: Analisar o impacto da aplicação de Inteligência Artificial na educação.',
-          metodologia:
-            'Esta pesquisa utilizará uma abordagem qualitativa, baseada em revisão sistemática da literatura.',
-          desenvolvimento:
-            'A aplicação de Inteligência Artificial na educação apresenta múltiplas dimensões e possibilidades.',
-          conclusao:
-            'Com base na análise realizada, pode-se concluir que a Inteligência Artificial apresenta um potencial significativo para transformar a educação.',
-          referencias:
-            'SILVA, João. Inteligência Artificial na Educação. São Paulo: Editora Educacional, 2023.',
-        })
       }
-    }
 
-    if (isOpen && workData?.id) {
       fetchContent()
     }
-  }, [isOpen, workData?.id])
+  }, [propContent, isOpen, workData?.id])
 
   const formatDate = (dateString: string) => {
     return new Date(dateString).toLocaleDateString('pt-BR', {
@@ -127,6 +131,37 @@ export default function AbntPreviewModal({
       month: 'long',
       day: 'numeric',
     })
+  }
+
+  // Get all fields in order (base fields + custom fields)
+  const getAllFieldsInOrder = () => {
+    const baseFields = [
+      { key: 'resumo', label: 'Resumo' },
+      { key: 'introducao', label: 'Introdução' },
+      { key: 'objetivos', label: 'Objetivos' },
+      { key: 'metodologia', label: 'Metodologia' },
+      { key: 'desenvolvimento', label: 'Desenvolvimento' },
+      { key: 'conclusao', label: 'Conclusão' },
+      { key: 'referencias', label: 'Referências' },
+    ]
+
+    // Add custom fields
+    const customFieldsList = customFields.map((field) => ({
+      key: field.key,
+      label: fieldLabels[field.id] || field.label,
+    }))
+
+    // Combine and order based on fieldOrder
+    const allFields = [...baseFields, ...customFieldsList]
+
+    if (fieldOrder.length > 0) {
+      return fieldOrder.map((fieldId) => {
+        const field = allFields.find((f) => f.key === fieldId)
+        return field || { key: fieldId, label: fieldId }
+      })
+    }
+
+    return allFields
   }
 
   // Calcular número de páginas estimado (aproximadamente 250 palavras por página)
