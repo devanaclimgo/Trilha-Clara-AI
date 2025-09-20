@@ -1,0 +1,296 @@
+# =====================================================
+# DOCKER COMPOSE - PRODUÇÃO TCC EFFORTLESS
+# =====================================================
+
+version: '3.8'
+
+services:
+  # Aplicação Rails
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile.production
+    ports:
+      - "3000:3000"
+    environment:
+      - RAILS_ENV=production
+      - DATABASE_URL=postgres://tcc_user:${DB_PASSWORD}@db:5432/tcc_effortless_production
+      - REDIS_URL=redis://redis:6379/0
+      - SECRET_KEY_BASE=${SECRET_KEY_BASE}
+      - JWT_SECRET_KEY=${JWT_SECRET_KEY}
+      - ALLOWED_ORIGINS=${ALLOWED_ORIGINS}
+    depends_on:
+      - db
+      - redis
+    volumes:
+      - ./storage:/app/storage
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:3000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  # Banco de Dados PostgreSQL
+  db:
+    image: postgres:15-alpine
+    environment:
+      - POSTGRES_DB=tcc_effortless_production
+      - POSTGRES_USER=tcc_user
+      - POSTGRES_PASSWORD=${DB_PASSWORD}
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./database_schema.sql:/docker-entrypoint-initdb.d/01-schema.sql
+    ports:
+      - "5432:5432"
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U tcc_user -d tcc_effortless_production"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  # Redis para cache e sessões
+  redis:
+    image: redis:7-alpine
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  # Nginx como proxy reverso
+  nginx:
+    image: nginx:alpine
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf
+      - ./ssl:/etc/nginx/ssl
+      - ./storage:/var/www/storage
+    depends_on:
+      - web
+    restart: unless-stopped
+
+  # Backup automático
+  backup:
+    image: postgres:15-alpine
+    environment:
+      - PGPASSWORD=${DB_PASSWORD}
+    volumes:
+      - ./backups:/backups
+      - ./backup.sh:/backup.sh
+    command: /backup.sh
+    depends_on:
+      - db
+    restart: "no"
+
+volumes:
+  postgres_data:
+  redis_data:
+
+# =====================================================
+# DOCKERFILE DE PRODUÇÃO
+# =====================================================
+
+# Dockerfile.production
+FROM ruby:3.2-alpine
+
+# Dependências do sistema
+RUN apk add --no-cache \
+    build-base \
+    postgresql-dev \
+    nodejs \
+    npm \
+    curl \
+    tzdata
+
+# Configurar timezone
+ENV TZ=America/Sao_Paulo
+
+# Diretório de trabalho
+WORKDIR /app
+
+# Copiar Gemfile e instalar gems
+COPY Gemfile Gemfile.lock ./
+RUN bundle config set --local without 'development test' && \
+    bundle install --jobs 4 --retry 3
+
+# Copiar código da aplicação
+COPY . .
+
+# Compilar assets
+RUN bundle exec rails assets:precompile
+
+# Criar usuário não-root
+RUN addgroup -g 1000 -S appgroup && \
+    adduser -u 1000 -S appuser -G appgroup
+
+# Mudar ownership dos arquivos
+RUN chown -R appuser:appgroup /app
+
+# Mudar para usuário não-root
+USER appuser
+
+# Expor porta
+EXPOSE 3000
+
+# Comando de inicialização
+CMD ["bundle", "exec", "rails", "server", "-b", "0.0.0.0", "-p", "3000"]
+
+# =====================================================
+# CONFIGURAÇÃO NGINX
+# =====================================================
+
+# nginx.conf
+events {
+    worker_connections 1024;
+}
+
+http {
+    upstream app {
+        server web:3000;
+    }
+
+    # Rate limiting
+    limit_req_zone $binary_remote_addr zone=api:10m rate=10r/s;
+    limit_req_zone $binary_remote_addr zone=login:10m rate=5r/m;
+
+    server {
+        listen 80;
+        server_name yourdomain.com www.yourdomain.com;
+        return 301 https://$server_name$request_uri;
+    }
+
+    server {
+        listen 443 ssl http2;
+        server_name yourdomain.com www.yourdomain.com;
+
+        # SSL Configuration
+        ssl_certificate /etc/nginx/ssl/cert.pem;
+        ssl_certificate_key /etc/nginx/ssl/key.pem;
+        ssl_protocols TLSv1.2 TLSv1.3;
+        ssl_ciphers ECDHE-RSA-AES256-GCM-SHA512:DHE-RSA-AES256-GCM-SHA512:ECDHE-RSA-AES256-GCM-SHA384:DHE-RSA-AES256-GCM-SHA384;
+        ssl_prefer_server_ciphers off;
+
+        # Security headers
+        add_header X-Frame-Options DENY;
+        add_header X-Content-Type-Options nosniff;
+        add_header X-XSS-Protection "1; mode=block";
+        add_header Strict-Transport-Security "max-age=31536000; includeSubDomains" always;
+
+        # Gzip compression
+        gzip on;
+        gzip_vary on;
+        gzip_min_length 1024;
+        gzip_types text/plain text/css text/xml text/javascript application/javascript application/xml+rss application/json;
+
+        # API routes with rate limiting
+        location /api/ {
+            limit_req zone=api burst=20 nodelay;
+            proxy_pass http://app;
+            proxy_set_header Host $host;
+            proxy_set_header X-Real-IP $remote_addr;
+            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+            proxy_set_header X-Forwarded-Proto $scheme;
+        }
+
+        # Login routes with stricter rate limiting
+        location /api/auth/ {
+            limit_req zone=login burst=5 nodelay;
+            proxy_pass http://app;
+            proxy_set_header Host $host;
+            proxy_set_header X-Real-IP $remote_addr;
+            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+            proxy_set_header X-Forwarded-Proto $scheme;
+        }
+
+        # Health check
+        location /health {
+            proxy_pass http://app;
+            access_log off;
+        }
+
+        # Static files
+        location /assets/ {
+            expires 1y;
+            add_header Cache-Control "public, immutable";
+            proxy_pass http://app;
+        }
+
+        # All other requests
+        location / {
+            proxy_pass http://app;
+            proxy_set_header Host $host;
+            proxy_set_header X-Real-IP $remote_addr;
+            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+            proxy_set_header X-Forwarded-Proto $scheme;
+        }
+    }
+}
+
+# =====================================================
+# SCRIPT DE BACKUP
+# =====================================================
+
+#!/bin/bash
+# backup.sh
+set -e
+
+BACKUP_DIR="/backups"
+DATE=$(date +%Y%m%d_%H%M%S)
+BACKUP_FILE="tcc_effortless_backup_${DATE}.sql"
+
+echo "Starting backup at $(date)"
+
+# Create backup
+pg_dump -h db -U tcc_user -d tcc_effortless_production > "${BACKUP_DIR}/${BACKUP_FILE}"
+
+# Compress backup
+gzip "${BACKUP_DIR}/${BACKUP_FILE}"
+
+# Keep only last 7 days of backups
+find ${BACKUP_DIR} -name "tcc_effortless_backup_*.sql.gz" -mtime +7 -delete
+
+echo "Backup completed: ${BACKUP_FILE}.gz"
+
+# =====================================================
+# ARQUIVO DE VARIÁVEIS DE AMBIENTE
+# =====================================================
+
+# .env.production
+DB_PASSWORD=your_secure_database_password_here
+SECRET_KEY_BASE=your_rails_secret_key_base_here
+JWT_SECRET_KEY=your_jwt_secret_key_here
+ALLOWED_ORIGINS=https://yourdomain.com,https://www.yourdomain.com
+
+# =====================================================
+# COMANDOS DE DEPLOY
+# =====================================================
+
+# 1. Preparar ambiente
+cp .env.production.example .env.production
+# Editar .env.production com suas credenciais
+
+# 2. Gerar certificados SSL (Let's Encrypt)
+mkdir -p ssl
+# Usar certbot ou similar para gerar certificados
+
+# 3. Deploy
+docker-compose -f docker-compose.production.yml up -d
+
+# 4. Executar migrações
+docker-compose -f docker-compose.production.yml exec web rails db:migrate
+
+# 5. Verificar status
+docker-compose -f docker-compose.production.yml ps
+docker-compose -f docker-compose.production.yml logs -f web
+
+# 6. Backup manual
+docker-compose -f docker-compose.production.yml exec backup /backup.sh
