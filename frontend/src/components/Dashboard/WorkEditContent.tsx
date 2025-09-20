@@ -115,9 +115,9 @@ function SortableField({
               <div
                 {...attributes}
                 {...listeners}
-                className="cursor-grab hover:cursor-grabbing p-1 hover:bg-gray-100 rounded transition-colors"
+                className="cursor-grab hover:cursor-grabbing p-1 hover:bg-purple-100 rounded transition-colors"
               >
-                <GripVertical className="h-4 w-4 text-gray-400" />
+                <GripVertical className="h-4 w-4 text-gray-400 hover:text-purple-600" />
               </div>
               <field.icon className="h-5 w-5 text-purple-600" />
               <CardTitle className="text-lg flex items-center gap-2">
@@ -141,7 +141,7 @@ function SortableField({
                 onClick={() => onToggleCollapse(field.id)}
                 variant="ghost"
                 size="sm"
-                className="hover:bg-gray-100"
+                className="hover:bg-purple-100 hover:text-purple-600"
               >
                 {isCollapsed ? (
                   <ChevronDown className="h-4 w-4" />
