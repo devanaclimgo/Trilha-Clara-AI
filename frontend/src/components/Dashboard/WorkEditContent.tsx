@@ -43,6 +43,12 @@ import { CSS } from '@dnd-kit/utilities'
 
 interface WorkEditContentProps {
   workData: TccData
+  onContentChange?: (
+    content: WorkContent,
+    customFields: ContentField[],
+    fieldLabels: Record<string, string>,
+    fieldOrder: string[],
+  ) => void
 }
 
 interface WorkContent {
@@ -255,7 +261,10 @@ function SortableField({
   )
 }
 
-export default function WorkEditContent({ workData }: WorkEditContentProps) {
+export default function WorkEditContent({
+  workData,
+  onContentChange,
+}: WorkEditContentProps) {
   const [content, setContent] = useState<WorkContent>({
     resumo: '',
     introducao: '',
@@ -496,6 +505,13 @@ export default function WorkEditContent({ workData }: WorkEditContentProps) {
     const timeoutId = setTimeout(autoSave, 2000) // 2 second debounce
     return () => clearTimeout(timeoutId)
   }, [content, customFields, fieldLabels, fieldOrder, workData?.id, loading])
+
+  // Notify parent component of content changes
+  useEffect(() => {
+    if (onContentChange) {
+      onContentChange(content, customFields, fieldLabels, fieldOrder)
+    }
+  }, [content, customFields, fieldLabels, fieldOrder, onContentChange])
 
   const handleContentChange = (key: string, value: string) => {
     setContent((prev) => ({ ...prev, [key]: value }))

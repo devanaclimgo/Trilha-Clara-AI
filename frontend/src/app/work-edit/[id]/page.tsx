@@ -32,6 +32,37 @@ export default function WorkEditPage() {
   const [activeTab, setActiveTab] = useState('basic')
   const [sidebarOpen, setSidebarOpen] = useState(false)
   const [abntPreviewOpen, setAbntPreviewOpen] = useState(false)
+
+  // Shared content state
+  const [sharedContent, setSharedContent] = useState({
+    resumo: '',
+    introducao: '',
+    objetivos: '',
+    metodologia: '',
+    desenvolvimento: '',
+    conclusao: '',
+    referencias: '',
+    justificativa: '',
+  })
+  const [sharedCustomFields, setSharedCustomFields] = useState<any[]>([])
+  const [sharedFieldLabels, setSharedFieldLabels] = useState<
+    Record<string, string>
+  >({})
+  const [sharedFieldOrder, setSharedFieldOrder] = useState<string[]>([])
+
+  // Handler for content changes from WorkEditContent
+  const handleContentChange = (
+    content: any,
+    customFields: any[],
+    fieldLabels: Record<string, string>,
+    fieldOrder: string[],
+  ) => {
+    setSharedContent(content)
+    setSharedCustomFields(customFields)
+    setSharedFieldLabels(fieldLabels)
+    setSharedFieldOrder(fieldOrder)
+  }
+
   const [currentScreen, setCurrentScreen] = useState<
     | 'main'
     | 'notes'
@@ -274,13 +305,20 @@ export default function WorkEditPage() {
             </TabsContent>
 
             <TabsContent value="content" className="space-y-6">
-              <WorkEditContent workData={workData} />
+              <WorkEditContent
+                workData={workData}
+                onContentChange={handleContentChange}
+              />
             </TabsContent>
 
             <TabsContent value="preview" className="space-y-6">
               <WorkEditPreview
                 workData={workData}
                 onEditClick={() => setActiveTab('content')}
+                content={sharedContent}
+                customFields={sharedCustomFields}
+                fieldLabels={sharedFieldLabels}
+                fieldOrder={sharedFieldOrder}
               />
             </TabsContent>
           </Tabs>

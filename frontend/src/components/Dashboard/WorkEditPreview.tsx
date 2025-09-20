@@ -19,11 +19,38 @@ import {
 interface WorkEditPreviewProps {
   workData: TccData
   onEditClick?: () => void
+  content?: {
+    resumo: string
+    introducao: string
+    objetivos: string
+    metodologia: string
+    desenvolvimento: string
+    conclusao: string
+    referencias: string
+    justificativa?: string
+    [key: string]: string | undefined
+  }
+  customFields?: Array<{
+    key: string
+    label: string
+    description: string
+    placeholder: string
+    icon: React.ComponentType<{ className?: string }>
+    required: boolean
+    id: string
+    isCustom?: boolean
+  }>
+  fieldLabels?: Record<string, string>
+  fieldOrder?: string[]
 }
 
 export default function WorkEditPreview({
   workData,
   onEditClick,
+  content: propContent,
+  customFields = [],
+  fieldLabels = {},
+  fieldOrder = [],
 }: WorkEditPreviewProps) {
   const [isGenerating, setIsGenerating] = useState(false)
   const [lastGenerated, setLastGenerated] = useState<string | null>(null)
@@ -38,83 +65,94 @@ export default function WorkEditPreview({
     referencias: '',
   })
 
-  // Carregar conteúdo do trabalho
+  // Use prop content if available, otherwise fetch from API
   useEffect(() => {
-    const fetchContent = async () => {
-      try {
-        const token = localStorage.getItem('token')
-        if (!token) return
+    if (propContent) {
+      setWorkContent({
+        resumo: propContent.resumo || '',
+        introducao: propContent.introducao || '',
+        objetivos: propContent.objetivos || '',
+        metodologia: propContent.metodologia || '',
+        desenvolvimento: propContent.desenvolvimento || '',
+        conclusao: propContent.conclusao || '',
+        referencias: propContent.referencias || '',
+      })
+    } else {
+      // Fallback: fetch content from API
+      const fetchContent = async () => {
+        try {
+          const token = localStorage.getItem('token')
+          if (!token) return
 
-        const response = await fetch(
-          `http://localhost:4000/api/work/${workData.id}/content`,
-          {
-            headers: {
-              Authorization: `Bearer ${token}`,
-              'Content-Type': 'application/json',
+          const response = await fetch(
+            `http://localhost:4000/api/work/${workData.id}/content`,
+            {
+              headers: {
+                Authorization: `Bearer ${token}`,
+                'Content-Type': 'application/json',
+              },
             },
-          },
-        )
+          )
 
-        if (response.ok) {
-          const data = await response.json()
-          setWorkContent({
-            resumo: data.resumo || '',
-            introducao: data.introducao || '',
-            objetivos: data.objetivos || '',
-            metodologia: data.metodologia || '',
-            desenvolvimento: data.desenvolvimento || '',
-            conclusao: data.conclusao || '',
-            referencias: data.referencias || '',
-          })
-        } else {
-          // Fallback para conteúdo mock
-          setWorkContent({
-            resumo:
-              'Este trabalho analisa a aplicação de Inteligência Artificial na educação, explorando suas potencialidades, desafios e impactos no processo de ensino-aprendizagem.',
-            introducao:
-              'A Inteligência Artificial (IA) tem se tornado uma das tecnologias mais transformadoras do século XXI, impactando diversos setores da sociedade, incluindo a educação.',
-            objetivos:
-              'Objetivo Geral: Analisar o impacto da aplicação de Inteligência Artificial na educação.',
-            metodologia:
-              'Esta pesquisa utilizará uma abordagem qualitativa, baseada em revisão sistemática da literatura.',
-            desenvolvimento:
-              'A aplicação de Inteligência Artificial na educação apresenta múltiplas dimensões e possibilidades.',
-            conclusao:
-              'Com base na análise realizada, pode-se concluir que a Inteligência Artificial apresenta um potencial significativo para transformar a educação.',
-            referencias:
-              'SILVA, João. Inteligência Artificial na Educação. São Paulo: Editora Educacional, 2023.',
-          })
+          if (response.ok) {
+            const data = await response.json()
+            setWorkContent({
+              resumo: data.resumo || '',
+              introducao: data.introducao || '',
+              objetivos: data.objetivos || '',
+              metodologia: data.metodologia || '',
+              desenvolvimento: data.desenvolvimento || '',
+              conclusao: data.conclusao || '',
+              referencias: data.referencias || '',
+            })
+          }
+        } catch (error) {
+          console.error('Erro ao carregar conteúdo:', error)
         }
-      } catch (error) {
-        console.error('Erro ao carregar conteúdo:', error)
-        // Fallback para conteúdo mock
-        setWorkContent({
-          resumo:
-            'Este trabalho analisa a aplicação de Inteligência Artificial na educação.',
-          introducao:
-            'A Inteligência Artificial (IA) tem se tornado uma das tecnologias mais transformadoras do século XXI.',
-          objetivos:
-            'Objetivo Geral: Analisar o impacto da aplicação de Inteligência Artificial na educação.',
-          metodologia: 'Esta pesquisa utilizará uma abordagem qualitativa.',
-          desenvolvimento:
-            'A aplicação de Inteligência Artificial na educação apresenta múltiplas dimensões.',
-          conclusao:
-            'Com base na análise realizada, pode-se concluir que a Inteligência Artificial apresenta um potencial significativo.',
-          referencias:
-            'SILVA, João. Inteligência Artificial na Educação. São Paulo: Editora Educacional, 2023.',
-        })
+      }
+
+      if (workData?.id) {
+        fetchContent()
       }
     }
-
-    if (workData?.id) {
-      fetchContent()
-    }
-  }, [workData?.id])
+  }, [propContent, workData?.id])
 
   // Função para verificar se um campo está preenchido
   const isFieldFilled = (field: string) => {
     const value = workContent[field as keyof typeof workContent]
     return value && value.trim().length > 0
+  }
+
+  // Get all fields in order (base fields + custom fields)
+  const getAllFieldsInOrder = () => {
+    const baseFields = [
+      { key: 'resumo', label: 'Resumo', icon: '📋' },
+      { key: 'introducao', label: 'Introdução', icon: '📖' },
+      { key: 'objetivos', label: 'Objetivos', icon: '🎯' },
+      { key: 'metodologia', label: 'Metodologia', icon: '🔬' },
+      { key: 'desenvolvimento', label: 'Desenvolvimento', icon: '📝' },
+      { key: 'conclusao', label: 'Conclusão', icon: '✅' },
+      { key: 'referencias', label: 'Referências', icon: '📚' },
+    ]
+
+    // Add custom fields
+    const customFieldsList = customFields.map((field) => ({
+      key: field.key,
+      label: fieldLabels[field.id] || field.label,
+      icon: '📄',
+    }))
+
+    // Combine and order based on fieldOrder
+    const allFields = [...baseFields, ...customFieldsList]
+
+    if (fieldOrder.length > 0) {
+      return fieldOrder.map((fieldId) => {
+        const field = allFields.find((f) => f.key === fieldId)
+        return field || { key: fieldId, label: fieldId, icon: '📄' }
+      })
+    }
+
+    return allFields
   }
 
   const handleDownload = async (format: 'docx' | 'pdf') => {
@@ -261,144 +299,136 @@ export default function WorkEditPreview({
 
           {/* Conteúdo do trabalho */}
           <div className="space-y-6 text-justify">
-            {/* Resumo */}
-            {isFieldFilled('resumo') && (
-              <section className="p-4 bg-blue-50 rounded-lg border-l-4 border-blue-400">
-                <h2 className="text-lg font-bold text-blue-800 mb-3 flex items-center gap-2">
-                  📋 Resumo
-                </h2>
-                <p className="text-gray-700 leading-relaxed text-sm">
-                  {workContent.resumo}
-                </p>
-                <div className="mt-2 text-xs text-blue-600 font-medium">
-                  Resumo executivo do trabalho
-                </div>
-              </section>
-            )}
+            {getAllFieldsInOrder().map((field, index) => {
+              const isFilled = isFieldFilled(field.key)
+              const content =
+                workContent[field.key as keyof typeof workContent] || ''
 
-            {/* Introdução */}
-            {isFieldFilled('introducao') && (
-              <section className="p-4 bg-green-50 rounded-lg border-l-4 border-green-400">
-                <h2 className="text-lg font-bold text-green-800 mb-3 flex items-center gap-2">
-                  1. 📖 Introdução
-                </h2>
-                <p className="text-gray-700 leading-relaxed text-sm">
-                  {workContent.introducao}
-                </p>
-                <div className="mt-2 text-xs text-green-600 font-medium">
-                  Apresentação do tema e problema de pesquisa
-                </div>
-              </section>
-            )}
+              if (!isFilled) return null
 
-            {/* Objetivos */}
-            {isFieldFilled('objetivos') && (
-              <section className="p-4 bg-yellow-50 rounded-lg border-l-4 border-yellow-400">
-                <h2 className="text-lg font-bold text-yellow-800 mb-3 flex items-center gap-2">
-                  2. 🎯 Objetivos
-                </h2>
-                <p className="text-gray-700 leading-relaxed text-sm">
-                  {workContent.objetivos}
-                </p>
-                <div className="mt-2 text-xs text-yellow-600 font-medium">
-                  Objetivos geral e específicos
-                </div>
-              </section>
-            )}
+              const colors = [
+                {
+                  bg: 'bg-blue-50',
+                  border: 'border-blue-400',
+                  text: 'text-blue-800',
+                  accent: 'text-blue-600',
+                },
+                {
+                  bg: 'bg-green-50',
+                  border: 'border-green-400',
+                  text: 'text-green-800',
+                  accent: 'text-green-600',
+                },
+                {
+                  bg: 'bg-yellow-50',
+                  border: 'border-yellow-400',
+                  text: 'text-yellow-800',
+                  accent: 'text-yellow-600',
+                },
+                {
+                  bg: 'bg-orange-50',
+                  border: 'border-orange-400',
+                  text: 'text-orange-800',
+                  accent: 'text-orange-600',
+                },
+                {
+                  bg: 'bg-purple-50',
+                  border: 'border-purple-400',
+                  text: 'text-purple-800',
+                  accent: 'text-purple-600',
+                },
+                {
+                  bg: 'bg-red-50',
+                  border: 'border-red-400',
+                  text: 'text-red-800',
+                  accent: 'text-red-600',
+                },
+                {
+                  bg: 'bg-gray-50',
+                  border: 'border-gray-400',
+                  text: 'text-gray-800',
+                  accent: 'text-gray-600',
+                },
+              ]
 
-            {/* Metodologia */}
-            {isFieldFilled('metodologia') && (
-              <section className="p-4 bg-orange-50 rounded-lg border-l-4 border-orange-400">
-                <h2 className="text-lg font-bold text-orange-800 mb-3 flex items-center gap-2">
-                  3. 🔬 Metodologia
-                </h2>
-                <p className="text-gray-700 leading-relaxed text-sm">
-                  {workContent.metodologia}
-                </p>
-                <div className="mt-2 text-xs text-orange-600 font-medium">
-                  Como a pesquisa será realizada
-                </div>
-              </section>
-            )}
+              const colorScheme = colors[index % colors.length]
 
-            {/* Desenvolvimento */}
-            {isFieldFilled('desenvolvimento') && (
-              <section className="p-4 bg-purple-50 rounded-lg border-l-4 border-purple-400">
-                <h2 className="text-lg font-bold text-purple-800 mb-3 flex items-center gap-2">
-                  4. 📝 Desenvolvimento
-                </h2>
-                <p className="text-gray-700 leading-relaxed text-sm">
-                  {workContent.desenvolvimento}
-                </p>
-                <div className="mt-2 text-xs text-purple-600 font-medium">
-                  Desenvolvimento dos conceitos e análises principais
-                </div>
-              </section>
-            )}
-
-            {/* Conclusão */}
-            {isFieldFilled('conclusao') && (
-              <section className="p-4 bg-red-50 rounded-lg border-l-4 border-red-400">
-                <h2 className="text-lg font-bold text-red-800 mb-3 flex items-center gap-2">
-                  5. ✅ Conclusão
-                </h2>
-                <p className="text-gray-700 leading-relaxed text-sm">
-                  {workContent.conclusao}
-                </p>
-                <div className="mt-2 text-xs text-red-600 font-medium">
-                  Síntese dos resultados e conclusões
-                </div>
-              </section>
-            )}
-
-            {/* Referências */}
-            {isFieldFilled('referencias') && (
-              <section className="p-4 bg-gray-50 rounded-lg border-l-4 border-gray-400">
-                <h2 className="text-lg font-bold text-gray-800 mb-3 flex items-center gap-2">
-                  📚 Referências
-                </h2>
-                <div className="text-gray-700 leading-relaxed text-sm">
-                  {workContent.referencias.split('. ').map((ref, index) => (
-                    <p key={index} className="mb-2">
-                      {ref}
-                      {ref.endsWith('.') ? '' : '.'}
-                    </p>
-                  ))}
-                </div>
-                <div className="mt-2 text-xs text-gray-600 font-medium">
-                  Fontes consultadas no formato ABNT
-                </div>
-              </section>
-            )}
+              return (
+                <section
+                  key={field.key}
+                  className={`p-4 ${colorScheme.bg} rounded-lg border-l-4 ${colorScheme.border}`}
+                >
+                  <h2
+                    className={`text-lg font-bold ${colorScheme.text} mb-3 flex items-center gap-2`}
+                  >
+                    {field.icon} {field.label}
+                  </h2>
+                  <div className="text-gray-700 leading-relaxed text-sm">
+                    {field.key === 'referencias' ? (
+                      content.split('. ').map((ref, refIndex) => (
+                        <p key={refIndex} className="mb-2">
+                          {ref}
+                          {ref.endsWith('.') ? '' : '.'}
+                        </p>
+                      ))
+                    ) : (
+                      <p>{content}</p>
+                    )}
+                  </div>
+                  <div
+                    className={`mt-2 text-xs ${colorScheme.accent} font-medium`}
+                  >
+                    {field.key === 'resumo' && 'Resumo executivo do trabalho'}
+                    {field.key === 'introducao' &&
+                      'Apresentação do tema e problema de pesquisa'}
+                    {field.key === 'objetivos' &&
+                      'Objetivos geral e específicos'}
+                    {field.key === 'metodologia' &&
+                      'Como a pesquisa será realizada'}
+                    {field.key === 'desenvolvimento' &&
+                      'Desenvolvimento dos conceitos e análises principais'}
+                    {field.key === 'conclusao' &&
+                      'Síntese dos resultados e conclusões'}
+                    {field.key === 'referencias' &&
+                      'Fontes consultadas no formato ABNT'}
+                    {![
+                      'resumo',
+                      'introducao',
+                      'objetivos',
+                      'metodologia',
+                      'desenvolvimento',
+                      'conclusao',
+                      'referencias',
+                    ].includes(field.key) && 'Seção personalizada do trabalho'}
+                  </div>
+                </section>
+              )
+            })}
 
             {/* Mensagem quando nenhum campo está preenchido */}
-            {!isFieldFilled('resumo') &&
-              !isFieldFilled('introducao') &&
-              !isFieldFilled('objetivos') &&
-              !isFieldFilled('metodologia') &&
-              !isFieldFilled('desenvolvimento') &&
-              !isFieldFilled('conclusao') &&
-              !isFieldFilled('referencias') && (
-                <div className="text-center py-12">
-                  <div className="text-gray-400 mb-4">
-                    <FileText className="h-16 w-16 mx-auto" />
-                  </div>
-                  <h3 className="text-lg font-medium text-gray-600 mb-2">
-                    Nenhum conteúdo preenchido ainda
-                  </h3>
-                  <p className="text-gray-500 mb-4">
-                    Preencha pelo menos um campo na aba &quot;Conteúdo&quot;
-                    para ver a preview aqui.
-                  </p>
-                  <Button
-                    onClick={onEditClick}
-                    className="gradient-bg text-white hover:scale-105 transition-all duration-300"
-                  >
-                    <Edit3 className="h-4 w-4 mr-2" />
-                    Ir para Edição
-                  </Button>
+            {getAllFieldsInOrder().every(
+              (field) => !isFieldFilled(field.key),
+            ) && (
+              <div className="text-center py-12">
+                <div className="text-gray-400 mb-4">
+                  <FileText className="h-16 w-16 mx-auto" />
                 </div>
-              )}
+                <h3 className="text-lg font-medium text-gray-600 mb-2">
+                  Nenhum conteúdo preenchido ainda
+                </h3>
+                <p className="text-gray-500 mb-4">
+                  Preencha pelo menos um campo na aba &quot;Conteúdo&quot; para
+                  ver a preview aqui.
+                </p>
+                <Button
+                  onClick={onEditClick}
+                  className="gradient-bg text-white hover:scale-105 transition-all duration-300"
+                >
+                  <Edit3 className="h-4 w-4 mr-2" />
+                  Ir para Edição
+                </Button>
+              </div>
+            )}
           </div>
         </CardContent>
       </Card>
