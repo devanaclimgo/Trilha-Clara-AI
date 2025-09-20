@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useCallback } from 'react'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Textarea } from '@/components/ui/textarea'
@@ -20,6 +20,8 @@ import {
   GripVertical,
   Trash2,
   Plus,
+  Undo2,
+  Redo2,
 } from 'lucide-react'
 import {
   DndContext,
@@ -290,6 +292,18 @@ export default function WorkEditContent({ workData }: WorkEditContentProps) {
   const [fieldLabels, setFieldLabels] = useState<Record<string, string>>({})
   const [customFields, setCustomFields] = useState<ContentField[]>([])
   const [nextCustomId, setNextCustomId] = useState(0)
+  const [autoSaveStatus, setAutoSaveStatus] = useState<
+    'saved' | 'saving' | 'error'
+  >('saved')
+  const [history, setHistory] = useState<
+    Array<{
+      content: WorkContent
+      customFields: ContentField[]
+      fieldLabels: Record<string, string>
+      fieldOrder: string[]
+    }>
+  >([])
+  const [historyIndex, setHistoryIndex] = useState(-1)
 
   // Carregar conteúdo existente
   useEffect(() => {
@@ -441,9 +455,52 @@ export default function WorkEditContent({ workData }: WorkEditContentProps) {
     }
   }, [contentFields, fieldOrder.length])
 
+  // Auto-save effect with debouncing
+  useEffect(() => {
+    const autoSave = async () => {
+      if (loading || !workData?.id) return
+
+      setAutoSaveStatus('saving')
+      try {
+        const token = localStorage.getItem('token')
+        if (!token) return
+
+        const response = await fetch(
+          `http://localhost:4000/api/work/${workData.id}/save_content`,
+          {
+            method: 'POST',
+            headers: {
+              Authorization: `Bearer ${token}`,
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+              content: content,
+              customFields: customFields,
+              fieldLabels: fieldLabels,
+              fieldOrder: fieldOrder,
+            }),
+          },
+        )
+
+        if (response.ok) {
+          setAutoSaveStatus('saved')
+        } else {
+          setAutoSaveStatus('error')
+        }
+      } catch (error) {
+        console.error('Erro no auto-save:', error)
+        setAutoSaveStatus('error')
+      }
+    }
+
+    const timeoutId = setTimeout(autoSave, 2000) // 2 second debounce
+    return () => clearTimeout(timeoutId)
+  }, [content, customFields, fieldLabels, fieldOrder, workData?.id, loading])
+
   const handleContentChange = (key: string, value: string) => {
     setContent((prev) => ({ ...prev, [key]: value }))
     setSaved(null)
+    addToHistory()
   }
 
   const toggleCollapse = (fieldKey: string) => {
@@ -458,7 +515,73 @@ export default function WorkEditContent({ workData }: WorkEditContentProps) {
       ...prev,
       [fieldId]: newLabel,
     }))
+    addToHistory()
   }
+
+  // Add to history for undo functionality
+  const addToHistory = () => {
+    const newState = {
+      content: { ...content },
+      customFields: [...customFields],
+      fieldLabels: { ...fieldLabels },
+      fieldOrder: [...fieldOrder],
+    }
+
+    setHistory((prev) => {
+      const newHistory = prev.slice(0, historyIndex + 1)
+      newHistory.push(newState)
+      // Keep only last 50 states to prevent memory issues
+      return newHistory.slice(-50)
+    })
+    setHistoryIndex((prev) => Math.min(prev + 1, 49))
+  }
+
+  // Undo function
+  const undo = useCallback(() => {
+    if (historyIndex > 0) {
+      const prevState = history[historyIndex - 1]
+      setContent(prevState.content)
+      setCustomFields(prevState.customFields)
+      setFieldLabels(prevState.fieldLabels)
+      setFieldOrder(prevState.fieldOrder)
+      setHistoryIndex((prev) => prev - 1)
+    }
+  }, [historyIndex, history])
+
+  // Redo function
+  const redo = useCallback(() => {
+    if (historyIndex < history.length - 1) {
+      const nextState = history[historyIndex + 1]
+      setContent(nextState.content)
+      setCustomFields(nextState.customFields)
+      setFieldLabels(nextState.fieldLabels)
+      setFieldOrder(nextState.fieldOrder)
+      setHistoryIndex((prev) => prev + 1)
+    }
+  }, [historyIndex, history])
+
+  // Keyboard shortcuts for undo/redo
+  useEffect(() => {
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (
+        (event.ctrlKey || event.metaKey) &&
+        event.key === 'z' &&
+        !event.shiftKey
+      ) {
+        event.preventDefault()
+        undo()
+      } else if (
+        (event.ctrlKey || event.metaKey) &&
+        (event.key === 'y' || (event.key === 'z' && event.shiftKey))
+      ) {
+        event.preventDefault()
+        redo()
+      }
+    }
+
+    window.addEventListener('keydown', handleKeyDown)
+    return () => window.removeEventListener('keydown', handleKeyDown)
+  }, [undo, redo])
 
   const addCustomField = () => {
     const newField: ContentField = {
@@ -476,6 +599,7 @@ export default function WorkEditContent({ workData }: WorkEditContentProps) {
     setFieldOrder((prev) => [...prev, newField.id])
     setCollapsedFields((prev) => ({ ...prev, [newField.id]: true }))
     setNextCustomId((prev) => prev + 1)
+    addToHistory()
   }
 
   const deleteCustomField = (fieldId: string) => {
@@ -500,6 +624,7 @@ export default function WorkEditContent({ workData }: WorkEditContentProps) {
       }
       return newContent
     })
+    addToHistory()
   }
 
   const sensors = useSensors(
@@ -518,6 +643,7 @@ export default function WorkEditContent({ workData }: WorkEditContentProps) {
         const newIndex = items.indexOf(over.id as string)
         return arrayMove(items, oldIndex, newIndex)
       })
+      addToHistory()
     }
   }
 
@@ -553,6 +679,7 @@ export default function WorkEditContent({ workData }: WorkEditContentProps) {
       const data = await response.json()
       setContent((prev) => ({ ...prev, [field]: data.content }))
       setSaved(field)
+      addToHistory()
     } catch (error) {
       console.error('Erro ao gerar conteúdo:', error)
       // Fallback para conteúdo mock em caso de erro
@@ -581,6 +708,7 @@ export default function WorkEditContent({ workData }: WorkEditContentProps) {
           (fallbackContent as Record<string, string>)[field] ||
           'Conteúdo gerado com sucesso!',
       }))
+      addToHistory()
     } finally {
       setGenerating(null)
     }
@@ -644,16 +772,61 @@ export default function WorkEditContent({ workData }: WorkEditContentProps) {
         </CardHeader>
         <CardContent>
           <div className="flex justify-between items-center">
-            <p className="text-sm text-gray-500">
-              Escreva suas ideias e clique em &quot;Gerar com IA&quot; para
-              expandir o conteúdo
-            </p>
+            <div className="flex items-center gap-4">
+              <p className="text-sm text-gray-500">
+                Escreva suas ideias e clique em &quot;Gerar com IA&quot; para
+                expandir o conteúdo
+              </p>
+              <div className="flex items-center gap-2">
+                <div className="flex items-center gap-2">
+                  <Button
+                    onClick={undo}
+                    disabled={historyIndex <= 0}
+                    variant="outline"
+                    size="sm"
+                    className="hover:bg-purple-50 hover:text-purple-600 border-purple-200 hover:border-purple-300"
+                  >
+                    <Undo2 className="h-4 w-4 mr-1" />
+                    Desfazer
+                  </Button>
+                  <Button
+                    onClick={redo}
+                    disabled={historyIndex >= history.length - 1}
+                    variant="outline"
+                    size="sm"
+                    className="hover:bg-purple-50 hover:text-purple-600 border-purple-200 hover:border-purple-300"
+                  >
+                    <Redo2 className="h-4 w-4 mr-1" />
+                    Refazer
+                  </Button>
+                </div>
+                <div className="flex items-center gap-2 text-sm">
+                  {autoSaveStatus === 'saving' && (
+                    <div className="flex items-center gap-1 text-blue-600">
+                      <RefreshCw className="h-4 w-4 animate-spin" />
+                      Salvando...
+                    </div>
+                  )}
+                  {autoSaveStatus === 'saved' && (
+                    <div className="flex items-center gap-1 text-green-600">
+                      <CheckCircle className="h-4 w-4" />
+                      Salvo automaticamente
+                    </div>
+                  )}
+                  {autoSaveStatus === 'error' && (
+                    <div className="flex items-center gap-1 text-red-600">
+                      <span>Erro ao salvar</span>
+                    </div>
+                  )}
+                </div>
+              </div>
+            </div>
             <Button
               onClick={saveContent}
               className="gradient-bg text-white hover:scale-105 transition-all duration-300"
             >
               <Save className="h-4 w-4 mr-2" />
-              Salvar Tudo
+              Salvar Manualmente
             </Button>
           </div>
         </CardContent>
