@@ -77,6 +77,7 @@ interface SortableFieldProps {
   onToggleCollapse: (fieldKey: string) => void
   onLabelChange: (fieldId: string, newLabel: string) => void
   onDeleteField?: (fieldId: string) => void
+  fieldLabels: Record<string, string>
 }
 
 // Componente SortableField
@@ -91,6 +92,7 @@ function SortableField({
   onToggleCollapse,
   onLabelChange,
   onDeleteField,
+  fieldLabels,
 }: SortableFieldProps) {
   const {
     attributes,
@@ -109,7 +111,14 @@ function SortableField({
   const fieldValue = content[field.key]
   const isFilled = Boolean(fieldValue && fieldValue.trim().length > 0)
   const [isEditingLabel, setIsEditingLabel] = useState(false)
-  const [tempLabel, setTempLabel] = useState(field.label)
+  const [tempLabel, setTempLabel] = useState(
+    () => fieldLabels[field.id] || field.label,
+  )
+
+  // Update tempLabel when field label changes
+  useEffect(() => {
+    setTempLabel(fieldLabels[field.id] || field.label)
+  }, [fieldLabels, field.id, field.label])
 
   return (
     <div
@@ -156,7 +165,7 @@ function SortableField({
                     className="text-lg font-semibold text-gray-700 cursor-pointer hover:text-purple-600 transition-colors flex items-center gap-2"
                     onClick={() => setIsEditingLabel(true)}
                   >
-                    {field.label}
+                    {fieldLabels[field.id] || field.label}
                     {field.required && (
                       <span className="text-red-500 text-sm">*</span>
                     )}
@@ -221,7 +230,7 @@ function SortableField({
                 htmlFor={field.key}
                 className="text-sm font-medium text-gray-700"
               >
-                {field.label}
+                {fieldLabels[field.id] || field.label}
               </Label>
               <Textarea
                 id={field.key}
@@ -678,6 +687,7 @@ export default function WorkEditContent({ workData }: WorkEditContentProps) {
                   onToggleCollapse={toggleCollapse}
                   onLabelChange={handleLabelChange}
                   onDeleteField={field.isCustom ? deleteCustomField : undefined}
+                  fieldLabels={fieldLabels}
                 />
               )
             })}
