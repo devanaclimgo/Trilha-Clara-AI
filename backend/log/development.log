@@ -1442,3 +1442,390 @@ Processing by Api::WorkContentController#content as JSON
 Completed 401 Unauthorized in 3ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
 
 
+[dotenv] Set [36mDEVISE_JWT_SECRET_KEY[0m, [36mGOOGLE_CLIENT_ID[0m, [36mGOOGLE_CLIENT_SECRET[0m, and [36mGEMINI_API_KEY[0m
+[dotenv] Loaded [33m.env[0m
+[dotenv] Loaded [33m.env[0m
+[dotenv] Set [36mDEVISE_JWT_SECRET_KEY[0m, [36mGOOGLE_CLIENT_ID[0m, [36mGOOGLE_CLIENT_SECRET[0m, and [36mGEMINI_API_KEY[0m
+[dotenv] Loaded [33m.env[0m
+[dotenv] Loaded [33m.env[0m
+Started GET "/api/tcc/tcc-1757962478488" for 127.0.0.1 at 2025-09-18 11:33:01 -0300
+  [1m[36mActiveRecord::SchemaMigration Load (8.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='Backend'*/[0m
+Processing by Api::TccController#show as JSON
+  Parameters: {"id"=>"tcc-1757962478488", "tcc"=>{}}
+Completed 401 Unauthorized in 10ms (ActiveRecord: 47.5ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/api/work/tcc-1757962478488/content" for 127.0.0.1 at 2025-09-18 11:33:08 -0300
+Processing by Api::WorkContentController#content as JSON
+  Parameters: {"id"=>"tcc-1757962478488", "work_content"=>{}}
+Completed 401 Unauthorized in 1ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/api/work/tcc-1757962478488/content" for 127.0.0.1 at 2025-09-18 11:33:08 -0300
+Processing by Api::WorkContentController#content as JSON
+  Parameters: {"id"=>"tcc-1757962478488", "work_content"=>{}}
+Completed 401 Unauthorized in 4ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/api/tcc/tcc-1757962478488" for 127.0.0.1 at 2025-09-18 11:33:29 -0300
+Processing by Api::TccController#show as JSON
+  Parameters: {"id"=>"tcc-1757962478488", "tcc"=>{}}
+Completed 401 Unauthorized in 9ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/api/work/tcc-1757962478488/content" for 127.0.0.1 at 2025-09-18 11:33:30 -0300
+Started GET "/api/work/tcc-1757962478488/content" for 127.0.0.1 at 2025-09-18 11:33:30 -0300
+Processing by Api::WorkContentController#content as JSON
+  Parameters: {"id"=>"tcc-1757962478488", "work_content"=>{}}
+Completed 401 Unauthorized in 4ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Processing by Api::WorkContentController#content as JSON
+  Parameters: {"id"=>"tcc-1757962478488", "work_content"=>{}}
+Completed 401 Unauthorized in 15ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/api/work/tcc-1757962478488/content" for 127.0.0.1 at 2025-09-18 11:33:32 -0300
+Started GET "/api/work/tcc-1757962478488/content" for 127.0.0.1 at 2025-09-18 11:33:32 -0300
+Processing by Api::WorkContentController#content as JSON
+  Parameters: {"id"=>"tcc-1757962478488", "work_content"=>{}}
+Processing by Api::WorkContentController#content as JSON
+Completed 401 Unauthorized in 4ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+  Parameters: {"id"=>"tcc-1757962478488", "work_content"=>{}}
+Completed 401 Unauthorized in 4ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/api/work/tcc-1757962478488/content" for 127.0.0.1 at 2025-09-18 11:33:32 -0300
+Processing by Api::WorkContentController#content as JSON
+  Parameters: {"id"=>"tcc-1757962478488", "work_content"=>{}}
+Completed 401 Unauthorized in 3ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/api/tcc/criar.json" for 127.0.0.1 at 2025-09-18 11:57:36 -0300
+Processing by Api::TccController#criar as JSON
+  Parameters: {"nome"=>"Ana Clara Lima Gomes", "faculdade"=>"Estácio de Sá", "curso"=>"publicidade", "materia"=>"publicidade", "tema"=>"MARKETING DE INFLUÊNCIA E O IMPACTO NO CONSUMO DIGITAL: UMA ANÁLISE COM APOIO DE PROGRAMAÇÃO PARA COLETA DE DADOS EM REDES SOCIAIS", "tipo_trabalho"=>"artigo", "tcc"=>{"nome"=>"Ana Clara Lima Gomes", "faculdade"=>"Estácio de Sá", "curso"=>"publicidade", "materia"=>"publicidade", "tema"=>"MARKETING DE INFLUÊNCIA E O IMPACTO NO CONSUMO DIGITAL: UMA ANÁLISE COM APOIO DE PROGRAMAÇÃO PARA COLETA DE DADOS EM REDES SOCIAIS", "tipo_trabalho"=>"artigo"}}
+Completed 200 OK in 15421ms (Views: 5.5ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+[dotenv] Set [36mDEVISE_JWT_SECRET_KEY[0m, [36mGOOGLE_CLIENT_ID[0m, [36mGOOGLE_CLIENT_SECRET[0m, and [36mGEMINI_API_KEY[0m
+[dotenv] Loaded [33m.env[0m
+[dotenv] Loaded [33m.env[0m
+Started GET "/api/tcc/tcc-1758207368822" for 127.0.0.1 at 2025-09-20 10:41:58 -0300
+  [1m[36mActiveRecord::SchemaMigration Load (7.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='Backend'*/[0m
+Processing by Api::TccController#show as JSON
+  Parameters: {"id"=>"tcc-1758207368822", "tcc"=>{}}
+Completed 401 Unauthorized in 16ms (ActiveRecord: 68.2ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/api/work/tcc-1758207368822/content" for 127.0.0.1 at 2025-09-20 10:42:04 -0300
+Processing by Api::WorkContentController#content as JSON
+  Parameters: {"id"=>"tcc-1758207368822", "work_content"=>{}}
+Completed 401 Unauthorized in 3ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/api/work/tcc-1758207368822/content" for 127.0.0.1 at 2025-09-20 10:42:04 -0300
+Processing by Api::WorkContentController#content as JSON
+  Parameters: {"id"=>"tcc-1758207368822", "work_content"=>{}}
+Completed 401 Unauthorized in 2ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/api/work/tcc-1758207368822/content" for 127.0.0.1 at 2025-09-20 10:42:10 -0300
+Started GET "/api/work/tcc-1758207368822/content" for 127.0.0.1 at 2025-09-20 10:42:10 -0300
+Processing by Api::WorkContentController#content as JSON
+  Parameters: {"id"=>"tcc-1758207368822", "work_content"=>{}}
+Completed 401 Unauthorized in 6ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Processing by Api::WorkContentController#content as JSON
+  Parameters: {"id"=>"tcc-1758207368822", "work_content"=>{}}
+Completed 401 Unauthorized in 2ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/api/work/tcc-1758207368822/content" for 127.0.0.1 at 2025-09-20 10:50:57 -0300
+Started GET "/api/work/tcc-1758207368822/content" for 127.0.0.1 at 2025-09-20 10:50:57 -0300
+Processing by Api::WorkContentController#content as JSON
+  Parameters: {"id"=>"tcc-1758207368822", "work_content"=>{}}
+Completed 401 Unauthorized in 61ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Processing by Api::WorkContentController#content as JSON
+  Parameters: {"id"=>"tcc-1758207368822", "work_content"=>{}}
+Completed 401 Unauthorized in 8ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/api/tcc/tcc-1758207368822" for 127.0.0.1 at 2025-09-20 11:03:37 -0300
+Processing by Api::TccController#show as JSON
+  Parameters: {"id"=>"tcc-1758207368822", "tcc"=>{}}
+Completed 401 Unauthorized in 7ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/api/work/tcc-1758207368822/content" for 127.0.0.1 at 2025-09-20 11:03:40 -0300
+Started GET "/api/work/tcc-1758207368822/content" for 127.0.0.1 at 2025-09-20 11:03:40 -0300
+Processing by Api::WorkContentController#content as JSON
+  Parameters: {"id"=>"tcc-1758207368822", "work_content"=>{}}
+Completed 401 Unauthorized in 3ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Processing by Api::WorkContentController#content as JSON
+  Parameters: {"id"=>"tcc-1758207368822", "work_content"=>{}}
+Completed 401 Unauthorized in 11ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/api/work/tcc-1758207368822/content" for 127.0.0.1 at 2025-09-20 11:05:30 -0300
+Processing by Api::WorkContentController#content as JSON
+  Parameters: {"id"=>"tcc-1758207368822", "work_content"=>{}}
+Completed 401 Unauthorized in 4ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/api/work/tcc-1758207368822/content" for 127.0.0.1 at 2025-09-20 11:11:37 -0300
+Processing by Api::WorkContentController#content as JSON
+  Parameters: {"id"=>"tcc-1758207368822", "work_content"=>{}}
+Completed 401 Unauthorized in 1ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/api/tcc/tcc-1758207368822" for 127.0.0.1 at 2025-09-20 11:21:32 -0300
+Processing by Api::TccController#show as JSON
+  Parameters: {"id"=>"tcc-1758207368822", "tcc"=>{}}
+Completed 401 Unauthorized in 6ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/api/tcc/tcc-1758207368822" for 127.0.0.1 at 2025-09-20 11:21:34 -0300
+Processing by Api::TccController#show as JSON
+  Parameters: {"id"=>"tcc-1758207368822", "tcc"=>{}}
+Completed 401 Unauthorized in 11ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/api/work/tcc-1758207368822/content" for 127.0.0.1 at 2025-09-20 11:22:56 -0300
+Started GET "/api/work/tcc-1758207368822/content" for 127.0.0.1 at 2025-09-20 11:22:56 -0300
+Processing by Api::WorkContentController#content as JSON
+  Parameters: {"id"=>"tcc-1758207368822", "work_content"=>{}}
+Completed 401 Unauthorized in 12ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Processing by Api::WorkContentController#content as JSON
+  Parameters: {"id"=>"tcc-1758207368822", "work_content"=>{}}
+Completed 401 Unauthorized in 9ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/api/work/tcc-1758207368822/content" for 127.0.0.1 at 2025-09-20 11:25:27 -0300
+Processing by Api::WorkContentController#content as JSON
+  Parameters: {"id"=>"tcc-1758207368822", "work_content"=>{}}
+Completed 401 Unauthorized in 2ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/api/work/tcc-1758207368822/content" for 127.0.0.1 at 2025-09-20 11:26:14 -0300
+Processing by Api::WorkContentController#content as JSON
+  Parameters: {"id"=>"tcc-1758207368822", "work_content"=>{}}
+Completed 401 Unauthorized in 5ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/api/work/tcc-1758207368822/save_content" for 127.0.0.1 at 2025-09-20 11:26:17 -0300
+Processing by Api::WorkContentController#save_content as JSON
+  Parameters: {"content"=>{"resumo"=>"", "introducao"=>"", "desenvolvimento"=>"", "conclusao"=>"", "referencias"=>"", "metodologia"=>"", "objetivos"=>"", "justificativa"=>"", "estrutura_0"=>"", "estrutura_1"=>"", "estrutura_2"=>"", "estrutura_3"=>"", "estrutura_4"=>"", "estrutura_5"=>"", "estrutura_6"=>"", "estrutura_7"=>"", "estrutura_8"=>"", "estrutura_9"=>"", "estrutura_10"=>"", "estrutura_11"=>"", "estrutura_12"=>"", "estrutura_13"=>"", "estrutura_14"=>"", "estrutura_15"=>"", "estrutura_16"=>"", "estrutura_17"=>"", "estrutura_18"=>"", "estrutura_19"=>"", "estrutura_20"=>"", "estrutura_21"=>"", "estrutura_22"=>"", "estrutura_23"=>""}, "customFields"=>[], "fieldLabels"=>{}, "fieldOrder"=>["resumo", "introducao", "objetivos", "justificativa", "metodologia", "desenvolvimento", "conclusao", "referencias"], "id"=>"tcc-1758207368822", "work_content"=>{"content"=>{"resumo"=>"", "introducao"=>"", "desenvolvimento"=>"", "conclusao"=>"", "referencias"=>"", "metodologia"=>"", "objetivos"=>"", "justificativa"=>"", "estrutura_0"=>"", "estrutura_1"=>"", "estrutura_2"=>"", "estrutura_3"=>"", "estrutura_4"=>"", "estrutura_5"=>"", "estrutura_6"=>"", "estrutura_7"=>"", "estrutura_8"=>"", "estrutura_9"=>"", "estrutura_10"=>"", "estrutura_11"=>"", "estrutura_12"=>"", "estrutura_13"=>"", "estrutura_14"=>"", "estrutura_15"=>"", "estrutura_16"=>"", "estrutura_17"=>"", "estrutura_18"=>"", "estrutura_19"=>"", "estrutura_20"=>"", "estrutura_21"=>"", "estrutura_22"=>"", "estrutura_23"=>""}, "customFields"=>[], "fieldLabels"=>{}, "fieldOrder"=>["resumo", "introducao", "objetivos", "justificativa", "metodologia", "desenvolvimento", "conclusao", "referencias"]}}
+Completed 401 Unauthorized in 3ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/api/work/tcc-1758207368822/content" for 127.0.0.1 at 2025-09-20 11:26:22 -0300
+Processing by Api::WorkContentController#content as JSON
+  Parameters: {"id"=>"tcc-1758207368822", "work_content"=>{}}
+Completed 401 Unauthorized in 1ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/api/work/tcc-1758207368822/save_content" for 127.0.0.1 at 2025-09-20 11:26:25 -0300
+Processing by Api::WorkContentController#save_content as JSON
+  Parameters: {"content"=>{"resumo"=>"", "introducao"=>"", "desenvolvimento"=>"", "conclusao"=>"", "referencias"=>"", "metodologia"=>"", "objetivos"=>"", "justificativa"=>"", "estrutura_0"=>"", "estrutura_1"=>"", "estrutura_2"=>"", "estrutura_3"=>"", "estrutura_4"=>"", "estrutura_5"=>"", "estrutura_6"=>"", "estrutura_7"=>"", "estrutura_8"=>"", "estrutura_9"=>"", "estrutura_10"=>"", "estrutura_11"=>"", "estrutura_12"=>"", "estrutura_13"=>"", "estrutura_14"=>"", "estrutura_15"=>"", "estrutura_16"=>"", "estrutura_17"=>"", "estrutura_18"=>"", "estrutura_19"=>"", "estrutura_20"=>"", "estrutura_21"=>"", "estrutura_22"=>"", "estrutura_23"=>""}, "customFields"=>[], "fieldLabels"=>{}, "fieldOrder"=>["resumo", "introducao", "objetivos", "justificativa", "metodologia", "desenvolvimento", "conclusao", "referencias"], "id"=>"tcc-1758207368822", "work_content"=>{"content"=>{"resumo"=>"", "introducao"=>"", "desenvolvimento"=>"", "conclusao"=>"", "referencias"=>"", "metodologia"=>"", "objetivos"=>"", "justificativa"=>"", "estrutura_0"=>"", "estrutura_1"=>"", "estrutura_2"=>"", "estrutura_3"=>"", "estrutura_4"=>"", "estrutura_5"=>"", "estrutura_6"=>"", "estrutura_7"=>"", "estrutura_8"=>"", "estrutura_9"=>"", "estrutura_10"=>"", "estrutura_11"=>"", "estrutura_12"=>"", "estrutura_13"=>"", "estrutura_14"=>"", "estrutura_15"=>"", "estrutura_16"=>"", "estrutura_17"=>"", "estrutura_18"=>"", "estrutura_19"=>"", "estrutura_20"=>"", "estrutura_21"=>"", "estrutura_22"=>"", "estrutura_23"=>""}, "customFields"=>[], "fieldLabels"=>{}, "fieldOrder"=>["resumo", "introducao", "objetivos", "justificativa", "metodologia", "desenvolvimento", "conclusao", "referencias"]}}
+Completed 401 Unauthorized in 6ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/api/work/tcc-1758207368822/content" for 127.0.0.1 at 2025-09-20 11:27:01 -0300
+Processing by Api::WorkContentController#content as JSON
+  Parameters: {"id"=>"tcc-1758207368822", "work_content"=>{}}
+Completed 401 Unauthorized in 4ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/api/work/tcc-1758207368822/save_content" for 127.0.0.1 at 2025-09-20 11:27:03 -0300
+Processing by Api::WorkContentController#save_content as JSON
+  Parameters: {"content"=>{"resumo"=>"", "introducao"=>"", "desenvolvimento"=>"", "conclusao"=>"", "referencias"=>"", "metodologia"=>"", "objetivos"=>"", "justificativa"=>"", "estrutura_0"=>"", "estrutura_1"=>"", "estrutura_2"=>"", "estrutura_3"=>"", "estrutura_4"=>"", "estrutura_5"=>"", "estrutura_6"=>"", "estrutura_7"=>"", "estrutura_8"=>"", "estrutura_9"=>"", "estrutura_10"=>"", "estrutura_11"=>"", "estrutura_12"=>"", "estrutura_13"=>"", "estrutura_14"=>"", "estrutura_15"=>"", "estrutura_16"=>"", "estrutura_17"=>"", "estrutura_18"=>"", "estrutura_19"=>"", "estrutura_20"=>"", "estrutura_21"=>"", "estrutura_22"=>"", "estrutura_23"=>""}, "customFields"=>[], "fieldLabels"=>{}, "fieldOrder"=>["resumo", "introducao", "objetivos", "justificativa", "metodologia", "desenvolvimento", "conclusao", "referencias"], "id"=>"tcc-1758207368822", "work_content"=>{"content"=>{"resumo"=>"", "introducao"=>"", "desenvolvimento"=>"", "conclusao"=>"", "referencias"=>"", "metodologia"=>"", "objetivos"=>"", "justificativa"=>"", "estrutura_0"=>"", "estrutura_1"=>"", "estrutura_2"=>"", "estrutura_3"=>"", "estrutura_4"=>"", "estrutura_5"=>"", "estrutura_6"=>"", "estrutura_7"=>"", "estrutura_8"=>"", "estrutura_9"=>"", "estrutura_10"=>"", "estrutura_11"=>"", "estrutura_12"=>"", "estrutura_13"=>"", "estrutura_14"=>"", "estrutura_15"=>"", "estrutura_16"=>"", "estrutura_17"=>"", "estrutura_18"=>"", "estrutura_19"=>"", "estrutura_20"=>"", "estrutura_21"=>"", "estrutura_22"=>"", "estrutura_23"=>""}, "customFields"=>[], "fieldLabels"=>{}, "fieldOrder"=>["resumo", "introducao", "objetivos", "justificativa", "metodologia", "desenvolvimento", "conclusao", "referencias"]}}
+Completed 401 Unauthorized in 2ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/api/tcc/tcc-1758207368822" for 127.0.0.1 at 2025-09-20 11:27:16 -0300
+Processing by Api::TccController#show as JSON
+  Parameters: {"id"=>"tcc-1758207368822", "tcc"=>{}}
+Completed 401 Unauthorized in 7ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/api/tcc/tcc-1758207368822" for 127.0.0.1 at 2025-09-20 11:27:18 -0300
+Processing by Api::TccController#show as JSON
+  Parameters: {"id"=>"tcc-1758207368822", "tcc"=>{}}
+Completed 401 Unauthorized in 5ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/api/work/tcc-1758207368822/content" for 127.0.0.1 at 2025-09-20 11:32:03 -0300
+Started GET "/api/work/tcc-1758207368822/content" for 127.0.0.1 at 2025-09-20 11:32:03 -0300
+Processing by Api::WorkContentController#content as JSON
+  Parameters: {"id"=>"tcc-1758207368822", "work_content"=>{}}
+Completed 401 Unauthorized in 3ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Processing by Api::WorkContentController#content as JSON
+  Parameters: {"id"=>"tcc-1758207368822", "work_content"=>{}}
+Completed 401 Unauthorized in 34ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 15.3ms)
+
+
+Started POST "/api/work/tcc-1758207368822/save_content" for 127.0.0.1 at 2025-09-20 11:32:05 -0300
+Processing by Api::WorkContentController#save_content as JSON
+  Parameters: {"content"=>{"resumo"=>"", "introducao"=>"", "desenvolvimento"=>"", "conclusao"=>"", "referencias"=>"", "metodologia"=>"", "objetivos"=>"", "justificativa"=>"", "estrutura_0"=>"", "estrutura_1"=>"", "estrutura_2"=>"", "estrutura_3"=>"", "estrutura_4"=>"", "estrutura_5"=>"", "estrutura_6"=>"", "estrutura_7"=>"", "estrutura_8"=>"", "estrutura_9"=>"", "estrutura_10"=>"", "estrutura_11"=>"", "estrutura_12"=>"", "estrutura_13"=>"", "estrutura_14"=>"", "estrutura_15"=>"", "estrutura_16"=>"", "estrutura_17"=>"", "estrutura_18"=>"", "estrutura_19"=>"", "estrutura_20"=>"", "estrutura_21"=>"", "estrutura_22"=>"", "estrutura_23"=>""}, "customFields"=>[], "fieldLabels"=>{}, "fieldOrder"=>["resumo", "introducao", "objetivos", "justificativa", "metodologia", "desenvolvimento", "conclusao", "referencias"], "id"=>"tcc-1758207368822", "work_content"=>{"content"=>{"resumo"=>"", "introducao"=>"", "desenvolvimento"=>"", "conclusao"=>"", "referencias"=>"", "metodologia"=>"", "objetivos"=>"", "justificativa"=>"", "estrutura_0"=>"", "estrutura_1"=>"", "estrutura_2"=>"", "estrutura_3"=>"", "estrutura_4"=>"", "estrutura_5"=>"", "estrutura_6"=>"", "estrutura_7"=>"", "estrutura_8"=>"", "estrutura_9"=>"", "estrutura_10"=>"", "estrutura_11"=>"", "estrutura_12"=>"", "estrutura_13"=>"", "estrutura_14"=>"", "estrutura_15"=>"", "estrutura_16"=>"", "estrutura_17"=>"", "estrutura_18"=>"", "estrutura_19"=>"", "estrutura_20"=>"", "estrutura_21"=>"", "estrutura_22"=>"", "estrutura_23"=>""}, "customFields"=>[], "fieldLabels"=>{}, "fieldOrder"=>["resumo", "introducao", "objetivos", "justificativa", "metodologia", "desenvolvimento", "conclusao", "referencias"]}}
+Completed 401 Unauthorized in 1ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/api/work/tcc-1758207368822/save_content" for 127.0.0.1 at 2025-09-20 11:32:14 -0300
+Processing by Api::WorkContentController#save_content as JSON
+  Parameters: {"content"=>{"resumo"=>"", "introducao"=>"", "desenvolvimento"=>"", "conclusao"=>"", "referencias"=>"", "metodologia"=>"", "objetivos"=>"", "justificativa"=>"", "estrutura_0"=>"", "estrutura_1"=>"", "estrutura_2"=>"", "estrutura_3"=>"", "estrutura_4"=>"", "estrutura_5"=>"", "estrutura_6"=>"", "estrutura_7"=>"", "estrutura_8"=>"", "estrutura_9"=>"", "estrutura_10"=>"", "estrutura_11"=>"", "estrutura_12"=>"", "estrutura_13"=>"", "estrutura_14"=>"", "estrutura_15"=>"", "estrutura_16"=>"", "estrutura_17"=>"", "estrutura_18"=>"", "estrutura_19"=>"", "estrutura_20"=>"", "estrutura_21"=>"", "estrutura_22"=>"", "estrutura_23"=>""}, "customFields"=>[], "fieldLabels"=>{"resumo"=>"Início"}, "fieldOrder"=>["resumo", "introducao", "objetivos", "justificativa", "metodologia", "desenvolvimento", "conclusao", "referencias"], "id"=>"tcc-1758207368822", "work_content"=>{"content"=>{"resumo"=>"", "introducao"=>"", "desenvolvimento"=>"", "conclusao"=>"", "referencias"=>"", "metodologia"=>"", "objetivos"=>"", "justificativa"=>"", "estrutura_0"=>"", "estrutura_1"=>"", "estrutura_2"=>"", "estrutura_3"=>"", "estrutura_4"=>"", "estrutura_5"=>"", "estrutura_6"=>"", "estrutura_7"=>"", "estrutura_8"=>"", "estrutura_9"=>"", "estrutura_10"=>"", "estrutura_11"=>"", "estrutura_12"=>"", "estrutura_13"=>"", "estrutura_14"=>"", "estrutura_15"=>"", "estrutura_16"=>"", "estrutura_17"=>"", "estrutura_18"=>"", "estrutura_19"=>"", "estrutura_20"=>"", "estrutura_21"=>"", "estrutura_22"=>"", "estrutura_23"=>""}, "customFields"=>[], "fieldLabels"=>{"resumo"=>"Início"}, "fieldOrder"=>["resumo", "introducao", "objetivos", "justificativa", "metodologia", "desenvolvimento", "conclusao", "referencias"]}}
+Completed 401 Unauthorized in 1ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/api/work/tcc-1758207368822/save_content" for 127.0.0.1 at 2025-09-20 11:32:23 -0300
+Processing by Api::WorkContentController#save_content as JSON
+  Parameters: {"content"=>{"resumo"=>"Começando por aqui", "introducao"=>"", "desenvolvimento"=>"", "conclusao"=>"", "referencias"=>"", "metodologia"=>"", "objetivos"=>"", "justificativa"=>"", "estrutura_0"=>"", "estrutura_1"=>"", "estrutura_2"=>"", "estrutura_3"=>"", "estrutura_4"=>"", "estrutura_5"=>"", "estrutura_6"=>"", "estrutura_7"=>"", "estrutura_8"=>"", "estrutura_9"=>"", "estrutura_10"=>"", "estrutura_11"=>"", "estrutura_12"=>"", "estrutura_13"=>"", "estrutura_14"=>"", "estrutura_15"=>"", "estrutura_16"=>"", "estrutura_17"=>"", "estrutura_18"=>"", "estrutura_19"=>"", "estrutura_20"=>"", "estrutura_21"=>"", "estrutura_22"=>"", "estrutura_23"=>""}, "customFields"=>[], "fieldLabels"=>{"resumo"=>"Início"}, "fieldOrder"=>["resumo", "introducao", "objetivos", "justificativa", "metodologia", "desenvolvimento", "conclusao", "referencias"], "id"=>"tcc-1758207368822", "work_content"=>{"content"=>{"resumo"=>"Começando por aqui", "introducao"=>"", "desenvolvimento"=>"", "conclusao"=>"", "referencias"=>"", "metodologia"=>"", "objetivos"=>"", "justificativa"=>"", "estrutura_0"=>"", "estrutura_1"=>"", "estrutura_2"=>"", "estrutura_3"=>"", "estrutura_4"=>"", "estrutura_5"=>"", "estrutura_6"=>"", "estrutura_7"=>"", "estrutura_8"=>"", "estrutura_9"=>"", "estrutura_10"=>"", "estrutura_11"=>"", "estrutura_12"=>"", "estrutura_13"=>"", "estrutura_14"=>"", "estrutura_15"=>"", "estrutura_16"=>"", "estrutura_17"=>"", "estrutura_18"=>"", "estrutura_19"=>"", "estrutura_20"=>"", "estrutura_21"=>"", "estrutura_22"=>"", "estrutura_23"=>""}, "customFields"=>[], "fieldLabels"=>{"resumo"=>"Início"}, "fieldOrder"=>["resumo", "introducao", "objetivos", "justificativa", "metodologia", "desenvolvimento", "conclusao", "referencias"]}}
+Completed 401 Unauthorized in 47ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/api/work/tcc-1758207368822/save_content" for 127.0.0.1 at 2025-09-20 11:32:28 -0300
+Processing by Api::WorkContentController#save_content as JSON
+  Parameters: {"content"=>{"resumo"=>"Começando por aqui", "introducao"=>"", "desenvolvimento"=>"", "conclusao"=>"", "referencias"=>"", "metodologia"=>"", "objetivos"=>"", "justificativa"=>"", "estrutura_0"=>"", "estrutura_1"=>"", "estrutura_2"=>"", "estrutura_3"=>"", "estrutura_4"=>"", "estrutura_5"=>"", "estrutura_6"=>"", "estrutura_7"=>"", "estrutura_8"=>"", "estrutura_9"=>"", "estrutura_10"=>"", "estrutura_11"=>"", "estrutura_12"=>"", "estrutura_13"=>"", "estrutura_14"=>"", "estrutura_15"=>"", "estrutura_16"=>"", "estrutura_17"=>"", "estrutura_18"=>"", "estrutura_19"=>"", "estrutura_20"=>"", "estrutura_21"=>"", "estrutura_22"=>"", "estrutura_23"=>""}, "id"=>"tcc-1758207368822", "work_content"=>{"content"=>{"resumo"=>"Começando por aqui", "introducao"=>"", "desenvolvimento"=>"", "conclusao"=>"", "referencias"=>"", "metodologia"=>"", "objetivos"=>"", "justificativa"=>"", "estrutura_0"=>"", "estrutura_1"=>"", "estrutura_2"=>"", "estrutura_3"=>"", "estrutura_4"=>"", "estrutura_5"=>"", "estrutura_6"=>"", "estrutura_7"=>"", "estrutura_8"=>"", "estrutura_9"=>"", "estrutura_10"=>"", "estrutura_11"=>"", "estrutura_12"=>"", "estrutura_13"=>"", "estrutura_14"=>"", "estrutura_15"=>"", "estrutura_16"=>"", "estrutura_17"=>"", "estrutura_18"=>"", "estrutura_19"=>"", "estrutura_20"=>"", "estrutura_21"=>"", "estrutura_22"=>"", "estrutura_23"=>""}}}
+Completed 401 Unauthorized in 1ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/api/tcc/tcc-1758207368822" for 127.0.0.1 at 2025-09-20 16:28:09 -0300
+Processing by Api::TccController#show as JSON
+  Parameters: {"id"=>"tcc-1758207368822", "tcc"=>{}}
+Completed 401 Unauthorized in 2ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/api/work/tcc-1758207368822/content" for 127.0.0.1 at 2025-09-20 16:28:11 -0300
+Started GET "/api/work/tcc-1758207368822/content" for 127.0.0.1 at 2025-09-20 16:28:11 -0300
+Processing by Api::WorkContentController#content as JSON
+  Parameters: {"id"=>"tcc-1758207368822", "work_content"=>{}}
+Completed 401 Unauthorized in 1ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Processing by Api::WorkContentController#content as JSON
+  Parameters: {"id"=>"tcc-1758207368822", "work_content"=>{}}
+Completed 401 Unauthorized in 1ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/api/work/tcc-1758207368822/save_content" for 127.0.0.1 at 2025-09-20 16:28:13 -0300
+Processing by Api::WorkContentController#save_content as JSON
+  Parameters: {"content"=>{"resumo"=>"", "introducao"=>"", "desenvolvimento"=>"", "conclusao"=>"", "referencias"=>"", "metodologia"=>"", "objetivos"=>"", "justificativa"=>"", "estrutura_0"=>"", "estrutura_1"=>"", "estrutura_2"=>"", "estrutura_3"=>"", "estrutura_4"=>"", "estrutura_5"=>"", "estrutura_6"=>"", "estrutura_7"=>"", "estrutura_8"=>"", "estrutura_9"=>"", "estrutura_10"=>"", "estrutura_11"=>"", "estrutura_12"=>"", "estrutura_13"=>"", "estrutura_14"=>"", "estrutura_15"=>"", "estrutura_16"=>"", "estrutura_17"=>"", "estrutura_18"=>"", "estrutura_19"=>"", "estrutura_20"=>"", "estrutura_21"=>"", "estrutura_22"=>"", "estrutura_23"=>""}, "customFields"=>[], "fieldLabels"=>{}, "fieldOrder"=>["resumo", "introducao", "objetivos", "justificativa", "metodologia", "desenvolvimento", "conclusao", "referencias"], "id"=>"tcc-1758207368822", "work_content"=>{"content"=>{"resumo"=>"", "introducao"=>"", "desenvolvimento"=>"", "conclusao"=>"", "referencias"=>"", "metodologia"=>"", "objetivos"=>"", "justificativa"=>"", "estrutura_0"=>"", "estrutura_1"=>"", "estrutura_2"=>"", "estrutura_3"=>"", "estrutura_4"=>"", "estrutura_5"=>"", "estrutura_6"=>"", "estrutura_7"=>"", "estrutura_8"=>"", "estrutura_9"=>"", "estrutura_10"=>"", "estrutura_11"=>"", "estrutura_12"=>"", "estrutura_13"=>"", "estrutura_14"=>"", "estrutura_15"=>"", "estrutura_16"=>"", "estrutura_17"=>"", "estrutura_18"=>"", "estrutura_19"=>"", "estrutura_20"=>"", "estrutura_21"=>"", "estrutura_22"=>"", "estrutura_23"=>""}, "customFields"=>[], "fieldLabels"=>{}, "fieldOrder"=>["resumo", "introducao", "objetivos", "justificativa", "metodologia", "desenvolvimento", "conclusao", "referencias"]}}
+Completed 401 Unauthorized in 2ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+[dotenv] Set [36mDEVISE_JWT_SECRET_KEY[0m, [36mGOOGLE_CLIENT_ID[0m, [36mGOOGLE_CLIENT_SECRET[0m, and [36mGEMINI_API_KEY[0m
+[dotenv] Loaded [33m.env[0m
+[dotenv] Loaded [33m.env[0m
+Started GET "/api/tcc/tcc-1758207368822" for 127.0.0.1 at 2025-09-20 17:47:30 -0300
+  [1m[36mActiveRecord::SchemaMigration Load (2.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='Backend'*/[0m
+Processing by Api::TccController#show as JSON
+  Parameters: {"id"=>"tcc-1758207368822", "tcc"=>{}}
+Completed 401 Unauthorized in 17ms (ActiveRecord: 39.3ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/api/work/tcc-1758207368822/content" for 127.0.0.1 at 2025-09-20 17:47:31 -0300
+Started GET "/api/work/tcc-1758207368822/content" for 127.0.0.1 at 2025-09-20 17:47:31 -0300
+Processing by Api::WorkContentController#content as JSON
+  Parameters: {"id"=>"tcc-1758207368822", "work_content"=>{}}
+Completed 401 Unauthorized in 5ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Processing by Api::WorkContentController#content as JSON
+  Parameters: {"id"=>"tcc-1758207368822", "work_content"=>{}}
+Completed 401 Unauthorized in 6ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/api/work/tcc-1758207368822/content" for 127.0.0.1 at 2025-09-20 17:47:38 -0300
+Started GET "/api/work/tcc-1758207368822/content" for 127.0.0.1 at 2025-09-20 17:47:38 -0300
+Processing by Api::WorkContentController#content as JSON
+  Parameters: {"id"=>"tcc-1758207368822", "work_content"=>{}}
+Completed 401 Unauthorized in 7ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Processing by Api::WorkContentController#content as JSON
+  Parameters: {"id"=>"tcc-1758207368822", "work_content"=>{}}
+Completed 401 Unauthorized in 5ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/api/work/tcc-1758207368822/save_content" for 127.0.0.1 at 2025-09-20 17:47:41 -0300
+Processing by Api::WorkContentController#save_content as JSON
+  Parameters: {"content"=>{"resumo"=>"", "introducao"=>"", "desenvolvimento"=>"", "conclusao"=>"", "referencias"=>"", "metodologia"=>"", "objetivos"=>"", "justificativa"=>"", "estrutura_0"=>"", "estrutura_1"=>"", "estrutura_2"=>"", "estrutura_3"=>"", "estrutura_4"=>"", "estrutura_5"=>"", "estrutura_6"=>"", "estrutura_7"=>"", "estrutura_8"=>"", "estrutura_9"=>"", "estrutura_10"=>"", "estrutura_11"=>"", "estrutura_12"=>"", "estrutura_13"=>"", "estrutura_14"=>"", "estrutura_15"=>"", "estrutura_16"=>"", "estrutura_17"=>"", "estrutura_18"=>"", "estrutura_19"=>"", "estrutura_20"=>"", "estrutura_21"=>"", "estrutura_22"=>"", "estrutura_23"=>""}, "customFields"=>[], "fieldLabels"=>{}, "fieldOrder"=>["resumo", "introducao", "objetivos", "justificativa", "metodologia", "desenvolvimento", "conclusao", "referencias"], "id"=>"tcc-1758207368822", "work_content"=>{"content"=>{"resumo"=>"", "introducao"=>"", "desenvolvimento"=>"", "conclusao"=>"", "referencias"=>"", "metodologia"=>"", "objetivos"=>"", "justificativa"=>"", "estrutura_0"=>"", "estrutura_1"=>"", "estrutura_2"=>"", "estrutura_3"=>"", "estrutura_4"=>"", "estrutura_5"=>"", "estrutura_6"=>"", "estrutura_7"=>"", "estrutura_8"=>"", "estrutura_9"=>"", "estrutura_10"=>"", "estrutura_11"=>"", "estrutura_12"=>"", "estrutura_13"=>"", "estrutura_14"=>"", "estrutura_15"=>"", "estrutura_16"=>"", "estrutura_17"=>"", "estrutura_18"=>"", "estrutura_19"=>"", "estrutura_20"=>"", "estrutura_21"=>"", "estrutura_22"=>"", "estrutura_23"=>""}, "customFields"=>[], "fieldLabels"=>{}, "fieldOrder"=>["resumo", "introducao", "objetivos", "justificativa", "metodologia", "desenvolvimento", "conclusao", "referencias"]}}
+Completed 401 Unauthorized in 7ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/api/work/tcc-1758207368822/save_content" for 127.0.0.1 at 2025-09-20 17:47:46 -0300
+Processing by Api::WorkContentController#save_content as JSON
+  Parameters: {"content"=>{"resumo"=>"começando aqui", "introducao"=>"", "desenvolvimento"=>"", "conclusao"=>"", "referencias"=>"", "metodologia"=>"", "objetivos"=>"", "justificativa"=>"", "estrutura_0"=>"", "estrutura_1"=>"", "estrutura_2"=>"", "estrutura_3"=>"", "estrutura_4"=>"", "estrutura_5"=>"", "estrutura_6"=>"", "estrutura_7"=>"", "estrutura_8"=>"", "estrutura_9"=>"", "estrutura_10"=>"", "estrutura_11"=>"", "estrutura_12"=>"", "estrutura_13"=>"", "estrutura_14"=>"", "estrutura_15"=>"", "estrutura_16"=>"", "estrutura_17"=>"", "estrutura_18"=>"", "estrutura_19"=>"", "estrutura_20"=>"", "estrutura_21"=>"", "estrutura_22"=>"", "estrutura_23"=>""}, "customFields"=>[], "fieldLabels"=>{}, "fieldOrder"=>["resumo", "introducao", "objetivos", "justificativa", "metodologia", "desenvolvimento", "conclusao", "referencias"], "id"=>"tcc-1758207368822", "work_content"=>{"content"=>{"resumo"=>"começando aqui", "introducao"=>"", "desenvolvimento"=>"", "conclusao"=>"", "referencias"=>"", "metodologia"=>"", "objetivos"=>"", "justificativa"=>"", "estrutura_0"=>"", "estrutura_1"=>"", "estrutura_2"=>"", "estrutura_3"=>"", "estrutura_4"=>"", "estrutura_5"=>"", "estrutura_6"=>"", "estrutura_7"=>"", "estrutura_8"=>"", "estrutura_9"=>"", "estrutura_10"=>"", "estrutura_11"=>"", "estrutura_12"=>"", "estrutura_13"=>"", "estrutura_14"=>"", "estrutura_15"=>"", "estrutura_16"=>"", "estrutura_17"=>"", "estrutura_18"=>"", "estrutura_19"=>"", "estrutura_20"=>"", "estrutura_21"=>"", "estrutura_22"=>"", "estrutura_23"=>""}, "customFields"=>[], "fieldLabels"=>{}, "fieldOrder"=>["resumo", "introducao", "objetivos", "justificativa", "metodologia", "desenvolvimento", "conclusao", "referencias"]}}
+Completed 401 Unauthorized in 2ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/api/work/tcc-1758207368822/save_content" for 127.0.0.1 at 2025-09-20 17:47:52 -0300
+Processing by Api::WorkContentController#save_content as JSON
+  Parameters: {"content"=>{"resumo"=>"começando aqui", "introducao"=>"introdução", "desenvolvimento"=>"", "conclusao"=>"", "referencias"=>"", "metodologia"=>"", "objetivos"=>"", "justificativa"=>"", "estrutura_0"=>"", "estrutura_1"=>"", "estrutura_2"=>"", "estrutura_3"=>"", "estrutura_4"=>"", "estrutura_5"=>"", "estrutura_6"=>"", "estrutura_7"=>"", "estrutura_8"=>"", "estrutura_9"=>"", "estrutura_10"=>"", "estrutura_11"=>"", "estrutura_12"=>"", "estrutura_13"=>"", "estrutura_14"=>"", "estrutura_15"=>"", "estrutura_16"=>"", "estrutura_17"=>"", "estrutura_18"=>"", "estrutura_19"=>"", "estrutura_20"=>"", "estrutura_21"=>"", "estrutura_22"=>"", "estrutura_23"=>""}, "customFields"=>[], "fieldLabels"=>{}, "fieldOrder"=>["resumo", "introducao", "objetivos", "justificativa", "metodologia", "desenvolvimento", "conclusao", "referencias"], "id"=>"tcc-1758207368822", "work_content"=>{"content"=>{"resumo"=>"começando aqui", "introducao"=>"introdução", "desenvolvimento"=>"", "conclusao"=>"", "referencias"=>"", "metodologia"=>"", "objetivos"=>"", "justificativa"=>"", "estrutura_0"=>"", "estrutura_1"=>"", "estrutura_2"=>"", "estrutura_3"=>"", "estrutura_4"=>"", "estrutura_5"=>"", "estrutura_6"=>"", "estrutura_7"=>"", "estrutura_8"=>"", "estrutura_9"=>"", "estrutura_10"=>"", "estrutura_11"=>"", "estrutura_12"=>"", "estrutura_13"=>"", "estrutura_14"=>"", "estrutura_15"=>"", "estrutura_16"=>"", "estrutura_17"=>"", "estrutura_18"=>"", "estrutura_19"=>"", "estrutura_20"=>"", "estrutura_21"=>"", "estrutura_22"=>"", "estrutura_23"=>""}, "customFields"=>[], "fieldLabels"=>{}, "fieldOrder"=>["resumo", "introducao", "objetivos", "justificativa", "metodologia", "desenvolvimento", "conclusao", "referencias"]}}
+Completed 401 Unauthorized in 1ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/api/work/tcc-1758207368822/content" for 127.0.0.1 at 2025-09-20 17:48:08 -0300
+Processing by Api::WorkContentController#content as JSON
+  Parameters: {"id"=>"tcc-1758207368822", "work_content"=>{}}
+Completed 401 Unauthorized in 4ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/api/work/tcc-1758207368822/content" for 127.0.0.1 at 2025-09-20 17:51:43 -0300
+Started GET "/api/work/tcc-1758207368822/content" for 127.0.0.1 at 2025-09-20 17:51:43 -0300
+Processing by Api::WorkContentController#content as JSON
+  Parameters: {"id"=>"tcc-1758207368822", "work_content"=>{}}
+Processing by Api::WorkContentController#content as JSON
+Completed 401 Unauthorized in 8ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+  Parameters: {"id"=>"tcc-1758207368822", "work_content"=>{}}
+Completed 401 Unauthorized in 4ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/api/work/tcc-1758207368822/content" for 127.0.0.1 at 2025-09-20 17:51:46 -0300
+Started GET "/api/work/tcc-1758207368822/content" for 127.0.0.1 at 2025-09-20 17:51:46 -0300
+Processing by Api::WorkContentController#content as JSON
+  Parameters: {"id"=>"tcc-1758207368822", "work_content"=>{}}
+Completed 401 Unauthorized in 3ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Processing by Api::WorkContentController#content as JSON
+  Parameters: {"id"=>"tcc-1758207368822", "work_content"=>{}}
+Completed 401 Unauthorized in 10ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/api/work/tcc-1758207368822/save_content" for 127.0.0.1 at 2025-09-20 17:51:48 -0300
+Processing by Api::WorkContentController#save_content as JSON
+  Parameters: {"content"=>{"resumo"=>"", "introducao"=>"", "desenvolvimento"=>"", "conclusao"=>"", "referencias"=>"", "metodologia"=>"", "objetivos"=>"", "justificativa"=>"", "estrutura_0"=>"", "estrutura_1"=>"", "estrutura_2"=>"", "estrutura_3"=>"", "estrutura_4"=>"", "estrutura_5"=>"", "estrutura_6"=>"", "estrutura_7"=>"", "estrutura_8"=>"", "estrutura_9"=>"", "estrutura_10"=>"", "estrutura_11"=>"", "estrutura_12"=>"", "estrutura_13"=>"", "estrutura_14"=>"", "estrutura_15"=>"", "estrutura_16"=>"", "estrutura_17"=>"", "estrutura_18"=>"", "estrutura_19"=>"", "estrutura_20"=>"", "estrutura_21"=>"", "estrutura_22"=>"", "estrutura_23"=>""}, "customFields"=>[], "fieldLabels"=>{}, "fieldOrder"=>["resumo", "introducao", "objetivos", "justificativa", "metodologia", "desenvolvimento", "conclusao", "referencias"], "id"=>"tcc-1758207368822", "work_content"=>{"content"=>{"resumo"=>"", "introducao"=>"", "desenvolvimento"=>"", "conclusao"=>"", "referencias"=>"", "metodologia"=>"", "objetivos"=>"", "justificativa"=>"", "estrutura_0"=>"", "estrutura_1"=>"", "estrutura_2"=>"", "estrutura_3"=>"", "estrutura_4"=>"", "estrutura_5"=>"", "estrutura_6"=>"", "estrutura_7"=>"", "estrutura_8"=>"", "estrutura_9"=>"", "estrutura_10"=>"", "estrutura_11"=>"", "estrutura_12"=>"", "estrutura_13"=>"", "estrutura_14"=>"", "estrutura_15"=>"", "estrutura_16"=>"", "estrutura_17"=>"", "estrutura_18"=>"", "estrutura_19"=>"", "estrutura_20"=>"", "estrutura_21"=>"", "estrutura_22"=>"", "estrutura_23"=>""}, "customFields"=>[], "fieldLabels"=>{}, "fieldOrder"=>["resumo", "introducao", "objetivos", "justificativa", "metodologia", "desenvolvimento", "conclusao", "referencias"]}}
+Completed 401 Unauthorized in 1ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/api/work/tcc-1758207368822/content" for 127.0.0.1 at 2025-09-20 17:52:35 -0300
+Started GET "/api/work/tcc-1758207368822/content" for 127.0.0.1 at 2025-09-20 17:52:35 -0300
+Processing by Api::WorkContentController#content as JSON
+  Parameters: {"id"=>"tcc-1758207368822", "work_content"=>{}}
+Completed 401 Unauthorized in 13ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Processing by Api::WorkContentController#content as JSON
+  Parameters: {"id"=>"tcc-1758207368822", "work_content"=>{}}
+Completed 401 Unauthorized in 13ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/api/work/tcc-1758207368822/save_content" for 127.0.0.1 at 2025-09-20 17:52:37 -0300
+Processing by Api::WorkContentController#save_content as JSON
+  Parameters: {"content"=>{"resumo"=>"", "introducao"=>"", "desenvolvimento"=>"", "conclusao"=>"", "referencias"=>"", "metodologia"=>"", "objetivos"=>"", "justificativa"=>"", "estrutura_0"=>"", "estrutura_1"=>"", "estrutura_2"=>"", "estrutura_3"=>"", "estrutura_4"=>"", "estrutura_5"=>"", "estrutura_6"=>"", "estrutura_7"=>"", "estrutura_8"=>"", "estrutura_9"=>"", "estrutura_10"=>"", "estrutura_11"=>"", "estrutura_12"=>"", "estrutura_13"=>"", "estrutura_14"=>"", "estrutura_15"=>"", "estrutura_16"=>"", "estrutura_17"=>"", "estrutura_18"=>"", "estrutura_19"=>"", "estrutura_20"=>"", "estrutura_21"=>"", "estrutura_22"=>"", "estrutura_23"=>""}, "customFields"=>[], "fieldLabels"=>{}, "fieldOrder"=>["resumo", "introducao", "objetivos", "justificativa", "metodologia", "desenvolvimento", "conclusao", "referencias"], "id"=>"tcc-1758207368822", "work_content"=>{"content"=>{"resumo"=>"", "introducao"=>"", "desenvolvimento"=>"", "conclusao"=>"", "referencias"=>"", "metodologia"=>"", "objetivos"=>"", "justificativa"=>"", "estrutura_0"=>"", "estrutura_1"=>"", "estrutura_2"=>"", "estrutura_3"=>"", "estrutura_4"=>"", "estrutura_5"=>"", "estrutura_6"=>"", "estrutura_7"=>"", "estrutura_8"=>"", "estrutura_9"=>"", "estrutura_10"=>"", "estrutura_11"=>"", "estrutura_12"=>"", "estrutura_13"=>"", "estrutura_14"=>"", "estrutura_15"=>"", "estrutura_16"=>"", "estrutura_17"=>"", "estrutura_18"=>"", "estrutura_19"=>"", "estrutura_20"=>"", "estrutura_21"=>"", "estrutura_22"=>"", "estrutura_23"=>""}, "customFields"=>[], "fieldLabels"=>{}, "fieldOrder"=>["resumo", "introducao", "objetivos", "justificativa", "metodologia", "desenvolvimento", "conclusao", "referencias"]}}
+Completed 401 Unauthorized in 1ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
