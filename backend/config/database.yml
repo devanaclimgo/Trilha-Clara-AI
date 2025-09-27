@@ -19,7 +19,6 @@ default: &default
   # https://guides.rubyonrails.org/configuring.html#database-pooling
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
 
-
 development:
   <<: *default
   database: backend_development
@@ -81,18 +80,29 @@ test:
 production:
   primary: &primary_production
     <<: *default
-    database: backend_production
-    username: backend
-    password: <%= ENV["BACKEND_DATABASE_PASSWORD"] %>
+    # Configuração para Supabase
+    database: <%= ENV.fetch("DB_NAME") { "postgres" } %>
+    host: <%= ENV.fetch("DB_HOST") %>
+    port: <%= ENV.fetch("DB_PORT") { 5432 } %>
+    username: <%= ENV.fetch("DB_USER") %>
+    password: <%= ENV.fetch("DB_PASSWORD") %>
+    # SSL obrigatório para Supabase
+    sslmode: require
+    # Pool de conexões para produção
+    pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+    # Timeout de conexão
+    connect_timeout: 10
+    checkout_timeout: 5
+    reaping_frequency: 10
   cache:
     <<: *primary_production
-    database: backend_production_cache
+    database: <%= ENV.fetch("DB_NAME") { "postgres" } %>_cache
     migrations_paths: db/cache_migrate
   queue:
     <<: *primary_production
-    database: backend_production_queue
+    database: <%= ENV.fetch("DB_NAME") { "postgres" } %>_queue
     migrations_paths: db/queue_migrate
   cable:
     <<: *primary_production
-    database: backend_production_cable
+    database: <%= ENV.fetch("DB_NAME") { "postgres" } %>_cable
     migrations_paths: db/cable_migrate
