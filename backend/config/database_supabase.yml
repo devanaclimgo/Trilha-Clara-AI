@@ -1,0 +1,52 @@
+# =====================================================
+# CONFIGURAÇÃO DO BANCO DE DADOS - SUPABASE
+# =====================================================
+
+# PostgreSQL. Versions 9.3 and up are supported.
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  # Configuração para Supabase
+  host: <%= ENV.fetch("DB_HOST") { "localhost" } %>
+  port: <%= ENV.fetch("DB_PORT") { 5432 } %>
+  database: <%= ENV.fetch("DB_NAME") { "backend_development" } %>
+  username: <%= ENV.fetch("DB_USER") { "postgres" } %>
+  password: <%= ENV.fetch("DB_PASSWORD") { "" } %>
+
+development:
+  <<: *default
+  # Para desenvolvimento local, use suas credenciais do Supabase
+  database: backend_development
+  host: <%= ENV.fetch("DB_HOST") { "localhost" } %>
+  port: <%= ENV.fetch("DB_PORT") { 5432 } %>
+  username: <%= ENV.fetch("DB_USER") { "postgres" } %>
+  password: <%= ENV.fetch("DB_PASSWORD") { "" } %>
+
+test:
+  <<: *default
+  database: backend_test
+  host: <%= ENV.fetch("DB_HOST") { "localhost" } %>
+  port: <%= ENV.fetch("DB_PORT") { 5432 } %>
+  username: <%= ENV.fetch("DB_USER") { "postgres" } %>
+  password: <%= ENV.fetch("DB_PASSWORD") { "" } %>
+
+production:
+  <<: *default
+  # Para produção, use as credenciais do Supabase
+  database: <%= ENV.fetch("DB_NAME") { "postgres" } %>
+  host: <%= ENV.fetch("DB_HOST") %>
+  port: <%= ENV.fetch("DB_PORT") { 5432 } %>
+  username: <%= ENV.fetch("DB_USER") %>
+  password: <%= ENV.fetch("DB_PASSWORD") %>
+
+  # Configurações de SSL para Supabase
+  sslmode: require
+
+  # Pool de conexões para produção
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+
+  # Timeout de conexão
+  connect_timeout: 10
+  checkout_timeout: 5
+  reaping_frequency: 10
