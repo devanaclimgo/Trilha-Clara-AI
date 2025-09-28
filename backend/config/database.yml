@@ -80,12 +80,8 @@ test:
 production:
   primary: &primary_production
     <<: *default
-    # Configuração para Supabase
-    database: <%= ENV.fetch("DB_NAME") { "postgres" } %>
-    host: <%= ENV.fetch("DB_HOST") %>
-    port: <%= ENV.fetch("DB_PORT") { 5432 } %>
-    username: <%= ENV.fetch("DB_USER") %>
-    password: <%= ENV.fetch("DB_PASSWORD") %>
+    # Configuração para Supabase usando DATABASE_URL
+    url: <%= ENV["DATABASE_URL"] %>
     # SSL obrigatório para Supabase
     sslmode: require
     # Pool de conexões para produção
