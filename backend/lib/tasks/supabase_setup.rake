@@ -8,17 +8,10 @@ namespace :supabase do
     puts "🚀 Configurando Supabase para Trilha Clara IA..."
     
     # Verificar se as variáveis de ambiente estão configuradas
-    required_vars = %w[DB_HOST DB_USER DB_PASSWORD]
-    missing_vars = required_vars.select { |var| ENV[var].blank? }
-    
-    if missing_vars.any?
-      puts "❌ Variáveis de ambiente faltando: #{missing_vars.join(', ')}"
-      puts "📝 Configure as seguintes variáveis no seu .env:"
-      puts "   DB_HOST=db.[SEU_PROJECT_ID].supabase.co"
-      puts "   DB_USER=postgres"
-      puts "   DB_PASSWORD=[SUA_SENHA]"
-      puts "   DB_NAME=postgres"
-      puts "   DB_PORT=5432"
+    if ENV["DATABASE_URL"].blank?
+      puts "❌ DATABASE_URL não configurada!"
+      puts "📝 Configure a DATABASE_URL no seu .env:"
+      puts "   DATABASE_URL=postgresql://postgres:[SENHA]@db.[PROJECT_ID].supabase.co:5432/postgres"
       exit 1
     end
     
