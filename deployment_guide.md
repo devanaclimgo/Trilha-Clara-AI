@@ -2,7 +2,7 @@
 
 ## 📋 Visão Geral
 
-Este guia detalha como configurar e fazer deploy do TCC Effortless em produção, incluindo:
+Este guia detalha como configurar e fazer deploy do Trilha Clara em produção, incluindo:
 
 - Configuração do PostgreSQL
 - Deploy da aplicação Rails
