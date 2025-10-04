@@ -19,7 +19,8 @@ import WorkEditBasicInfo from '@/components/Dashboard/WorkEditBasicInfo'
 import WorkEditContent from '@/components/Dashboard/WorkEditContent'
 import WorkEditPreview from '@/components/Dashboard/WorkEditPreview'
 import AbntPreviewModal from '@/components/Dashboard/AbntPreviewModal'
-import DashboardSidebar from '@/components/Dashboard/DashboardSidebar'
+import WorkEditSidebar from '@/components/Dashboard/WorkEditSidebar'
+import WorkEditDialogs from '@/components/Dashboard/WorkEditDialogs'
 import { useTccData } from '@/hooks/useTccData'
 import { useAuth } from '@/hooks/useAuth'
 
@@ -57,6 +58,7 @@ export default function WorkEditPage() {
   const [activeTab, setActiveTab] = useState('basic')
   const [sidebarOpen, setSidebarOpen] = useState(false)
   const [abntPreviewOpen, setAbntPreviewOpen] = useState(false)
+  const [activeDialog, setActiveDialog] = useState<string | null>(null)
 
   // Shared content state
   const [sharedContent, setSharedContent] = useState<WorkContent>({
@@ -90,24 +92,20 @@ export default function WorkEditPage() {
     setSharedFieldOrder(fieldOrder)
   }
 
-  const [currentScreen, setCurrentScreen] = useState<
-    | 'main'
-    | 'notes'
-    | 'explanation'
-    | 'structure'
-    | 'timeline'
-    | 'settings'
-    | 'profile'
-    | 'support'
-  >('main')
-
   const { logout } = useAuth()
   const {
     tccData,
     getCurrentWorkNotes,
     getCurrentWorkNotesWithDates,
     carregarDadosDaAPI,
+    saveNote,
+    removeNote,
   } = useTccData()
+
+  // Function to open dialogs
+  const handleOpenDialog = (dialogType: string) => {
+    setActiveDialog(dialogType)
+  }
 
   const steps = [
     { id: 1, title: 'Inserir Dados', icon: FileText },
@@ -225,30 +223,16 @@ export default function WorkEditPage() {
 
   return (
     <div className="min-h-screen flex gradient-trilha-soft">
-      <DashboardSidebar
+      <WorkEditSidebar
         sidebarOpen={sidebarOpen}
         setSidebarOpen={setSidebarOpen}
-        currentScreen={currentScreen}
-        setCurrentScreen={(screen: string) =>
-          setCurrentScreen(
-            screen as
-              | 'main'
-              | 'notes'
-              | 'explanation'
-              | 'structure'
-              | 'timeline'
-              | 'settings'
-              | 'profile'
-              | 'support',
-          )
-        }
         currentStep={2}
         steps={steps}
         getCurrentWorkNotes={getCurrentWorkNotes}
         getCurrentWorkNotesWithDates={getCurrentWorkNotesWithDates}
         getProgressPercentage={getProgressPercentage}
-        onShowAllNotes={() => setCurrentScreen('notes')}
         onLogout={logout}
+        onOpenDialog={handleOpenDialog}
       />
       {sidebarOpen && (
         <div
@@ -382,6 +366,19 @@ export default function WorkEditPage() {
             customFields={sharedCustomFields}
             fieldLabels={sharedFieldLabels}
             fieldOrder={sharedFieldOrder}
+          />
+        )}
+
+        {/* Work Edit Dialogs */}
+        {workData && (
+          <WorkEditDialogs
+            workData={workData}
+            getCurrentWorkNotes={getCurrentWorkNotes}
+            getCurrentWorkNotesWithDates={getCurrentWorkNotesWithDates}
+            saveNote={saveNote}
+            removeNote={removeNote}
+            activeDialog={activeDialog}
+            onCloseDialog={() => setActiveDialog(null)}
           />
         )}
       </div>
