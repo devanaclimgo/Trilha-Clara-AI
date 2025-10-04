@@ -12,6 +12,7 @@ import {
   Clock,
   BookOpen,
   Edit3,
+  Menu,
 } from 'lucide-react'
 import { TccData } from '@/types/tcc'
 import WorkEditBasicInfo from '@/components/Dashboard/WorkEditBasicInfo'
@@ -264,9 +265,9 @@ export default function WorkEditPage() {
                 <Button
                   variant="ghost"
                   onClick={() => setSidebarOpen(!sidebarOpen)}
-                  className="lg:hidden hover:bg-purple-50 border border-purple-200 hover:border-purple-300 hover:text-purple-600 hover:scale-105 transition-all duration-300"
+                  className="hover:bg-purple-50 border border-purple-200 hover:border-purple-300 hover:text-purple-600 hover:scale-105 transition-all duration-300"
                 >
-                  <FileText className="h-4 w-4 mr-2" />
+                  <Menu className="h-4 w-4 mr-2" />
                   Menu
                 </Button>
                 <Button
