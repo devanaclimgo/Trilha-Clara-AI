@@ -283,6 +283,7 @@ export default function DashboardStartScreen() {
       <div className="flex-1">
         <DashboardHeader
           setSidebarOpen={setSidebarOpen}
+          sidebarOpen={sidebarOpen}
           currentScreen={currentScreen}
         />
         <div className="container mx-auto px-4 py-8">
