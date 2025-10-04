@@ -22,6 +22,30 @@ import DashboardSidebar from '@/components/Dashboard/DashboardSidebar'
 import { useTccData } from '@/hooks/useTccData'
 import { useAuth } from '@/hooks/useAuth'
 
+// Define interfaces for proper typing
+interface WorkContent {
+  resumo: string
+  introducao: string
+  desenvolvimento: string
+  conclusao: string
+  referencias: string
+  metodologia?: string
+  objetivos?: string
+  justificativa?: string
+  [key: string]: string | undefined // Para campos dinâmicos da estrutura
+}
+
+interface ContentField {
+  key: string
+  label: string
+  description: string
+  placeholder: string
+  icon: React.ComponentType<{ className?: string }>
+  required: boolean
+  id: string
+  isCustom?: boolean
+}
+
 export default function WorkEditPage() {
   const params = useParams()
   const router = useRouter()
@@ -34,17 +58,19 @@ export default function WorkEditPage() {
   const [abntPreviewOpen, setAbntPreviewOpen] = useState(false)
 
   // Shared content state
-  const [sharedContent, setSharedContent] = useState({
+  const [sharedContent, setSharedContent] = useState<WorkContent>({
     resumo: '',
     introducao: '',
-    objetivos: '',
-    metodologia: '',
     desenvolvimento: '',
     conclusao: '',
     referencias: '',
+    metodologia: '',
+    objetivos: '',
     justificativa: '',
   })
-  const [sharedCustomFields, setSharedCustomFields] = useState<any[]>([])
+  const [sharedCustomFields, setSharedCustomFields] = useState<ContentField[]>(
+    [],
+  )
   const [sharedFieldLabels, setSharedFieldLabels] = useState<
     Record<string, string>
   >({})
@@ -52,8 +78,8 @@ export default function WorkEditPage() {
 
   // Handler for content changes from WorkEditContent
   const handleContentChange = (
-    content: any,
-    customFields: any[],
+    content: WorkContent,
+    customFields: ContentField[],
     fieldLabels: Record<string, string>,
     fieldOrder: string[],
   ) => {
@@ -248,8 +274,7 @@ export default function WorkEditPage() {
                   onClick={() => router.push('/dashboard')}
                   className="hover:bg-purple-50 border border-purple-200 hover:border-purple-300 hover:text-purple-600 hover:scale-105 transition-all duration-300"
                 >
-                  <ArrowLeft className="h-4 w-4 mr-2" />
-                  Voltar
+                  <ArrowLeft className="h-4 w-4" />
                 </Button>
                 <div>
                   <h1 className="text-2xl font-bold gradient-text">
@@ -315,7 +340,16 @@ export default function WorkEditPage() {
               <WorkEditPreview
                 workData={workData}
                 onEditClick={() => setActiveTab('content')}
-                content={sharedContent}
+                content={{
+                  resumo: sharedContent.resumo,
+                  introducao: sharedContent.introducao,
+                  objetivos: sharedContent.objetivos || '',
+                  metodologia: sharedContent.metodologia || '',
+                  desenvolvimento: sharedContent.desenvolvimento,
+                  conclusao: sharedContent.conclusao,
+                  referencias: sharedContent.referencias,
+                  justificativa: sharedContent.justificativa || '',
+                }}
                 customFields={sharedCustomFields}
                 fieldLabels={sharedFieldLabels}
                 fieldOrder={sharedFieldOrder}
@@ -330,7 +364,16 @@ export default function WorkEditPage() {
             isOpen={abntPreviewOpen}
             onClose={() => setAbntPreviewOpen(false)}
             workData={workData}
-            content={sharedContent}
+            content={{
+              resumo: sharedContent.resumo,
+              introducao: sharedContent.introducao,
+              objetivos: sharedContent.objetivos || '',
+              metodologia: sharedContent.metodologia || '',
+              desenvolvimento: sharedContent.desenvolvimento,
+              conclusao: sharedContent.conclusao,
+              referencias: sharedContent.referencias,
+              justificativa: sharedContent.justificativa || '',
+            }}
             customFields={sharedCustomFields}
             fieldLabels={sharedFieldLabels}
             fieldOrder={sharedFieldOrder}
