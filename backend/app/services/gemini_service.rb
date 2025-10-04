@@ -4,7 +4,7 @@ require 'digest'
 
 class GeminiService
   BASE_URL = "https://generativelanguage.googleapis.com/v1beta/models"
-  DEFAULT_MODEL = "gemini-1.5-flash"
+  DEFAULT_MODEL = "gemini-2.5-flash"
 
   def initialize(api_key: ENV["GEMINI_API_KEY"])
     @api_key = Rails.application.config.gemini_api_key || api_key
