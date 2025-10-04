@@ -2592,3 +2592,87 @@ Resultado bruto: Erro: resposta inválida
 Completed 200 OK in 1497ms (Views: 1.6ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
 
 
+Started GET "/api/tcc/tcc-1759617667243" for 127.0.0.1 at 2025-10-04 19:54:10 -0300
+Processing by Api::TccController#show as JSON
+  Parameters: {"id"=>"tcc-1759617667243", "tcc"=>{}}
+Completed 401 Unauthorized in 2ms (ActiveRecord: 804.3ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/api/tcc/tcc-1759617667243" for 127.0.0.1 at 2025-10-04 19:55:34 -0300
+Processing by Api::TccController#show as JSON
+  Parameters: {"id"=>"tcc-1759617667243", "tcc"=>{}}
+Completed 401 Unauthorized in 8ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/api/tcc/tcc-1759617667243" for 127.0.0.1 at 2025-10-04 19:55:36 -0300
+Processing by Api::TccController#show as JSON
+  Parameters: {"id"=>"tcc-1759617667243", "tcc"=>{}}
+Completed 401 Unauthorized in 14ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/api/tcc/tcc-1759617667243" for 127.0.0.1 at 2025-10-04 19:55:44 -0300
+Processing by Api::TccController#show as JSON
+  Parameters: {"id"=>"tcc-1759617667243", "tcc"=>{}}
+Completed 401 Unauthorized in 6ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/api/tcc/tcc-1759617667243" for 127.0.0.1 at 2025-10-04 19:57:17 -0300
+Processing by Api::TccController#show as JSON
+  Parameters: {"id"=>"tcc-1759617667243", "tcc"=>{}}
+Completed 401 Unauthorized in 2ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/api/tcc/tcc-1759617667243" for 127.0.0.1 at 2025-10-04 20:02:54 -0300
+Processing by Api::TccController#show as JSON
+  Parameters: {"id"=>"tcc-1759617667243", "tcc"=>{}}
+Completed 401 Unauthorized in 7ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/api/tcc/tcc-1759617667243" for 127.0.0.1 at 2025-10-04 20:02:56 -0300
+Processing by Api::TccController#show as JSON
+  Parameters: {"id"=>"tcc-1759617667243", "tcc"=>{}}
+Completed 401 Unauthorized in 1ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/api/tcc/tcc-1759617667243" for 127.0.0.1 at 2025-10-04 20:03:00 -0300
+Processing by Api::TccController#show as JSON
+  Parameters: {"id"=>"tcc-1759617667243", "tcc"=>{}}
+Completed 401 Unauthorized in 4ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/api/tcc/tcc-1759617667243" for 127.0.0.1 at 2025-10-04 20:03:05 -0300
+Processing by Api::TccController#show as JSON
+  Parameters: {"id"=>"tcc-1759617667243", "tcc"=>{}}
+Completed 401 Unauthorized in 3ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/api/tcc/tcc-1759617667243" for 127.0.0.1 at 2025-10-04 20:03:40 -0300
+Processing by Api::TccController#show as JSON
+  Parameters: {"id"=>"tcc-1759617667243", "tcc"=>{}}
+Completed 401 Unauthorized in 3ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/api/tcc/tcc-1759617667243" for 127.0.0.1 at 2025-10-04 20:03:41 -0300
+Processing by Api::TccController#show as JSON
+  Parameters: {"id"=>"tcc-1759617667243", "tcc"=>{}}
+Completed 401 Unauthorized in 14ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/api/profile" for 127.0.0.1 at 2025-10-04 20:09:41 -0300
+Started GET "/api/profile" for 127.0.0.1 at 2025-10-04 20:09:41 -0300
+Processing by Api::ProfileController#show as JSON
+Processing by Api::ProfileController#show as JSON
+  Parameters: {"profile"=>{}}
+  Parameters: {"profile"=>{}}
+Completed 401 Unauthorized in 10ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Completed 401 Unauthorized in 4ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 1.1ms)
+
+
+Started GET "/api/tcc/tcc-1759617667243" for 127.0.0.1 at 2025-10-04 20:22:43 -0300
+Processing by Api::TccController#show as JSON
+  Parameters: {"id"=>"tcc-1759617667243", "tcc"=>{}}
+Completed 401 Unauthorized in 9ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
