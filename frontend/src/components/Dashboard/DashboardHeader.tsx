@@ -4,6 +4,7 @@ import { Menu, GraduationCap } from 'lucide-react'
 
 interface DashboardHeaderProps {
   setSidebarOpen: (open: boolean) => void
+  sidebarOpen: boolean
   currentScreen:
     | 'main'
     | 'notes'
@@ -17,6 +18,7 @@ interface DashboardHeaderProps {
 
 const DashboardHeader = ({
   setSidebarOpen,
+  sidebarOpen,
   currentScreen,
 }: DashboardHeaderProps) => {
   return (
@@ -28,8 +30,12 @@ const DashboardHeader = ({
             <Button
               variant="outline"
               size="default"
-              onClick={() => setSidebarOpen(true)}
-              className="rounded-xl hover:bg-purple-50 border-purple-200 hover:border-purple-300 hover:text-purple-600 mr-2 flex items-center gap-2 px-4 py-2"
+              onClick={() => setSidebarOpen(!sidebarOpen)}
+              className={`rounded-xl mr-2 flex items-center gap-2 px-4 py-2 ${
+                sidebarOpen
+                  ? 'bg-purple-50 border-purple-200 text-purple-600'
+                  : 'hover:bg-purple-50 border-purple-200 hover:border-purple-300 hover:text-purple-600'
+              }`}
             >
               <Menu className="h-4 w-4" />
               <span className="text-sm font-medium hidden sm:block">Menu</span>
