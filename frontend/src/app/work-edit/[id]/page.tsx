@@ -265,7 +265,11 @@ export default function WorkEditPage() {
                 <Button
                   variant="ghost"
                   onClick={() => setSidebarOpen(!sidebarOpen)}
-                  className="hover:bg-purple-50 border border-purple-200 hover:border-purple-300 hover:text-purple-600 hover:scale-105 transition-all duration-300"
+                  className={`border transition-all duration-300 ${
+                    sidebarOpen
+                      ? 'bg-purple-50 border-purple-200 text-purple-600'
+                      : 'hover:bg-purple-50 border-purple-200 hover:border-purple-300 hover:text-purple-600 hover:scale-105'
+                  }`}
                 >
                   <Menu className="h-4 w-4 mr-2" />
                   Menu
