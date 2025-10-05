@@ -143,10 +143,14 @@ export default function WorkEditBasicInfo({
                 Status
               </label>
               <Select value={currentStatus} onValueChange={handleStatusChange}>
-                <SelectTrigger className="w-full p-3 bg-gray-50 rounded-lg border border-gray-200 hover:bg-gray-100 focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all duration-200">
+                <SelectTrigger className="w-full h-auto p-3 bg-gray-50 rounded-lg border border-gray-200 hover:bg-gray-100 focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all duration-200">
                   <SelectValue placeholder="Selecione o status">
                     <div className="flex items-center gap-2">
-                      <Badge className={getStatusColor(currentStatus)}>
+                      <Badge
+                        className={`${getStatusColor(
+                          currentStatus,
+                        )} text-sm font-normal`}
+                      >
                         {getStatusDisplayName(currentStatus)}
                       </Badge>
                     </div>
@@ -158,7 +162,11 @@ export default function WorkEditBasicInfo({
                     className="hover:bg-gray-50 focus:bg-gray-50 rounded-md mx-1 my-0.5 transition-colors duration-150"
                   >
                     <div className="flex items-center gap-2 py-1">
-                      <Badge className={getStatusColor('pesquisando')}>
+                      <Badge
+                        className={`${getStatusColor(
+                          'pesquisando',
+                        )} text-sm font-normal`}
+                      >
                         Pesquisando
                       </Badge>
                     </div>
@@ -168,7 +176,11 @@ export default function WorkEditBasicInfo({
                     className="hover:bg-gray-50 focus:bg-gray-50 rounded-md mx-1 my-0.5 transition-colors duration-150"
                   >
                     <div className="flex items-center gap-2 py-1">
-                      <Badge className={getStatusColor('em_andamento')}>
+                      <Badge
+                        className={`${getStatusColor(
+                          'em_andamento',
+                        )} text-sm font-normal`}
+                      >
                         Em Andamento
                       </Badge>
                     </div>
@@ -178,7 +190,11 @@ export default function WorkEditBasicInfo({
                     className="hover:bg-gray-50 focus:bg-gray-50 rounded-md mx-1 my-0.5 transition-colors duration-150"
                   >
                     <div className="flex items-center gap-2 py-1">
-                      <Badge className={getStatusColor('editando')}>
+                      <Badge
+                        className={`${getStatusColor(
+                          'editando',
+                        )} text-sm font-normal`}
+                      >
                         Editando
                       </Badge>
                     </div>
@@ -188,7 +204,11 @@ export default function WorkEditBasicInfo({
                     className="hover:bg-gray-50 focus:bg-gray-50 rounded-md mx-1 my-0.5 transition-colors duration-150"
                   >
                     <div className="flex items-center gap-2 py-1">
-                      <Badge className={getStatusColor('formatando')}>
+                      <Badge
+                        className={`${getStatusColor(
+                          'formatando',
+                        )} text-sm font-normal`}
+                      >
                         Formatando
                       </Badge>
                     </div>
@@ -198,7 +218,11 @@ export default function WorkEditBasicInfo({
                     className="hover:bg-gray-50 focus:bg-gray-50 rounded-md mx-1 my-0.5 transition-colors duration-150"
                   >
                     <div className="flex items-center gap-2 py-1">
-                      <Badge className={getStatusColor('concluido')}>
+                      <Badge
+                        className={`${getStatusColor(
+                          'concluido',
+                        )} text-sm font-normal`}
+                      >
                         Concluído
                       </Badge>
                     </div>
