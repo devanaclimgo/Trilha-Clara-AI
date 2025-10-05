@@ -1,7 +1,15 @@
 'use client'
 
+import { useState } from 'react'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select'
 import { TccData } from '@/types/tcc'
 import {
   User,
@@ -14,11 +22,16 @@ import {
 
 interface WorkEditBasicInfoProps {
   workData: TccData
+  onStatusChange?: (newStatus: TccData['status']) => void
 }
 
 export default function WorkEditBasicInfo({
   workData,
+  onStatusChange,
 }: WorkEditBasicInfoProps) {
+  const [currentStatus, setCurrentStatus] = useState<TccData['status']>(
+    workData.status,
+  )
   const getTipoTrabalhoDisplayName = (tipo: string) => {
     const tipoMap: { [key: string]: string } = {
       tcc: 'TCC (Trabalho de Conclusão de Curso)',
@@ -49,8 +62,10 @@ export default function WorkEditBasicInfo({
 
   const getStatusDisplayName = (status: string) => {
     const statusMap: { [key: string]: string } = {
-      novo: 'Novo',
+      pesquisando: 'Pesquisando',
       em_andamento: 'Em Andamento',
+      editando: 'Editando',
+      formatando: 'Formatando',
       concluido: 'Concluído',
     }
     return statusMap[status] || status
@@ -58,11 +73,18 @@ export default function WorkEditBasicInfo({
 
   const getStatusColor = (status: string) => {
     const colorMap: { [key: string]: string } = {
-      novo: 'bg-blue-100 text-blue-800',
+      pesquisando: 'bg-blue-100 text-blue-800',
       em_andamento: 'bg-yellow-100 text-yellow-800',
+      editando: 'bg-orange-100 text-orange-800',
+      formatando: 'bg-purple-100 text-purple-800',
       concluido: 'bg-green-100 text-green-800',
     }
     return colorMap[status] || 'bg-gray-100 text-gray-800'
+  }
+
+  const handleStatusChange = (newStatus: TccData['status']) => {
+    setCurrentStatus(newStatus)
+    onStatusChange?.(newStatus)
   }
 
   return (
@@ -120,11 +142,54 @@ export default function WorkEditBasicInfo({
                 <Calendar className="h-4 w-4" />
                 Status
               </label>
-              <div className="p-3 bg-gray-50 rounded-lg border">
-                <Badge className={getStatusColor(workData.status)}>
-                  {getStatusDisplayName(workData.status)}
-                </Badge>
-              </div>
+              <Select value={currentStatus} onValueChange={handleStatusChange}>
+                <SelectTrigger className="w-full">
+                  <SelectValue placeholder="Selecione o status">
+                    <div className="flex items-center gap-2">
+                      <Badge className={getStatusColor(currentStatus)}>
+                        {getStatusDisplayName(currentStatus)}
+                      </Badge>
+                    </div>
+                  </SelectValue>
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="pesquisando">
+                    <div className="flex items-center gap-2">
+                      <Badge className={getStatusColor('pesquisando')}>
+                        Pesquisando
+                      </Badge>
+                    </div>
+                  </SelectItem>
+                  <SelectItem value="em_andamento">
+                    <div className="flex items-center gap-2">
+                      <Badge className={getStatusColor('em_andamento')}>
+                        Em Andamento
+                      </Badge>
+                    </div>
+                  </SelectItem>
+                  <SelectItem value="editando">
+                    <div className="flex items-center gap-2">
+                      <Badge className={getStatusColor('editando')}>
+                        Editando
+                      </Badge>
+                    </div>
+                  </SelectItem>
+                  <SelectItem value="formatando">
+                    <div className="flex items-center gap-2">
+                      <Badge className={getStatusColor('formatando')}>
+                        Formatando
+                      </Badge>
+                    </div>
+                  </SelectItem>
+                  <SelectItem value="concluido">
+                    <div className="flex items-center gap-2">
+                      <Badge className={getStatusColor('concluido')}>
+                        Concluído
+                      </Badge>
+                    </div>
+                  </SelectItem>
+                </SelectContent>
+              </Select>
             </div>
           </div>
 
