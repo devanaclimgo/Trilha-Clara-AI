@@ -13,7 +13,6 @@ import {
   StickyNote,
   X,
   CheckCircle,
-  Home,
 } from 'lucide-react'
 import LogoutButton from '../LogoutButton'
 import DonationSection from '../DonationSection'
