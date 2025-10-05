@@ -17,7 +17,7 @@ export const useTccData = () => {
     dataCriacao: '',
     ultimaModificacao: '',
     progresso: 0,
-    status: 'novo',
+    status: 'pesquisando',
   })
   const [savedNotes, setSavedNotes] = useState<NotesData>({})
   const [hasCompletedInitialData, setHasCompletedInitialData] = useState(false)
@@ -116,7 +116,7 @@ export const useTccData = () => {
       ultimaModificacao: new Date().toISOString(),
       progresso: 0,
       tipoTrabalho: '',
-      status: 'novo',
+      status: 'pesquisando',
     }
 
     const trabalhosAtualizados = [...trabalhos, novoTrabalho]
@@ -274,7 +274,7 @@ export const useTccData = () => {
           dataCriacao: '',
           ultimaModificacao: '',
           progresso: 0,
-          status: 'novo',
+          status: 'pesquisando',
         })
         setTrabalhoAtual(null)
       }
