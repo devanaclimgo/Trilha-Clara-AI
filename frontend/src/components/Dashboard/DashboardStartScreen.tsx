@@ -156,7 +156,7 @@ export default function DashboardStartScreen() {
       tipoTrabalho: data.tipoTrabalho,
       curso: data.curso,
       progresso: 5,
-      status: 'iniciado' as const,
+      status: 'pesquisando' as const,
       ultimaModificacao: new Date().toISOString(),
       nomeAluno: data.nomeAluno,
       instituicao: data.instituicao,
