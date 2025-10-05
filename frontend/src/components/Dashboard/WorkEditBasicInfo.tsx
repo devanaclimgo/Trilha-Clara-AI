@@ -143,7 +143,7 @@ export default function WorkEditBasicInfo({
                 Status
               </label>
               <Select value={currentStatus} onValueChange={handleStatusChange}>
-                <SelectTrigger className="w-full">
+                <SelectTrigger className="w-full p-3 bg-gray-50 rounded-lg border border-gray-200 hover:bg-gray-100 focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all duration-200">
                   <SelectValue placeholder="Selecione o status">
                     <div className="flex items-center gap-2">
                       <Badge className={getStatusColor(currentStatus)}>
@@ -152,37 +152,52 @@ export default function WorkEditBasicInfo({
                     </div>
                   </SelectValue>
                 </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="pesquisando">
-                    <div className="flex items-center gap-2">
+                <SelectContent className="bg-white/95 backdrop-blur-sm border border-gray-200/20 rounded-lg shadow-lg">
+                  <SelectItem
+                    value="pesquisando"
+                    className="hover:bg-gray-50 focus:bg-gray-50 rounded-md mx-1 my-0.5 transition-colors duration-150"
+                  >
+                    <div className="flex items-center gap-2 py-1">
                       <Badge className={getStatusColor('pesquisando')}>
                         Pesquisando
                       </Badge>
                     </div>
                   </SelectItem>
-                  <SelectItem value="em_andamento">
-                    <div className="flex items-center gap-2">
+                  <SelectItem
+                    value="em_andamento"
+                    className="hover:bg-gray-50 focus:bg-gray-50 rounded-md mx-1 my-0.5 transition-colors duration-150"
+                  >
+                    <div className="flex items-center gap-2 py-1">
                       <Badge className={getStatusColor('em_andamento')}>
                         Em Andamento
                       </Badge>
                     </div>
                   </SelectItem>
-                  <SelectItem value="editando">
-                    <div className="flex items-center gap-2">
+                  <SelectItem
+                    value="editando"
+                    className="hover:bg-gray-50 focus:bg-gray-50 rounded-md mx-1 my-0.5 transition-colors duration-150"
+                  >
+                    <div className="flex items-center gap-2 py-1">
                       <Badge className={getStatusColor('editando')}>
                         Editando
                       </Badge>
                     </div>
                   </SelectItem>
-                  <SelectItem value="formatando">
-                    <div className="flex items-center gap-2">
+                  <SelectItem
+                    value="formatando"
+                    className="hover:bg-gray-50 focus:bg-gray-50 rounded-md mx-1 my-0.5 transition-colors duration-150"
+                  >
+                    <div className="flex items-center gap-2 py-1">
                       <Badge className={getStatusColor('formatando')}>
                         Formatando
                       </Badge>
                     </div>
                   </SelectItem>
-                  <SelectItem value="concluido">
-                    <div className="flex items-center gap-2">
+                  <SelectItem
+                    value="concluido"
+                    className="hover:bg-gray-50 focus:bg-gray-50 rounded-md mx-1 my-0.5 transition-colors duration-150"
+                  >
+                    <div className="flex items-center gap-2 py-1">
                       <Badge className={getStatusColor('concluido')}>
                         Concluído
                       </Badge>
