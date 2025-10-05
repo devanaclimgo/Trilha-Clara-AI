@@ -143,7 +143,7 @@ export default function DashboardSidebar({
                 <Button
                   key={item.id}
                   variant="ghost"
-                  className={`w-full justify-start gap-3 p-3 rounded-xl transition-all ${
+                  className={`w-full justify-start gap-3 p-3 rounded-xl hover:text-purple-500 focus:hover:text-purple-600 transition-all focus:hover:bg-purple-50 ${
                     currentScreen === item.id
                       ? 'bg-gradient-to-r from-purple-50 to-blue-50 border border-purple-200 text-purple-700'
                       : 'hover:bg-purple-50 hover:text-purple-600'

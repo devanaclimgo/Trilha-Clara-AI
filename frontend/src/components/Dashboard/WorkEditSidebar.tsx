@@ -133,7 +133,7 @@ export default function WorkEditSidebar({
                 <Button
                   key={item.id}
                   variant="ghost"
-                  className="w-full justify-start gap-3 p-3 rounded-xl transition-all hover:bg-purple-50 hover:text-purple-600"
+                  className="w-full justify-start gap-3 p-3 rounded-xl hover:text-purple-500 focus:hover:text-purple-600 transition-all focus:hover:bg-purple-50"
                   onClick={() => {
                     onOpenDialog(item.id)
                     setSidebarOpen(false)
