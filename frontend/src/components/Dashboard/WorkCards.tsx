@@ -237,7 +237,10 @@ export default function WorkCards({
                   onClick={(e) => {
                     e.stopPropagation()
                     if (trabalhoAtual === trabalho.id) {
-                      if (trabalho.status === 'novo') {
+                      if (
+                        trabalho.status === 'pesquisando' &&
+                        trabalho.progresso === 0
+                      ) {
                         handleStartWork(trabalho.id)
                       } else {
                         handleContinueWork(trabalho.id)
@@ -252,8 +255,11 @@ export default function WorkCards({
                       : 'bg-gray-200 text-gray-500 hover:bg-gray-300 cursor-pointer'
                   }`}
                 >
-                  {trabalho.status === 'novo' ? 'Iniciar' : 'Continuar'}
-                  {trabalho.status === 'novo' ? (
+                  {trabalho.status === 'pesquisando' && trabalho.progresso === 0
+                    ? 'Iniciar'
+                    : 'Continuar'}
+                  {trabalho.status === 'pesquisando' &&
+                  trabalho.progresso === 0 ? (
                     <Play className="ml-2 h-4 w-4" />
                   ) : (
                     <ArrowRight className="ml-2 h-4 w-4" />
