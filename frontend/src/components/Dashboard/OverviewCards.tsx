@@ -83,12 +83,12 @@ export default function OverviewCards({
             <FileText className="h-8 w-8 text-white" />
           </div>
           <h3 className="text-xl font-bold text-gray-800 mb-2">
-            {workData?.status === 'novo'
+            {workData?.status === 'pesquisando' && workData?.progresso === 0
               ? 'Inicie seu trabalho'
               : 'Crie um trabalho primeiro'}
           </h3>
           <p className="text-gray-600">
-            {workData?.status === 'novo'
+            {workData?.status === 'pesquisando' && workData?.progresso === 0
               ? `Clique em "Iniciar" no trabalho "${workData.titulo}" para começar a preencher as informações e gerar conteúdo com IA.`
               : 'Para visualizar a estrutura, cronograma e explicação, você precisa criar um trabalho acadêmico.'}
           </p>
