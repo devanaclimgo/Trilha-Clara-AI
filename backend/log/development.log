@@ -2676,3 +2676,29 @@ Processing by Api::TccController#show as JSON
 Completed 401 Unauthorized in 9ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
 
 
+[dotenv] Set [36mDEVISE_JWT_SECRET_KEY[0m, [36mGOOGLE_CLIENT_ID[0m, [36mGOOGLE_CLIENT_SECRET[0m, [36mGEMINI_API_KEY[0m, [36mDATABASE_URL[0m, [36mNEXT_PUBLIC_SUPABASE_URL[0m, [36mNEXT_PUBLIC_SUPABASE_ANON_KEY[0m, [36mRAILS_MASTER_KEY[0m, and [36mSECRET_KEY_BASE[0m
+[dotenv] Loaded [33m.env[0m
+[dotenv] Loaded [33m.env[0m
+Started GET "/api/tcc/tcc-1759617667243" for 127.0.0.1 at 2025-10-05 10:52:10 -0300
+  [1m[36mActiveRecord::SchemaMigration Load (93.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='Backend'*/[0m
+Processing by Api::TccController#show as JSON
+  Parameters: {"id"=>"tcc-1759617667243", "tcc"=>{}}
+Completed 401 Unauthorized in 49ms (ActiveRecord: 2894.7ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+[dotenv] Set [36mDEVISE_JWT_SECRET_KEY[0m, [36mGOOGLE_CLIENT_ID[0m, [36mGOOGLE_CLIENT_SECRET[0m, [36mGEMINI_API_KEY[0m, [36mDATABASE_URL[0m, [36mNEXT_PUBLIC_SUPABASE_URL[0m, [36mNEXT_PUBLIC_SUPABASE_ANON_KEY[0m, [36mRAILS_MASTER_KEY[0m, and [36mSECRET_KEY_BASE[0m
+[dotenv] Loaded [33m.env[0m
+[dotenv] Loaded [33m.env[0m
+Started GET "/api/tcc/tcc-1759617667243" for 127.0.0.1 at 2025-10-05 12:35:37 -0300
+  [1m[36mActiveRecord::SchemaMigration Load (104.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='Backend'*/[0m
+Processing by Api::TccController#show as JSON
+  Parameters: {"id"=>"tcc-1759617667243", "tcc"=>{}}
+Completed 401 Unauthorized in 22ms (ActiveRecord: 2577.1ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/api/tcc/tcc-1759617667243" for 127.0.0.1 at 2025-10-05 12:40:19 -0300
+Processing by Api::TccController#show as JSON
+  Parameters: {"id"=>"tcc-1759617667243", "tcc"=>{}}
+Completed 401 Unauthorized in 4ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
