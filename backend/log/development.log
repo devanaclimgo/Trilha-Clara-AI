@@ -2702,3 +2702,556 @@ Processing by Api::TccController#show as JSON
 Completed 401 Unauthorized in 4ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
 
 
+[dotenv] Set [36mDEVISE_JWT_SECRET_KEY[0m, [36mGOOGLE_CLIENT_ID[0m, [36mGOOGLE_CLIENT_SECRET[0m, [36mGEMINI_API_KEY[0m, [36mDATABASE_URL[0m, [36mRAILS_MASTER_KEY[0m, and [36mSECRET_KEY_BASE[0m
+[dotenv] Loaded [33m.env[0m
+[dotenv] Loaded [33m.env[0m
+Started GET "/api/tcc/tcc-1760288602571" for 127.0.0.1 at 2025-10-12 14:05:38 -0300
+  [1m[36mActiveRecord::SchemaMigration Load (97.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='Backend'*/[0m
+Processing by Api::TccController#show as JSON
+  Parameters: {"id"=>"tcc-1760288602571", "tcc"=>{}}
+Completed 401 Unauthorized in 14ms (ActiveRecord: 2591.2ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/api/tcc/criar.json" for 127.0.0.1 at 2025-10-12 14:06:32 -0300
+Processing by Api::TccController#criar as JSON
+  Parameters: {"nome"=>"Ana Clara Lima Gomes", "faculdade"=>"Estácio de Sá", "curso"=>"publicidade", "materia"=>"publicidade", "tema"=>"MARKETING DE INFLUÊNCIA E O IMPACTO NO CONSUMO DIGITAL: UMA ANÁLISE COM APOIO DE PROGRAMAÇÃO PARA COLETA DE DADOS EM REDES SOCIAIS ", "tipo_trabalho"=>"artigo", "tcc"=>{"nome"=>"Ana Clara Lima Gomes", "faculdade"=>"Estácio de Sá", "curso"=>"publicidade", "materia"=>"publicidade", "tema"=>"MARKETING DE INFLUÊNCIA E O IMPACTO NO CONSUMO DIGITAL: UMA ANÁLISE COM APOIO DE PROGRAMAÇÃO PARA COLETA DE DADOS EM REDES SOCIAIS ", "tipo_trabalho"=>"artigo"}}
+Erro ao fazer parse do JSON: unexpected character: '```json' at line 1 column 1
+Resultado bruto: ```json
+{
+  "explicacao": [
+
+Erro ao fazer parse do JSON: unexpected character: 'Erro:' at line 1 column 1
+Resultado bruto: Erro: resposta inválida
+Completed 200 OK in 27785ms (Views: 4.4ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/api/tcc/criar.json" for 127.0.0.1 at 2025-10-12 14:40:16 -0300
+Processing by Api::TccController#criar as JSON
+  Parameters: {"nome"=>"Ana Clara Lima Gomes", "faculdade"=>"Estácio de Sá", "curso"=>"publicidade", "materia"=>"publicidade", "tema"=>"MARKETING DE INFLUÊNCIA E O IMPACTO NO CONSUMO DIGITAL: UMA ANÁLISE COM APOIO DE PROGRAMAÇÃO PARA COLETA DE DADOS EM REDES SOCIAIS ", "tipo_trabalho"=>"artigo", "tcc"=>{"nome"=>"Ana Clara Lima Gomes", "faculdade"=>"Estácio de Sá", "curso"=>"publicidade", "materia"=>"publicidade", "tema"=>"MARKETING DE INFLUÊNCIA E O IMPACTO NO CONSUMO DIGITAL: UMA ANÁLISE COM APOIO DE PROGRAMAÇÃO PARA COLETA DE DADOS EM REDES SOCIAIS ", "tipo_trabalho"=>"artigo"}}
+Completed 200 OK in 150ms (Views: 13.5ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+[dotenv] Set [36mDEVISE_JWT_SECRET_KEY[0m, [36mGOOGLE_CLIENT_ID[0m, [36mGOOGLE_CLIENT_SECRET[0m, [36mGEMINI_API_KEY[0m, [36mDATABASE_URL[0m, [36mRAILS_MASTER_KEY[0m, and [36mSECRET_KEY_BASE[0m
+[dotenv] Loaded [33m.env[0m
+[dotenv] Loaded [33m.env[0m
+  [1m[36mUser Load (100.8ms)[0m  [1m[34mSELECT "users".* FROM "users" ORDER BY "users"."id" ASC LIMIT 1 /*application='Backend'*/[0m
+  [1m[36mTRANSACTION (53.7ms)[0m  [1m[35mBEGIN /*application='Backend'*/[0m
+  [1m[36mUser Exists? (127.5ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = 'test@test.com' LIMIT 1 /*application='Backend'*/[0m
+  [1m[36mUser Create (89.7ms)[0m  [1m[32mINSERT INTO "users" ("email", "encrypted_password", "reset_password_token", "reset_password_sent_at", "remember_created_at", "name", "created_at", "updated_at", "phone") VALUES ('test@test.com', '$2a$12$h6H7bGDHyWauQ0kSVP4ioetnYSbOZjr0uwAAsDcZMZn1yFWjgEnHO', NULL, NULL, NULL, 'Test', '2025-10-12 17:43:36.707712', '2025-10-12 17:43:36.707712', NULL) RETURNING "id" /*application='Backend'*/[0m
+  [1m[36mTRANSACTION (53.7ms)[0m  [1m[35mCOMMIT /*application='Backend'*/[0m
+  [1m[36mTRANSACTION (144.7ms)[0m  [1m[35mBEGIN /*application='Backend'*/[0m
+  [1m[36mTcc Create (261.5ms)[0m  [1m[32mINSERT INTO "tccs" ("nome", "faculdade", "curso", "materia", "tema", "tipo_trabalho", "user_id", "created_at", "updated_at", "resumo", "introducao", "objetivos", "justificativa", "metodologia", "desenvolvimento", "conclusao", "referencias") VALUES ('Test User', 'Test University', 'Test Course', 'Test Subject', 'Test Topic', 'TCC', 1, '2025-10-12 17:43:37.033215', '2025-10-12 17:43:37.033215', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL) RETURNING "id" /*application='Backend'*/[0m
+  [1m[36mTRANSACTION (96.7ms)[0m  [1m[35mCOMMIT /*application='Backend'*/[0m
+Started POST "/api/tcc/criar.json" for ::1 at 2025-10-12 14:44:11 -0300
+Processing by Api::TccController#criar as JSON
+  Parameters: {"nome"=>"Test User", "faculdade"=>"Test University", "curso"=>"Test Course", "materia"=>"Test Subject", "tema"=>"Inteligência Artificial na Educação", "tipo_trabalho"=>"TCC", "tcc"=>{"nome"=>"Test User", "faculdade"=>"Test University", "curso"=>"Test Course", "materia"=>"Test Subject", "tema"=>"Inteligência Artificial na Educação", "tipo_trabalho"=>"TCC"}}
+Erro ao fazer parse do JSON: unexpected character: '```json' at line 1 column 1
+Resultado bruto: ```json
+{
+  "explicacao": [
+    "O trabalho aborda a integração da Inteligência Artificial em ambientes educacionais.",
+    "Analisa como a IA pode transformar os processos de ensino e aprendizagem.",
+    "Discute as ferramentas e aplicações da IA que impactam o setor da educação.",
+    "Explora as implicações e desafios da IA no contexto pedagógico."
+  ],
+  "sugestoes": [
+    "Impacto da IA na personalização do aprendizado para estudantes.",
+    "O uso de chatbots e assistentes virtuais no suporte educacional.",
+    "Sistemas de tutoria inteligente e adaptação de conteúdo pedagógico via IA.",
+    "Aplicações de IA na avaliação do desempenho estudantil e feedback automatizado.",
+    "Desafios éticos e de privacidade na implementação da IA em plataformas educacionais."
+  ],
+  "dica": "Foque em exemplos práticos e estudos de caso de IA já aplicados na educação para fortalecer sua argumentação.",
+  "estrutura": [
+    "Introdução: Panorama da Inteligência Artificial na Educação",
+    "Fundamentação Teórica: Conceitos de IA e sua relação com teorias pedag
+Erro ao fazer parse do JSON: unexpected character: '```json' at line 1 column 1
+Resultado bruto: ```json
+{
+  "estrutura": [
+    "1. INTRODUÇÃO",
+    "1.1 Contextualização da Inteligência Artificial no cenário educacional",
+    "1.2 Justificativa da relevância da Inteligência Artificial na transformação do ensino-aprendizagem",
+    "1.3 Objetivos da pesquisa sobre as aplicações e impactos da Inteligência Artificial na Educação",
+    "1.4 Breve apresentação da metodologia utilizada para investigar a Inteligência Artificial na Educação",
+    "2. REFERENCIAL TEÓRICO",
+    "2.1 Conceitos fundamentais de Inteligência Artificial e sua aplicação em contextos educacionais",
+    "2.2 O papel da Inteligência Artificial na personalização do ensino e avaliação adaptativa",
+    "2.3 Desafios e oportunidades da integração da Inteligência Artificial na Educação",
+    "2.4 Estado da arte das pesquisas e tecnologias de Inteligência Artificial na Educação",
+    "3. METODOLOGIA",
+    "3.1 Tipo de pesquisa (ex: exploratória, descritiva, estudo de caso) para analisar a Inteligência Artificial na Educação",
+    "3.2 População e amostra (ex: educadores, estudantes, plataformas educacionais) envolvidas com a Inteligência Artificial na Educação",
+    "3.3 Instrumentos de coleta de dados (ex: questionários sobre percepção de IA, entrevistas com especialistas, análise de documentos/ferramentas) referentes à Inteligência Artificial na Educação",
+    "3.4 Procedimentos específicos de coleta e análise de dados sobre a aplicação da Inteligência Artificial na Educação",
+    "4. RESULTADOS E DISCUSSÃO",
+    "4.1 Apresentação dos dados coletados sobre o uso e impacto da Inteligência Artificial na Educação",
+    "4.2 Análise dos resultados obtidos em relação aos objetivos da pesquisa sobre Inteligência Artificial na Educação",
+    "4.3 Discussão aprofundada dos achados no contexto da Inteligência Artificial na Educação, comparando com o referencial teórico",
+    "4.4 Implicações dos resultados para a prática pedagógica e o desenvolvimento da Inteligência Artificial na Educação",
+    "5. CONSIDERAÇÕES FINAIS",
+    "5.1 Conclusões da pesquisa
+Completed 200 OK in 21630ms (Views: 0.6ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+[dotenv] Set [36mDEVISE_JWT_SECRET_KEY[0m, [36mGOOGLE_CLIENT_ID[0m, [36mGOOGLE_CLIENT_SECRET[0m, [36mGEMINI_API_KEY[0m, [36mDATABASE_URL[0m, [36mRAILS_MASTER_KEY[0m, and [36mSECRET_KEY_BASE[0m
+[dotenv] Loaded [33m.env[0m
+[dotenv] Loaded [33m.env[0m
+[dotenv] Set [36mDEVISE_JWT_SECRET_KEY[0m, [36mGOOGLE_CLIENT_ID[0m, [36mGOOGLE_CLIENT_SECRET[0m, [36mGEMINI_API_KEY[0m, [36mDATABASE_URL[0m, [36mRAILS_MASTER_KEY[0m, and [36mSECRET_KEY_BASE[0m
+[dotenv] Loaded [33m.env[0m
+[dotenv] Loaded [33m.env[0m
+[dotenv] Set [36mDEVISE_JWT_SECRET_KEY[0m, [36mGOOGLE_CLIENT_ID[0m, [36mGOOGLE_CLIENT_SECRET[0m, [36mGEMINI_API_KEY[0m, [36mDATABASE_URL[0m, [36mRAILS_MASTER_KEY[0m, and [36mSECRET_KEY_BASE[0m
+[dotenv] Loaded [33m.env[0m
+[dotenv] Loaded [33m.env[0m
+Started POST "/api/tcc/criar.json" for ::1 at 2025-10-12 17:02:59 -0300
+  [1m[36mActiveRecord::SchemaMigration Load (54.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='Backend'*/[0m
+Processing by Api::TccController#criar as JSON
+  Parameters: {"nome"=>"João Silva", "faculdade"=>"Universidade Federal", "curso"=>"desenvolvimento-de-sistemas", "materia"=>"TCC", "tema"=>"Aplicação de Inteligência Artificial na Educação: Desafios e Oportunidades", "tipo_trabalho"=>"tcc", "tcc"=>{"nome"=>"João Silva", "faculdade"=>"Universidade Federal", "curso"=>"desenvolvimento-de-sistemas", "materia"=>"TCC", "tema"=>"Aplicação de Inteligência Artificial na Educação: Desafios e Oportunidades", "tipo_trabalho"=>"tcc"}}
+Erro ao fazer parse do JSON: unexpected character: '```json' at line 1 column 1
+Resultado bruto: ```json
+{
+  "explicacao": [
+    "Este TCC abordará a utilização de Inteligência Artificial no contexto educacional.",
+    "Serão explorados os principais desafios técnicos e pedagógicos da aplicação da IA na educação.",
+    "Identificará as oportunidades inovadoras que a IA pode trazer para o aprendizado e ensino.",
+    "O trabalho visa analisar o cenário atual e futuro da IA aplicada à educação."
+  ],
+  "sugestoes": [
+    "Análise dos desafios éticos e de privacidade na implementação de IA na educação.",
+    "Estudo de caso de plataformas educacionais que utilizam IA para personalização do ensino.",
+    "Avaliação das oportunidades da IA em auxiliar a acessibilidade e inclusão na educação.",
+    "Pesquisa sobre a capacitação de professores frente às novas ferramentas de IA educacional.",
+    "Mapeamento de tecnologias de IA (Machine Learning, Processamento de Linguagem Natural) aplicadas em ambientes de aprendizagem."
+  ],
+  "dica": "Concentre-se em exemplos práticos e estudos de caso que ilustrem tanto os desafios quanto as oportunidades da IA na educação.",
+  "estrutura": [
+    "1
+Erro ao fazer parse do JSON: unexpected character: '```json' at line 1 column 1
+Resultado bruto: ```json
+{
+  "estrutura": [
+    "1. INTRODUÇÃO",
+    "1.1 Contextualização da Inteligência Artificial no cenário educacional",
+    "1.2 Justificativa da relevância de analisar desafios e oportunidades da IA na educação",
+    "1.3 Objetivos do estudo sobre a aplicação da IA na educação",
+    "1.3.1 Objetivo geral: Analisar os desafios e oportunidades da aplicação de Inteligência Artificial na Educação.",
+    "1.3.2 Objetivos específicos:",
+    "  - Identificar as principais aplicações atuais de Inteligência Artificial em contextos educacionais.",
+    "  - Mapear os desafios técnicos, éticos e pedagógicos inerentes à implementação da IA na educação.",
+    "  - Explorar as oportunidades que a IA oferece para a personalização, acessibilidade e eficiência do processo de ensino-aprendizagem.",
+    "  - Propor diretrizes para uma implementação eficaz e responsável da IA no ambiente educacional brasileiro.",
+    "1.4 Estrutura do trabalho abordando o tema",
+    "2. REFERENCIAL TEÓRICO",
+    "2.1 Conceitos fundamentais de Inteligência Artificial (Machine Learning, Deep Learning, Processamento de Linguagem Natural) e suas aplicações genéricas",
+    "2.2 O papel da tecnologia na educação: histórico e evolução até a era digital",
+    "2.3 Aplicações da Inteligência Artificial na Educação: panorama atual",
+    "2.3.1 Sistemas tutores inteligentes e personalização do aprendizado",
+    "2.3.2 Ferramentas de avaliação automatizada e feedback inteligente",
+    "2.3.3 Análise de dados educacionais (Learning Analytics) para predição e intervenção",
+    "2.3.4 Assistentes virtuais e chatbots para suporte ao estudante e professor",
+    "3. DESAFIOS DA APLICAÇÃO DE INTELIGÊNCIA ARTIFICIAL NA EDUCAÇÃO",
+    "3.1 Desafios técnicos e de infraestrutura",
+    "3.1.1 Disponibilidade e acesso à tecnologia (conectividade, dispositivos)",
+    "3.1.2 Requisitos de dados (qualidade, volume, privacidade)",
+    "3.1.3 Interoperabilidade entre sistemas e plataformas educacionais",
+    "3.2 Desafios éticos e sociais",
+    "3.2.1 Viés algorítmico e equidade no acesso à educação",
+    "3.2.2 Privacidade e segurança dos dados dos estudantes",
+    "3.2.3 Autonomia e papel do professor frente à automação",
+    "3.3 Desafios pedagógicos e de aceitação",
+    "3.3.1 Adaptação de metodologias de ensino e currículos",
+    "3.3.2 Formação e capacitação de educadores para o uso da IA",
+    "3.3.3 Resistência à mudança por parte de alunos e professores",
+    "4. OPORTUNIDADES DA APLICAÇÃO DE INTELIGÊNCIA ARTIFICIAL NA EDUCAÇÃO",
+    "4.1 Personalização e flexibilização do aprendizado",
+    "4.1.1 Trilhas de aprendizado adaptativas",
+    "4.1.
+Completed 200 OK in 21190ms (Views: 6.0ms | ActiveRecord: 1529.4ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/api/tcc/criar.json" for ::1 at 2025-10-12 17:04:41 -0300
+Processing by Api::TccController#criar as JSON
+  Parameters: {"nome"=>"João Silva", "faculdade"=>"Universidade Federal", "curso"=>"desenvolvimento-de-sistemas", "materia"=>"TCC", "tema"=>"Aplicação de Inteligência Artificial na Educação: Desafios e Oportunidades", "tipo_trabalho"=>"tcc", "tcc"=>{"nome"=>"João Silva", "faculdade"=>"Universidade Federal", "curso"=>"desenvolvimento-de-sistemas", "materia"=>"TCC", "tema"=>"Aplicação de Inteligência Artificial na Educação: Desafios e Oportunidades", "tipo_trabalho"=>"tcc"}}
+Completed 200 OK in 22ms (Views: 1.1ms | ActiveRecord: 284.4ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+[dotenv] Set [36mDEVISE_JWT_SECRET_KEY[0m, [36mGOOGLE_CLIENT_ID[0m, [36mGOOGLE_CLIENT_SECRET[0m, [36mGEMINI_API_KEY[0m, [36mDATABASE_URL[0m, [36mRAILS_MASTER_KEY[0m, and [36mSECRET_KEY_BASE[0m
+[dotenv] Loaded [33m.env[0m
+[dotenv] Loaded [33m.env[0m
+[dotenv] Set [36mDEVISE_JWT_SECRET_KEY[0m, [36mGOOGLE_CLIENT_ID[0m, [36mGOOGLE_CLIENT_SECRET[0m, [36mGEMINI_API_KEY[0m, [36mDATABASE_URL[0m, [36mRAILS_MASTER_KEY[0m, and [36mSECRET_KEY_BASE[0m
+[dotenv] Loaded [33m.env[0m
+[dotenv] Loaded [33m.env[0m
+Erro ao fazer parse do JSON: unexpected character: 'Erro:' at line 1 column 1
+Resultado bruto: Erro: resposta inválida
+[dotenv] Set [36mDEVISE_JWT_SECRET_KEY[0m, [36mGOOGLE_CLIENT_ID[0m, [36mGOOGLE_CLIENT_SECRET[0m, [36mGEMINI_API_KEY[0m, [36mDATABASE_URL[0m, [36mRAILS_MASTER_KEY[0m, and [36mSECRET_KEY_BASE[0m
+[dotenv] Loaded [33m.env[0m
+[dotenv] Loaded [33m.env[0m
+[dotenv] Set [36mDEVISE_JWT_SECRET_KEY[0m, [36mGOOGLE_CLIENT_ID[0m, [36mGOOGLE_CLIENT_SECRET[0m, [36mGEMINI_API_KEY[0m, [36mDATABASE_URL[0m, [36mRAILS_MASTER_KEY[0m, and [36mSECRET_KEY_BASE[0m
+[dotenv] Loaded [33m.env[0m
+[dotenv] Loaded [33m.env[0m
+[dotenv] Set [36mDEVISE_JWT_SECRET_KEY[0m, [36mGOOGLE_CLIENT_ID[0m, [36mGOOGLE_CLIENT_SECRET[0m, [36mGEMINI_API_KEY[0m, [36mDATABASE_URL[0m, [36mRAILS_MASTER_KEY[0m, and [36mSECRET_KEY_BASE[0m
+[dotenv] Loaded [33m.env[0m
+[dotenv] Loaded [33m.env[0m
+[dotenv] Set [36mDEVISE_JWT_SECRET_KEY[0m, [36mGOOGLE_CLIENT_ID[0m, [36mGOOGLE_CLIENT_SECRET[0m, [36mGEMINI_API_KEY[0m, [36mDATABASE_URL[0m, [36mRAILS_MASTER_KEY[0m, and [36mSECRET_KEY_BASE[0m
+[dotenv] Loaded [33m.env[0m
+[dotenv] Loaded [33m.env[0m
+Started POST "/api/tcc/criar.json" for ::1 at 2025-10-12 17:08:21 -0300
+Processing by Api::TccController#criar as JSON
+  Parameters: {"nome"=>"João Silva", "faculdade"=>"Universidade Federal", "curso"=>"desenvolvimento-de-sistemas", "materia"=>"TCC", "tema"=>"Aplicação de Inteligência Artificial na Educação: Desafios e Oportunidades", "tipo_trabalho"=>"tcc", "tcc"=>{"nome"=>"João Silva", "faculdade"=>"Universidade Federal", "curso"=>"desenvolvimento-de-sistemas", "materia"=>"TCC", "tema"=>"Aplicação de Inteligência Artificial na Educação: Desafios e Oportunidades", "tipo_trabalho"=>"tcc"}}
+Completed 200 OK in 29ms (Views: 2.6ms | ActiveRecord: 168.5ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+[dotenv] Set [36mDEVISE_JWT_SECRET_KEY[0m, [36mGOOGLE_CLIENT_ID[0m, [36mGOOGLE_CLIENT_SECRET[0m, [36mGEMINI_API_KEY[0m, [36mDATABASE_URL[0m, [36mRAILS_MASTER_KEY[0m, and [36mSECRET_KEY_BASE[0m
+[dotenv] Loaded [33m.env[0m
+[dotenv] Loaded [33m.env[0m
+Started POST "/api/tcc/criar.json" for ::1 at 2025-10-12 17:09:00 -0300
+Processing by Api::TccController#criar as JSON
+  Parameters: {"nome"=>"João Silva", "faculdade"=>"Universidade Federal", "curso"=>"desenvolvimento-de-sistemas", "materia"=>"TCC", "tema"=>"Aplicação de Inteligência Artificial na Educação: Desafios e Oportunidades", "tipo_trabalho"=>"tcc", "tcc"=>{"nome"=>"João Silva", "faculdade"=>"Universidade Federal", "curso"=>"desenvolvimento-de-sistemas", "materia"=>"TCC", "tema"=>"Aplicação de Inteligência Artificial na Educação: Desafios e Oportunidades", "tipo_trabalho"=>"tcc"}}
+Completed 200 OK in 10ms (Views: 0.8ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+[dotenv] Set [36mDEVISE_JWT_SECRET_KEY[0m, [36mGOOGLE_CLIENT_ID[0m, [36mGOOGLE_CLIENT_SECRET[0m, [36mGEMINI_API_KEY[0m, [36mDATABASE_URL[0m, [36mRAILS_MASTER_KEY[0m, and [36mSECRET_KEY_BASE[0m
+[dotenv] Loaded [33m.env[0m
+[dotenv] Loaded [33m.env[0m
+Erro ao fazer parse do JSON: unexpected character: 'Erro:' at line 1 column 1
+Resultado bruto: Erro: resposta inválida
+[dotenv] Set [36mDEVISE_JWT_SECRET_KEY[0m, [36mGOOGLE_CLIENT_ID[0m, [36mGOOGLE_CLIENT_SECRET[0m, [36mGEMINI_API_KEY[0m, [36mDATABASE_URL[0m, [36mRAILS_MASTER_KEY[0m, and [36mSECRET_KEY_BASE[0m
+[dotenv] Loaded [33m.env[0m
+[dotenv] Loaded [33m.env[0m
+Gemini raw result: ```json
+{
+  "explicacao": [
+    "Este trabalho explora a integração da Inteligência Artificial no contexto educacional.",
+    "Analisa os principais obstáculos na implementação da IA no ensino.",
+    "Identifica as diversas vantagens e possibilidades que a IA pode oferecer à educação.",
+    "Um TCC relevante para entender o futuro da tecnologia na aprendizagem."
+  ],
+  "sugestoes": [
+    "Pes
+Extracted JSON without markdown: ```json
+{
+  "explicacao": [
+    "Este trabalho explora a integração da Inteligência Artificial no contexto educacional.",
+    "Analisa os principais obstáculos na implementação da IA no ensino.",
+    "Identifica as diversas vantagens e possibilidades que a IA pode oferecer à educação.",
+    "Um TCC relevante para entender o futuro da tecnologia na aprendizagem."
+  ],
+  "sugestoes": [
+    "Pes
+Erro ao fazer parse do JSON: unexpected character: '```json' at line 1 column 1
+Resultado bruto: ```json
+{
+  "explicacao": [
+    "Este trabalho explora a integração da Inteligência Artificial no contexto educacional.",
+    "Analisa os principais obstáculos na implementação da IA no ensino.",
+    "Identifica as diversas vantagens e possibilidades que a IA pode oferecer à educação.",
+    "Um TCC relevante para entender o futuro da tecnologia na aprendizagem."
+  ],
+  "sugestoes": [
+    "Pes
+[dotenv] Set [36mDEVISE_JWT_SECRET_KEY[0m, [36mGOOGLE_CLIENT_ID[0m, [36mGOOGLE_CLIENT_SECRET[0m, [36mGEMINI_API_KEY[0m, [36mDATABASE_URL[0m, [36mRAILS_MASTER_KEY[0m, and [36mSECRET_KEY_BASE[0m
+[dotenv] Loaded [33m.env[0m
+[dotenv] Loaded [33m.env[0m
+Gemini raw result: ```json
+{
+  "explicacao": [
+    "Explora a integração da Inteligência Artificial no contexto educacional.",
+    "Analisa os principais desafios enfrentados na aplicação da IA na educação.",
+    "Identifica as oportunidades inovadoras que a IA pode trazer para o ensino e a aprendizagem."
+  ],
+  "sugestoes": [
+    "Estudo de caso sobre desafios na implementação de plataformas de IA adaptativas.",
+    "Análise das oportunidades da IA para personalização do aprendizado em diferentes níveis educacionais.",
+    "Pesquisa sobre os desafios éticos e de privacidade na utilização de IA em avaliação educacional.",
+    "Mapeamento de ferramentas de IA que geram oportunidades para a inclusão e acessibilidade na educação."
+  ],
+  "dica": "Foque em evidenciar exemplos práticos da IA na educação para ilustrar desafios e oportunidades de forma concreta.",
+  "estrutura": [
+    "Desafios Atuais na Aplicação da Inteligência Artificial na Educação.",
+    "Oportunidades e o Potencial Transformador da IA no Processo Educacional."
+  ],
+  "cronograma": [
+    {
+      "semana": 1,
+      "atividade": "Levantamento bibliográfico sobre os desafios da Inteligência Artificial na educação."
+    },
+    {
+      "semana": 2,
+      "atividade": "Pesquisa de estudos de caso e artigos sobre as oportunidades da IA no ensino e aprendizagem."
+    }
+  ]
+}
+```
+Extracted JSON from markdown: {
+  "explicacao": [
+    "Explora a integração da Inteligência Artificial no contexto educacional.",
+    "Analisa os principais desafios enfrentados na aplicação da IA na educação.",
+    "Identifica as oportunidades inovadoras que a IA pode trazer para o ensino e a aprendizagem."
+  ],
+  "sugestoes": [
+    "Estudo de caso sobre desafios na implementação de plataformas de IA adaptativas.",
+    "Análise das oportunidades da IA para personalização do aprendizado em diferentes níveis educacionais.",
+    "Pesquisa sobre os desafios éticos e de privacidade na utilização de IA em avaliação educacional.",
+    "Mapeamento de ferramentas de IA que geram oportunidades para a inclusão e acessibilidade na educação."
+  ],
+  "dica": "Foque em evidenciar exemplos práticos da IA na educação para ilustrar desafios e oportunidades de forma concreta.",
+  "estrutura": [
+    "Desafios Atuais na Aplicação da Inteligência Artificial na Educação.",
+    "Oportunidades e o Potencial Transformador da IA no Processo Educacional."
+  ],
+  "cronograma": [
+    {
+      "semana": 1,
+      "atividade": "Levantamento bibliográfico sobre os desafios da Inteligência Artificial na educação."
+    },
+    {
+      "semana": 2,
+      "atividade": "Pesquisa de estudos de caso e artigos sobre as oportunidades da IA no ensino e aprendizagem."
+    }
+  ]
+}
+Started POST "/api/tcc/criar.json" for ::1 at 2025-10-12 17:11:53 -0300
+Processing by Api::TccController#criar as JSON
+  Parameters: {"nome"=>"João Silva", "faculdade"=>"Universidade Federal", "curso"=>"desenvolvimento-de-sistemas", "materia"=>"TCC", "tema"=>"Aplicação de Inteligência Artificial na Educação: Desafios e Oportunidades", "tipo_trabalho"=>"tcc", "tcc"=>{"nome"=>"João Silva", "faculdade"=>"Universidade Federal", "curso"=>"desenvolvimento-de-sistemas", "materia"=>"TCC", "tema"=>"Aplicação de Inteligência Artificial na Educação: Desafios e Oportunidades", "tipo_trabalho"=>"tcc"}}
+Completed 200 OK in 27ms (Views: 1.4ms | ActiveRecord: 260.6ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/api/tcc/criar.json" for ::1 at 2025-10-12 17:13:12 -0300
+Processing by Api::TccController#criar as JSON
+  Parameters: {"nome"=>"João Silva", "faculdade"=>"Universidade Federal", "curso"=>"desenvolvimento-de-sistemas", "materia"=>"TCC", "tema"=>"Aplicação de Inteligência Artificial na Educação: Desafios e Oportunidades", "tipo_trabalho"=>"tcc", "tcc"=>{"nome"=>"João Silva", "faculdade"=>"Universidade Federal", "curso"=>"desenvolvimento-de-sistemas", "materia"=>"TCC", "tema"=>"Aplicação de Inteligência Artificial na Educação: Desafios e Oportunidades", "tipo_trabalho"=>"tcc"}}
+Completed 200 OK in 6ms (Views: 0.8ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+[dotenv] Set [36mDEVISE_JWT_SECRET_KEY[0m, [36mGOOGLE_CLIENT_ID[0m, [36mGOOGLE_CLIENT_SECRET[0m, [36mGEMINI_API_KEY[0m, [36mDATABASE_URL[0m, [36mRAILS_MASTER_KEY[0m, and [36mSECRET_KEY_BASE[0m
+[dotenv] Loaded [33m.env[0m
+[dotenv] Loaded [33m.env[0m
+Gemini raw result: ```json
+{
+  "explicacao": [
+    "O trabalho aborda a inserção da Inteligência Artificial no contexto educacional brasileiro.",
+    "Analisa os obstáculos técnicos, pedagógicos e éticos na implementação da IA na educação.",
+    "Explora as novas possibilidades de ensino e aprendizado proporcionadas pela IA.",
+    "Identifica o potencial transformador da IA para otimizar processos e resultados educacionais."
+  ],
+  "sugestoes": [
+    "Pesquisa sobre os desafios de privacidade e segurança de dados no uso de IA em plataformas educacionais.",
+    "Estudo de caso de plataformas de IA adaptativas e seus resultados no engajamento dos alunos.",
+    "Análise das oportunidades para a IA personalizar trilhas de aprendizado e avaliações.",
+    "Levantamento das barreiras para a capacitação de educadores na utilização de ferramentas de IA."
+  ],
+  "dica": "Concentrar-se em exemplos práticos e estudos de caso que ilustrem claramente os desafios e as oportunidades da IA na educação.",
+  "estrutura": [
+    "Introdução: Contextualização da IA no Cenário Educacional.",
+    "Fundamentação Teórica: Conceitos de IA e Suas Aplicações em Ambientes de Aprendizagem.",
+    "Desafios da Implementação da Inteligência Artificial na Educação.",
+    "Oportunidades e Inovações Trazidas pela IA para o Processo Educacional.",
+    "Metodologia para Análise de Casos de Aplicação da IA na Educação.",
+    "Discussão de Resultados: Balanço entre Desafios Superados e Oportunidades Exploradas.",
+    "Considerações Finais e Perspectivas Futuras da IA na Educação."
+  ],
+  "cronograma": [
+    { "semana": 1, "atividade": "Revisão bibliográfica inicial sobre desafios da IA na educação." },
+    { "semana": 2, "atividade": "Pesquisa de casos de sucesso de aplicação de IA para identificar oportunidades." },
+    { "semana": 3, "atividade": "Definição do escopo específico e objetivos relacionados aos desafios e oportunidades." },
+    { "semana": 4, "atividade": "Elaboração do referencial teórico sobre IA e tecnologias educacionais." },
+    { "semana": 5, "atividade": "Coleta de dados sobre exemplos de IA aplicados em contextos educacionais (desafios/oportunidades)." }
+  ]
+}
+```
+Extracted JSON from markdown: {
+  "explicacao": [
+    "O trabalho aborda a inserção da Inteligência Artificial no contexto educacional brasileiro.",
+    "Analisa os obstáculos técnicos, pedagógicos e éticos na implementação da IA na educação.",
+    "Explora as novas possibilidades de ensino e aprendizado proporcionadas pela IA.",
+    "Identifica o potencial transformador da IA para otimizar processos e resultados educacionais."
+  ],
+  "sugestoes": [
+    "Pesquisa sobre os desafios de privacidade e segurança de dados no uso de IA em plataformas educacionais.",
+    "Estudo de caso de plataformas de IA adaptativas e seus resultados no engajamento dos alunos.",
+    "Análise das oportunidades para a IA personalizar trilhas de aprendizado e avaliações.",
+    "Levantamento das barreiras para a capacitação de educadores na utilização de ferramentas de IA."
+  ],
+  "dica": "Concentrar-se em exemplos práticos e estudos de caso que ilustrem claramente os desafios e as oportunidades da IA na educação.",
+  "estrutura": [
+    "Introdução: Contextualização da IA no Cenário Educacional.",
+    "Fundamentação Teórica: Conceitos de IA e Suas Aplicações em Ambientes de Aprendizagem.",
+    "Desafios da Implementação da Inteligência Artificial na Educação.",
+    "Oportunidades e Inovações Trazidas pela IA para o Processo Educacional.",
+    "Metodologia para Análise de Casos de Aplicação da IA na Educação.",
+    "Discussão de Resultados: Balanço entre Desafios Superados e Oportunidades Exploradas.",
+    "Considerações Finais e Perspectivas Futuras da IA na Educação."
+  ],
+  "cronograma": [
+    { "semana": 1, "atividade": "Revisão bibliográfica inicial sobre desafios da IA na educação." },
+    { "semana": 2, "atividade": "Pesquisa de casos de sucesso de aplicação de IA para identificar oportunidades." },
+    { "semana": 3, "atividade": "Definição do escopo específico e objetivos relacionados aos desafios e oportunidades." },
+    { "semana": 4, "atividade": "Elaboração do referencial teórico sobre IA e tecnologias educacionais." },
+    { "semana": 5, "atividade": "Coleta de dados sobre exemplos de IA aplicados em contextos educacionais (desafios/oportunidades)." }
+  ]
+}
+Erro ao fazer parse do JSON: expected ',' or ']' after array value at line 38 column 119
+Resultado bruto: ```json
+{
+  "estrutura": [
+    "1. INTRODUÇÃO",
+    "1.1 Contextualização da Inteligência Artificial e seu potencial na Educação",
+    "1.2 Justificativa para a análise de desafios e oportunidades da IA no contexto educacional",
+    "1.3 Objetivos: Analisar os principais desafios e oportunidades da aplicação de IA na Educação",
+    "1.4 Metodologia breve para o estudo da IA na Educação",
+    "2. REFERENCIAL TEÓRICO",
+    "2.1 Fundamentos da Inteligência Artificial e suas aplicações gerais",
+    "2.2 Conceitos de Educação 4.0 e tecnologias digitais no ensino",
+    "2.3 Aplicações atuais da Inteligência Artificial na Educação (tutores inteligentes, personalização, avaliação adaptativa)",
+    "2.4 Marco teórico sobre desafios e oportunidades da inovação tecnológica na educação",
+    "3. METODOLOGIA",
+    "3.1 Tipo de pesquisa: Revisão bibliográfica sistemática sobre IA na Educação",
+    "3.2 Estratégias de busca e seleção de literatura (bases de dados, palavras-chave como 'IA na educação', 'desafios IA educação', 'oportunidades IA educação')",
+    "3.3 Critérios de inclusão e exclusão de artigos, teses e relatórios",
+    "3.4 Procedimentos de análise de conteúdo para identificar desafios e oportunidades",
+    "4. RESULTADOS E DISCUSSÃO",
+    "4.1 Apresentação dos principais Desafios da IA na Educação",
+    "4.1.1 Desafios éticos e de privacidade de dados",
+    "4.1.2 Desafios pedagógicos e de formação docente",
+    "4.1.3 Desafios tecnológicos e de infraestrutura",
+    "4.1.4 Desafios de equidade e acesso",
+    "4.2 Apresentação das principais Oportunidades da IA na Educação",
+    "4.2.1 Oportunidades de personalização do ensino-aprendizagem",
+    "4.2.2 Oportunidades de automação e otimização de tarefas administrativas",
+    "4.2.3 Oportunidades de análise de dados e feedback adaptativo",
+    "4.2.4 Oportunidades de desenvolvimento de novas metodologias e recursos didáticos",
+    "4.3 Discussão integrada dos desafios e oportunidades e suas implicações para o futuro da educação",
+    "5. CONSIDERAÇÕES FINAIS",
+    "5.1 Conclusões sobre a dualidade entre desafios e oportunidades da IA na Educação",
+    "5.2 Limitações do estudo realizado sobre o tema",
+    "5.3 Sugestões para pesquisas futuras sobre a aplicação da IA na Educação",
+    "REFERÊNCIAS",
+    "APÊNDICES",
+    "ANEXOS"
+  ],
+  "cronograma": [
+    { "semana": 1, "atividade": "Definição do escopo específico dos desafios e oportunidades da IA na Educação" },
+    { "semana": 2, "
+[dotenv] Set [36mDEVISE_JWT_SECRET_KEY[0m, [36mGOOGLE_CLIENT_ID[0m, [36mGOOGLE_CLIENT_SECRET[0m, [36mGEMINI_API_KEY[0m, [36mDATABASE_URL[0m, [36mRAILS_MASTER_KEY[0m, and [36mSECRET_KEY_BASE[0m
+[dotenv] Loaded [33m.env[0m
+[dotenv] Loaded [33m.env[0m
+Started POST "/api/tcc/criar.json" for ::1 at 2025-10-12 17:15:56 -0300
+Processing by Api::TccController#criar as JSON
+  Parameters: {"nome"=>"João Silva", "faculdade"=>"Universidade Federal", "curso"=>"desenvolvimento-de-sistemas", "materia"=>"TCC", "tema"=>"Aplicação de Inteligência Artificial na Educação: Desafios e Oportunidades", "tipo_trabalho"=>"tcc", "tcc"=>{"nome"=>"João Silva", "faculdade"=>"Universidade Federal", "curso"=>"desenvolvimento-de-sistemas", "materia"=>"TCC", "tema"=>"Aplicação de Inteligência Artificial na Educação: Desafios e Oportunidades", "tipo_trabalho"=>"tcc"}}
+Completed 200 OK in 2ms (Views: 0.3ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/api/tcc/criar.json" for ::1 at 2025-10-12 17:17:20 -0300
+Processing by Api::TccController#criar as JSON
+  Parameters: {"nome"=>"Maria Santos", "faculdade"=>"Universidade Estadual", "curso"=>"engenharia-de-software", "materia"=>"TCC", "tema"=>"Desenvolvimento de Aplicações Mobile com React Native: Análise de Performance e Usabilidade", "tipo_trabalho"=>"tcc", "tcc"=>{"nome"=>"Maria Santos", "faculdade"=>"Universidade Estadual", "curso"=>"engenharia-de-software", "materia"=>"TCC", "tema"=>"Desenvolvimento de Aplicações Mobile com React Native: Análise de Performance e Usabilidade", "tipo_trabalho"=>"tcc"}}
+Erro ao fazer parse do JSON: unexpected character: '```json' at line 1 column 1
+Resultado bruto: ```json
+{
+  "estrutura": [
+    "1. INTRODUÇÃO",
+    "1.1 Contextualização do crescimento de aplicações mobile e do uso de React Native",
+    "1.2 Justificativa para a análise de performance e usabilidade em aplicações React Native",
+    "1.3 Objetivos específicos da análise de performance e usabilidade em aplicações React Native",
+    "1.4 Metodologia de pesquisa preliminar para o estudo de React Native",
+    "2. REFERENCIAL TEÓRICO",
+    "2.1 Fundamentos do Desenvolvimento Mobile e Cross-Platform com React Native",
+    "2.1.1 Arquitetura e componentes do React Native",
+    "2.1.2 Comparativo entre desenvolvimento nativo e React Native",
+    "2.2 Conceitos de Performance em Aplicações Mobile",
+    "2.2.1 Métricas de performance (uso de CPU, RAM, bateria, tempo de carregamento, FPS)",
+    "2.2.2 Fatores que afetam a performance em React Native",
+    "2.3 Conceitos de Usabilidade em Aplicações Mobile",
+    "2.3.1 Princípios de usabilidade (heurísticas de Nielsen, UX/UI)",
+    "2.3.2 Métodos de avaliação de usabilidade em contextos mobile",
+    "2
+Completed 200 OK in 22936ms (Views: 1.7ms | ActiveRecord: 774.8ms (0 queries, 0 cached) | GC: 1.2ms)
+
+
+[dotenv] Set [36mDEVISE_JWT_SECRET_KEY[0m, [36mGOOGLE_CLIENT_ID[0m, [36mGOOGLE_CLIENT_SECRET[0m, [36mGEMINI_API_KEY[0m, [36mDATABASE_URL[0m, [36mRAILS_MASTER_KEY[0m, and [36mSECRET_KEY_BASE[0m
+[dotenv] Loaded [33m.env[0m
+[dotenv] Loaded [33m.env[0m
+Started GET "/api/tcc/tcc-1760290771636" for 127.0.0.1 at 2025-10-12 17:19:57 -0300
+Processing by Api::TccController#show as JSON
+  Parameters: {"id"=>"tcc-1760290771636", "tcc"=>{}}
+Completed 401 Unauthorized in 19ms (ActiveRecord: 422.1ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/api/work/tcc-1760290771636/content" for 127.0.0.1 at 2025-10-12 17:20:06 -0300
+Processing by Api::WorkContentController#content as JSON
+  Parameters: {"id"=>"tcc-1760290771636", "work_content"=>{}}
+Completed 401 Unauthorized in 1ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/api/work/tcc-1760290771636/content" for 127.0.0.1 at 2025-10-12 17:20:06 -0300
+Processing by Api::WorkContentController#content as JSON
+  Parameters: {"id"=>"tcc-1760290771636", "work_content"=>{}}
+Completed 401 Unauthorized in 2ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/api/work/tcc-1760290771636/save_content" for 127.0.0.1 at 2025-10-12 17:20:08 -0300
+Processing by Api::WorkContentController#save_content as JSON
+  Parameters: {"content"=>{"resumo"=>"", "introducao"=>"", "desenvolvimento"=>"", "conclusao"=>"", "referencias"=>"", "metodologia"=>"", "objetivos"=>"", "justificativa"=>"", "estrutura_0"=>"", "estrutura_1"=>"", "estrutura_2"=>"", "estrutura_3"=>"", "estrutura_4"=>"", "estrutura_5"=>"", "estrutura_6"=>"", "estrutura_7"=>"", "estrutura_8"=>"", "estrutura_9"=>"", "estrutura_10"=>"", "estrutura_11"=>"", "estrutura_12"=>"", "estrutura_13"=>"", "estrutura_14"=>"", "estrutura_15"=>"", "estrutura_16"=>"", "estrutura_17"=>"", "estrutura_18"=>"", "estrutura_19"=>"", "estrutura_20"=>"", "estrutura_21"=>"", "estrutura_22"=>"", "estrutura_23"=>""}, "customFields"=>[], "fieldLabels"=>{}, "fieldOrder"=>["resumo", "introducao", "objetivos", "justificativa", "metodologia", "desenvolvimento", "conclusao", "referencias"], "id"=>"tcc-1760290771636", "work_content"=>{"content"=>{"resumo"=>"", "introducao"=>"", "desenvolvimento"=>"", "conclusao"=>"", "referencias"=>"", "metodologia"=>"", "objetivos"=>"", "justificativa"=>"", "estrutura_0"=>"", "estrutura_1"=>"", "estrutura_2"=>"", "estrutura_3"=>"", "estrutura_4"=>"", "estrutura_5"=>"", "estrutura_6"=>"", "estrutura_7"=>"", "estrutura_8"=>"", "estrutura_9"=>"", "estrutura_10"=>"", "estrutura_11"=>"", "estrutura_12"=>"", "estrutura_13"=>"", "estrutura_14"=>"", "estrutura_15"=>"", "estrutura_16"=>"", "estrutura_17"=>"", "estrutura_18"=>"", "estrutura_19"=>"", "estrutura_20"=>"", "estrutura_21"=>"", "estrutura_22"=>"", "estrutura_23"=>""}, "customFields"=>[], "fieldLabels"=>{}, "fieldOrder"=>["resumo", "introducao", "objetivos", "justificativa", "metodologia", "desenvolvimento", "conclusao", "referencias"]}}
+Completed 401 Unauthorized in 2ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/api/work/tcc-1760290771636/save_content" for 127.0.0.1 at 2025-10-12 17:20:22 -0300
+Processing by Api::WorkContentController#save_content as JSON
+  Parameters: {"content"=>{"resumo"=>"MARKETING DE INFLUÊNCIA E O IMPACTO NO CONSUMO DIGITAL: UMA ANÁLISE COM APOIO DE PROGRAMAÇÃO PARA COLETA DE DADOS EM REDES SOCIAIS", "introducao"=>"", "desenvolvimento"=>"", "conclusao"=>"", "referencias"=>"", "metodologia"=>"", "objetivos"=>"", "justificativa"=>"", "estrutura_0"=>"", "estrutura_1"=>"", "estrutura_2"=>"", "estrutura_3"=>"", "estrutura_4"=>"", "estrutura_5"=>"", "estrutura_6"=>"", "estrutura_7"=>"", "estrutura_8"=>"", "estrutura_9"=>"", "estrutura_10"=>"", "estrutura_11"=>"", "estrutura_12"=>"", "estrutura_13"=>"", "estrutura_14"=>"", "estrutura_15"=>"", "estrutura_16"=>"", "estrutura_17"=>"", "estrutura_18"=>"", "estrutura_19"=>"", "estrutura_20"=>"", "estrutura_21"=>"", "estrutura_22"=>"", "estrutura_23"=>""}, "customFields"=>[], "fieldLabels"=>{}, "fieldOrder"=>["resumo", "introducao", "objetivos", "justificativa", "metodologia", "desenvolvimento", "conclusao", "referencias"], "id"=>"tcc-1760290771636", "work_content"=>{"content"=>{"resumo"=>"MARKETING DE INFLUÊNCIA E O IMPACTO NO CONSUMO DIGITAL: UMA ANÁLISE COM APOIO DE PROGRAMAÇÃO PARA COLETA DE DADOS EM REDES SOCIAIS", "introducao"=>"", "desenvolvimento"=>"", "conclusao"=>"", "referencias"=>"", "metodologia"=>"", "objetivos"=>"", "justificativa"=>"", "estrutura_0"=>"", "estrutura_1"=>"", "estrutura_2"=>"", "estrutura_3"=>"", "estrutura_4"=>"", "estrutura_5"=>"", "estrutura_6"=>"", "estrutura_7"=>"", "estrutura_8"=>"", "estrutura_9"=>"", "estrutura_10"=>"", "estrutura_11"=>"", "estrutura_12"=>"", "estrutura_13"=>"", "estrutura_14"=>"", "estrutura_15"=>"", "estrutura_16"=>"", "estrutura_17"=>"", "estrutura_18"=>"", "estrutura_19"=>"", "estrutura_20"=>"", "estrutura_21"=>"", "estrutura_22"=>"", "estrutura_23"=>""}, "customFields"=>[], "fieldLabels"=>{}, "fieldOrder"=>["resumo", "introducao", "objetivos", "justificativa", "metodologia", "desenvolvimento", "conclusao", "referencias"]}}
+Completed 401 Unauthorized in 4ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/api/work/tcc-1760290771636/generate_content" for 127.0.0.1 at 2025-10-12 17:20:23 -0300
+Processing by Api::WorkContentController#generate_content as JSON
+  Parameters: {"field"=>"resumo", "user_ideas"=>"MARKETING DE INFLUÊNCIA E O IMPACTO NO CONSUMO DIGITAL: UMA ANÁLISE COM APOIO DE PROGRAMAÇÃO PARA COLETA DE DADOS EM REDES SOCIAIS", "id"=>"tcc-1760290771636", "work_content"=>{"field"=>"resumo", "user_ideas"=>"MARKETING DE INFLUÊNCIA E O IMPACTO NO CONSUMO DIGITAL: UMA ANÁLISE COM APOIO DE PROGRAMAÇÃO PARA COLETA DE DADOS EM REDES SOCIAIS"}}
+Completed 401 Unauthorized in 5ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/api/work/tcc-1760290771636/save_content" for 127.0.0.1 at 2025-10-12 17:20:25 -0300
+Processing by Api::WorkContentController#save_content as JSON
+  Parameters: {"content"=>{"resumo"=>"Este trabalho analisa a aplicação de Inteligência Artificial na educação, explorando suas potencialidades, desafios e impactos no processo de ensino-aprendizagem.", "introducao"=>"", "desenvolvimento"=>"", "conclusao"=>"", "referencias"=>"", "metodologia"=>"", "objetivos"=>"", "justificativa"=>"", "estrutura_0"=>"", "estrutura_1"=>"", "estrutura_2"=>"", "estrutura_3"=>"", "estrutura_4"=>"", "estrutura_5"=>"", "estrutura_6"=>"", "estrutura_7"=>"", "estrutura_8"=>"", "estrutura_9"=>"", "estrutura_10"=>"", "estrutura_11"=>"", "estrutura_12"=>"", "estrutura_13"=>"", "estrutura_14"=>"", "estrutura_15"=>"", "estrutura_16"=>"", "estrutura_17"=>"", "estrutura_18"=>"", "estrutura_19"=>"", "estrutura_20"=>"", "estrutura_21"=>"", "estrutura_22"=>"", "estrutura_23"=>""}, "customFields"=>[], "fieldLabels"=>{}, "fieldOrder"=>["resumo", "introducao", "objetivos", "justificativa", "metodologia", "desenvolvimento", "conclusao", "referencias"], "id"=>"tcc-1760290771636", "work_content"=>{"content"=>{"resumo"=>"Este trabalho analisa a aplicação de Inteligência Artificial na educação, explorando suas potencialidades, desafios e impactos no processo de ensino-aprendizagem.", "introducao"=>"", "desenvolvimento"=>"", "conclusao"=>"", "referencias"=>"", "metodologia"=>"", "objetivos"=>"", "justificativa"=>"", "estrutura_0"=>"", "estrutura_1"=>"", "estrutura_2"=>"", "estrutura_3"=>"", "estrutura_4"=>"", "estrutura_5"=>"", "estrutura_6"=>"", "estrutura_7"=>"", "estrutura_8"=>"", "estrutura_9"=>"", "estrutura_10"=>"", "estrutura_11"=>"", "estrutura_12"=>"", "estrutura_13"=>"", "estrutura_14"=>"", "estrutura_15"=>"", "estrutura_16"=>"", "estrutura_17"=>"", "estrutura_18"=>"", "estrutura_19"=>"", "estrutura_20"=>"", "estrutura_21"=>"", "estrutura_22"=>"", "estrutura_23"=>""}, "customFields"=>[], "fieldLabels"=>{}, "fieldOrder"=>["resumo", "introducao", "objetivos", "justificativa", "metodologia", "desenvolvimento", "conclusao", "referencias"]}}
+Completed 401 Unauthorized in 1ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/api/tcc/criar.json" for 127.0.0.1 at 2025-10-12 17:21:08 -0300
+Processing by Api::TccController#criar as JSON
+  Parameters: {"nome"=>"Ana Clara Lima Gomes", "faculdade"=>"Estácio de Sá", "curso"=>"publicidade", "materia"=>"publicidade", "tema"=>"MARKETING DE INFLUÊNCIA E O IMPACTO NO CONSUMO DIGITAL: UMA ANÁLISE COM APOIO DE PROGRAMAÇÃO PARA COLETA DE DADOS EM REDES SOCIAIS", "tipo_trabalho"=>"artigo", "tcc"=>{"nome"=>"Ana Clara Lima Gomes", "faculdade"=>"Estácio de Sá", "curso"=>"publicidade", "materia"=>"publicidade", "tema"=>"MARKETING DE INFLUÊNCIA E O IMPACTO NO CONSUMO DIGITAL: UMA ANÁLISE COM APOIO DE PROGRAMAÇÃO PARA COLETA DE DADOS EM REDES SOCIAIS", "tipo_trabalho"=>"artigo"}}
+Erro ao fazer parse do JSON: expected ',' or ']' after array value at line 24 column 180
+Resultado bruto: ```json
+{
+  "explicacao": [
+    "Aborda a relação entre o marketing de influência e seu efeito no consumo realizado digitalmente.",
+    "Foca na análise do impacto direto dos influenciadores no comportamento de compra online.",
+    "Enfatiza a aplicação de programação para coletar dados relevantes em plataformas de redes sociais.",
+    "Investiga como a coleta programática de dados pode desvendar padrões de consumo digital."
+  ],
+  "sugestoes": [
+    "Pesquisa sobre linguagens e bibliotecas de programação (ex: Python com Tweepy/Instaloader) para coleta de dados em redes sociais.",
+    "Estudo de métricas específicas de engajamento de influenciadores para correlacionar com decisões de consumo digital.",
+    "Análise de sentimentos em comentários de publicações de influenciadores utilizando ferramentas de processamento de linguagem natural.",
+    "Identificação de padrões de compra ou interesse em produtos/serviços a partir dos dados coletados programaticamente.",
+    "Mapeamento das estratégias de marketing de influência mais eficazes, baseando-se nos dados do consumo digital."
+  ],
+  "dica": "Invista tempo na aprendizagem e aplicação prática das habilidades de programação para uma coleta de dados eficaz e precisa nas redes sociais.",
+  "estrutura": [
+    "**Introdução:** Contextualização do marketing de influência e seu impacto no consumo digital, destacando a relevância da coleta de dados programática.",
+    "**Referencial Teórico:** Conceitos de marketing de influência, consumo digital, comportamento do consumidor online e fundamentos da coleta de dados em redes sociais via programação.",
+    "**Metodologia:** Detalhamento do processo de coleta de dados utilizando programação (linguagens, APIs, scripts), métodos de tratamento e análise dos dados coletados em redes sociais.",
+    "**Resultados e Discussão:** Apresentação dos dados obtidos por programação, análise do impacto do marketing de influência no consumo digital e interpretação das descobertas.",
+    "**Conclusão:** Síntese dos principais achados sobre o impacto no consumo digital e a contribuição da programação na análise de dados em redes sociais."
+  ],
+  "cronograma": [
+    { "semana": 1, "atividade": "Revisão bibliográfica sobre Marketing de Influência e consumo digital, com foco em dados e métricas." },
+    { "semana": 2, "atividade": "Pesquisa e seleção de ferramentas/linguagens de programação (ex: Python) para coleta de dados em redes sociais e estudo de APIs relevantes." },
+    { "semana": 3, "atividade": "Desenvolvimento e
+Erro ao fazer parse do JSON: unexpected character: '```json' at line 1 column 1
+Resultado bruto: ```json
+{
+  "estrutura": [
+    "1. INTRODUÇÃO",
+    "1.1 Contextualização do Marketing de Influência e o Consumo Digital",
+    "1.2 Justificativa para a análise do impacto com apoio de programação",
+    "1.3 Objetivos do estudo: Analisar o impacto do marketing de influência no consumo digital e a viabilidade da coleta de dados via programação",
+    "1.4 Metodologia breve para o artigo: Abordagem e ferramentas de programação",
+    "2. REFERENCIAL TEÓRICO",
+Completed 200 OK in 28443ms (Views: 0.3ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 22.7ms)
+
+
