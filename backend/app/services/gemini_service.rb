@@ -76,12 +76,21 @@ class GeminiService
     TXT
   ]
 
-  result = chat!(messages)
+  result = chat!(messages, max_output_tokens: 2000)
 
   begin
     # Tenta extrair JSON do resultado se estiver dentro de markdown
-    json_match = result.match(/```json\s*(\{.*?\})\s*```/m)
-    json_string = json_match ? json_match[1] : result
+    json_match = result.match(/```json\s*(\{[\s\S]*?\})\s*```/m)
+    if json_match
+      json_string = json_match[1]
+    else
+      # Tenta encontrar JSON sem markdown
+      json_match = result.match(/\{.*\}/m)
+      json_string = json_match ? json_match[0] : result
+    end
+    
+    # Remove any leading/trailing whitespace and newlines
+    json_string = json_string.strip
     
     parsed = JSON.parse(json_string)
     Rails.cache.write(cache_key, parsed, expires_in: 1.week)
@@ -212,8 +221,17 @@ class GeminiService
 
     begin
       # Tenta extrair JSON do resultado se estiver dentro de markdown
-      json_match = result.match(/```json\s*(\{.*?\})\s*```/m)
-      json_string = json_match ? json_match[1] : result
+      json_match = result.match(/```json\s*(\{[\s\S]*?\})\s*```/m)
+      if json_match
+        json_string = json_match[1]
+      else
+        # Tenta encontrar JSON sem markdown
+        json_match = result.match(/\{.*\}/m)
+        json_string = json_match ? json_match[0] : result
+      end
+      
+      # Remove any leading/trailing whitespace and newlines
+      json_string = json_string.strip
       
       parsed = JSON.parse(json_string)
       Rails.cache.write(cache_key, parsed, expires_in: 1.week)
