@@ -44,6 +44,24 @@ class GeminiService
     # Extrair o texto da resposta
     text = body.dig("candidates", 0, "content", "parts", 0, "text")
     
+    # Verificar se a resposta foi cortada por limite de tokens
+    finish_reason = body.dig("candidates", 0, "finishReason")
+    if finish_reason == "MAX_TOKENS"
+      Rails.logger.warn "Gemini API: Resposta cortada por limite de tokens. Tentando com menos tokens."
+      # Tentar novamente com menos tokens
+      response = @client.post("#{model}:generateContent") do |req|
+        req.body = {
+          contents: [{ role: "user", parts: [{ text: prompt }] }],
+          generationConfig: { maxOutputTokens: max_output_tokens / 2 }
+        }.to_json
+      end
+      
+      if response.success?
+        body = JSON.parse(response.body) rescue {}
+        text = body.dig("candidates", 0, "content", "parts", 0, "text")
+      end
+    end
+    
     if text.nil? || text.empty?
       Rails.logger.error "Gemini API: Resposta vazia ou inválida"
       Rails.logger.error "Response body: #{body}"
@@ -98,7 +116,7 @@ class GeminiService
     TXT
   ]
 
-  result = chat!(messages, max_output_tokens: 2000)
+  result = chat!(messages, max_output_tokens: 4000)
 
   begin
     # Verificar se o resultado contém erro
@@ -245,7 +263,7 @@ class GeminiService
       TXT
     ]
 
-    result = chat!(messages, max_output_tokens: 2000)
+    result = chat!(messages, max_output_tokens: 4000)
 
     begin
       # Verificar se o resultado contém erro

@@ -3313,3 +3313,15 @@ Gemini retornou erro: Erro: Resposta inválida da API
 Completed 500 Internal Server Error in 12173ms (Views: 0.8ms | ActiveRecord: 330.6ms (0 queries, 0 cached) | GC: 0.9ms)
 
 
+Started POST "/api/tcc/criar" for ::1 at 2025-10-18 22:17:47 -0300
+Processing by Api::TccController#criar as JSON
+  Parameters: {"nome"=>"Ana Clara", "faculdade"=>"Estácio", "curso"=>"Publicidade", "materia"=>"Publicidade", "tema"=>"Marketing de Influência", "tipo_trabalho"=>"artigo", "tcc"=>{"nome"=>"Ana Clara", "faculdade"=>"Estácio", "curso"=>"Publicidade", "materia"=>"Publicidade", "tema"=>"Marketing de Influência", "tipo_trabalho"=>"artigo"}}
+Completed 200 OK in 21286ms (Views: 1.2ms | ActiveRecord: 964.3ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/api/tcc/criar" for ::1 at 2025-10-18 22:25:21 -0300
+Processing by Api::TccController#criar as JSON
+  Parameters: {"nome"=>"Teste Frontend", "faculdade"=>"UF", "curso"=>"Pedagogia", "materia"=>"Metodologia", "tema"=>"Teste de tema para frontend", "tipo_trabalho"=>"TCC", "tcc"=>{"nome"=>"Teste Frontend", "faculdade"=>"UF", "curso"=>"Pedagogia", "materia"=>"Metodologia", "tema"=>"Teste de tema para frontend", "tipo_trabalho"=>"TCC"}}
+Completed 200 OK in 22764ms (Views: 2.1ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 8.4ms)
+
+
