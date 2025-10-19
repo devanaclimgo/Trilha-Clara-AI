@@ -119,24 +119,29 @@ export default function InserirDados({
                 return
               setIsLoading(true)
               try {
-                const res = await fetch(
-                  'http://localhost:4000/api/tcc/criar.json',
-                  {
-                    method: 'POST',
-                    headers: {
-                      'Content-Type': 'application/json',
-                      Accept: 'application/json',
-                    },
-                    body: JSON.stringify({
-                      nome: titulo,
-                      faculdade: 'Universidade', // Pode ser um campo do formulário
-                      curso: curso,
-                      materia: curso, // Usando curso como matéria por enquanto
-                      tema: tema,
-                      tipo_trabalho: tipoTrabalho,
-                    }),
+                const res = await fetch('http://localhost:4000/api/tcc/criar', {
+                  method: 'POST',
+                  headers: {
+                    'Content-Type': 'application/json',
+                    Accept: 'application/json',
                   },
-                )
+                  body: JSON.stringify({
+                    nome: titulo,
+                    faculdade: 'Universidade', // Pode ser um campo do formulário
+                    curso: curso,
+                    materia: curso, // Usando curso como matéria por enquanto
+                    tema: tema,
+                    tipo_trabalho: tipoTrabalho,
+                  }),
+                })
+
+                if (!res.ok) {
+                  const errorText = await res.text()
+                  console.error('API Error:', errorText)
+                  throw new Error(
+                    `Erro ao gerar TCC: ${res.status} - ${errorText}`,
+                  )
+                }
 
                 const tccData = await res.json()
 

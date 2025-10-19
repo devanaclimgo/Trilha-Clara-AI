@@ -192,7 +192,11 @@ export default function DashboardStartScreen() {
       })
 
       if (!response.ok) {
-        throw new Error('Erro ao gerar conteúdo')
+        const errorText = await response.text()
+        console.error('API Error:', errorText)
+        throw new Error(
+          `Erro ao gerar conteúdo: ${response.status} - ${errorText}`,
+        )
       }
 
       const apiData = await response.json()
