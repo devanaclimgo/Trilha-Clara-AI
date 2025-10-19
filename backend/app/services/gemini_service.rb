@@ -20,10 +20,21 @@ class GeminiService
   def chat!(messages, model: DEFAULT_MODEL, max_output_tokens: 1000)
     prompt = messages.map { |m| m[:content] }.join("\n")
 
+    # Verificar se o prompt é muito longo
+    if prompt.length > 100000 # Aproximadamente 25k tokens
+      Rails.logger.warn "Prompt muito longo (#{prompt.length} chars), truncando..."
+      prompt = prompt[0, 100000] + "\n\n[Prompt truncado para evitar limite de tokens]"
+    end
+
     response = @client.post("#{model}:generateContent") do |req|
       req.body = {
         contents: [{ role: "user", parts: [{ text: prompt }] }],
-        generationConfig: { maxOutputTokens: max_output_tokens }
+        generationConfig: { 
+          maxOutputTokens: max_output_tokens,
+          temperature: 0.7,
+          topP: 0.8,
+          topK: 40
+        }
       }.to_json
     end
 
@@ -38,7 +49,16 @@ class GeminiService
     # Verificar se há erro na resposta da API
     if body["error"]
       Rails.logger.error "Gemini API Error: #{body["error"]}"
-      return "Erro: #{body["error"]["message"] || 'Erro desconhecido da API'}"
+      error_message = body["error"]["message"] || 'Erro desconhecido da API'
+      
+      # Tratar erros específicos de limite de tokens
+      if error_message.include?("quota") || error_message.include?("limit")
+        return "Erro: Limite de uso da API atingido. Tente novamente mais tarde."
+      elsif error_message.include?("safety")
+        return "Erro: Conteúdo bloqueado por filtros de segurança. Tente reformular o tema."
+      else
+        return "Erro: #{error_message}"
+      end
     end
 
     # Extrair o texto da resposta
@@ -52,7 +72,12 @@ class GeminiService
       response = @client.post("#{model}:generateContent") do |req|
         req.body = {
           contents: [{ role: "user", parts: [{ text: prompt }] }],
-          generationConfig: { maxOutputTokens: max_output_tokens / 2 }
+          generationConfig: { 
+            maxOutputTokens: [max_output_tokens / 2, 500].max,
+            temperature: 0.7,
+            topP: 0.8,
+            topK: 40
+          }
         }.to_json
       end
       
@@ -76,6 +101,12 @@ class GeminiService
   cache_key = "gemini_simplify_#{Digest::MD5.hexdigest("#{enunciado}_#{curso}_#{tipo_trabalho}")}"
   cached = Rails.cache.read(cache_key)
   return cached if cached
+
+  # Implementar retry com backoff exponencial
+  max_retries = 3
+  retry_count = 0
+  
+  begin
 
   messages = [
     { role: "system", content: "Você ajuda estudantes brasileiros a organizar trabalhos acadêmicos. Sempre responda em português e em JSON válido com as chaves: explicacao, sugestoes, dica, estrutura, cronograma. FOQUE ESPECIFICAMENTE no tema detalhado fornecido pelo usuário." },
@@ -116,9 +147,8 @@ class GeminiService
     TXT
   ]
 
-  result = chat!(messages, max_output_tokens: 4000)
+    result = chat!(messages, max_output_tokens: 4000)
 
-  begin
     # Verificar se o resultado contém erro
     if result.start_with?("Erro:")
       Rails.logger.error "Gemini retornou erro: #{result}"
@@ -159,6 +189,16 @@ class GeminiService
     
     Rails.cache.write(cache_key, fallback_data, expires_in: 1.hour)
     fallback_data
+  rescue StandardError => e
+    retry_count += 1
+    if retry_count < max_retries
+      Rails.logger.warn "Tentativa #{retry_count} falhou, tentando novamente em #{2 ** retry_count} segundos..."
+      sleep(2 ** retry_count)
+      retry
+    else
+      Rails.logger.error "Todas as tentativas falharam: #{e.message}"
+      raise e
+    end
   end
   end
 

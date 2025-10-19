@@ -5,7 +5,26 @@ class Api::TccController < ApplicationController
   skip_before_action :authenticate_user!, only: [:test_export]
 
   rescue_from StandardError do |e|
-    render json: { error: e.message }, status: :internal_server_error
+    Rails.logger.error "TCC Controller Error: #{e.message}"
+    Rails.logger.error e.backtrace.join("\n")
+    
+    # Tratar erros específicos do Gemini
+    if e.message.include?("Limite de uso da API")
+      render json: { 
+        error: "Limite de uso da API do Gemini atingido. Tente novamente em alguns minutos.",
+        code: "GEMINI_QUOTA_EXCEEDED"
+      }, status: :service_unavailable
+    elsif e.message.include?("Conteúdo bloqueado")
+      render json: { 
+        error: "O tema pode ter sido bloqueado por filtros de segurança. Tente reformular o tema.",
+        code: "GEMINI_SAFETY_FILTER"
+      }, status: :bad_request
+    else
+      render json: { 
+        error: "Erro interno do servidor. Tente novamente.",
+        code: "INTERNAL_ERROR"
+      }, status: :internal_server_error
+    end
   end
 
   # POST /tcc/criar (compatibilidade com versão antiga)
