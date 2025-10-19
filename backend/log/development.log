@@ -3255,3 +3255,61 @@ Resultado bruto: ```json
 Completed 200 OK in 28443ms (Views: 0.3ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 22.7ms)
 
 
+[dotenv] Set [36mDEVISE_JWT_SECRET_KEY[0m, [36mGOOGLE_CLIENT_ID[0m, [36mGOOGLE_CLIENT_SECRET[0m, [36mGEMINI_API_KEY[0m, [36mDATABASE_URL[0m, [36mRAILS_MASTER_KEY[0m, and [36mSECRET_KEY_BASE[0m
+[dotenv] Loaded [33m.env[0m
+[dotenv] Loaded [33m.env[0m
+[dotenv] Set [36mDEVISE_JWT_SECRET_KEY[0m, [36mGOOGLE_CLIENT_ID[0m, [36mGOOGLE_CLIENT_SECRET[0m, [36mGEMINI_API_KEY[0m, [36mDATABASE_URL[0m, [36mRAILS_MASTER_KEY[0m, and [36mSECRET_KEY_BASE[0m
+[dotenv] Loaded [33m.env[0m
+[dotenv] Loaded [33m.env[0m
+[dotenv] Set [36mDEVISE_JWT_SECRET_KEY[0m, [36mGOOGLE_CLIENT_ID[0m, [36mGOOGLE_CLIENT_SECRET[0m, [36mGEMINI_API_KEY[0m, [36mDATABASE_URL[0m, [36mRAILS_MASTER_KEY[0m, and [36mSECRET_KEY_BASE[0m
+[dotenv] Loaded [33m.env[0m
+[dotenv] Loaded [33m.env[0m
+Erro ao fazer parse do JSON: unexpected character: '```json' at line 1 column 1
+Resultado bruto: ```json
+{
+  "estrutura": [
+    "ELEMENTOS PRÉ-TEXTUAIS (não numerados, geralmente)",
+    "Capa",
+    "Folha de Rosto",
+    "Resumo",
+    "Lista de
+Started POST "/api/tcc/criar" for ::1 at 2025-10-18 21:16:59 -0300
+  [1m[36mActiveRecord::SchemaMigration Load (92.9ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='Backend'*/[0m
+Processing by Api::TccController#criar as JSON
+  Parameters: {"nome"=>"Teste", "faculdade"=>"UF", "curso"=>"Pedagogia", "materia"=>"Metodologia", "tema"=>"Teste de tema", "tipo_trabalho"=>"TCC", "tcc"=>{"nome"=>"Teste", "faculdade"=>"UF", "curso"=>"Pedagogia", "materia"=>"Metodologia", "tema"=>"Teste de tema", "tipo_trabalho"=>"TCC"}}
+Completed 200 OK in 21275ms (Views: 5.6ms | ActiveRecord: 2807.4ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+[dotenv] Set [36mDEVISE_JWT_SECRET_KEY[0m, [36mGOOGLE_CLIENT_ID[0m, [36mGOOGLE_CLIENT_SECRET[0m, [36mGEMINI_API_KEY[0m, [36mDATABASE_URL[0m, [36mRAILS_MASTER_KEY[0m, and [36mSECRET_KEY_BASE[0m
+[dotenv] Loaded [33m.env[0m
+[dotenv] Loaded [33m.env[0m
+Started POST "/api/tcc/criar" for ::1 at 2025-10-18 21:18:11 -0300
+Processing by Api::TccController#criar as JSON
+  Parameters: {"nome"=>"Teste", "faculdade"=>"UF", "curso"=>"Pedagogia", "materia"=>"Metodologia", "tema"=>"Teste de tema", "tipo_trabalho"=>"TCC", "tcc"=>{"nome"=>"Teste", "faculdade"=>"UF", "curso"=>"Pedagogia", "materia"=>"Metodologia", "tema"=>"Teste de tema", "tipo_trabalho"=>"TCC"}}
+Completed 200 OK in 6ms (Views: 0.6ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/api/work/1/generate_content" for ::1 at 2025-10-18 21:18:25 -0300
+Processing by Api::WorkContentController#generate_content as JSON
+  Parameters: {"field"=>"resumo", "user_ideas"=>"teste", "id"=>"1", "work_content"=>{"field"=>"resumo", "user_ideas"=>"teste"}}
+Completed 401 Unauthorized in 11ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+[dotenv] Set [36mDEVISE_JWT_SECRET_KEY[0m, [36mGOOGLE_CLIENT_ID[0m, [36mGOOGLE_CLIENT_SECRET[0m, [36mGEMINI_API_KEY[0m, [36mDATABASE_URL[0m, [36mRAILS_MASTER_KEY[0m, and [36mSECRET_KEY_BASE[0m
+[dotenv] Loaded [33m.env[0m
+[dotenv] Loaded [33m.env[0m
+Started POST "/api/tcc/criar" for ::1 at 2025-10-18 21:19:46 -0300
+Processing by Api::TccController#criar as JSON
+  Parameters: {"nome"=>"Teste Final", "faculdade"=>"UF", "curso"=>"Pedagogia", "materia"=>"Metodologia", "tema"=>"Teste de tema final", "tipo_trabalho"=>"TCC", "tcc"=>{"nome"=>"Teste Final", "faculdade"=>"UF", "curso"=>"Pedagogia", "materia"=>"Metodologia", "tema"=>"Teste de tema final", "tipo_trabalho"=>"TCC"}}
+Completed 200 OK in 18827ms (Views: 1.0ms | ActiveRecord: 349.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/api/tcc/criar" for 127.0.0.1 at 2025-10-18 21:22:19 -0300
+Processing by Api::TccController#criar as JSON
+  Parameters: {"nome"=>"Ana Clara Lima Gomes", "faculdade"=>"Estácio de Sá", "curso"=>"publicidade", "materia"=>"publicidade", "tema"=>"MARKETING DE INFLUÊNCIA E O IMPACTO NO CONSUMO DIGITAL: UMA ANÁLISE COM APOIO DE PROGRAMAÇÃO PARA COLETA DE DADOS EM REDES SOCIAIS ", "tipo_trabalho"=>"artigo", "tcc"=>{"nome"=>"Ana Clara Lima Gomes", "faculdade"=>"Estácio de Sá", "curso"=>"publicidade", "materia"=>"publicidade", "tema"=>"MARKETING DE INFLUÊNCIA E O IMPACTO NO CONSUMO DIGITAL: UMA ANÁLISE COM APOIO DE PROGRAMAÇÃO PARA COLETA DE DADOS EM REDES SOCIAIS ", "tipo_trabalho"=>"artigo"}}
+Gemini API: Resposta vazia ou inválida
+Response body: {"candidates"=>[{"content"=>{"role"=>"model"}, "finishReason"=>"MAX_TOKENS", "index"=>0}], "usageMetadata"=>{"promptTokenCount"=>430, "totalTokenCount"=>2429, "promptTokensDetails"=>[{"modality"=>"TEXT", "tokenCount"=>430}], "thoughtsTokenCount"=>1999}, "modelVersion"=>"gemini-2.5-flash", "responseId"=>"SC_0aPLmHv7gz7IPpc3S4Qw"}
+Gemini retornou erro: Erro: Resposta inválida da API
+Completed 500 Internal Server Error in 12173ms (Views: 0.8ms | ActiveRecord: 330.6ms (0 queries, 0 cached) | GC: 0.9ms)
+
+

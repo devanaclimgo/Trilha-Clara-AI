@@ -175,7 +175,7 @@ export default function DashboardStartScreen() {
     // Chamar API real para gerar conteúdo pela IA
     try {
       // Chamar API do backend para gerar explicação, estrutura e cronograma
-      const response = await fetch('http://localhost:4000/api/tcc/criar.json', {
+      const response = await fetch('http://localhost:4000/api/tcc/criar', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

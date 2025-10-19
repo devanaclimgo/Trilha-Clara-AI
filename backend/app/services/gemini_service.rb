@@ -27,8 +27,30 @@ class GeminiService
       }.to_json
     end
 
+    # Verificar se a resposta foi bem-sucedida
+    unless response.success?
+      Rails.logger.error "Gemini API Error: #{response.status} - #{response.body}"
+      return "Erro: Falha na comunicação com a API do Gemini (#{response.status})"
+    end
+
     body = JSON.parse(response.body) rescue {}
-    body.dig("candidates", 0, "content", "parts", 0, "text") || "Erro: resposta inválida"
+    
+    # Verificar se há erro na resposta da API
+    if body["error"]
+      Rails.logger.error "Gemini API Error: #{body["error"]}"
+      return "Erro: #{body["error"]["message"] || 'Erro desconhecido da API'}"
+    end
+
+    # Extrair o texto da resposta
+    text = body.dig("candidates", 0, "content", "parts", 0, "text")
+    
+    if text.nil? || text.empty?
+      Rails.logger.error "Gemini API: Resposta vazia ou inválida"
+      Rails.logger.error "Response body: #{body}"
+      return "Erro: Resposta inválida da API"
+    end
+
+    text
   end
 
   # Simplificar enunciado
@@ -79,6 +101,12 @@ class GeminiService
   result = chat!(messages, max_output_tokens: 2000)
 
   begin
+    # Verificar se o resultado contém erro
+    if result.start_with?("Erro:")
+      Rails.logger.error "Gemini retornou erro: #{result}"
+      raise StandardError, result
+    end
+
     # Tenta extrair JSON do resultado se estiver dentro de markdown
     json_match = result.match(/```json\s*(\{[\s\S]*?\})\s*```/m)
     if json_match
@@ -220,6 +248,12 @@ class GeminiService
     result = chat!(messages, max_output_tokens: 2000)
 
     begin
+      # Verificar se o resultado contém erro
+      if result.start_with?("Erro:")
+        Rails.logger.error "Gemini retornou erro: #{result}"
+        raise StandardError, result
+      end
+
       # Tenta extrair JSON do resultado se estiver dentro de markdown
       json_match = result.match(/```json\s*(\{[\s\S]*?\})\s*```/m)
       if json_match
