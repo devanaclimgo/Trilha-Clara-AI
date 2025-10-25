@@ -3637,3 +3637,1028 @@ Completed 401 Unauthorized in 1ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | G
 [dotenv] Set [36mDEVISE_JWT_SECRET_KEY[0m, [36mGOOGLE_CLIENT_ID[0m, [36mGOOGLE_CLIENT_SECRET[0m, [36mGEMINI_API_KEY[0m, [36mDATABASE_URL[0m, [36mRAILS_MASTER_KEY[0m, and [36mSECRET_KEY_BASE[0m
 [dotenv] Loaded [33m.env[0m
 [dotenv] Loaded [33m.env[0m
+Started GET "/api/tcc/tcc-1761418584082" for 127.0.0.1 at 2025-10-25 16:13:23 -0300
+  [1m[36mActiveRecord::SchemaMigration Load (97.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='Backend'*/[0m
+Started GET "/api/work/tcc-1761418584082/content" for 127.0.0.1 at 2025-10-25 16:13:25 -0300
+Started GET "/api/work/tcc-1761418584082/content" for 127.0.0.1 at 2025-10-25 16:13:25 -0300
+Processing by Api::TccController#show as JSON
+Processing by Api::WorkContentController#content as JSON
+Processing by Api::WorkContentController#content as JSON
+  Parameters: {"id"=>"tcc-1761418584082", "tcc"=>{}}
+  Parameters: {"id"=>"tcc-1761418584082", "work_content"=>{}}
+  Parameters: {"id"=>"tcc-1761418584082", "work_content"=>{}}
+Completed 401 Unauthorized in 14ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Completed 401 Unauthorized in 17ms (ActiveRecord: 2943.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Completed 401 Unauthorized in 2ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/api/work/tcc-1761418584082/save_content" for 127.0.0.1 at 2025-10-25 16:13:29 -0300
+Processing by Api::WorkContentController#save_content as JSON
+  Parameters: {"content"=>{"resumo"=>"", "introducao"=>"", "desenvolvimento"=>"", "conclusao"=>"", "referencias"=>"", "metodologia"=>"", "objetivos"=>"", "justificativa"=>"", "estrutura_0"=>"", "estrutura_1"=>"", "estrutura_2"=>"", "estrutura_3"=>"", "estrutura_4"=>"", "estrutura_5"=>"", "estrutura_6"=>"", "estrutura_7"=>"", "estrutura_8"=>"", "estrutura_9"=>"", "estrutura_10"=>"", "estrutura_11"=>"", "estrutura_12"=>"", "estrutura_13"=>"", "estrutura_14"=>"", "estrutura_15"=>"", "estrutura_16"=>"", "estrutura_17"=>"", "estrutura_18"=>"", "estrutura_19"=>"", "estrutura_20"=>"", "estrutura_21"=>"", "estrutura_22"=>"", "estrutura_23"=>""}, "customFields"=>[], "fieldLabels"=>{}, "fieldOrder"=>["resumo", "introducao", "objetivos", "justificativa", "metodologia", "desenvolvimento", "conclusao", "referencias"], "id"=>"tcc-1761418584082", "work_content"=>{"content"=>{"resumo"=>"", "introducao"=>"", "desenvolvimento"=>"", "conclusao"=>"", "referencias"=>"", "metodologia"=>"", "objetivos"=>"", "justificativa"=>"", "estrutura_0"=>"", "estrutura_1"=>"", "estrutura_2"=>"", "estrutura_3"=>"", "estrutura_4"=>"", "estrutura_5"=>"", "estrutura_6"=>"", "estrutura_7"=>"", "estrutura_8"=>"", "estrutura_9"=>"", "estrutura_10"=>"", "estrutura_11"=>"", "estrutura_12"=>"", "estrutura_13"=>"", "estrutura_14"=>"", "estrutura_15"=>"", "estrutura_16"=>"", "estrutura_17"=>"", "estrutura_18"=>"", "estrutura_19"=>"", "estrutura_20"=>"", "estrutura_21"=>"", "estrutura_22"=>"", "estrutura_23"=>""}, "customFields"=>[], "fieldLabels"=>{}, "fieldOrder"=>["resumo", "introducao", "objetivos", "justificativa", "metodologia", "desenvolvimento", "conclusao", "referencias"]}}
+Completed 401 Unauthorized in 5ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/api/work/tcc-1761418584082/save_content" for 127.0.0.1 at 2025-10-25 16:13:52 -0300
+Processing by Api::WorkContentController#save_content as JSON
+  Parameters: {"content"=>{"resumo"=>"", "introducao"=>"", "desenvolvimento"=>"", "conclusao"=>"", "referencias"=>"", "metodologia"=>"", "objetivos"=>"", "justificativa"=>"", "estrutura_0"=>"", "estrutura_1"=>"", "estrutura_2"=>"", "estrutura_3"=>"", "estrutura_4"=>"", "estrutura_5"=>"", "estrutura_6"=>"", "estrutura_7"=>"", "estrutura_8"=>"", "estrutura_9"=>"", "estrutura_10"=>"", "estrutura_11"=>"", "estrutura_12"=>"", "estrutura_13"=>"", "estrutura_14"=>"", "estrutura_15"=>"", "estrutura_16"=>"", "estrutura_17"=>"", "estrutura_18"=>"", "estrutura_19"=>"", "estrutura_20"=>"", "estrutura_21"=>"", "estrutura_22"=>"", "estrutura_23"=>""}, "customFields"=>[], "fieldLabels"=>{}, "fieldOrder"=>["resumo", "introducao", "objetivos", "justificativa", "metodologia", "desenvolvimento", "conclusao", "referencias"], "id"=>"tcc-1761418584082", "work_content"=>{"content"=>{"resumo"=>"", "introducao"=>"", "desenvolvimento"=>"", "conclusao"=>"", "referencias"=>"", "metodologia"=>"", "objetivos"=>"", "justificativa"=>"", "estrutura_0"=>"", "estrutura_1"=>"", "estrutura_2"=>"", "estrutura_3"=>"", "estrutura_4"=>"", "estrutura_5"=>"", "estrutura_6"=>"", "estrutura_7"=>"", "estrutura_8"=>"", "estrutura_9"=>"", "estrutura_10"=>"", "estrutura_11"=>"", "estrutura_12"=>"", "estrutura_13"=>"", "estrutura_14"=>"", "estrutura_15"=>"", "estrutura_16"=>"", "estrutura_17"=>"", "estrutura_18"=>"", "estrutura_19"=>"", "estrutura_20"=>"", "estrutura_21"=>"", "estrutura_22"=>"", "estrutura_23"=>""}, "customFields"=>[], "fieldLabels"=>{}, "fieldOrder"=>["resumo", "introducao", "objetivos", "justificativa", "metodologia", "desenvolvimento", "conclusao", "referencias"]}}
+Completed 401 Unauthorized in 3ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/api/work/tcc-1761418584082/save_content" for 127.0.0.1 at 2025-10-25 16:13:58 -0300
+Processing by Api::WorkContentController#save_content as JSON
+  Parameters: {"content"=>{"resumo"=>"", "introducao"=>"", "desenvolvimento"=>"", "conclusao"=>"", "referencias"=>"", "metodologia"=>"", "objetivos"=>"", "justificativa"=>"", "estrutura_0"=>"", "estrutura_1"=>"", "estrutura_2"=>"", "estrutura_3"=>"", "estrutura_4"=>"", "estrutura_5"=>"", "estrutura_6"=>"", "estrutura_7"=>"", "estrutura_8"=>"", "estrutura_9"=>"", "estrutura_10"=>"", "estrutura_11"=>"", "estrutura_12"=>"", "estrutura_13"=>"", "estrutura_14"=>"", "estrutura_15"=>"", "estrutura_16"=>"", "estrutura_17"=>"", "estrutura_18"=>"", "estrutura_19"=>"", "estrutura_20"=>"", "estrutura_21"=>"", "estrutura_22"=>"", "estrutura_23"=>""}, "customFields"=>[], "fieldLabels"=>{}, "fieldOrder"=>["resumo", "introducao", "objetivos", "justificativa", "metodologia", "desenvolvimento", "conclusao", "referencias"], "id"=>"tcc-1761418584082", "work_content"=>{"content"=>{"resumo"=>"", "introducao"=>"", "desenvolvimento"=>"", "conclusao"=>"", "referencias"=>"", "metodologia"=>"", "objetivos"=>"", "justificativa"=>"", "estrutura_0"=>"", "estrutura_1"=>"", "estrutura_2"=>"", "estrutura_3"=>"", "estrutura_4"=>"", "estrutura_5"=>"", "estrutura_6"=>"", "estrutura_7"=>"", "estrutura_8"=>"", "estrutura_9"=>"", "estrutura_10"=>"", "estrutura_11"=>"", "estrutura_12"=>"", "estrutura_13"=>"", "estrutura_14"=>"", "estrutura_15"=>"", "estrutura_16"=>"", "estrutura_17"=>"", "estrutura_18"=>"", "estrutura_19"=>"", "estrutura_20"=>"", "estrutura_21"=>"", "estrutura_22"=>"", "estrutura_23"=>""}, "customFields"=>[], "fieldLabels"=>{}, "fieldOrder"=>["resumo", "introducao", "objetivos", "justificativa", "metodologia", "desenvolvimento", "conclusao", "referencias"]}}
+Completed 401 Unauthorized in 6ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/api/work/tcc-1761418584082/save_content" for 127.0.0.1 at 2025-10-25 16:14:05 -0300
+Processing by Api::WorkContentController#save_content as JSON
+  Parameters: {"content"=>{"resumo"=>"", "introducao"=>"", "desenvolvimento"=>"", "conclusao"=>"", "referencias"=>"", "metodologia"=>"", "objetivos"=>"", "justificativa"=>"", "estrutura_0"=>"", "estrutura_1"=>"", "estrutura_2"=>"", "estrutura_3"=>"", "estrutura_4"=>"", "estrutura_5"=>"", "estrutura_6"=>"", "estrutura_7"=>"", "estrutura_8"=>"", "estrutura_9"=>"", "estrutura_10"=>"", "estrutura_11"=>"", "estrutura_12"=>"", "estrutura_13"=>"", "estrutura_14"=>"", "estrutura_15"=>"", "estrutura_16"=>"", "estrutura_17"=>"", "estrutura_18"=>"", "estrutura_19"=>"", "estrutura_20"=>"", "estrutura_21"=>"", "estrutura_22"=>"", "estrutura_23"=>""}, "id"=>"tcc-1761418584082", "work_content"=>{"content"=>{"resumo"=>"", "introducao"=>"", "desenvolvimento"=>"", "conclusao"=>"", "referencias"=>"", "metodologia"=>"", "objetivos"=>"", "justificativa"=>"", "estrutura_0"=>"", "estrutura_1"=>"", "estrutura_2"=>"", "estrutura_3"=>"", "estrutura_4"=>"", "estrutura_5"=>"", "estrutura_6"=>"", "estrutura_7"=>"", "estrutura_8"=>"", "estrutura_9"=>"", "estrutura_10"=>"", "estrutura_11"=>"", "estrutura_12"=>"", "estrutura_13"=>"", "estrutura_14"=>"", "estrutura_15"=>"", "estrutura_16"=>"", "estrutura_17"=>"", "estrutura_18"=>"", "estrutura_19"=>"", "estrutura_20"=>"", "estrutura_21"=>"", "estrutura_22"=>"", "estrutura_23"=>""}}}
+Completed 401 Unauthorized in 2ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+[dotenv] Set [36mDEVISE_JWT_SECRET_KEY[0m, [36mGOOGLE_CLIENT_ID[0m, [36mGOOGLE_CLIENT_SECRET[0m, [36mGEMINI_API_KEY[0m, [36mDATABASE_URL[0m, [36mRAILS_MASTER_KEY[0m, and [36mSECRET_KEY_BASE[0m
+[dotenv] Loaded [33m.env[0m
+[dotenv] Loaded [33m.env[0m
+Started GET "/api/tcc/tcc-1761418584082" for 127.0.0.1 at 2025-10-25 16:22:06 -0300
+  [1m[36mActiveRecord::SchemaMigration Load (144.9ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='Backend'*/[0m
+Processing by Api::TccController#show as JSON
+  Parameters: {"id"=>"tcc-1761418584082", "tcc"=>{}}
+Completed 401 Unauthorized in 10ms (ActiveRecord: 2836.1ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/api/work/tcc-1761418584082/content" for 127.0.0.1 at 2025-10-25 16:22:47 -0300
+Started GET "/api/work/tcc-1761418584082/content" for 127.0.0.1 at 2025-10-25 16:22:47 -0300
+Processing by Api::WorkContentController#content as JSON
+  Parameters: {"id"=>"tcc-1761418584082"}
+Completed 401 Unauthorized in 5ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Processing by Api::WorkContentController#content as JSON
+  Parameters: {"id"=>"tcc-1761418584082"}
+Completed 401 Unauthorized in 5ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/auth/refresh" for 127.0.0.1 at 2025-10-25 16:22:47 -0300
+Processing by Auth::SessionsController#refresh as JSON
+  Parameters: {"session"=>{}}
+Completed 500 Internal Server Error in 34ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+  
+NameError (undefined local variable or method `cookies' for an instance of Auth::SessionsController):
+  
+app/controllers/auth/sessions_controller.rb:30:in `refresh'
+Started POST "/auth/refresh" for 127.0.0.1 at 2025-10-25 16:22:48 -0300
+Processing by Auth::SessionsController#refresh as JSON
+  Parameters: {"session"=>{}}
+Completed 500 Internal Server Error in 1ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+  
+NameError (undefined local variable or method `cookies' for an instance of Auth::SessionsController):
+  
+app/controllers/auth/sessions_controller.rb:30:in `refresh'
+Started POST "/auth/google" for 127.0.0.1 at 2025-10-25 16:23:07 -0300
+Processing by Auth::GoogleController#create as JSON
+  Parameters: {"email"=>"[FILTERED]", "name"=>"Ana Gomes", "google_id"=>"114945441299992670307", "google"=>{"email"=>"[FILTERED]", "name"=>"Ana Gomes", "google_id"=>"114945441299992670307"}}
+Google auth attempt for email: anaclimgo@gmail.com, name: Ana Gomes
+  [1m[36mUser Load (57.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = 'anaclimgo@gmail.com' LIMIT 1 /*action='create',application='Backend',controller='google'*/[0m
+  ↳ app/controllers/auth/google_controller.rb:16:in `create'
+  [1m[36mTRANSACTION (48.5ms)[0m  [1m[35mBEGIN /*action='create',application='Backend',controller='google'*/[0m
+  ↳ app/controllers/auth/google_controller.rb:16:in `create'
+  [1m[36mUser Exists? (48.7ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = 'anaclimgo@gmail.com' LIMIT 1 /*action='create',application='Backend',controller='google'*/[0m
+  ↳ app/controllers/auth/google_controller.rb:16:in `create'
+  [1m[36mUser Create (69.7ms)[0m  [1m[32mINSERT INTO "users" ("email", "encrypted_password", "reset_password_token", "reset_password_sent_at", "remember_created_at", "name", "created_at", "updated_at", "phone") VALUES ('anaclimgo@gmail.com', '$2a$12$1gIYLDq5VcTdFojDDNlkN.41mlt3CejzRMCu8eHQ8PCj5gDfn.RJ2', NULL, NULL, NULL, 'Ana Gomes', '2025-10-25 19:23:07.895120', '2025-10-25 19:23:07.895120', NULL) RETURNING "id" /*action='create',application='Backend',controller='google'*/[0m
+  ↳ app/controllers/auth/google_controller.rb:16:in `create'
+  [1m[36mTRANSACTION (52.9ms)[0m  [1m[35mCOMMIT /*action='create',application='Backend',controller='google'*/[0m
+  ↳ app/controllers/auth/google_controller.rb:16:in `create'
+User found/created: true, ID: 2
+User signed in successfully
+JWT token from warden: YES
+Completed 200 OK in 962ms (Views: 0.3ms | ActiveRecord: 542.0ms (3 queries, 0 cached) | GC: 14.7ms)
+
+
+Started GET "/api/tcc/tcc-1761418584082" for 127.0.0.1 at 2025-10-25 16:23:16 -0300
+Processing by Api::TccController#show as JSON
+  Parameters: {"id"=>"tcc-1761418584082", "tcc"=>{}}
+  [1m[36mUser Load (107.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 2 LIMIT 1 /*action='show',application='Backend',controller='tcc'*/[0m
+  [1m[36mJwtDenylist Exists? (79.2ms)[0m  [1m[34mSELECT 1 AS one FROM "jwt_denylists" WHERE "jwt_denylists"."jti" = '6ffd66f6-ef9a-4b18-a086-26748f432b33' LIMIT 1 /*action='show',application='Backend',controller='tcc'*/[0m
+  [1m[36mTcc Load (156.4ms)[0m  [1m[34mSELECT "tccs".* FROM "tccs" WHERE "tccs"."user_id" = 2 AND "tccs"."id" = NULL LIMIT 1 /*action='show',application='Backend',controller='tcc'*/[0m
+  ↳ app/controllers/api/tcc_controller.rb:320:in `set_tcc'
+TCC Controller Error: Couldn't find Tcc with 'id'="tcc-1761418584082" [WHERE "tccs"."user_id" = $1]
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/activerecord-8.0.2.1/lib/active_record/relation/finder_methods.rb:429:in `raise_record_not_found_exception!'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/activerecord-8.0.2.1/lib/active_record/relation/finder_methods.rb:537:in `find_one'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/activerecord-8.0.2.1/lib/active_record/relation/finder_methods.rb:514:in `find_with_ids'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/activerecord-8.0.2.1/lib/active_record/relation/finder_methods.rb:100:in `find'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/activerecord-8.0.2.1/lib/active_record/associations/collection_association.rb:113:in `find'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/activerecord-8.0.2.1/lib/active_record/associations/collection_proxy.rb:140:in `find'
+/home/ana/Documents/Programming/Trilha Clara/AI TCC Effortless/backend/app/controllers/api/tcc_controller.rb:320:in `set_tcc'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/activesupport-8.0.2.1/lib/active_support/callbacks.rb:361:in `block in make_lambda'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/activesupport-8.0.2.1/lib/active_support/callbacks.rb:178:in `block in call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/abstract_controller/callbacks.rb:34:in `block (2 levels) in <module:Callbacks>'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/activesupport-8.0.2.1/lib/active_support/callbacks.rb:179:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/activesupport-8.0.2.1/lib/active_support/callbacks.rb:559:in `block in invoke_before'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/activesupport-8.0.2.1/lib/active_support/callbacks.rb:559:in `each'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/activesupport-8.0.2.1/lib/active_support/callbacks.rb:559:in `invoke_before'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/activesupport-8.0.2.1/lib/active_support/callbacks.rb:108:in `run_callbacks'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/abstract_controller/callbacks.rb:260:in `process_action'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/action_controller/metal/rescue.rb:27:in `process_action'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/action_controller/metal/instrumentation.rb:76:in `block in process_action'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/activesupport-8.0.2.1/lib/active_support/notifications.rb:210:in `block in instrument'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/activesupport-8.0.2.1/lib/active_support/notifications/instrumenter.rb:58:in `instrument'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/activesupport-8.0.2.1/lib/active_support/notifications.rb:210:in `instrument'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/action_controller/metal/instrumentation.rb:75:in `process_action'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/action_controller/metal/params_wrapper.rb:259:in `process_action'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/activerecord-8.0.2.1/lib/active_record/railties/controller_runtime.rb:39:in `process_action'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/abstract_controller/base.rb:163:in `process'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/action_controller/metal.rb:252:in `dispatch'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/action_controller/metal.rb:335:in `dispatch'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/action_dispatch/routing/route_set.rb:67:in `dispatch'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/action_dispatch/routing/route_set.rb:50:in `serve'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/action_dispatch/journey/router.rb:53:in `block in serve'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/action_dispatch/journey/router.rb:133:in `block in find_routes'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/action_dispatch/journey/router.rb:126:in `each'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/action_dispatch/journey/router.rb:126:in `find_routes'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/action_dispatch/journey/router.rb:34:in `serve'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/action_dispatch/routing/route_set.rb:908:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/railties-8.0.2.1/lib/rails/engine/lazy_route_set.rb:68:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/omniauth-2.1.3/lib/omniauth/strategy.rb:202:in `call!'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/omniauth-2.1.3/lib/omniauth/strategy.rb:169:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/omniauth-2.1.3/lib/omniauth/builder.rb:44:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/warden-jwt_auth-0.11.0/lib/warden/jwt_auth/middleware/token_dispatcher.rb:20:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/warden-jwt_auth-0.11.0/lib/warden/jwt_auth/middleware/revocation_manager.rb:21:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/rack-3.2.0/lib/rack/builder.rb:283:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/warden-jwt_auth-0.11.0/lib/warden/jwt_auth/middleware.rb:22:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/action_dispatch/middleware/cookies.rb:706:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/rack-session-2.1.1/lib/rack/session/abstract/id.rb:274:in `context'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/rack-session-2.1.1/lib/rack/session/abstract/id.rb:268:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/warden-1.2.9/lib/warden/manager.rb:36:in `block in call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/warden-1.2.9/lib/warden/manager.rb:34:in `catch'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/warden-1.2.9/lib/warden/manager.rb:34:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/rack-3.2.0/lib/rack/etag.rb:29:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/rack-3.2.0/lib/rack/conditional_get.rb:31:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/rack-3.2.0/lib/rack/head.rb:15:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/activerecord-8.0.2.1/lib/active_record/migration.rb:671:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/action_dispatch/middleware/callbacks.rb:31:in `block in call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/activesupport-8.0.2.1/lib/active_support/callbacks.rb:100:in `run_callbacks'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/action_dispatch/middleware/callbacks.rb:30:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/action_dispatch/middleware/executor.rb:16:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/action_dispatch/middleware/actionable_exceptions.rb:18:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/action_dispatch/middleware/debug_exceptions.rb:31:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/action_dispatch/middleware/show_exceptions.rb:32:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/railties-8.0.2.1/lib/rails/rack/logger.rb:41:in `call_app'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/railties-8.0.2.1/lib/rails/rack/logger.rb:29:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/action_dispatch/middleware/remote_ip.rb:96:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/action_dispatch/middleware/request_id.rb:34:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/rack-3.2.0/lib/rack/runtime.rb:24:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/action_dispatch/middleware/server_timing.rb:61:in `block in call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/action_dispatch/middleware/server_timing.rb:26:in `collect_events'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/action_dispatch/middleware/server_timing.rb:60:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/action_dispatch/middleware/executor.rb:16:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/action_dispatch/middleware/static.rb:27:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/rack-3.2.0/lib/rack/sendfile.rb:114:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/rack-cors-3.0.0/lib/rack/cors.rb:102:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/railties-8.0.2.1/lib/rails/engine.rb:535:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/puma-6.6.1/lib/puma/configuration.rb:279:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/puma-6.6.1/lib/puma/request.rb:99:in `block in handle_request'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/puma-6.6.1/lib/puma/thread_pool.rb:390:in `with_force_shutdown'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/puma-6.6.1/lib/puma/request.rb:98:in `handle_request'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/puma-6.6.1/lib/puma/server.rb:472:in `process_client'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/puma-6.6.1/lib/puma/server.rb:254:in `block in run'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/puma-6.6.1/lib/puma/thread_pool.rb:167:in `block in spawn_thread'
+Completed 500 Internal Server Error in 648ms (Views: 2.2ms | ActiveRecord: 481.0ms (3 queries, 0 cached) | GC: 4.6ms)
+
+
+Started GET "/api/work/tcc-1761418584082/content" for 127.0.0.1 at 2025-10-25 16:23:21 -0300
+Started GET "/api/work/tcc-1761418584082/content" for 127.0.0.1 at 2025-10-25 16:23:21 -0300
+Processing by Api::WorkContentController#content as JSON
+  Parameters: {"id"=>"tcc-1761418584082"}
+Processing by Api::WorkContentController#content as JSON
+  Parameters: {"id"=>"tcc-1761418584082"}
+  [1m[36mUser Load (103.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 2 LIMIT 1 /*action='content',application='Backend',controller='work_content'*/[0m
+  [1m[36mJwtDenylist Exists? (50.8ms)[0m  [1m[34mSELECT 1 AS one FROM "jwt_denylists" WHERE "jwt_denylists"."jti" = '6ffd66f6-ef9a-4b18-a086-26748f432b33' LIMIT 1 /*action='content',application='Backend',controller='work_content'*/[0m
+Completed 500 Internal Server Error in 207ms (Views: 1.1ms | ActiveRecord: 153.7ms (2 queries, 0 cached) | GC: 0.4ms)
+
+
+  [1m[36mUser Load (1627.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 2 LIMIT 1 /*action='content',application='Backend',controller='work_content'*/[0m
+  [1m[36mJwtDenylist Exists? (84.3ms)[0m  [1m[34mSELECT 1 AS one FROM "jwt_denylists" WHERE "jwt_denylists"."jti" = '6ffd66f6-ef9a-4b18-a086-26748f432b33' LIMIT 1 /*action='content',application='Backend',controller='work_content'*/[0m
+Completed 500 Internal Server Error in 1732ms (Views: 1.2ms | ActiveRecord: 2516.6ms (2 queries, 0 cached) | GC: 0.6ms)
+
+
+Started POST "/api/work/tcc-1761418584082/save_content" for 127.0.0.1 at 2025-10-25 16:23:24 -0300
+Processing by Api::WorkContentController#save_content as JSON
+  Parameters: {"content"=>{"resumo"=>"", "introducao"=>"", "desenvolvimento"=>"", "conclusao"=>"", "referencias"=>"", "metodologia"=>"", "objetivos"=>"", "justificativa"=>"", "estrutura_0"=>"", "estrutura_1"=>"", "estrutura_2"=>"", "estrutura_3"=>"", "estrutura_4"=>"", "estrutura_5"=>"", "estrutura_6"=>"", "estrutura_7"=>"", "estrutura_8"=>"", "estrutura_9"=>"", "estrutura_10"=>"", "estrutura_11"=>"", "estrutura_12"=>"", "estrutura_13"=>"", "estrutura_14"=>"", "estrutura_15"=>"", "estrutura_16"=>"", "estrutura_17"=>"", "estrutura_18"=>"", "estrutura_19"=>"", "estrutura_20"=>"", "estrutura_21"=>"", "estrutura_22"=>"", "estrutura_23"=>""}, "customFields"=>[], "fieldLabels"=>{}, "fieldOrder"=>["resumo", "introducao", "objetivos", "justificativa", "metodologia", "desenvolvimento", "conclusao", "referencias"], "id"=>"tcc-1761418584082", "work_content"=>{"content"=>{"resumo"=>"", "introducao"=>"", "desenvolvimento"=>"", "conclusao"=>"", "referencias"=>"", "metodologia"=>"", "objetivos"=>"", "justificativa"=>"", "estrutura_0"=>"", "estrutura_1"=>"", "estrutura_2"=>"", "estrutura_3"=>"", "estrutura_4"=>"", "estrutura_5"=>"", "estrutura_6"=>"", "estrutura_7"=>"", "estrutura_8"=>"", "estrutura_9"=>"", "estrutura_10"=>"", "estrutura_11"=>"", "estrutura_12"=>"", "estrutura_13"=>"", "estrutura_14"=>"", "estrutura_15"=>"", "estrutura_16"=>"", "estrutura_17"=>"", "estrutura_18"=>"", "estrutura_19"=>"", "estrutura_20"=>"", "estrutura_21"=>"", "estrutura_22"=>"", "estrutura_23"=>""}, "customFields"=>[], "fieldLabels"=>{}, "fieldOrder"=>["resumo", "introducao", "objetivos", "justificativa", "metodologia", "desenvolvimento", "conclusao", "referencias"]}}
+  [1m[36mUser Load (49.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 2 LIMIT 1 /*action='save_content',application='Backend',controller='work_content'*/[0m
+  [1m[36mJwtDenylist Exists? (129.1ms)[0m  [1m[34mSELECT 1 AS one FROM "jwt_denylists" WHERE "jwt_denylists"."jti" = '6ffd66f6-ef9a-4b18-a086-26748f432b33' LIMIT 1 /*action='save_content',application='Backend',controller='work_content'*/[0m
+Completed 500 Internal Server Error in 223ms (Views: 2.9ms | ActiveRecord: 178.7ms (2 queries, 0 cached) | GC: 1.2ms)
+
+
+Started GET "/api/work/tcc-1761418584082/content" for ::1 at 2025-10-25 16:24:37 -0300
+Processing by Api::WorkContentController#content as JSON
+  Parameters: {"id"=>"tcc-1761418584082", "work_content"=>{}}
+Completed 401 Unauthorized in 6ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/api/work/tcc-1761418584082/save_content" for 127.0.0.1 at 2025-10-25 16:26:35 -0300
+Processing by Api::WorkContentController#save_content as JSON
+  Parameters: {"content"=>{"resumo"=>"", "introducao"=>"", "desenvolvimento"=>"", "conclusao"=>"", "referencias"=>"", "metodologia"=>"", "objetivos"=>"", "justificativa"=>"", "estrutura_0"=>"", "estrutura_1"=>"", "estrutura_2"=>"", "estrutura_3"=>"", "estrutura_4"=>"", "estrutura_5"=>"", "estrutura_6"=>"", "estrutura_7"=>"", "estrutura_8"=>"", "estrutura_9"=>"", "estrutura_10"=>"", "estrutura_11"=>"", "estrutura_12"=>"", "estrutura_13"=>"", "estrutura_14"=>"", "estrutura_15"=>"", "estrutura_16"=>"", "estrutura_17"=>"", "estrutura_18"=>"", "estrutura_19"=>"", "estrutura_20"=>"", "estrutura_21"=>"", "estrutura_22"=>"", "estrutura_23"=>""}, "customFields"=>[], "fieldLabels"=>{}, "fieldOrder"=>["resumo", "introducao", "objetivos", "justificativa", "metodologia", "desenvolvimento", "conclusao", "referencias"], "id"=>"tcc-1761418584082", "work_content"=>{"content"=>{"resumo"=>"", "introducao"=>"", "desenvolvimento"=>"", "conclusao"=>"", "referencias"=>"", "metodologia"=>"", "objetivos"=>"", "justificativa"=>"", "estrutura_0"=>"", "estrutura_1"=>"", "estrutura_2"=>"", "estrutura_3"=>"", "estrutura_4"=>"", "estrutura_5"=>"", "estrutura_6"=>"", "estrutura_7"=>"", "estrutura_8"=>"", "estrutura_9"=>"", "estrutura_10"=>"", "estrutura_11"=>"", "estrutura_12"=>"", "estrutura_13"=>"", "estrutura_14"=>"", "estrutura_15"=>"", "estrutura_16"=>"", "estrutura_17"=>"", "estrutura_18"=>"", "estrutura_19"=>"", "estrutura_20"=>"", "estrutura_21"=>"", "estrutura_22"=>"", "estrutura_23"=>""}, "customFields"=>[], "fieldLabels"=>{}, "fieldOrder"=>["resumo", "introducao", "objetivos", "justificativa", "metodologia", "desenvolvimento", "conclusao", "referencias"]}}
+  [1m[36mUser Load (81.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 2 LIMIT 1 /*action='save_content',application='Backend',controller='work_content'*/[0m
+  [1m[36mJwtDenylist Exists? (95.9ms)[0m  [1m[34mSELECT 1 AS one FROM "jwt_denylists" WHERE "jwt_denylists"."jti" = '6ffd66f6-ef9a-4b18-a086-26748f432b33' LIMIT 1 /*action='save_content',application='Backend',controller='work_content'*/[0m
+Completed 500 Internal Server Error in 812ms (Views: 0.5ms | ActiveRecord: 726.8ms (2 queries, 0 cached) | GC: 0.6ms)
+
+
+[dotenv] Set [36mDEVISE_JWT_SECRET_KEY[0m, [36mGOOGLE_CLIENT_ID[0m, [36mGOOGLE_CLIENT_SECRET[0m, [36mGEMINI_API_KEY[0m, [36mDATABASE_URL[0m, [36mRAILS_MASTER_KEY[0m, and [36mSECRET_KEY_BASE[0m
+[dotenv] Loaded [33m.env[0m
+[dotenv] Loaded [33m.env[0m
+Started GET "/api/tcc/tcc-1761418584082" for 127.0.0.1 at 2025-10-25 16:30:21 -0300
+Processing by Api::TccController#show as JSON
+  Parameters: {"id"=>"tcc-1761418584082", "tcc"=>{}}
+  [1m[36mUser Load (55.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 2 LIMIT 1 /*action='show',application='Backend',controller='tcc'*/[0m
+  [1m[36mJwtDenylist Exists? (56.0ms)[0m  [1m[34mSELECT 1 AS one FROM "jwt_denylists" WHERE "jwt_denylists"."jti" = '6ffd66f6-ef9a-4b18-a086-26748f432b33' LIMIT 1 /*action='show',application='Backend',controller='tcc'*/[0m
+  [1m[36mTcc Load (55.5ms)[0m  [1m[34mSELECT "tccs".* FROM "tccs" WHERE "tccs"."user_id" = 2 AND "tccs"."id" = NULL LIMIT 1 /*action='show',application='Backend',controller='tcc'*/[0m
+  ↳ app/controllers/api/tcc_controller.rb:320:in `set_tcc'
+TCC Controller Error: Couldn't find Tcc with 'id'="tcc-1761418584082" [WHERE "tccs"."user_id" = $1]
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/activerecord-8.0.2.1/lib/active_record/relation/finder_methods.rb:429:in `raise_record_not_found_exception!'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/activerecord-8.0.2.1/lib/active_record/relation/finder_methods.rb:537:in `find_one'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/activerecord-8.0.2.1/lib/active_record/relation/finder_methods.rb:514:in `find_with_ids'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/activerecord-8.0.2.1/lib/active_record/relation/finder_methods.rb:100:in `find'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/activerecord-8.0.2.1/lib/active_record/associations/collection_association.rb:113:in `find'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/activerecord-8.0.2.1/lib/active_record/associations/collection_proxy.rb:140:in `find'
+/home/ana/Documents/Programming/Trilha Clara/AI TCC Effortless/backend/app/controllers/api/tcc_controller.rb:320:in `set_tcc'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/activesupport-8.0.2.1/lib/active_support/callbacks.rb:361:in `block in make_lambda'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/activesupport-8.0.2.1/lib/active_support/callbacks.rb:178:in `block in call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/abstract_controller/callbacks.rb:34:in `block (2 levels) in <module:Callbacks>'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/activesupport-8.0.2.1/lib/active_support/callbacks.rb:179:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/activesupport-8.0.2.1/lib/active_support/callbacks.rb:559:in `block in invoke_before'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/activesupport-8.0.2.1/lib/active_support/callbacks.rb:559:in `each'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/activesupport-8.0.2.1/lib/active_support/callbacks.rb:559:in `invoke_before'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/activesupport-8.0.2.1/lib/active_support/callbacks.rb:108:in `run_callbacks'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/abstract_controller/callbacks.rb:260:in `process_action'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/action_controller/metal/rescue.rb:27:in `process_action'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/action_controller/metal/instrumentation.rb:76:in `block in process_action'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/activesupport-8.0.2.1/lib/active_support/notifications.rb:210:in `block in instrument'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/activesupport-8.0.2.1/lib/active_support/notifications/instrumenter.rb:58:in `instrument'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/activesupport-8.0.2.1/lib/active_support/notifications.rb:210:in `instrument'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/action_controller/metal/instrumentation.rb:75:in `process_action'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/action_controller/metal/params_wrapper.rb:259:in `process_action'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/activerecord-8.0.2.1/lib/active_record/railties/controller_runtime.rb:39:in `process_action'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/abstract_controller/base.rb:163:in `process'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/action_controller/metal.rb:252:in `dispatch'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/action_controller/metal.rb:335:in `dispatch'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/action_dispatch/routing/route_set.rb:67:in `dispatch'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/action_dispatch/routing/route_set.rb:50:in `serve'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/action_dispatch/journey/router.rb:53:in `block in serve'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/action_dispatch/journey/router.rb:133:in `block in find_routes'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/action_dispatch/journey/router.rb:126:in `each'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/action_dispatch/journey/router.rb:126:in `find_routes'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/action_dispatch/journey/router.rb:34:in `serve'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/action_dispatch/routing/route_set.rb:908:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/railties-8.0.2.1/lib/rails/engine/lazy_route_set.rb:68:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/omniauth-2.1.3/lib/omniauth/strategy.rb:202:in `call!'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/omniauth-2.1.3/lib/omniauth/strategy.rb:169:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/omniauth-2.1.3/lib/omniauth/builder.rb:44:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/warden-jwt_auth-0.11.0/lib/warden/jwt_auth/middleware/token_dispatcher.rb:20:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/warden-jwt_auth-0.11.0/lib/warden/jwt_auth/middleware/revocation_manager.rb:21:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/rack-3.2.0/lib/rack/builder.rb:283:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/warden-jwt_auth-0.11.0/lib/warden/jwt_auth/middleware.rb:22:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/action_dispatch/middleware/cookies.rb:706:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/rack-session-2.1.1/lib/rack/session/abstract/id.rb:274:in `context'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/rack-session-2.1.1/lib/rack/session/abstract/id.rb:268:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/warden-1.2.9/lib/warden/manager.rb:36:in `block in call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/warden-1.2.9/lib/warden/manager.rb:34:in `catch'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/warden-1.2.9/lib/warden/manager.rb:34:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/rack-3.2.0/lib/rack/etag.rb:29:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/rack-3.2.0/lib/rack/conditional_get.rb:31:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/rack-3.2.0/lib/rack/head.rb:15:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/activerecord-8.0.2.1/lib/active_record/migration.rb:671:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/action_dispatch/middleware/callbacks.rb:31:in `block in call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/activesupport-8.0.2.1/lib/active_support/callbacks.rb:100:in `run_callbacks'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/action_dispatch/middleware/callbacks.rb:30:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/action_dispatch/middleware/executor.rb:16:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/action_dispatch/middleware/actionable_exceptions.rb:18:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/action_dispatch/middleware/debug_exceptions.rb:31:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/action_dispatch/middleware/show_exceptions.rb:32:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/railties-8.0.2.1/lib/rails/rack/logger.rb:41:in `call_app'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/railties-8.0.2.1/lib/rails/rack/logger.rb:29:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/action_dispatch/middleware/remote_ip.rb:96:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/action_dispatch/middleware/request_id.rb:34:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/rack-3.2.0/lib/rack/runtime.rb:24:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/action_dispatch/middleware/server_timing.rb:61:in `block in call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/action_dispatch/middleware/server_timing.rb:26:in `collect_events'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/action_dispatch/middleware/server_timing.rb:60:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/action_dispatch/middleware/executor.rb:16:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/action_dispatch/middleware/static.rb:27:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/rack-3.2.0/lib/rack/sendfile.rb:114:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/rack-cors-3.0.0/lib/rack/cors.rb:102:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/railties-8.0.2.1/lib/rails/engine.rb:535:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/puma-6.6.1/lib/puma/configuration.rb:279:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/puma-6.6.1/lib/puma/request.rb:99:in `block in handle_request'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/puma-6.6.1/lib/puma/thread_pool.rb:390:in `with_force_shutdown'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/puma-6.6.1/lib/puma/request.rb:98:in `handle_request'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/puma-6.6.1/lib/puma/server.rb:472:in `process_client'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/puma-6.6.1/lib/puma/server.rb:254:in `block in run'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/puma-6.6.1/lib/puma/thread_pool.rb:167:in `block in spawn_thread'
+Completed 500 Internal Server Error in 513ms (Views: 0.3ms | ActiveRecord: 692.0ms (3 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/api/work/tcc-1761418584082/content" for 127.0.0.1 at 2025-10-25 16:30:22 -0300
+Started GET "/api/work/tcc-1761418584082/content" for 127.0.0.1 at 2025-10-25 16:30:22 -0300
+Processing by Api::WorkContentController#content as JSON
+Processing by Api::WorkContentController#content as JSON
+  Parameters: {"id"=>"tcc-1761418584082"}
+  Parameters: {"id"=>"tcc-1761418584082"}
+  [1m[36mUser Load (56.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 2 LIMIT 1 /*action='content',application='Backend',controller='work_content'*/[0m
+  [1m[36mJwtDenylist Exists? (56.5ms)[0m  [1m[34mSELECT 1 AS one FROM "jwt_denylists" WHERE "jwt_denylists"."jti" = '6ffd66f6-ef9a-4b18-a086-26748f432b33' LIMIT 1 /*action='content',application='Backend',controller='work_content'*/[0m
+StandardError in WorkContentController: The get_content action could not be found for the :set_work
+callback on Api::WorkContentController, but it is listed in the controller's
+:only option.
+
+Raising for missing callback actions is a new default in Rails 7.1, if you'd
+like to turn this off you can delete the option from the environment configurations
+or set `config.action_controller.raise_on_missing_callback_actions` to `false`.
+
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/abstract_controller/callbacks.rb:62:in `match?'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/activesupport-8.0.2.1/lib/active_support/callbacks.rb:384:in `block in make_lambda'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/activesupport-8.0.2.1/lib/active_support/callbacks.rb:177:in `block in call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/activesupport-8.0.2.1/lib/active_support/callbacks.rb:177:in `all?'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/activesupport-8.0.2.1/lib/active_support/callbacks.rb:177:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/activesupport-8.0.2.1/lib/active_support/callbacks.rb:559:in `block in invoke_before'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/activesupport-8.0.2.1/lib/active_support/callbacks.rb:559:in `each'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/activesupport-8.0.2.1/lib/active_support/callbacks.rb:559:in `invoke_before'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/activesupport-8.0.2.1/lib/active_support/callbacks.rb:108:in `run_callbacks'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/abstract_controller/callbacks.rb:260:in `process_action'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/action_controller/metal/rescue.rb:27:in `process_action'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/action_controller/metal/instrumentation.rb:76:in `block in process_action'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/activesupport-8.0.2.1/lib/active_support/notifications.rb:210:in `block in instrument'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/activesupport-8.0.2.1/lib/active_support/notifications/instrumenter.rb:58:in `instrument'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/activesupport-8.0.2.1/lib/active_support/notifications.rb:210:in `instrument'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/action_controller/metal/instrumentation.rb:75:in `process_action'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/action_controller/metal/params_wrapper.rb:259:in `process_action'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/activerecord-8.0.2.1/lib/active_record/railties/controller_runtime.rb:39:in `process_action'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/abstract_controller/base.rb:163:in `process'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/action_controller/metal.rb:252:in `dispatch'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/action_controller/metal.rb:335:in `dispatch'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/action_dispatch/routing/route_set.rb:67:in `dispatch'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/action_dispatch/routing/route_set.rb:50:in `serve'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/action_dispatch/journey/router.rb:53:in `block in serve'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/action_dispatch/journey/router.rb:133:in `block in find_routes'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/action_dispatch/journey/router.rb:126:in `each'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/action_dispatch/journey/router.rb:126:in `find_routes'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/action_dispatch/journey/router.rb:34:in `serve'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/action_dispatch/routing/route_set.rb:908:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/railties-8.0.2.1/lib/rails/engine/lazy_route_set.rb:68:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/omniauth-2.1.3/lib/omniauth/strategy.rb:202:in `call!'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/omniauth-2.1.3/lib/omniauth/strategy.rb:169:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/omniauth-2.1.3/lib/omniauth/builder.rb:44:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/warden-jwt_auth-0.11.0/lib/warden/jwt_auth/middleware/token_dispatcher.rb:20:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/warden-jwt_auth-0.11.0/lib/warden/jwt_auth/middleware/revocation_manager.rb:21:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/rack-3.2.0/lib/rack/builder.rb:283:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/warden-jwt_auth-0.11.0/lib/warden/jwt_auth/middleware.rb:22:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/action_dispatch/middleware/cookies.rb:706:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/rack-session-2.1.1/lib/rack/session/abstract/id.rb:274:in `context'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/rack-session-2.1.1/lib/rack/session/abstract/id.rb:268:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/warden-1.2.9/lib/warden/manager.rb:36:in `block in call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/warden-1.2.9/lib/warden/manager.rb:34:in `catch'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/warden-1.2.9/lib/warden/manager.rb:34:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/rack-3.2.0/lib/rack/etag.rb:29:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/rack-3.2.0/lib/rack/conditional_get.rb:31:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/rack-3.2.0/lib/rack/head.rb:15:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/activerecord-8.0.2.1/lib/active_record/migration.rb:671:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/action_dispatch/middleware/callbacks.rb:31:in `block in call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/activesupport-8.0.2.1/lib/active_support/callbacks.rb:100:in `run_callbacks'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/action_dispatch/middleware/callbacks.rb:30:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/action_dispatch/middleware/executor.rb:16:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/action_dispatch/middleware/actionable_exceptions.rb:18:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/action_dispatch/middleware/debug_exceptions.rb:31:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/action_dispatch/middleware/show_exceptions.rb:32:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/railties-8.0.2.1/lib/rails/rack/logger.rb:41:in `call_app'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/railties-8.0.2.1/lib/rails/rack/logger.rb:29:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/action_dispatch/middleware/remote_ip.rb:96:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/action_dispatch/middleware/request_id.rb:34:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/rack-3.2.0/lib/rack/runtime.rb:24:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/action_dispatch/middleware/server_timing.rb:61:in `block in call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/action_dispatch/middleware/server_timing.rb:26:in `collect_events'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/action_dispatch/middleware/server_timing.rb:60:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/action_dispatch/middleware/executor.rb:16:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/action_dispatch/middleware/static.rb:27:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/rack-3.2.0/lib/rack/sendfile.rb:114:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/rack-cors-3.0.0/lib/rack/cors.rb:102:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/railties-8.0.2.1/lib/rails/engine.rb:535:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/puma-6.6.1/lib/puma/configuration.rb:279:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/puma-6.6.1/lib/puma/request.rb:99:in `block in handle_request'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/puma-6.6.1/lib/puma/thread_pool.rb:390:in `with_force_shutdown'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/puma-6.6.1/lib/puma/request.rb:98:in `handle_request'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/puma-6.6.1/lib/puma/server.rb:472:in `process_client'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/puma-6.6.1/lib/puma/server.rb:254:in `block in run'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/puma-6.6.1/lib/puma/thread_pool.rb:167:in `block in spawn_thread'
+  [1m[36mUser Load (135.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 2 LIMIT 1 /*action='content',application='Backend',controller='work_content'*/[0m
+Completed 500 Internal Server Error in 174ms (Views: 3.0ms | ActiveRecord: 112.5ms (2 queries, 0 cached) | GC: 0.0ms)
+
+
+  [1m[36mJwtDenylist Exists? (56.1ms)[0m  [1m[34mSELECT 1 AS one FROM "jwt_denylists" WHERE "jwt_denylists"."jti" = '6ffd66f6-ef9a-4b18-a086-26748f432b33' LIMIT 1 /*action='content',application='Backend',controller='work_content'*/[0m
+StandardError in WorkContentController: The get_content action could not be found for the :set_work
+callback on Api::WorkContentController, but it is listed in the controller's
+:only option.
+
+Raising for missing callback actions is a new default in Rails 7.1, if you'd
+like to turn this off you can delete the option from the environment configurations
+or set `config.action_controller.raise_on_missing_callback_actions` to `false`.
+
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/abstract_controller/callbacks.rb:62:in `match?'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/activesupport-8.0.2.1/lib/active_support/callbacks.rb:384:in `block in make_lambda'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/activesupport-8.0.2.1/lib/active_support/callbacks.rb:177:in `block in call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/activesupport-8.0.2.1/lib/active_support/callbacks.rb:177:in `all?'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/activesupport-8.0.2.1/lib/active_support/callbacks.rb:177:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/activesupport-8.0.2.1/lib/active_support/callbacks.rb:559:in `block in invoke_before'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/activesupport-8.0.2.1/lib/active_support/callbacks.rb:559:in `each'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/activesupport-8.0.2.1/lib/active_support/callbacks.rb:559:in `invoke_before'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/activesupport-8.0.2.1/lib/active_support/callbacks.rb:108:in `run_callbacks'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/abstract_controller/callbacks.rb:260:in `process_action'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/action_controller/metal/rescue.rb:27:in `process_action'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/action_controller/metal/instrumentation.rb:76:in `block in process_action'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/activesupport-8.0.2.1/lib/active_support/notifications.rb:210:in `block in instrument'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/activesupport-8.0.2.1/lib/active_support/notifications/instrumenter.rb:58:in `instrument'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/activesupport-8.0.2.1/lib/active_support/notifications.rb:210:in `instrument'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/action_controller/metal/instrumentation.rb:75:in `process_action'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/action_controller/metal/params_wrapper.rb:259:in `process_action'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/activerecord-8.0.2.1/lib/active_record/railties/controller_runtime.rb:39:in `process_action'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/abstract_controller/base.rb:163:in `process'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/action_controller/metal.rb:252:in `dispatch'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/action_controller/metal.rb:335:in `dispatch'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/action_dispatch/routing/route_set.rb:67:in `dispatch'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/action_dispatch/routing/route_set.rb:50:in `serve'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/action_dispatch/journey/router.rb:53:in `block in serve'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/action_dispatch/journey/router.rb:133:in `block in find_routes'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/action_dispatch/journey/router.rb:126:in `each'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/action_dispatch/journey/router.rb:126:in `find_routes'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/action_dispatch/journey/router.rb:34:in `serve'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/action_dispatch/routing/route_set.rb:908:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/railties-8.0.2.1/lib/rails/engine/lazy_route_set.rb:68:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/omniauth-2.1.3/lib/omniauth/strategy.rb:202:in `call!'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/omniauth-2.1.3/lib/omniauth/strategy.rb:169:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/omniauth-2.1.3/lib/omniauth/builder.rb:44:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/warden-jwt_auth-0.11.0/lib/warden/jwt_auth/middleware/token_dispatcher.rb:20:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/warden-jwt_auth-0.11.0/lib/warden/jwt_auth/middleware/revocation_manager.rb:21:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/rack-3.2.0/lib/rack/builder.rb:283:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/warden-jwt_auth-0.11.0/lib/warden/jwt_auth/middleware.rb:22:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/action_dispatch/middleware/cookies.rb:706:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/rack-session-2.1.1/lib/rack/session/abstract/id.rb:274:in `context'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/rack-session-2.1.1/lib/rack/session/abstract/id.rb:268:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/warden-1.2.9/lib/warden/manager.rb:36:in `block in call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/warden-1.2.9/lib/warden/manager.rb:34:in `catch'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/warden-1.2.9/lib/warden/manager.rb:34:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/rack-3.2.0/lib/rack/etag.rb:29:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/rack-3.2.0/lib/rack/conditional_get.rb:31:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/rack-3.2.0/lib/rack/head.rb:15:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/activerecord-8.0.2.1/lib/active_record/migration.rb:671:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/action_dispatch/middleware/callbacks.rb:31:in `block in call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/activesupport-8.0.2.1/lib/active_support/callbacks.rb:100:in `run_callbacks'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/action_dispatch/middleware/callbacks.rb:30:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/action_dispatch/middleware/executor.rb:16:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/action_dispatch/middleware/actionable_exceptions.rb:18:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/action_dispatch/middleware/debug_exceptions.rb:31:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/action_dispatch/middleware/show_exceptions.rb:32:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/railties-8.0.2.1/lib/rails/rack/logger.rb:41:in `call_app'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/railties-8.0.2.1/lib/rails/rack/logger.rb:29:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/action_dispatch/middleware/remote_ip.rb:96:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/action_dispatch/middleware/request_id.rb:34:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/rack-3.2.0/lib/rack/runtime.rb:24:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/action_dispatch/middleware/server_timing.rb:61:in `block in call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/action_dispatch/middleware/server_timing.rb:26:in `collect_events'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/action_dispatch/middleware/server_timing.rb:60:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/action_dispatch/middleware/executor.rb:16:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/action_dispatch/middleware/static.rb:27:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/rack-3.2.0/lib/rack/sendfile.rb:114:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/rack-cors-3.0.0/lib/rack/cors.rb:102:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/railties-8.0.2.1/lib/rails/engine.rb:535:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/puma-6.6.1/lib/puma/configuration.rb:279:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/puma-6.6.1/lib/puma/request.rb:99:in `block in handle_request'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/puma-6.6.1/lib/puma/thread_pool.rb:390:in `with_force_shutdown'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/puma-6.6.1/lib/puma/request.rb:98:in `handle_request'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/puma-6.6.1/lib/puma/server.rb:472:in `process_client'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/puma-6.6.1/lib/puma/server.rb:254:in `block in run'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/puma-6.6.1/lib/puma/thread_pool.rb:167:in `block in spawn_thread'
+Completed 500 Internal Server Error in 250ms (Views: 1.9ms | ActiveRecord: 191.6ms (2 queries, 0 cached) | GC: 5.0ms)
+
+
+Started POST "/api/work/tcc-1761418584082/save_content" for 127.0.0.1 at 2025-10-25 16:30:25 -0300
+Processing by Api::WorkContentController#save_content as JSON
+  Parameters: {"content"=>{"resumo"=>"", "introducao"=>"", "desenvolvimento"=>"", "conclusao"=>"", "referencias"=>"", "metodologia"=>"", "objetivos"=>"", "justificativa"=>"", "estrutura_0"=>"", "estrutura_1"=>"", "estrutura_2"=>"", "estrutura_3"=>"", "estrutura_4"=>"", "estrutura_5"=>"", "estrutura_6"=>"", "estrutura_7"=>"", "estrutura_8"=>"", "estrutura_9"=>"", "estrutura_10"=>"", "estrutura_11"=>"", "estrutura_12"=>"", "estrutura_13"=>"", "estrutura_14"=>"", "estrutura_15"=>"", "estrutura_16"=>"", "estrutura_17"=>"", "estrutura_18"=>"", "estrutura_19"=>"", "estrutura_20"=>"", "estrutura_21"=>"", "estrutura_22"=>"", "estrutura_23"=>""}, "customFields"=>[], "fieldLabels"=>{}, "fieldOrder"=>["resumo", "introducao", "objetivos", "justificativa", "metodologia", "desenvolvimento", "conclusao", "referencias"], "id"=>"tcc-1761418584082", "work_content"=>{"content"=>{"resumo"=>"", "introducao"=>"", "desenvolvimento"=>"", "conclusao"=>"", "referencias"=>"", "metodologia"=>"", "objetivos"=>"", "justificativa"=>"", "estrutura_0"=>"", "estrutura_1"=>"", "estrutura_2"=>"", "estrutura_3"=>"", "estrutura_4"=>"", "estrutura_5"=>"", "estrutura_6"=>"", "estrutura_7"=>"", "estrutura_8"=>"", "estrutura_9"=>"", "estrutura_10"=>"", "estrutura_11"=>"", "estrutura_12"=>"", "estrutura_13"=>"", "estrutura_14"=>"", "estrutura_15"=>"", "estrutura_16"=>"", "estrutura_17"=>"", "estrutura_18"=>"", "estrutura_19"=>"", "estrutura_20"=>"", "estrutura_21"=>"", "estrutura_22"=>"", "estrutura_23"=>""}, "customFields"=>[], "fieldLabels"=>{}, "fieldOrder"=>["resumo", "introducao", "objetivos", "justificativa", "metodologia", "desenvolvimento", "conclusao", "referencias"]}}
+  [1m[36mUser Load (168.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 2 LIMIT 1 /*action='save_content',application='Backend',controller='work_content'*/[0m
+  [1m[36mJwtDenylist Exists? (93.4ms)[0m  [1m[34mSELECT 1 AS one FROM "jwt_denylists" WHERE "jwt_denylists"."jti" = '6ffd66f6-ef9a-4b18-a086-26748f432b33' LIMIT 1 /*action='save_content',application='Backend',controller='work_content'*/[0m
+StandardError in WorkContentController: The get_content action could not be found for the :set_work
+callback on Api::WorkContentController, but it is listed in the controller's
+:only option.
+
+Raising for missing callback actions is a new default in Rails 7.1, if you'd
+like to turn this off you can delete the option from the environment configurations
+or set `config.action_controller.raise_on_missing_callback_actions` to `false`.
+
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/abstract_controller/callbacks.rb:62:in `match?'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/activesupport-8.0.2.1/lib/active_support/callbacks.rb:384:in `block in make_lambda'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/activesupport-8.0.2.1/lib/active_support/callbacks.rb:177:in `block in call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/activesupport-8.0.2.1/lib/active_support/callbacks.rb:177:in `all?'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/activesupport-8.0.2.1/lib/active_support/callbacks.rb:177:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/activesupport-8.0.2.1/lib/active_support/callbacks.rb:559:in `block in invoke_before'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/activesupport-8.0.2.1/lib/active_support/callbacks.rb:559:in `each'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/activesupport-8.0.2.1/lib/active_support/callbacks.rb:559:in `invoke_before'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/activesupport-8.0.2.1/lib/active_support/callbacks.rb:108:in `run_callbacks'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/abstract_controller/callbacks.rb:260:in `process_action'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/action_controller/metal/rescue.rb:27:in `process_action'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/action_controller/metal/instrumentation.rb:76:in `block in process_action'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/activesupport-8.0.2.1/lib/active_support/notifications.rb:210:in `block in instrument'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/activesupport-8.0.2.1/lib/active_support/notifications/instrumenter.rb:58:in `instrument'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/activesupport-8.0.2.1/lib/active_support/notifications.rb:210:in `instrument'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/action_controller/metal/instrumentation.rb:75:in `process_action'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/action_controller/metal/params_wrapper.rb:259:in `process_action'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/activerecord-8.0.2.1/lib/active_record/railties/controller_runtime.rb:39:in `process_action'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/abstract_controller/base.rb:163:in `process'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/action_controller/metal.rb:252:in `dispatch'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/action_controller/metal.rb:335:in `dispatch'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/action_dispatch/routing/route_set.rb:67:in `dispatch'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/action_dispatch/routing/route_set.rb:50:in `serve'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/action_dispatch/journey/router.rb:53:in `block in serve'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/action_dispatch/journey/router.rb:133:in `block in find_routes'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/action_dispatch/journey/router.rb:126:in `each'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/action_dispatch/journey/router.rb:126:in `find_routes'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/action_dispatch/journey/router.rb:34:in `serve'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/action_dispatch/routing/route_set.rb:908:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/railties-8.0.2.1/lib/rails/engine/lazy_route_set.rb:68:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/omniauth-2.1.3/lib/omniauth/strategy.rb:202:in `call!'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/omniauth-2.1.3/lib/omniauth/strategy.rb:169:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/omniauth-2.1.3/lib/omniauth/builder.rb:44:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/warden-jwt_auth-0.11.0/lib/warden/jwt_auth/middleware/token_dispatcher.rb:20:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/warden-jwt_auth-0.11.0/lib/warden/jwt_auth/middleware/revocation_manager.rb:21:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/rack-3.2.0/lib/rack/builder.rb:283:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/warden-jwt_auth-0.11.0/lib/warden/jwt_auth/middleware.rb:22:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/action_dispatch/middleware/cookies.rb:706:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/rack-session-2.1.1/lib/rack/session/abstract/id.rb:274:in `context'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/rack-session-2.1.1/lib/rack/session/abstract/id.rb:268:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/warden-1.2.9/lib/warden/manager.rb:36:in `block in call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/warden-1.2.9/lib/warden/manager.rb:34:in `catch'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/warden-1.2.9/lib/warden/manager.rb:34:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/rack-3.2.0/lib/rack/etag.rb:29:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/rack-3.2.0/lib/rack/conditional_get.rb:44:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/rack-3.2.0/lib/rack/head.rb:15:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/activerecord-8.0.2.1/lib/active_record/migration.rb:671:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/action_dispatch/middleware/callbacks.rb:31:in `block in call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/activesupport-8.0.2.1/lib/active_support/callbacks.rb:100:in `run_callbacks'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/action_dispatch/middleware/callbacks.rb:30:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/action_dispatch/middleware/executor.rb:16:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/action_dispatch/middleware/actionable_exceptions.rb:18:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/action_dispatch/middleware/debug_exceptions.rb:31:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/action_dispatch/middleware/show_exceptions.rb:32:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/railties-8.0.2.1/lib/rails/rack/logger.rb:41:in `call_app'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/railties-8.0.2.1/lib/rails/rack/logger.rb:29:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/action_dispatch/middleware/remote_ip.rb:96:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/action_dispatch/middleware/request_id.rb:34:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/rack-3.2.0/lib/rack/runtime.rb:24:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/action_dispatch/middleware/server_timing.rb:61:in `block in call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/action_dispatch/middleware/server_timing.rb:26:in `collect_events'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/action_dispatch/middleware/server_timing.rb:60:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/action_dispatch/middleware/executor.rb:16:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/action_dispatch/middleware/static.rb:27:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/rack-3.2.0/lib/rack/sendfile.rb:114:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/rack-cors-3.0.0/lib/rack/cors.rb:102:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/railties-8.0.2.1/lib/rails/engine.rb:535:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/puma-6.6.1/lib/puma/configuration.rb:279:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/puma-6.6.1/lib/puma/request.rb:99:in `block in handle_request'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/puma-6.6.1/lib/puma/thread_pool.rb:390:in `with_force_shutdown'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/puma-6.6.1/lib/puma/request.rb:98:in `handle_request'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/puma-6.6.1/lib/puma/server.rb:472:in `process_client'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/puma-6.6.1/lib/puma/server.rb:254:in `block in run'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/puma-6.6.1/lib/puma/thread_pool.rb:167:in `block in spawn_thread'
+Completed 500 Internal Server Error in 288ms (Views: 1.9ms | ActiveRecord: 261.5ms (2 queries, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/api/work/tcc-1761418584082/save_content" for 127.0.0.1 at 2025-10-25 16:30:28 -0300
+Processing by Api::WorkContentController#save_content as JSON
+  Parameters: {"content"=>{"resumo"=>"", "introducao"=>"", "desenvolvimento"=>"", "conclusao"=>"", "referencias"=>"", "metodologia"=>"", "objetivos"=>"", "justificativa"=>"", "estrutura_0"=>"", "estrutura_1"=>"", "estrutura_2"=>"", "estrutura_3"=>"", "estrutura_4"=>"", "estrutura_5"=>"", "estrutura_6"=>"", "estrutura_7"=>"", "estrutura_8"=>"", "estrutura_9"=>"", "estrutura_10"=>"", "estrutura_11"=>"", "estrutura_12"=>"", "estrutura_13"=>"", "estrutura_14"=>"", "estrutura_15"=>"", "estrutura_16"=>"", "estrutura_17"=>"", "estrutura_18"=>"", "estrutura_19"=>"", "estrutura_20"=>"", "estrutura_21"=>"", "estrutura_22"=>"", "estrutura_23"=>""}, "customFields"=>[], "fieldLabels"=>{}, "fieldOrder"=>["resumo", "introducao", "objetivos", "justificativa", "metodologia", "desenvolvimento", "conclusao", "referencias"], "id"=>"tcc-1761418584082", "work_content"=>{"content"=>{"resumo"=>"", "introducao"=>"", "desenvolvimento"=>"", "conclusao"=>"", "referencias"=>"", "metodologia"=>"", "objetivos"=>"", "justificativa"=>"", "estrutura_0"=>"", "estrutura_1"=>"", "estrutura_2"=>"", "estrutura_3"=>"", "estrutura_4"=>"", "estrutura_5"=>"", "estrutura_6"=>"", "estrutura_7"=>"", "estrutura_8"=>"", "estrutura_9"=>"", "estrutura_10"=>"", "estrutura_11"=>"", "estrutura_12"=>"", "estrutura_13"=>"", "estrutura_14"=>"", "estrutura_15"=>"", "estrutura_16"=>"", "estrutura_17"=>"", "estrutura_18"=>"", "estrutura_19"=>"", "estrutura_20"=>"", "estrutura_21"=>"", "estrutura_22"=>"", "estrutura_23"=>""}, "customFields"=>[], "fieldLabels"=>{}, "fieldOrder"=>["resumo", "introducao", "objetivos", "justificativa", "metodologia", "desenvolvimento", "conclusao", "referencias"]}}
+  [1m[36mUser Load (137.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 2 LIMIT 1 /*action='save_content',application='Backend',controller='work_content'*/[0m
+  [1m[36mJwtDenylist Exists? (150.8ms)[0m  [1m[34mSELECT 1 AS one FROM "jwt_denylists" WHERE "jwt_denylists"."jti" = '6ffd66f6-ef9a-4b18-a086-26748f432b33' LIMIT 1 /*action='save_content',application='Backend',controller='work_content'*/[0m
+StandardError in WorkContentController: The get_content action could not be found for the :set_work
+callback on Api::WorkContentController, but it is listed in the controller's
+:only option.
+
+Raising for missing callback actions is a new default in Rails 7.1, if you'd
+like to turn this off you can delete the option from the environment configurations
+or set `config.action_controller.raise_on_missing_callback_actions` to `false`.
+
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/abstract_controller/callbacks.rb:62:in `match?'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/activesupport-8.0.2.1/lib/active_support/callbacks.rb:384:in `block in make_lambda'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/activesupport-8.0.2.1/lib/active_support/callbacks.rb:177:in `block in call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/activesupport-8.0.2.1/lib/active_support/callbacks.rb:177:in `all?'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/activesupport-8.0.2.1/lib/active_support/callbacks.rb:177:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/activesupport-8.0.2.1/lib/active_support/callbacks.rb:559:in `block in invoke_before'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/activesupport-8.0.2.1/lib/active_support/callbacks.rb:559:in `each'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/activesupport-8.0.2.1/lib/active_support/callbacks.rb:559:in `invoke_before'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/activesupport-8.0.2.1/lib/active_support/callbacks.rb:108:in `run_callbacks'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/abstract_controller/callbacks.rb:260:in `process_action'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/action_controller/metal/rescue.rb:27:in `process_action'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/action_controller/metal/instrumentation.rb:76:in `block in process_action'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/activesupport-8.0.2.1/lib/active_support/notifications.rb:210:in `block in instrument'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/activesupport-8.0.2.1/lib/active_support/notifications/instrumenter.rb:58:in `instrument'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/activesupport-8.0.2.1/lib/active_support/notifications.rb:210:in `instrument'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/action_controller/metal/instrumentation.rb:75:in `process_action'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/action_controller/metal/params_wrapper.rb:259:in `process_action'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/activerecord-8.0.2.1/lib/active_record/railties/controller_runtime.rb:39:in `process_action'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/abstract_controller/base.rb:163:in `process'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/action_controller/metal.rb:252:in `dispatch'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/action_controller/metal.rb:335:in `dispatch'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/action_dispatch/routing/route_set.rb:67:in `dispatch'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/action_dispatch/routing/route_set.rb:50:in `serve'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/action_dispatch/journey/router.rb:53:in `block in serve'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/action_dispatch/journey/router.rb:133:in `block in find_routes'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/action_dispatch/journey/router.rb:126:in `each'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/action_dispatch/journey/router.rb:126:in `find_routes'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/action_dispatch/journey/router.rb:34:in `serve'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/action_dispatch/routing/route_set.rb:908:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/railties-8.0.2.1/lib/rails/engine/lazy_route_set.rb:68:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/omniauth-2.1.3/lib/omniauth/strategy.rb:202:in `call!'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/omniauth-2.1.3/lib/omniauth/strategy.rb:169:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/omniauth-2.1.3/lib/omniauth/builder.rb:44:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/warden-jwt_auth-0.11.0/lib/warden/jwt_auth/middleware/token_dispatcher.rb:20:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/warden-jwt_auth-0.11.0/lib/warden/jwt_auth/middleware/revocation_manager.rb:21:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/rack-3.2.0/lib/rack/builder.rb:283:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/warden-jwt_auth-0.11.0/lib/warden/jwt_auth/middleware.rb:22:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/action_dispatch/middleware/cookies.rb:706:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/rack-session-2.1.1/lib/rack/session/abstract/id.rb:274:in `context'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/rack-session-2.1.1/lib/rack/session/abstract/id.rb:268:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/warden-1.2.9/lib/warden/manager.rb:36:in `block in call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/warden-1.2.9/lib/warden/manager.rb:34:in `catch'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/warden-1.2.9/lib/warden/manager.rb:34:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/rack-3.2.0/lib/rack/etag.rb:29:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/rack-3.2.0/lib/rack/conditional_get.rb:44:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/rack-3.2.0/lib/rack/head.rb:15:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/activerecord-8.0.2.1/lib/active_record/migration.rb:671:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/action_dispatch/middleware/callbacks.rb:31:in `block in call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/activesupport-8.0.2.1/lib/active_support/callbacks.rb:100:in `run_callbacks'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/action_dispatch/middleware/callbacks.rb:30:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/action_dispatch/middleware/executor.rb:16:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/action_dispatch/middleware/actionable_exceptions.rb:18:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/action_dispatch/middleware/debug_exceptions.rb:31:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/action_dispatch/middleware/show_exceptions.rb:32:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/railties-8.0.2.1/lib/rails/rack/logger.rb:41:in `call_app'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/railties-8.0.2.1/lib/rails/rack/logger.rb:29:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/action_dispatch/middleware/remote_ip.rb:96:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/action_dispatch/middleware/request_id.rb:34:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/rack-3.2.0/lib/rack/runtime.rb:24:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/action_dispatch/middleware/server_timing.rb:61:in `block in call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/action_dispatch/middleware/server_timing.rb:26:in `collect_events'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/action_dispatch/middleware/server_timing.rb:60:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/action_dispatch/middleware/executor.rb:16:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/action_dispatch/middleware/static.rb:27:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/rack-3.2.0/lib/rack/sendfile.rb:114:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/rack-cors-3.0.0/lib/rack/cors.rb:102:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/railties-8.0.2.1/lib/rails/engine.rb:535:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/puma-6.6.1/lib/puma/configuration.rb:279:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/puma-6.6.1/lib/puma/request.rb:99:in `block in handle_request'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/puma-6.6.1/lib/puma/thread_pool.rb:390:in `with_force_shutdown'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/puma-6.6.1/lib/puma/request.rb:98:in `handle_request'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/puma-6.6.1/lib/puma/server.rb:472:in `process_client'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/puma-6.6.1/lib/puma/server.rb:254:in `block in run'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/puma-6.6.1/lib/puma/thread_pool.rb:167:in `block in spawn_thread'
+Completed 500 Internal Server Error in 313ms (Views: 0.3ms | ActiveRecord: 287.6ms (2 queries, 0 cached) | GC: 0.0ms)
+
+
+[dotenv] Set [36mDEVISE_JWT_SECRET_KEY[0m, [36mGOOGLE_CLIENT_ID[0m, [36mGOOGLE_CLIENT_SECRET[0m, [36mGEMINI_API_KEY[0m, [36mDATABASE_URL[0m, [36mRAILS_MASTER_KEY[0m, and [36mSECRET_KEY_BASE[0m
+[dotenv] Loaded [33m.env[0m
+[dotenv] Loaded [33m.env[0m
+Started POST "/api/work/tcc-1761418584082/save_content" for 127.0.0.1 at 2025-10-25 16:31:37 -0300
+  [1m[36mActiveRecord::SchemaMigration Load (98.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='Backend'*/[0m
+Processing by Api::WorkContentController#save_content as JSON
+  Parameters: {"content"=>{"resumo"=>"", "introducao"=>"", "desenvolvimento"=>"", "conclusao"=>"", "referencias"=>"", "metodologia"=>"", "objetivos"=>"", "justificativa"=>"", "estrutura_0"=>"", "estrutura_1"=>"", "estrutura_2"=>"", "estrutura_3"=>"", "estrutura_4"=>"", "estrutura_5"=>"", "estrutura_6"=>"", "estrutura_7"=>"", "estrutura_8"=>"", "estrutura_9"=>"", "estrutura_10"=>"", "estrutura_11"=>"", "estrutura_12"=>"", "estrutura_13"=>"", "estrutura_14"=>"", "estrutura_15"=>"", "estrutura_16"=>"", "estrutura_17"=>"", "estrutura_18"=>"", "estrutura_19"=>"", "estrutura_20"=>"", "estrutura_21"=>"", "estrutura_22"=>"", "estrutura_23"=>""}, "customFields"=>[], "fieldLabels"=>{}, "fieldOrder"=>["resumo", "introducao", "objetivos", "justificativa", "metodologia", "desenvolvimento", "conclusao", "referencias"], "id"=>"tcc-1761418584082", "work_content"=>{"content"=>{"resumo"=>"", "introducao"=>"", "desenvolvimento"=>"", "conclusao"=>"", "referencias"=>"", "metodologia"=>"", "objetivos"=>"", "justificativa"=>"", "estrutura_0"=>"", "estrutura_1"=>"", "estrutura_2"=>"", "estrutura_3"=>"", "estrutura_4"=>"", "estrutura_5"=>"", "estrutura_6"=>"", "estrutura_7"=>"", "estrutura_8"=>"", "estrutura_9"=>"", "estrutura_10"=>"", "estrutura_11"=>"", "estrutura_12"=>"", "estrutura_13"=>"", "estrutura_14"=>"", "estrutura_15"=>"", "estrutura_16"=>"", "estrutura_17"=>"", "estrutura_18"=>"", "estrutura_19"=>"", "estrutura_20"=>"", "estrutura_21"=>"", "estrutura_22"=>"", "estrutura_23"=>""}, "customFields"=>[], "fieldLabels"=>{}, "fieldOrder"=>["resumo", "introducao", "objetivos", "justificativa", "metodologia", "desenvolvimento", "conclusao", "referencias"]}}
+  [1m[36mUser Load (85.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 2 LIMIT 1 /*action='save_content',application='Backend',controller='work_content'*/[0m
+  [1m[36mJwtDenylist Exists? (99.8ms)[0m  [1m[34mSELECT 1 AS one FROM "jwt_denylists" WHERE "jwt_denylists"."jti" = '6ffd66f6-ef9a-4b18-a086-26748f432b33' LIMIT 1 /*action='save_content',application='Backend',controller='work_content'*/[0m
+=== SET_WORK CALLED ===
+Setting work for ID: tcc-1761418584082
+Current user: 2
+Handling legacy TCC ID: tcc-1761418584082
+  [1m[36mTcc Load (140.4ms)[0m  [1m[34mSELECT "tccs".* FROM "tccs" WHERE "tccs"."user_id" = 2 AND "tccs"."tema" = 'Trabalho Acadêmico - tcc-1761418584082' LIMIT 1 /*action='save_content',application='Backend',controller='work_content'*/[0m
+  ↳ app/controllers/api/work_content_controller.rb:108:in `set_work'
+  [1m[36mTRANSACTION (144.0ms)[0m  [1m[35mBEGIN /*action='save_content',application='Backend',controller='work_content'*/[0m
+  ↳ app/controllers/api/work_content_controller.rb:108:in `set_work'
+  [1m[36mTcc Create (249.4ms)[0m  [1m[32mINSERT INTO "tccs" ("nome", "faculdade", "curso", "materia", "tema", "tipo_trabalho", "user_id", "created_at", "updated_at", "resumo", "introducao", "objetivos", "justificativa", "metodologia", "desenvolvimento", "conclusao", "referencias") VALUES ('Ana Gomes', 'Instituição', 'Curso', NULL, 'Trabalho Acadêmico', 'TCC', 2, '2025-10-25 19:31:42.605870', '2025-10-25 19:31:42.605870', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL) RETURNING "id" /*action='save_content',application='Backend',controller='work_content'*/[0m
+  ↳ app/controllers/api/work_content_controller.rb:108:in `set_work'
+  [1m[36mTRANSACTION (107.5ms)[0m  [1m[35mCOMMIT /*action='save_content',application='Backend',controller='work_content'*/[0m
+  ↳ app/controllers/api/work_content_controller.rb:108:in `set_work'
+Created/found work: 2
+=== SET_WORK COMPLETED ===
+Starting save_content for ID: tcc-1761418584082
+Current user: 2
+Work object: #<Tcc id: 2, nome: "Ana Gomes", faculdade: "Instituição", curso: "Curso", materia: nil, tema: "Trabalho Acadêmico", tipo_trabalho: "TCC", user_id: 2, created_at: "2025-10-25 19:31:42.605870000 +0000", updated_at: "2025-10-25 19:31:42.605870000 +0000", resumo: nil, introducao: nil, objetivos: nil, justificativa: nil, metodologia: nil, desenvolvimento: nil, conclusao: nil, referencias: nil>
+Content data: ["resumo", "introducao", "desenvolvimento", "conclusao", "referencias", "metodologia", "objetivos", "justificativa", "estrutura_0", "estrutura_1", "estrutura_2", "estrutura_3", "estrutura_4", "estrutura_5", "estrutura_6", "estrutura_7", "estrutura_8", "estrutura_9", "estrutura_10", "estrutura_11", "estrutura_12", "estrutura_13", "estrutura_14", "estrutura_15", "estrutura_16", "estrutura_17", "estrutura_18", "estrutura_19", "estrutura_20", "estrutura_21", "estrutura_22", "estrutura_23"]
+Started POST "/api/work/tcc-1761418584082/save_content" for 127.0.0.1 at 2025-10-25 16:31:43 -0300
+Processing by Api::WorkContentController#save_content as JSON
+  Parameters: {"content"=>{"resumo"=>"", "introducao"=>"", "desenvolvimento"=>"", "conclusao"=>"", "referencias"=>"", "metodologia"=>"", "objetivos"=>"", "justificativa"=>"", "estrutura_0"=>"", "estrutura_1"=>"", "estrutura_2"=>"", "estrutura_3"=>"", "estrutura_4"=>"", "estrutura_5"=>"", "estrutura_6"=>"", "estrutura_7"=>"", "estrutura_8"=>"", "estrutura_9"=>"", "estrutura_10"=>"", "estrutura_11"=>"", "estrutura_12"=>"", "estrutura_13"=>"", "estrutura_14"=>"", "estrutura_15"=>"", "estrutura_16"=>"", "estrutura_17"=>"", "estrutura_18"=>"", "estrutura_19"=>"", "estrutura_20"=>"", "estrutura_21"=>"", "estrutura_22"=>"", "estrutura_23"=>""}, "customFields"=>[], "fieldLabels"=>{}, "fieldOrder"=>["resumo", "introducao", "objetivos", "justificativa", "metodologia", "desenvolvimento", "conclusao", "referencias"], "id"=>"tcc-1761418584082", "work_content"=>{"content"=>{"resumo"=>"", "introducao"=>"", "desenvolvimento"=>"", "conclusao"=>"", "referencias"=>"", "metodologia"=>"", "objetivos"=>"", "justificativa"=>"", "estrutura_0"=>"", "estrutura_1"=>"", "estrutura_2"=>"", "estrutura_3"=>"", "estrutura_4"=>"", "estrutura_5"=>"", "estrutura_6"=>"", "estrutura_7"=>"", "estrutura_8"=>"", "estrutura_9"=>"", "estrutura_10"=>"", "estrutura_11"=>"", "estrutura_12"=>"", "estrutura_13"=>"", "estrutura_14"=>"", "estrutura_15"=>"", "estrutura_16"=>"", "estrutura_17"=>"", "estrutura_18"=>"", "estrutura_19"=>"", "estrutura_20"=>"", "estrutura_21"=>"", "estrutura_22"=>"", "estrutura_23"=>""}, "customFields"=>[], "fieldLabels"=>{}, "fieldOrder"=>["resumo", "introducao", "objetivos", "justificativa", "metodologia", "desenvolvimento", "conclusao", "referencias"]}}
+  [1m[36mTRANSACTION (85.3ms)[0m  [1m[35mBEGIN /*action='save_content',application='Backend',controller='work_content'*/[0m
+  ↳ app/controllers/api/work_content_controller.rb:55:in `save_content'
+  [1m[36mTcc Update (188.7ms)[0m  [1m[33mUPDATE "tccs" SET "updated_at" = '2025-10-25 19:31:43.143701', "resumo" = '', "introducao" = '', "objetivos" = '', "justificativa" = '', "metodologia" = '', "desenvolvimento" = '', "conclusao" = '', "referencias" = '' WHERE "tccs"."id" = 2 /*action='save_content',application='Backend',controller='work_content'*/[0m
+  ↳ app/controllers/api/work_content_controller.rb:55:in `save_content'
+  [1m[36mTRANSACTION (76.5ms)[0m  [1m[35mCOMMIT /*action='save_content',application='Backend',controller='work_content'*/[0m
+  ↳ app/controllers/api/work_content_controller.rb:55:in `save_content'
+Successfully updated work content
+Completed 200 OK in 3583ms (Views: 1.0ms | ActiveRecord: 4018.5ms (5 queries, 0 cached) | GC: 0.0ms)
+
+
+  [1m[36mUser Load (1800.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 2 LIMIT 1 /*action='save_content',application='Backend',controller='work_content'*/[0m
+  [1m[36mJwtDenylist Exists? (83.8ms)[0m  [1m[34mSELECT 1 AS one FROM "jwt_denylists" WHERE "jwt_denylists"."jti" = '6ffd66f6-ef9a-4b18-a086-26748f432b33' LIMIT 1 /*action='save_content',application='Backend',controller='work_content'*/[0m
+=== SET_WORK CALLED ===
+Setting work for ID: tcc-1761418584082
+Current user: 2
+Handling legacy TCC ID: tcc-1761418584082
+  [1m[36mTcc Load (91.6ms)[0m  [1m[34mSELECT "tccs".* FROM "tccs" WHERE "tccs"."user_id" = 2 AND "tccs"."tema" = 'Trabalho Acadêmico - tcc-1761418584082' LIMIT 1 /*action='save_content',application='Backend',controller='work_content'*/[0m
+  ↳ app/controllers/api/work_content_controller.rb:108:in `set_work'
+  [1m[36mTRANSACTION (71.1ms)[0m  [1m[35mBEGIN /*action='save_content',application='Backend',controller='work_content'*/[0m
+  ↳ app/controllers/api/work_content_controller.rb:108:in `set_work'
+  [1m[36mTcc Create (171.8ms)[0m  [1m[32mINSERT INTO "tccs" ("nome", "faculdade", "curso", "materia", "tema", "tipo_trabalho", "user_id", "created_at", "updated_at", "resumo", "introducao", "objetivos", "justificativa", "metodologia", "desenvolvimento", "conclusao", "referencias") VALUES ('Ana Gomes', 'Instituição', 'Curso', NULL, 'Trabalho Acadêmico', 'TCC', 2, '2025-10-25 19:31:45.347121', '2025-10-25 19:31:45.347121', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL) RETURNING "id" /*action='save_content',application='Backend',controller='work_content'*/[0m
+  ↳ app/controllers/api/work_content_controller.rb:108:in `set_work'
+  [1m[36mTRANSACTION (93.7ms)[0m  [1m[35mCOMMIT /*action='save_content',application='Backend',controller='work_content'*/[0m
+  ↳ app/controllers/api/work_content_controller.rb:108:in `set_work'
+Created/found work: 3
+=== SET_WORK COMPLETED ===
+Starting save_content for ID: tcc-1761418584082
+Current user: 2
+Work object: #<Tcc id: 3, nome: "Ana Gomes", faculdade: "Instituição", curso: "Curso", materia: nil, tema: "Trabalho Acadêmico", tipo_trabalho: "TCC", user_id: 2, created_at: "2025-10-25 19:31:45.347121000 +0000", updated_at: "2025-10-25 19:31:45.347121000 +0000", resumo: nil, introducao: nil, objetivos: nil, justificativa: nil, metodologia: nil, desenvolvimento: nil, conclusao: nil, referencias: nil>
+Content data: ["resumo", "introducao", "desenvolvimento", "conclusao", "referencias", "metodologia", "objetivos", "justificativa", "estrutura_0", "estrutura_1", "estrutura_2", "estrutura_3", "estrutura_4", "estrutura_5", "estrutura_6", "estrutura_7", "estrutura_8", "estrutura_9", "estrutura_10", "estrutura_11", "estrutura_12", "estrutura_13", "estrutura_14", "estrutura_15", "estrutura_16", "estrutura_17", "estrutura_18", "estrutura_19", "estrutura_20", "estrutura_21", "estrutura_22", "estrutura_23"]
+  [1m[36mTRANSACTION (83.4ms)[0m  [1m[35mBEGIN /*action='save_content',application='Backend',controller='work_content'*/[0m
+  ↳ app/controllers/api/work_content_controller.rb:55:in `save_content'
+  [1m[36mTcc Update (185.8ms)[0m  [1m[33mUPDATE "tccs" SET "updated_at" = '2025-10-25 19:31:45.644827', "resumo" = '', "introducao" = '', "objetivos" = '', "justificativa" = '', "metodologia" = '', "desenvolvimento" = '', "conclusao" = '', "referencias" = '' WHERE "tccs"."id" = 3 /*action='save_content',application='Backend',controller='work_content'*/[0m
+  ↳ app/controllers/api/work_content_controller.rb:55:in `save_content'
+  [1m[36mTRANSACTION (97.7ms)[0m  [1m[35mCOMMIT /*action='save_content',application='Backend',controller='work_content'*/[0m
+  ↳ app/controllers/api/work_content_controller.rb:55:in `save_content'
+Successfully updated work content
+Completed 200 OK in 2732ms (Views: 0.2ms | ActiveRecord: 3569.8ms (5 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/api/tcc/tcc-1761418584082" for 127.0.0.1 at 2025-10-25 16:31:47 -0300
+Processing by Api::TccController#show as JSON
+  Parameters: {"id"=>"tcc-1761418584082", "tcc"=>{}}
+  [1m[36mUser Load (125.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 2 LIMIT 1 /*action='show',application='Backend',controller='tcc'*/[0m
+  [1m[36mJwtDenylist Exists? (93.2ms)[0m  [1m[34mSELECT 1 AS one FROM "jwt_denylists" WHERE "jwt_denylists"."jti" = '6ffd66f6-ef9a-4b18-a086-26748f432b33' LIMIT 1 /*action='show',application='Backend',controller='tcc'*/[0m
+  [1m[36mTcc Load (75.5ms)[0m  [1m[34mSELECT "tccs".* FROM "tccs" WHERE "tccs"."user_id" = 2 AND "tccs"."id" = NULL LIMIT 1 /*action='show',application='Backend',controller='tcc'*/[0m
+  ↳ app/controllers/api/tcc_controller.rb:320:in `set_tcc'
+TCC Controller Error: Couldn't find Tcc with 'id'="tcc-1761418584082" [WHERE "tccs"."user_id" = $1]
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/activerecord-8.0.2.1/lib/active_record/relation/finder_methods.rb:429:in `raise_record_not_found_exception!'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/activerecord-8.0.2.1/lib/active_record/relation/finder_methods.rb:537:in `find_one'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/activerecord-8.0.2.1/lib/active_record/relation/finder_methods.rb:514:in `find_with_ids'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/activerecord-8.0.2.1/lib/active_record/relation/finder_methods.rb:100:in `find'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/activerecord-8.0.2.1/lib/active_record/associations/collection_association.rb:113:in `find'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/activerecord-8.0.2.1/lib/active_record/associations/collection_proxy.rb:140:in `find'
+/home/ana/Documents/Programming/Trilha Clara/AI TCC Effortless/backend/app/controllers/api/tcc_controller.rb:320:in `set_tcc'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/activesupport-8.0.2.1/lib/active_support/callbacks.rb:361:in `block in make_lambda'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/activesupport-8.0.2.1/lib/active_support/callbacks.rb:178:in `block in call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/abstract_controller/callbacks.rb:34:in `block (2 levels) in <module:Callbacks>'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/activesupport-8.0.2.1/lib/active_support/callbacks.rb:179:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/activesupport-8.0.2.1/lib/active_support/callbacks.rb:559:in `block in invoke_before'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/activesupport-8.0.2.1/lib/active_support/callbacks.rb:559:in `each'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/activesupport-8.0.2.1/lib/active_support/callbacks.rb:559:in `invoke_before'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/activesupport-8.0.2.1/lib/active_support/callbacks.rb:108:in `run_callbacks'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/abstract_controller/callbacks.rb:260:in `process_action'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/action_controller/metal/rescue.rb:27:in `process_action'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/action_controller/metal/instrumentation.rb:76:in `block in process_action'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/activesupport-8.0.2.1/lib/active_support/notifications.rb:210:in `block in instrument'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/activesupport-8.0.2.1/lib/active_support/notifications/instrumenter.rb:58:in `instrument'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/activesupport-8.0.2.1/lib/active_support/notifications.rb:210:in `instrument'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/action_controller/metal/instrumentation.rb:75:in `process_action'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/action_controller/metal/params_wrapper.rb:259:in `process_action'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/activerecord-8.0.2.1/lib/active_record/railties/controller_runtime.rb:39:in `process_action'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/abstract_controller/base.rb:163:in `process'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/action_controller/metal.rb:252:in `dispatch'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/action_controller/metal.rb:335:in `dispatch'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/action_dispatch/routing/route_set.rb:67:in `dispatch'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/action_dispatch/routing/route_set.rb:50:in `serve'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/action_dispatch/journey/router.rb:53:in `block in serve'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/action_dispatch/journey/router.rb:133:in `block in find_routes'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/action_dispatch/journey/router.rb:126:in `each'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/action_dispatch/journey/router.rb:126:in `find_routes'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/action_dispatch/journey/router.rb:34:in `serve'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/action_dispatch/routing/route_set.rb:908:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/railties-8.0.2.1/lib/rails/engine/lazy_route_set.rb:68:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/omniauth-2.1.3/lib/omniauth/strategy.rb:202:in `call!'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/omniauth-2.1.3/lib/omniauth/strategy.rb:169:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/omniauth-2.1.3/lib/omniauth/builder.rb:44:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/warden-jwt_auth-0.11.0/lib/warden/jwt_auth/middleware/token_dispatcher.rb:20:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/warden-jwt_auth-0.11.0/lib/warden/jwt_auth/middleware/revocation_manager.rb:21:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/rack-3.2.0/lib/rack/builder.rb:283:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/warden-jwt_auth-0.11.0/lib/warden/jwt_auth/middleware.rb:22:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/action_dispatch/middleware/cookies.rb:706:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/rack-session-2.1.1/lib/rack/session/abstract/id.rb:274:in `context'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/rack-session-2.1.1/lib/rack/session/abstract/id.rb:268:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/warden-1.2.9/lib/warden/manager.rb:36:in `block in call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/warden-1.2.9/lib/warden/manager.rb:34:in `catch'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/warden-1.2.9/lib/warden/manager.rb:34:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/rack-3.2.0/lib/rack/etag.rb:29:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/rack-3.2.0/lib/rack/conditional_get.rb:31:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/rack-3.2.0/lib/rack/head.rb:15:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/activerecord-8.0.2.1/lib/active_record/migration.rb:671:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/action_dispatch/middleware/callbacks.rb:31:in `block in call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/activesupport-8.0.2.1/lib/active_support/callbacks.rb:100:in `run_callbacks'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/action_dispatch/middleware/callbacks.rb:30:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/action_dispatch/middleware/executor.rb:16:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/action_dispatch/middleware/actionable_exceptions.rb:18:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/action_dispatch/middleware/debug_exceptions.rb:31:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/action_dispatch/middleware/show_exceptions.rb:32:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/railties-8.0.2.1/lib/rails/rack/logger.rb:41:in `call_app'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/railties-8.0.2.1/lib/rails/rack/logger.rb:29:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/action_dispatch/middleware/remote_ip.rb:96:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/action_dispatch/middleware/request_id.rb:34:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/rack-3.2.0/lib/rack/runtime.rb:24:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/action_dispatch/middleware/server_timing.rb:61:in `block in call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/action_dispatch/middleware/server_timing.rb:26:in `collect_events'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/action_dispatch/middleware/server_timing.rb:60:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/action_dispatch/middleware/executor.rb:16:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-8.0.2.1/lib/action_dispatch/middleware/static.rb:27:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/rack-3.2.0/lib/rack/sendfile.rb:114:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/rack-cors-3.0.0/lib/rack/cors.rb:102:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/railties-8.0.2.1/lib/rails/engine.rb:535:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/puma-6.6.1/lib/puma/configuration.rb:279:in `call'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/puma-6.6.1/lib/puma/request.rb:99:in `block in handle_request'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/puma-6.6.1/lib/puma/thread_pool.rb:390:in `with_force_shutdown'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/puma-6.6.1/lib/puma/request.rb:98:in `handle_request'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/puma-6.6.1/lib/puma/server.rb:472:in `process_client'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/puma-6.6.1/lib/puma/server.rb:254:in `block in run'
+/home/ana/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/puma-6.6.1/lib/puma/thread_pool.rb:167:in `block in spawn_thread'
+Completed 500 Internal Server Error in 348ms (Views: 0.6ms | ActiveRecord: 293.9ms (3 queries, 0 cached) | GC: 5.2ms)
+
+
+Started GET "/api/work/tcc-1761418584082/content" for 127.0.0.1 at 2025-10-25 16:31:51 -0300
+Started GET "/api/work/tcc-1761418584082/content" for 127.0.0.1 at 2025-10-25 16:31:51 -0300
+Processing by Api::WorkContentController#content as JSON
+  Parameters: {"id"=>"tcc-1761418584082"}
+Processing by Api::WorkContentController#content as JSON
+  Parameters: {"id"=>"tcc-1761418584082"}
+  [1m[36mUser Load (123.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 2 LIMIT 1 /*action='content',application='Backend',controller='work_content'*/[0m
+  [1m[36mUser Load (120.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 2 LIMIT 1 /*action='content',application='Backend',controller='work_content'*/[0m
+  [1m[36mJwtDenylist Exists? (84.6ms)[0m  [1m[34mSELECT 1 AS one FROM "jwt_denylists" WHERE "jwt_denylists"."jti" = '6ffd66f6-ef9a-4b18-a086-26748f432b33' LIMIT 1 /*action='content',application='Backend',controller='work_content'*/[0m
+=== SET_WORK CALLED ===
+  [1m[36mJwtDenylist Exists? (70.5ms)[0m  [1m[34mSELECT 1 AS one FROM "jwt_denylists" WHERE "jwt_denylists"."jti" = '6ffd66f6-ef9a-4b18-a086-26748f432b33' LIMIT 1 /*action='content',application='Backend',controller='work_content'*/[0m
+Setting work for ID: tcc-1761418584082
+=== SET_WORK CALLED ===
+Current user: 2
+Setting work for ID: tcc-1761418584082
+Handling legacy TCC ID: tcc-1761418584082
+Current user: 2
+Handling legacy TCC ID: tcc-1761418584082
+  [1m[36mTcc Load (133.8ms)[0m  [1m[34mSELECT "tccs".* FROM "tccs" WHERE "tccs"."user_id" = 2 AND "tccs"."tema" = 'Trabalho Acadêmico - tcc-1761418584082' LIMIT 1 /*action='content',application='Backend',controller='work_content'*/[0m
+  [1m[36mTcc Load (151.6ms)[0m  [1m[34mSELECT "tccs".* FROM "tccs" WHERE "tccs"."user_id" = 2 AND "tccs"."tema" = 'Trabalho Acadêmico - tcc-1761418584082' LIMIT 1 /*action='content',application='Backend',controller='work_content'*/[0m
+  ↳ app/controllers/api/work_content_controller.rb:108:in `set_work'
+  ↳ app/controllers/api/work_content_controller.rb:108:in `set_work'
+  [1m[36mTRANSACTION (65.9ms)[0m  [1m[35mBEGIN /*action='content',application='Backend',controller='work_content'*/[0m
+  ↳ app/controllers/api/work_content_controller.rb:108:in `set_work'
+  [1m[36mTRANSACTION (57.2ms)[0m  [1m[35mBEGIN /*action='content',application='Backend',controller='work_content'*/[0m
+  ↳ app/controllers/api/work_content_controller.rb:108:in `set_work'
+  [1m[36mTcc Create (169.7ms)[0m  [1m[32mINSERT INTO "tccs" ("nome", "faculdade", "curso", "materia", "tema", "tipo_trabalho", "user_id", "created_at", "updated_at", "resumo", "introducao", "objetivos", "justificativa", "metodologia", "desenvolvimento", "conclusao", "referencias") VALUES ('Ana Gomes', 'Instituição', 'Curso', NULL, 'Trabalho Acadêmico', 'TCC', 2, '2025-10-25 19:31:52.219248', '2025-10-25 19:31:52.219248', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL) RETURNING "id" /*action='content',application='Backend',controller='work_content'*/[0m
+  [1m[36mTcc Create (153.1ms)[0m  [1m[32mINSERT INTO "tccs" ("nome", "faculdade", "curso", "materia", "tema", "tipo_trabalho", "user_id", "created_at", "updated_at", "resumo", "introducao", "objetivos", "justificativa", "metodologia", "desenvolvimento", "conclusao", "referencias") VALUES ('Ana Gomes', 'Instituição', 'Curso', NULL, 'Trabalho Acadêmico', 'TCC', 2, '2025-10-25 19:31:52.243345', '2025-10-25 19:31:52.243345', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL) RETURNING "id" /*action='content',application='Backend',controller='work_content'*/[0m
+  ↳ app/controllers/api/work_content_controller.rb:108:in `set_work'
+  ↳ app/controllers/api/work_content_controller.rb:108:in `set_work'
+  [1m[36mTRANSACTION (85.3ms)[0m  [1m[35mCOMMIT /*action='content',application='Backend',controller='work_content'*/[0m
+  [1m[36mTRANSACTION (84.4ms)[0m  [1m[35mCOMMIT /*action='content',application='Backend',controller='work_content'*/[0m
+  ↳ app/controllers/api/work_content_controller.rb:108:in `set_work'
+  ↳ app/controllers/api/work_content_controller.rb:108:in `set_work'
+Created/found work: 4
+Created/found work: 5
+=== SET_WORK COMPLETED ===
+=== SET_WORK COMPLETED ===
+Completed 200 OK in 744ms (Views: 1.7ms | ActiveRecord: 645.1ms (4 queries, 0 cached) | GC: 16.5ms)
+
+
+Completed 200 OK in 776ms (Views: 11.2ms | ActiveRecord: 653.6ms (4 queries, 0 cached) | GC: 16.5ms)
+
+
+Started POST "/api/work/tcc-1761418584082/save_content" for 127.0.0.1 at 2025-10-25 16:31:54 -0300
+Processing by Api::WorkContentController#save_content as JSON
+  Parameters: {"content"=>{"resumo"=>"", "introducao"=>"", "desenvolvimento"=>"", "conclusao"=>"", "referencias"=>"", "metodologia"=>"", "objetivos"=>"", "justificativa"=>""}, "customFields"=>[], "fieldLabels"=>{}, "fieldOrder"=>["resumo", "introducao", "objetivos", "justificativa", "metodologia", "desenvolvimento", "conclusao", "referencias"], "id"=>"tcc-1761418584082", "work_content"=>{"content"=>{"resumo"=>"", "introducao"=>"", "desenvolvimento"=>"", "conclusao"=>"", "referencias"=>"", "metodologia"=>"", "objetivos"=>"", "justificativa"=>""}, "customFields"=>[], "fieldLabels"=>{}, "fieldOrder"=>["resumo", "introducao", "objetivos", "justificativa", "metodologia", "desenvolvimento", "conclusao", "referencias"]}}
+  [1m[36mUser Load (257.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 2 LIMIT 1 /*action='save_content',application='Backend',controller='work_content'*/[0m
+  [1m[36mJwtDenylist Exists? (84.5ms)[0m  [1m[34mSELECT 1 AS one FROM "jwt_denylists" WHERE "jwt_denylists"."jti" = '6ffd66f6-ef9a-4b18-a086-26748f432b33' LIMIT 1 /*action='save_content',application='Backend',controller='work_content'*/[0m
+=== SET_WORK CALLED ===
+Setting work for ID: tcc-1761418584082
+Current user: 2
+Handling legacy TCC ID: tcc-1761418584082
+  [1m[36mTcc Load (80.5ms)[0m  [1m[34mSELECT "tccs".* FROM "tccs" WHERE "tccs"."user_id" = 2 AND "tccs"."tema" = 'Trabalho Acadêmico - tcc-1761418584082' LIMIT 1 /*action='save_content',application='Backend',controller='work_content'*/[0m
+  ↳ app/controllers/api/work_content_controller.rb:108:in `set_work'
+  [1m[36mTRANSACTION (81.2ms)[0m  [1m[35mBEGIN /*action='save_content',application='Backend',controller='work_content'*/[0m
+  ↳ app/controllers/api/work_content_controller.rb:108:in `set_work'
+  [1m[36mTcc Create (184.0ms)[0m  [1m[32mINSERT INTO "tccs" ("nome", "faculdade", "curso", "materia", "tema", "tipo_trabalho", "user_id", "created_at", "updated_at", "resumo", "introducao", "objetivos", "justificativa", "metodologia", "desenvolvimento", "conclusao", "referencias") VALUES ('Ana Gomes', 'Instituição', 'Curso', NULL, 'Trabalho Acadêmico', 'TCC', 2, '2025-10-25 19:31:55.484927', '2025-10-25 19:31:55.484927', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL) RETURNING "id" /*action='save_content',application='Backend',controller='work_content'*/[0m
+  ↳ app/controllers/api/work_content_controller.rb:108:in `set_work'
+  [1m[36mTRANSACTION (97.9ms)[0m  [1m[35mCOMMIT /*action='save_content',application='Backend',controller='work_content'*/[0m
+  ↳ app/controllers/api/work_content_controller.rb:108:in `set_work'
+Created/found work: 6
+=== SET_WORK COMPLETED ===
+Starting save_content for ID: tcc-1761418584082
+Current user: 2
+Work object: #<Tcc id: 6, nome: "Ana Gomes", faculdade: "Instituição", curso: "Curso", materia: nil, tema: "Trabalho Acadêmico", tipo_trabalho: "TCC", user_id: 2, created_at: "2025-10-25 19:31:55.484927000 +0000", updated_at: "2025-10-25 19:31:55.484927000 +0000", resumo: nil, introducao: nil, objetivos: nil, justificativa: nil, metodologia: nil, desenvolvimento: nil, conclusao: nil, referencias: nil>
+Content data: ["resumo", "introducao", "desenvolvimento", "conclusao", "referencias", "metodologia", "objetivos", "justificativa"]
+  [1m[36mTRANSACTION (87.2ms)[0m  [1m[35mBEGIN /*action='save_content',application='Backend',controller='work_content'*/[0m
+  ↳ app/controllers/api/work_content_controller.rb:55:in `save_content'
+  [1m[36mTcc Update (189.7ms)[0m  [1m[33mUPDATE "tccs" SET "updated_at" = '2025-10-25 19:31:55.785964', "resumo" = '', "introducao" = '', "objetivos" = '', "justificativa" = '', "metodologia" = '', "desenvolvimento" = '', "conclusao" = '', "referencias" = '' WHERE "tccs"."id" = 6 /*action='save_content',application='Backend',controller='work_content'*/[0m
+  ↳ app/controllers/api/work_content_controller.rb:55:in `save_content'
+  [1m[36mTRANSACTION (101.6ms)[0m  [1m[35mCOMMIT /*action='save_content',application='Backend',controller='work_content'*/[0m
+  ↳ app/controllers/api/work_content_controller.rb:55:in `save_content'
+Successfully updated work content
+Completed 200 OK in 1112ms (Views: 1.7ms | ActiveRecord: 1163.8ms (5 queries, 0 cached) | GC: 6.1ms)
+
+
+Started POST "/api/work/tcc-1761418584082/save_content" for 127.0.0.1 at 2025-10-25 16:32:03 -0300
+Processing by Api::WorkContentController#save_content as JSON
+  Parameters: {"content"=>{"resumo"=>"", "introducao"=>"", "desenvolvimento"=>"", "conclusao"=>"", "referencias"=>"", "metodologia"=>"", "objetivos"=>"", "justificativa"=>""}, "customFields"=>[], "fieldLabels"=>{}, "fieldOrder"=>["resumo", "introducao", "objetivos", "justificativa", "metodologia", "desenvolvimento", "conclusao", "referencias"], "id"=>"tcc-1761418584082", "work_content"=>{"content"=>{"resumo"=>"", "introducao"=>"", "desenvolvimento"=>"", "conclusao"=>"", "referencias"=>"", "metodologia"=>"", "objetivos"=>"", "justificativa"=>""}, "customFields"=>[], "fieldLabels"=>{}, "fieldOrder"=>["resumo", "introducao", "objetivos", "justificativa", "metodologia", "desenvolvimento", "conclusao", "referencias"]}}
+  [1m[36mUser Load (129.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 2 LIMIT 1 /*action='save_content',application='Backend',controller='work_content'*/[0m
+  [1m[36mJwtDenylist Exists? (91.5ms)[0m  [1m[34mSELECT 1 AS one FROM "jwt_denylists" WHERE "jwt_denylists"."jti" = '6ffd66f6-ef9a-4b18-a086-26748f432b33' LIMIT 1 /*action='save_content',application='Backend',controller='work_content'*/[0m
+=== SET_WORK CALLED ===
+Setting work for ID: tcc-1761418584082
+Current user: 2
+Handling legacy TCC ID: tcc-1761418584082
+  [1m[36mTcc Load (95.5ms)[0m  [1m[34mSELECT "tccs".* FROM "tccs" WHERE "tccs"."user_id" = 2 AND "tccs"."tema" = 'Trabalho Acadêmico - tcc-1761418584082' LIMIT 1 /*action='save_content',application='Backend',controller='work_content'*/[0m
+  ↳ app/controllers/api/work_content_controller.rb:108:in `set_work'
+  [1m[36mTRANSACTION (93.1ms)[0m  [1m[35mBEGIN /*action='save_content',application='Backend',controller='work_content'*/[0m
+  ↳ app/controllers/api/work_content_controller.rb:108:in `set_work'
+  [1m[36mTcc Create (153.3ms)[0m  [1m[32mINSERT INTO "tccs" ("nome", "faculdade", "curso", "materia", "tema", "tipo_trabalho", "user_id", "created_at", "updated_at", "resumo", "introducao", "objetivos", "justificativa", "metodologia", "desenvolvimento", "conclusao", "referencias") VALUES ('Ana Gomes', 'Instituição', 'Curso', NULL, 'Trabalho Acadêmico', 'TCC', 2, '2025-10-25 19:32:03.563639', '2025-10-25 19:32:03.563639', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL) RETURNING "id" /*action='save_content',application='Backend',controller='work_content'*/[0m
+  ↳ app/controllers/api/work_content_controller.rb:108:in `set_work'
+  [1m[36mTRANSACTION (137.4ms)[0m  [1m[35mCOMMIT /*action='save_content',application='Backend',controller='work_content'*/[0m
+  ↳ app/controllers/api/work_content_controller.rb:108:in `set_work'
+Created/found work: 7
+=== SET_WORK COMPLETED ===
+Starting save_content for ID: tcc-1761418584082
+Current user: 2
+Work object: #<Tcc id: 7, nome: "Ana Gomes", faculdade: "Instituição", curso: "Curso", materia: nil, tema: "Trabalho Acadêmico", tipo_trabalho: "TCC", user_id: 2, created_at: "2025-10-25 19:32:03.563639000 +0000", updated_at: "2025-10-25 19:32:03.563639000 +0000", resumo: nil, introducao: nil, objetivos: nil, justificativa: nil, metodologia: nil, desenvolvimento: nil, conclusao: nil, referencias: nil>
+Content data: ["resumo", "introducao", "desenvolvimento", "conclusao", "referencias", "metodologia", "objetivos", "justificativa"]
+  [1m[36mTRANSACTION (83.7ms)[0m  [1m[35mBEGIN /*action='save_content',application='Backend',controller='work_content'*/[0m
+  ↳ app/controllers/api/work_content_controller.rb:55:in `save_content'
+  [1m[36mTcc Update (185.9ms)[0m  [1m[33mUPDATE "tccs" SET "updated_at" = '2025-10-25 19:32:03.870869', "resumo" = '', "introducao" = '', "objetivos" = '', "justificativa" = '', "metodologia" = '', "desenvolvimento" = '', "conclusao" = '', "referencias" = '' WHERE "tccs"."id" = 7 /*action='save_content',application='Backend',controller='work_content'*/[0m
+  ↳ app/controllers/api/work_content_controller.rb:55:in `save_content'
+  [1m[36mTRANSACTION (96.6ms)[0m  [1m[35mCOMMIT /*action='save_content',application='Backend',controller='work_content'*/[0m
+  ↳ app/controllers/api/work_content_controller.rb:55:in `save_content'
+Successfully updated work content
+Completed 200 OK in 947ms (Views: 0.4ms | ActiveRecord: 1065.9ms (5 queries, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/api/work/tcc-1761418584082/save_content" for 127.0.0.1 at 2025-10-25 16:35:01 -0300
+Processing by Api::WorkContentController#save_content as JSON
+  Parameters: {"content"=>{"resumo"=>"testinggg", "introducao"=>"", "desenvolvimento"=>"", "conclusao"=>"", "referencias"=>"", "metodologia"=>"", "objetivos"=>"", "justificativa"=>""}, "customFields"=>[], "fieldLabels"=>{}, "fieldOrder"=>["resumo", "introducao", "objetivos", "justificativa", "metodologia", "desenvolvimento", "conclusao", "referencias"], "id"=>"tcc-1761418584082", "work_content"=>{"content"=>{"resumo"=>"testinggg", "introducao"=>"", "desenvolvimento"=>"", "conclusao"=>"", "referencias"=>"", "metodologia"=>"", "objetivos"=>"", "justificativa"=>""}, "customFields"=>[], "fieldLabels"=>{}, "fieldOrder"=>["resumo", "introducao", "objetivos", "justificativa", "metodologia", "desenvolvimento", "conclusao", "referencias"]}}
+  [1m[36mUser Load (204.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 2 LIMIT 1 /*action='save_content',application='Backend',controller='work_content'*/[0m
+Started POST "/api/work/tcc-1761418584082/save_content" for 127.0.0.1 at 2025-10-25 16:35:01 -0300
+Processing by Api::WorkContentController#save_content as JSON
+  Parameters: {"content"=>{"resumo"=>"testinggg", "introducao"=>"", "desenvolvimento"=>"", "conclusao"=>"", "referencias"=>"", "metodologia"=>"", "objetivos"=>"", "justificativa"=>""}, "customFields"=>[], "fieldLabels"=>{}, "fieldOrder"=>["resumo", "introducao", "objetivos", "justificativa", "metodologia", "desenvolvimento", "conclusao", "referencias"], "id"=>"tcc-1761418584082", "work_content"=>{"content"=>{"resumo"=>"testinggg", "introducao"=>"", "desenvolvimento"=>"", "conclusao"=>"", "referencias"=>"", "metodologia"=>"", "objetivos"=>"", "justificativa"=>""}, "customFields"=>[], "fieldLabels"=>{}, "fieldOrder"=>["resumo", "introducao", "objetivos", "justificativa", "metodologia", "desenvolvimento", "conclusao", "referencias"]}}
+  [1m[36mJwtDenylist Exists? (57.3ms)[0m  [1m[34mSELECT 1 AS one FROM "jwt_denylists" WHERE "jwt_denylists"."jti" = '6ffd66f6-ef9a-4b18-a086-26748f432b33' LIMIT 1 /*action='save_content',application='Backend',controller='work_content'*/[0m
+=== SET_WORK CALLED ===
+Setting work for ID: tcc-1761418584082
+Current user: 2
+Handling legacy TCC ID: tcc-1761418584082
+  [1m[36mTcc Load (77.1ms)[0m  [1m[34mSELECT "tccs".* FROM "tccs" WHERE "tccs"."user_id" = 2 AND "tccs"."tema" = 'Trabalho Acadêmico - tcc-1761418584082' LIMIT 1 /*action='save_content',application='Backend',controller='work_content'*/[0m
+  ↳ app/controllers/api/work_content_controller.rb:108:in `set_work'
+  [1m[36mUser Load (201.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 2 LIMIT 1 /*action='save_content',application='Backend',controller='work_content'*/[0m
+  [1m[36mTRANSACTION (57.0ms)[0m  [1m[35mBEGIN /*action='save_content',application='Backend',controller='work_content'*/[0m
+  ↳ app/controllers/api/work_content_controller.rb:108:in `set_work'
+  [1m[36mJwtDenylist Exists? (57.0ms)[0m  [1m[34mSELECT 1 AS one FROM "jwt_denylists" WHERE "jwt_denylists"."jti" = '6ffd66f6-ef9a-4b18-a086-26748f432b33' LIMIT 1 /*action='save_content',application='Backend',controller='work_content'*/[0m
+=== SET_WORK CALLED ===
+Setting work for ID: tcc-1761418584082
+Current user: 2
+Handling legacy TCC ID: tcc-1761418584082
+  [1m[36mTcc Create (140.6ms)[0m  [1m[32mINSERT INTO "tccs" ("nome", "faculdade", "curso", "materia", "tema", "tipo_trabalho", "user_id", "created_at", "updated_at", "resumo", "introducao", "objetivos", "justificativa", "metodologia", "desenvolvimento", "conclusao", "referencias") VALUES ('Ana Gomes', 'Instituição', 'Curso', NULL, 'Trabalho Acadêmico', 'TCC', 2, '2025-10-25 19:35:01.449178', '2025-10-25 19:35:01.449178', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL) RETURNING "id" /*action='save_content',application='Backend',controller='work_content'*/[0m
+  ↳ app/controllers/api/work_content_controller.rb:108:in `set_work'
+  [1m[36mTRANSACTION (56.2ms)[0m  [1m[35mCOMMIT /*action='save_content',application='Backend',controller='work_content'*/[0m
+  ↳ app/controllers/api/work_content_controller.rb:108:in `set_work'
+Created/found work: 8
+=== SET_WORK COMPLETED ===
+  [1m[36mTcc Load (175.5ms)[0m  [1m[34mSELECT "tccs".* FROM "tccs" WHERE "tccs"."user_id" = 2 AND "tccs"."tema" = 'Trabalho Acadêmico - tcc-1761418584082' LIMIT 1 /*action='save_content',application='Backend',controller='work_content'*/[0m
+Starting save_content for ID: tcc-1761418584082
+  ↳ app/controllers/api/work_content_controller.rb:108:in `set_work'
+Current user: 2
+Work object: #<Tcc id: 8, nome: "Ana Gomes", faculdade: "Instituição", curso: "Curso", materia: nil, tema: "Trabalho Acadêmico", tipo_trabalho: "TCC", user_id: 2, created_at: "2025-10-25 19:35:01.449178000 +0000", updated_at: "2025-10-25 19:35:01.449178000 +0000", resumo: nil, introducao: nil, objetivos: nil, justificativa: nil, metodologia: nil, desenvolvimento: nil, conclusao: nil, referencias: nil>
+Content data: ["resumo", "introducao", "desenvolvimento", "conclusao", "referencias", "metodologia", "objetivos", "justificativa"]
+  [1m[36mTRANSACTION (56.6ms)[0m  [1m[35mBEGIN /*action='save_content',application='Backend',controller='work_content'*/[0m
+  ↳ app/controllers/api/work_content_controller.rb:108:in `set_work'
+  [1m[36mTRANSACTION (55.4ms)[0m  [1m[35mBEGIN /*action='save_content',application='Backend',controller='work_content'*/[0m
+  ↳ app/controllers/api/work_content_controller.rb:55:in `save_content'
+  [1m[36mTcc Create (138.1ms)[0m  [1m[32mINSERT INTO "tccs" ("nome", "faculdade", "curso", "materia", "tema", "tipo_trabalho", "user_id", "created_at", "updated_at", "resumo", "introducao", "objetivos", "justificativa", "metodologia", "desenvolvimento", "conclusao", "referencias") VALUES ('Ana Gomes', 'Instituição', 'Curso', NULL, 'Trabalho Acadêmico', 'TCC', 2, '2025-10-25 19:35:01.795105', '2025-10-25 19:35:01.795105', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL) RETURNING "id" /*action='save_content',application='Backend',controller='work_content'*/[0m
+  [1m[36mTcc Update (124.7ms)[0m  [1m[33mUPDATE "tccs" SET "updated_at" = '2025-10-25 19:35:01.801812', "resumo" = 'testinggg', "introducao" = '', "objetivos" = '', "justificativa" = '', "metodologia" = '', "desenvolvimento" = '', "conclusao" = '', "referencias" = '' WHERE "tccs"."id" = 8 /*action='save_content',application='Backend',controller='work_content'*/[0m
+  ↳ app/controllers/api/work_content_controller.rb:108:in `set_work'
+  ↳ app/controllers/api/work_content_controller.rb:55:in `save_content'
+  [1m[36mTRANSACTION (56.9ms)[0m  [1m[35mCOMMIT /*action='save_content',application='Backend',controller='work_content'*/[0m
+  ↳ app/controllers/api/work_content_controller.rb:108:in `set_work'
+Created/found work: 9
+  [1m[36mTRANSACTION (62.1ms)[0m  [1m[35mCOMMIT /*action='save_content',application='Backend',controller='work_content'*/[0m
+=== SET_WORK COMPLETED ===
+  ↳ app/controllers/api/work_content_controller.rb:55:in `save_content'
+Starting save_content for ID: tcc-1761418584082
+Successfully updated work content
+Current user: 2
+Completed 200 OK in 1001ms (Views: 5.7ms | ActiveRecord: 833.7ms (5 queries, 0 cached) | GC: 104.7ms)
+
+
+Work object: #<Tcc id: 9, nome: "Ana Gomes", faculdade: "Instituição", curso: "Curso", materia: nil, tema: "Trabalho Acadêmico", tipo_trabalho: "TCC", user_id: 2, created_at: "2025-10-25 19:35:01.795105000 +0000", updated_at: "2025-10-25 19:35:01.795105000 +0000", resumo: nil, introducao: nil, objetivos: nil, justificativa: nil, metodologia: nil, desenvolvimento: nil, conclusao: nil, referencias: nil>
+Content data: ["resumo", "introducao", "desenvolvimento", "conclusao", "referencias", "metodologia", "objetivos", "justificativa"]
+  [1m[36mTRANSACTION (74.5ms)[0m  [1m[35mBEGIN /*action='save_content',application='Backend',controller='work_content'*/[0m
+  ↳ app/controllers/api/work_content_controller.rb:55:in `save_content'
+  [1m[36mTcc Update (136.8ms)[0m  [1m[33mUPDATE "tccs" SET "updated_at" = '2025-10-25 19:35:02.054260', "resumo" = 'testinggg', "introducao" = '', "objetivos" = '', "justificativa" = '', "metodologia" = '', "desenvolvimento" = '', "conclusao" = '', "referencias" = '' WHERE "tccs"."id" = 9 /*action='save_content',application='Backend',controller='work_content'*/[0m
+  ↳ app/controllers/api/work_content_controller.rb:55:in `save_content'
+  [1m[36mTRANSACTION (56.5ms)[0m  [1m[35mCOMMIT /*action='save_content',application='Backend',controller='work_content'*/[0m
+  ↳ app/controllers/api/work_content_controller.rb:55:in `save_content'
+Successfully updated work content
+Completed 200 OK in 986ms (Views: 1.0ms | ActiveRecord: 952.5ms (5 queries, 0 cached) | GC: 108.2ms)
+
+
