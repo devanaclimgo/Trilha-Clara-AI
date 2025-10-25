@@ -1,8 +1,10 @@
 class Api::WorkContentController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_work, only: [:generate_content, :save_content, :get_content]
+  before_action :set_work, only: [:generate_content, :save_content, :content]
 
   rescue_from StandardError do |e|
+    Rails.logger.error "StandardError in WorkContentController: #{e.message}"
+    Rails.logger.error e.backtrace.join("\n")
     render json: { error: e.message }, status: :internal_server_error
   end
 
@@ -41,25 +43,38 @@ class Api::WorkContentController < ApplicationController
 
   # POST /api/work/:id/save_content
   def save_content
-    content_data = params[:content] || {}
+    Rails.logger.info "Starting save_content for ID: #{params[:id]}"
+    Rails.logger.info "Current user: #{current_user&.id}"
+    Rails.logger.info "Work object: #{@work&.inspect}"
     
-    # Atualizar o conteúdo do trabalho
-    @work.update!(
-      resumo: content_data[:resumo],
-      introducao: content_data[:introducao],
-      objetivos: content_data[:objetivos],
-      justificativa: content_data[:justificativa],
-      metodologia: content_data[:metodologia],
-      desenvolvimento: content_data[:desenvolvimento],
-      conclusao: content_data[:conclusao],
-      referencias: content_data[:referencias],
-      updated_at: Time.current
-    )
+    content_data = params[:content] || {}
+    Rails.logger.info "Content data: #{content_data.keys}"
+    
+    begin
+      # Atualizar o conteúdo do trabalho
+      @work.update!(
+        resumo: content_data[:resumo],
+        introducao: content_data[:introducao],
+        objetivos: content_data[:objetivos],
+        justificativa: content_data[:justificativa],
+        metodologia: content_data[:metodologia],
+        desenvolvimento: content_data[:desenvolvimento],
+        conclusao: content_data[:conclusao],
+        referencias: content_data[:referencias],
+        updated_at: Time.current
+      )
+      
+      Rails.logger.info "Successfully updated work content"
 
-    render json: {
-      message: 'Conteúdo salvo com sucesso',
-      saved_at: Time.current
-    }
+      render json: {
+        message: 'Conteúdo salvo com sucesso',
+        saved_at: Time.current
+      }
+    rescue => e
+      Rails.logger.error "Error in save_content: #{e.message}"
+      Rails.logger.error e.backtrace.join("\n")
+      raise e
+    end
   end
 
   # GET /api/work/:id/content
@@ -80,8 +95,9 @@ class Api::WorkContentController < ApplicationController
   private
 
   def set_work
+    Rails.logger.info "=== SET_WORK CALLED ==="
     Rails.logger.info "Setting work for ID: #{params[:id]}"
-    Rails.logger.info "Current user: #{current_user.id}"
+    Rails.logger.info "Current user: #{current_user&.id}"
     
     # Handle both legacy string IDs and database integer IDs
     if params[:id].to_s.start_with?('tcc-')
@@ -108,5 +124,6 @@ class Api::WorkContentController < ApplicationController
       # Standard database ID
       @work = current_user.tccs.find(params[:id])
     end
+    Rails.logger.info "=== SET_WORK COMPLETED ==="
   end
 end
