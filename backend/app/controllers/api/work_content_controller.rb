@@ -64,11 +64,32 @@ class Api::WorkContentController < ApplicationController
         updated_at: Time.current
       )
       
-      Rails.logger.info "Successfully updated work content"
+      # Save custom fields and hierarchy structure
+      custom_fields = params[:customFields] || []
+      field_order = params[:fieldOrder] || []
+      field_labels = params[:fieldLabels] || {}
+      
+      # Store the hierarchical structure as JSON in a dedicated field
+      # This allows us to preserve the exact structure for preview
+      hierarchical_structure = {
+        custom_fields: custom_fields,
+        field_order: field_order,
+        field_labels: field_labels,
+        saved_at: Time.current
+      }
+      
+      # Update the work with the hierarchical structure
+      @work.update!(
+        structure: hierarchical_structure.to_json,
+        updated_at: Time.current
+      )
+      
+      Rails.logger.info "Successfully updated work content with hierarchical structure"
 
       render json: {
         message: 'Conteúdo salvo com sucesso',
-        saved_at: Time.current
+        saved_at: Time.current,
+        structure: hierarchical_structure
       }
     rescue => e
       Rails.logger.error "Error in save_content: #{e.message}"
@@ -79,6 +100,9 @@ class Api::WorkContentController < ApplicationController
 
   # GET /api/work/:id/content
   def content
+    # Parse the structure if it exists
+    structure = @work.structure ? JSON.parse(@work.structure) : {}
+    
     render json: {
       resumo: @work.resumo,
       introducao: @work.introducao,
@@ -88,7 +112,8 @@ class Api::WorkContentController < ApplicationController
       desenvolvimento: @work.desenvolvimento,
       conclusao: @work.conclusao,
       referencias: @work.referencias,
-      updated_at: @work.updated_at
+      updated_at: @work.updated_at,
+      structure: structure
     }
   end
 

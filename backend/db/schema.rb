@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_09_15_173609) do
+ActiveRecord::Schema[8.0].define(version: 2025_10_25_200617) do
   create_schema "auth"
   create_schema "extensions"
   create_schema "graphql"
@@ -44,6 +44,28 @@ ActiveRecord::Schema[8.0].define(version: 2025_09_15_173609) do
     t.index ["jti"], name: "index_jwt_denylists_on_jti"
   end
 
+  create_table "tcc_content", force: :cascade do |t|
+    t.bigint "tcc_id", null: false
+    t.text "section_type", null: false
+    t.jsonb "content", null: false
+    t.timestamptz "created_at", default: -> { "now()" }
+    t.timestamptz "updated_at", default: -> { "now()" }
+    t.index ["section_type"], name: "idx_tcc_content_section_type"
+    t.index ["tcc_id"], name: "idx_tcc_content_tcc_id"
+    t.unique_constraint ["tcc_id", "section_type"], name: "tcc_content_tcc_id_section_type_key"
+  end
+
+  create_table "tcc_notes", force: :cascade do |t|
+    t.bigint "tcc_id", null: false
+    t.uuid "user_id", null: false
+    t.text "text", null: false
+    t.timestamptz "created_at", default: -> { "now()" }
+    t.timestamptz "updated_at", default: -> { "now()" }
+    t.index ["created_at"], name: "idx_tcc_notes_created_at"
+    t.index ["tcc_id"], name: "idx_tcc_notes_tcc_id"
+    t.index ["user_id"], name: "idx_tcc_notes_user_id"
+  end
+
   create_table "tccs", comment: "Tabela principal de trabalhos acadêmicos", force: :cascade do |t|
     t.string "nome"
     t.string "faculdade"
@@ -52,8 +74,8 @@ ActiveRecord::Schema[8.0].define(version: 2025_09_15_173609) do
     t.string "tema"
     t.string "tipo_trabalho"
     t.bigint "user_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.timestamptz "created_at", null: false
+    t.timestamptz "updated_at", null: false
     t.text "resumo"
     t.text "introducao"
     t.text "objetivos"
@@ -62,6 +84,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_09_15_173609) do
     t.text "desenvolvimento"
     t.text "conclusao"
     t.text "referencias"
+    t.text "structure"
     t.index ["created_at"], name: "idx_tccs_created_at"
     t.index ["user_id", "created_at"], name: "idx_tccs_user_created", order: { created_at: :desc }
     t.index ["user_id"], name: "idx_tccs_user_id"
@@ -82,5 +105,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_09_15_173609) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "tcc_content", "tccs", name: "tcc_content_tcc_id_fkey", on_delete: :cascade
+  add_foreign_key "tcc_notes", "tccs", name: "tcc_notes_tcc_id_fkey", on_delete: :cascade
   add_foreign_key "tccs", "users"
 end

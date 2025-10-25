@@ -75,6 +75,7 @@ interface ContentField {
   isCustom?: boolean
   isSubsection?: boolean
   parentId?: string
+  sectionNumber?: string // e.g., "1", "1.1", "1.2", "2"
 }
 
 interface SortableFieldProps {
@@ -187,6 +188,11 @@ function SortableField({
                     className="text-lg font-semibold text-gray-700 cursor-pointer hover:text-purple-600 transition-colors flex items-center gap-2"
                     onClick={() => setIsEditingLabel(true)}
                   >
+                    {field.sectionNumber && (
+                      <span className="text-purple-600 font-bold text-lg">
+                        {field.sectionNumber}.
+                      </span>
+                    )}
                     {fieldLabels[field.id] || field.label}
                     {field.required && (
                       <span className="text-red-500 text-sm">*</span>
@@ -393,6 +399,20 @@ export default function WorkEditContent({
             objetivos: data.objetivos || '',
             justificativa: data.justificativa || '',
           })
+
+          // Load hierarchical structure if it exists
+          if (data.structure) {
+            const structure = data.structure
+            if (structure.custom_fields) {
+              setCustomFields(structure.custom_fields)
+            }
+            if (structure.field_order) {
+              setFieldOrder(structure.field_order)
+            }
+            if (structure.field_labels) {
+              setFieldLabels(structure.field_labels)
+            }
+          }
         }
       } catch (error) {
         console.error('Erro ao carregar conteúdo:', error)
@@ -405,6 +425,33 @@ export default function WorkEditContent({
       fetchContent()
     }
   }, [workData?.id])
+
+  // Generate hierarchical section numbers
+  const generateSectionNumbers = (fields: ContentField[]): ContentField[] => {
+    let sectionCounter = 1
+    let subsectionCounter = 1
+    let currentParentId: string | null = null
+
+    return fields.map((field) => {
+      if (field.isSubsection && field.parentId) {
+        // This is a subsection
+        if (currentParentId !== field.parentId) {
+          // New parent section, reset subsection counter
+          subsectionCounter = 1
+          currentParentId = field.parentId
+        }
+        const sectionNumber = `${sectionCounter}.${subsectionCounter}`
+        subsectionCounter++
+        return { ...field, sectionNumber }
+      } else {
+        // This is a main section
+        sectionCounter++
+        subsectionCounter = 1 // Reset subsection counter for new section
+        currentParentId = field.id
+        return { ...field, sectionNumber: sectionCounter.toString() }
+      }
+    })
+  }
 
   // Gerar campos baseados na estrutura da IA
   const generateContentFields = (): ContentField[] => {
@@ -502,7 +549,8 @@ export default function WorkEditContent({
     // Add custom fields to the base fields
     const allFields = [...baseFields, ...customFields]
 
-    return allFields
+    // Apply hierarchical numbering
+    return generateSectionNumbers(allFields)
   }
 
   const contentFields = generateContentFields()
