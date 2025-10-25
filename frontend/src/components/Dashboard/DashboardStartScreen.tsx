@@ -155,6 +155,7 @@ export default function DashboardStartScreen() {
       tema: data.tema,
       tipoTrabalho: data.tipoTrabalho,
       curso: data.curso,
+      semanas: data.semanas,
       progresso: 5,
       status: 'pesquisando' as const,
       ultimaModificacao: new Date().toISOString(),
@@ -417,6 +418,7 @@ export default function DashboardStartScreen() {
             <TimelineScreen
               cronograma={tccData?.cronograma || []}
               loadingStates={loadingStates}
+              semanas={tccData?.semanas}
               onBackToHome={
                 hasCompletedInitialData
                   ? () => setCurrentScreen('main')

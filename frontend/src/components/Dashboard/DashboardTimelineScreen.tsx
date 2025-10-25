@@ -3,80 +3,91 @@ import React, { useState } from 'react'
 import { Card, CardContent } from '../ui/card'
 import { Check, ArrowLeft } from 'lucide-react'
 import { Button } from '../ui/button'
+import {
+  generateCronograma,
+  getCronogramaProgress,
+  CronogramaItem,
+} from '@/lib/cronogramaUtils'
 
 interface TimelineScreenProps {
   cronograma: any[]
   loadingStates: any
   onBackToHome?: () => void
+  semanas?: number
 }
 
 export default function TimelineScreen({
-  onBackToHome
+  onBackToHome,
+  semanas = 10,
 }: TimelineScreenProps) {
   const [completedTasks, setCompletedTasks] = useState<number[]>([1, 2])
 
-  const atividades = [
-    {
-      id: 1,
-      semana: 1,
-      atividade: 'Escolher tema e delimitar problema',
-      categoria: 'Planejamento',
-    },
-    {
-      id: 2,
-      semana: 2,
-      atividade: 'Levantar referências bibliográficas',
-      categoria: 'Pesquisa',
-    },
-    {
-      id: 3,
-      semana: 3,
-      atividade: 'Escrever introdução e justificativa',
-      categoria: 'Redação',
-    },
-    {
-      id: 4,
-      semana: 4,
-      atividade: 'Redigir metodologia da pesquisa',
-      categoria: 'Metodologia',
-    },
-    {
-      id: 5,
-      semana: 5,
-      atividade: 'Desenvolver revisão bibliográfica',
-      categoria: 'Pesquisa',
-    },
-    {
-      id: 6,
-      semana: 6,
-      atividade: 'Aplicar instrumentos de coleta',
-      categoria: 'Coleta de Dados',
-    },
-    {
-      id: 7,
-      semana: 7,
-      atividade: 'Analisar dados coletados',
-      categoria: 'Análise',
-    },
-    {
-      id: 8,
-      semana: 8,
-      atividade: 'Escrever resultados e discussão',
-      categoria: 'Redação',
-    },
-    {
-      id: 9,
-      semana: 9,
-      atividade: 'Elaborar conclusões',
-      categoria: 'Redação',
-    },
-    {
-      id: 10,
-      semana: 10,
-      atividade: 'Revisão final e formatação ABNT',
-      categoria: 'Finalização',
-    },
-  ]
+  // Generate dynamic cronograma based on semanas
+  const atividades =
+    semanas && semanas > 0
+      ? generateCronograma(semanas)
+      : [
+          {
+            id: 1,
+            semana: 1,
+            atividade: 'Escolher tema e delimitar problema',
+            categoria: 'Planejamento',
+          },
+          {
+            id: 2,
+            semana: 2,
+            atividade: 'Levantar referências bibliográficas',
+            categoria: 'Pesquisa',
+          },
+          {
+            id: 3,
+            semana: 3,
+            atividade: 'Escrever introdução e justificativa',
+            categoria: 'Redação',
+          },
+          {
+            id: 4,
+            semana: 4,
+            atividade: 'Redigir metodologia da pesquisa',
+            categoria: 'Metodologia',
+          },
+          {
+            id: 5,
+            semana: 5,
+            atividade: 'Desenvolver revisão bibliográfica',
+            categoria: 'Pesquisa',
+          },
+          {
+            id: 6,
+            semana: 6,
+            atividade: 'Aplicar instrumentos de coleta',
+            categoria: 'Coleta de Dados',
+          },
+          {
+            id: 7,
+            semana: 7,
+            atividade: 'Analisar dados coletados',
+            categoria: 'Análise',
+          },
+          {
+            id: 8,
+            semana: 8,
+            atividade: 'Escrever resultados e discussão',
+            categoria: 'Redação',
+          },
+          {
+            id: 9,
+            semana: 9,
+            atividade: 'Elaborar conclusões',
+            categoria: 'Redação',
+          },
+          {
+            id: 10,
+            semana: 10,
+            atividade: 'Revisão final e formatação ABNT',
+            categoria: 'Finalização',
+          },
+        ]
 
   const toggleTask = (taskId: number) => {
     setCompletedTasks((prev) =>
@@ -86,7 +97,7 @@ export default function TimelineScreen({
     )
   }
 
-  const progresso = (completedTasks.length / atividades.length) * 100
+  const progresso = getCronogramaProgress(atividades)
 
   return (
     <div className="min-h-screen flex flex-col">

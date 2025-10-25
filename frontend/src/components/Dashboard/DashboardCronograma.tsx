@@ -1,20 +1,29 @@
 import { ArrowRight, CheckCircle } from 'lucide-react'
 import { Button } from '../ui/button'
 import { Card, CardContent, CardHeader, CardTitle } from '../ui/card'
+import {
+  generateCronograma,
+  getCronogramaProgress,
+  CronogramaItem,
+} from '@/lib/cronogramaUtils'
 
 interface CronogramaProps {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   atividades: any[] | string[]
   onNext: () => void
+  semanas?: number
 }
 
 export default function Cronograma({
   atividades: atividadesProp,
   onNext,
+  semanas = 10,
 }: CronogramaProps) {
-  // Converte atividades para o formato esperado
+  // Generate dynamic cronograma based on semanas
   const atividades =
-    Array.isArray(atividadesProp) && atividadesProp.length > 0
+    semanas && semanas > 0
+      ? generateCronograma(semanas)
+      : Array.isArray(atividadesProp) && atividadesProp.length > 0
       ? atividadesProp.map((item, index) => {
           // Se o item é um objeto com semana e atividade
           if (typeof item === 'object' && item.semana && item.atividade) {
@@ -31,62 +40,9 @@ export default function Cronograma({
             concluida: index < 2, // Primeiras 2 atividades marcadas como concluídas
           }
         })
-      : [
-          {
-            semana: 1,
-            atividade: 'Definir tema e problema de pesquisa',
-            concluida: true,
-          },
-          {
-            semana: 2,
-            atividade: 'Levantar referências bibliográficas',
-            concluida: true,
-          },
-          {
-            semana: 3,
-            atividade: 'Escrever introdução e justificativa',
-            concluida: false,
-          },
-          {
-            semana: 4,
-            atividade: 'Construir referencial teórico',
-            concluida: false,
-          },
-          {
-            semana: 5,
-            atividade: 'Redigir metodologia da pesquisa',
-            concluida: false,
-          },
-          {
-            semana: 6,
-            atividade: 'Executar coleta de dados',
-            concluida: false,
-          },
-          {
-            semana: 7,
-            atividade: 'Analisar dados coletados',
-            concluida: false,
-          },
-          { semana: 8, atividade: 'Escrever resultados', concluida: false },
-          {
-            semana: 9,
-            atividade: 'Discutir resultados e limitações',
-            concluida: false,
-          },
-          {
-            semana: 10,
-            atividade: 'Elaborar conclusões finais',
-            concluida: false,
-          },
-          {
-            semana: 11,
-            atividade: 'Revisão geral e formatação ABNT',
-            concluida: false,
-          },
-        ]
+      : generateCronograma(10) // Default to 10 weeks
 
-  const progresso =
-    (atividades.filter((a) => a.concluida).length / atividades.length) * 100
+  const progresso = getCronogramaProgress(atividades)
 
   return (
     <Card className="rounded-2xl shadow-xl bg-slate-50/80 backdrop-blur-sm border-slate-200/20">

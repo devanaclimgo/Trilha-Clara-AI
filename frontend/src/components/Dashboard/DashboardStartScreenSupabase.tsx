@@ -331,6 +331,7 @@ export default function DashboardStartScreenSupabase() {
             onBackToHome={() => setCurrentScreen('main')}
             tccData={tccData}
             onUpdateTccData={atualizarTrabalho}
+            semanas={tccData?.semanas}
           />
         )}
 
