@@ -230,6 +230,17 @@ function SortableField({
             </div>
           </div>
           <p className="text-sm text-gray-600">{field.description}</p>
+          <div className="mt-2 p-3 bg-blue-50 border border-blue-200 rounded-lg">
+            <div className="flex items-start gap-2">
+              <Lightbulb className="h-4 w-4 text-blue-600 mt-0.5 flex-shrink-0" />
+              <div className="text-xs text-blue-800">
+                <strong>Dica:</strong> Seja específico sobre suas ideias! Quanto
+                mais detalhes você fornecer, melhor será o texto gerado pela IA.
+                Fale sobre exemplos, casos práticos, dados que conhece, ou
+                experiências pessoais relacionadas ao tema.
+              </div>
+            </div>
+          </div>
         </CardHeader>
         {!isCollapsed && (
           <CardContent>
@@ -363,9 +374,9 @@ export default function WorkEditContent({
         key: 'resumo',
         label: fieldLabels.resumo || 'Resumo',
         description:
-          'Escreva as principais ideias do seu trabalho em poucas palavras',
+          'Escreva suas ideias sobre o que você quer incluir no resumo. Seja específico sobre objetivos, metodologia e conclusões esperadas.',
         placeholder:
-          'Ex: Este trabalho analisa a aplicação de IA na educação...',
+          'Ex: Quero falar sobre como a IA pode ajudar professores a personalizar o ensino, usando dados de alunos para criar planos de estudo individuais. Pretendo mostrar exemplos práticos de escolas que já usam isso e os resultados obtidos.',
         icon: BookOpen,
         required: true,
         id: 'resumo',
@@ -373,9 +384,10 @@ export default function WorkEditContent({
       {
         key: 'introducao',
         label: fieldLabels.introducao || 'Introdução',
-        description: 'Apresente o tema, problema de pesquisa e objetivos',
+        description:
+          'Descreva suas ideias sobre o que você quer incluir na introdução. Fale sobre o contexto, o problema que você quer resolver e seus objetivos.',
         placeholder:
-          'Ex: A inteligência artificial tem revolucionado diversos setores...',
+          'Ex: Quero começar falando sobre como a educação tradicional não consegue atender às necessidades individuais de cada aluno. O problema é que professores têm dificuldade para personalizar o ensino para 30+ alunos. Meu objetivo é mostrar como a IA pode resolver isso, criando planos personalizados baseados no perfil de cada estudante.',
         icon: Target,
         required: true,
         id: 'introducao',
@@ -383,9 +395,10 @@ export default function WorkEditContent({
       {
         key: 'objetivos',
         label: fieldLabels.objetivos || 'Objetivos',
-        description: 'Defina os objetivos geral e específicos do trabalho',
+        description:
+          'Descreva o que você quer alcançar com seu trabalho. Seja específico sobre seus objetivos principais e secundários.',
         placeholder:
-          'Ex: Objetivo geral: Analisar o impacto da IA na educação...',
+          'Ex: Meu objetivo principal é demonstrar como a IA pode personalizar o ensino. Objetivos específicos: 1) Analisar ferramentas de IA que já existem, 2) Mostrar casos de sucesso em escolas, 3) Propor um modelo prático que professores possam usar, 4) Avaliar os benefícios e desafios.',
         icon: Lightbulb,
         required: false,
         id: 'objetivos',
@@ -393,9 +406,10 @@ export default function WorkEditContent({
       {
         key: 'justificativa',
         label: fieldLabels.justificativa || 'Justificativa',
-        description: 'Explique por que este tema é importante e relevante',
+        description:
+          'Explique por que seu tema é importante. Fale sobre a relevância atual, problemas que precisa resolver e contribuições que seu trabalho pode trazer.',
         placeholder:
-          'Ex: A relevância deste estudo justifica-se pela necessidade de...',
+          'Ex: Este tema é importante porque a educação está em crise - muitos alunos não aprendem adequadamente com métodos tradicionais. A IA pode resolver isso criando soluções personalizadas. Meu trabalho vai ajudar professores a entender como usar essas tecnologias e mostrar resultados reais de escolas que já implementaram.',
         icon: Lightbulb,
         required: false,
         id: 'justificativa',
@@ -403,8 +417,10 @@ export default function WorkEditContent({
       {
         key: 'metodologia',
         label: fieldLabels.metodologia || 'Metodologia',
-        description: 'Descreva como você pretende realizar a pesquisa',
-        placeholder: 'Ex: Esta pesquisa utilizará uma abordagem qualitativa...',
+        description:
+          'Explique como você vai fazer sua pesquisa. Descreva os métodos, fontes de dados e como vai analisar as informações.',
+        placeholder:
+          'Ex: Vou fazer uma pesquisa qualitativa analisando casos de escolas que usam IA. Vou entrevistar professores e coordenadores, analisar dados de desempenho dos alunos, e estudar artigos científicos sobre o tema. Também vou criar um protótipo de sistema para testar na prática.',
         icon: Target,
         required: false,
         id: 'metodologia',
@@ -413,8 +429,9 @@ export default function WorkEditContent({
         key: 'desenvolvimento',
         label: fieldLabels.desenvolvimento || 'Desenvolvimento',
         description:
-          'Desenvolva os conceitos, análises e discussões principais',
-        placeholder: 'Ex: A inteligência artificial na educação apresenta...',
+          'Descreva suas ideias sobre o conteúdo principal do trabalho. Fale sobre os conceitos que vai abordar, análises que vai fazer e discussões importantes.',
+        placeholder:
+          'Ex: Vou começar explicando o que é IA e como funciona. Depois vou mostrar exemplos reais de escolas que usam IA, como a Khan Academy e Duolingo. Vou analisar os resultados que essas ferramentas obtiveram e discutir os prós e contras. Também vou falar sobre os desafios técnicos e éticos.',
         icon: FileText,
         required: true,
         id: 'desenvolvimento',
@@ -422,9 +439,10 @@ export default function WorkEditContent({
       {
         key: 'conclusao',
         label: fieldLabels.conclusao || 'Conclusão',
-        description: 'Sintetize os resultados e conclusões do trabalho',
+        description:
+          'Descreva suas ideias sobre as conclusões que você quer tirar. Fale sobre os resultados esperados e as contribuições do seu trabalho.',
         placeholder:
-          'Ex: Com base na análise realizada, pode-se concluir que...',
+          'Ex: Espero concluir que a IA realmente pode melhorar a educação personalizada. Vou mostrar que escolas que usam essas tecnologias têm alunos com melhor desempenho. Também vou destacar que é importante treinar professores para usar essas ferramentas corretamente.',
         icon: CheckCircle,
         required: true,
         id: 'conclusao',
@@ -432,9 +450,10 @@ export default function WorkEditContent({
       {
         key: 'referencias',
         label: fieldLabels.referencias || 'Referências',
-        description: 'Liste as fontes consultadas no formato ABNT',
+        description:
+          'Descreva que tipo de fontes você quer usar. Fale sobre livros, artigos, sites e outros materiais que pretende consultar.',
         placeholder:
-          'Ex: SILVA, João. Inteligência Artificial na Educação. 2023...',
+          'Ex: Vou usar livros sobre IA e educação, artigos científicos de revistas especializadas, sites de organizações educacionais, relatórios de escolas que implementaram IA, e entrevistas com especialistas. Também vou consultar bases de dados acadêmicas como SciELO e Google Scholar.',
         icon: BookOpen,
         required: true,
         id: 'referencias',

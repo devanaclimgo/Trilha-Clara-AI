@@ -9,6 +9,7 @@ import {
   DialogTitle,
 } from '@/components/ui/dialog'
 import { TccData } from '@/types/tcc'
+import { toggleCronogramaTask, generateCronograma } from '@/lib/cronogramaUtils'
 import {
   X,
   Plus,
@@ -23,6 +24,7 @@ import {
   Mail,
   Phone,
   AlertCircle,
+  Check,
 } from 'lucide-react'
 import { Textarea } from '@/components/ui/textarea'
 import { Label } from '@/components/ui/label'
@@ -38,6 +40,7 @@ interface WorkEditDialogsProps {
   removeNote: (index: number) => void
   activeDialog: string | null
   onCloseDialog: () => void
+  onCronogramaUpdate?: (cronograma: any[]) => void
 }
 
 export default function WorkEditDialogs({
@@ -48,12 +51,23 @@ export default function WorkEditDialogs({
   removeNote,
   activeDialog,
   onCloseDialog,
+  onCronogramaUpdate,
 }: WorkEditDialogsProps) {
+  const [cronograma, setCronograma] = useState(workData.cronograma || [])
   const [newNote, setNewNote] = useState('')
 
   const closeDialog = () => {
     onCloseDialog()
     setNewNote('')
+  }
+
+  const handleToggleTask = (taskId: number) => {
+    const updatedCronograma = toggleCronogramaTask(cronograma, taskId)
+    setCronograma(updatedCronograma)
+    // Update the work data with the new cronograma
+    if (onCronogramaUpdate) {
+      onCronogramaUpdate(updatedCronograma)
+    }
   }
 
   const handleSaveNote = () => {
@@ -248,20 +262,62 @@ export default function WorkEditDialogs({
               <h4 className="font-semibold text-gray-700 mb-3">
                 Cronograma sugerido:
               </h4>
-              {workData.cronograma && workData.cronograma.length > 0 ? (
+              {cronograma && cronograma.length > 0 ? (
                 <div className="space-y-3">
-                  {workData.cronograma.map((item, index) => (
-                    <Card key={index} className="p-4">
-                      <div className="flex items-start gap-3">
-                        <Badge variant="outline" className="mt-0.5">
-                          Semana {item.semana || index + 1}
-                        </Badge>
-                        <p className="text-sm flex-1">
-                          {item.atividade || item}
-                        </p>
-                      </div>
-                    </Card>
-                  ))}
+                  {cronograma.map((item, index) => {
+                    const isCompleted =
+                      typeof item === 'object' && item.concluida
+                    const taskId =
+                      typeof item === 'object' && item.id ? item.id : index + 1
+                    return (
+                      <Card
+                        key={index}
+                        className={`p-4 cursor-pointer transition-all duration-200 hover:shadow-md ${
+                          isCompleted
+                            ? 'bg-green-50 border-green-200'
+                            : 'bg-white'
+                        }`}
+                        onClick={() => handleToggleTask(taskId)}
+                      >
+                        <div className="flex items-start gap-3">
+                          <div className="flex items-center gap-2">
+                            <div
+                              className={`w-6 h-6 rounded-full flex items-center justify-center ${
+                                isCompleted ? 'bg-green-500' : 'bg-gray-300'
+                              }`}
+                            >
+                              {isCompleted ? (
+                                <Check className="h-4 w-4 text-white" />
+                              ) : (
+                                <span className="text-xs font-medium text-white">
+                                  {typeof item === 'object' && item.semana
+                                    ? item.semana
+                                    : index + 1}
+                                </span>
+                              )}
+                            </div>
+                            <Badge variant="outline" className="mt-0.5">
+                              Semana{' '}
+                              {typeof item === 'object' && item.semana
+                                ? item.semana
+                                : index + 1}
+                            </Badge>
+                          </div>
+                          <p
+                            className={`text-sm flex-1 ${
+                              isCompleted
+                                ? 'line-through text-gray-500'
+                                : 'text-gray-900'
+                            }`}
+                          >
+                            {typeof item === 'object' && item.atividade
+                              ? item.atividade
+                              : item}
+                          </p>
+                        </div>
+                      </Card>
+                    )
+                  })}
                 </div>
               ) : (
                 <p className="text-sm text-gray-500 italic">

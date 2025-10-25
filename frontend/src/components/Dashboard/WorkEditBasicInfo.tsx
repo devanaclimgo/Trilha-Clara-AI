@@ -11,6 +11,7 @@ import {
   SelectValue,
 } from '@/components/ui/select'
 import { TccData } from '@/types/tcc'
+import { calculateWorkProgress } from '@/lib/cronogramaUtils'
 import {
   User,
   Building,
@@ -29,6 +30,8 @@ export default function WorkEditBasicInfo({
   workData,
   onStatusChange,
 }: WorkEditBasicInfoProps) {
+  // Calculate progress based on cronograma completion
+  const progressPercentage = calculateWorkProgress(workData)
   const [currentStatus, setCurrentStatus] = useState<TccData['status']>(
     workData.status,
   )
@@ -308,13 +311,13 @@ export default function WorkEditBasicInfo({
                 Progresso Geral
               </span>
               <span className="text-sm font-bold gradient-text">
-                {workData.progresso}%
+                {progressPercentage}%
               </span>
             </div>
             <div className="w-full bg-gray-200 rounded-full h-3">
               <div
                 className="gradient-bg h-3 rounded-full transition-all duration-500"
-                style={{ width: `${workData.progresso}%` }}
+                style={{ width: `${progressPercentage}%` }}
               ></div>
             </div>
             <div className="text-xs text-gray-500">

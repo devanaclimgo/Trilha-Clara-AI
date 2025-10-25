@@ -170,3 +170,40 @@ export const getCronogramaProgress = (cronograma: CronogramaItem[]): number => {
   const completedCount = cronograma.filter((item) => item.concluida).length
   return Math.round((completedCount / cronograma.length) * 100)
 }
+
+export const calculateWorkProgress = (workData: any): number => {
+  // If workData has cronograma with completion tracking, use that
+  if (
+    workData.cronograma &&
+    Array.isArray(workData.cronograma) &&
+    workData.cronograma.length > 0
+  ) {
+    // Check if cronograma items have completion status
+    const hasCompletionStatus = workData.cronograma.some(
+      (item: any) => typeof item === 'object' && 'concluida' in item,
+    )
+
+    if (hasCompletionStatus) {
+      return getCronogramaProgress(workData.cronograma)
+    }
+  }
+
+  // Fallback to the existing progress field
+  return workData.progresso || 0
+}
+
+export const toggleCronogramaTask = (
+  cronograma: any[],
+  taskId: number,
+): any[] => {
+  return cronograma.map((item, index) => {
+    if (typeof item === 'object' && item.id === taskId) {
+      return { ...item, concluida: !item.concluida }
+    }
+    // For string items, use index as ID
+    if (typeof item === 'string' && index === taskId - 1) {
+      return { id: taskId, semana: index + 1, atividade: item, concluida: true }
+    }
+    return item
+  })
+}
