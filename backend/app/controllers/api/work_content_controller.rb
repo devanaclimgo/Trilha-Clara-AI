@@ -107,7 +107,7 @@ class Api::WorkContentController < ApplicationController
       begin
         @work = current_user.tccs.find_or_create_by(tema: "Trabalho Acadêmico - #{params[:id]}") do |tcc|
           # Set default values for a new TCC
-          tcc.tema = "Trabalho Acadêmico"
+          # Note: tcc.tema is already set to the unique identifier above
           tcc.tipo_trabalho = "TCC"
           tcc.curso = "Curso"
           tcc.nome = current_user.name || "Estudante"
