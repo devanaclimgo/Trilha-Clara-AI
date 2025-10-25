@@ -80,6 +80,33 @@ class Api::WorkContentController < ApplicationController
   private
 
   def set_work
-    @work = current_user.tccs.find(params[:id])
+    Rails.logger.info "Setting work for ID: #{params[:id]}"
+    Rails.logger.info "Current user: #{current_user.id}"
+    
+    # Handle both legacy string IDs and database integer IDs
+    if params[:id].to_s.start_with?('tcc-')
+      Rails.logger.info "Handling legacy TCC ID: #{params[:id]}"
+      # Legacy string ID format - create a new TCC record for this user
+      # This ensures proper multi-tenant isolation
+      begin
+        @work = current_user.tccs.find_or_create_by(tema: "Trabalho Acadêmico - #{params[:id]}") do |tcc|
+          # Set default values for a new TCC
+          tcc.tema = "Trabalho Acadêmico"
+          tcc.tipo_trabalho = "TCC"
+          tcc.curso = "Curso"
+          tcc.nome = current_user.name || "Estudante"
+          tcc.faculdade = "Instituição"
+        end
+        Rails.logger.info "Created/found work: #{@work.id}"
+      rescue => e
+        Rails.logger.error "Error creating/finding work: #{e.message}"
+        Rails.logger.error e.backtrace.join("\n")
+        raise e
+      end
+    else
+      Rails.logger.info "Handling standard database ID: #{params[:id]}"
+      # Standard database ID
+      @work = current_user.tccs.find(params[:id])
+    end
   end
 end

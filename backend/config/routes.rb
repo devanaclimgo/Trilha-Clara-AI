@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   scope :auth, defaults: { format: :json } do
     post   "signup", to: "auth/registrations#create"
     post   "login",  to: "auth/sessions#create"
+    post   "refresh", to: "auth/sessions#refresh"
     delete "logout", to: "auth/sessions#destroy"
     get    "me",     to: "auth/users#me"
     post "google", to: "auth/google#create"
