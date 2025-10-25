@@ -405,16 +405,14 @@ class GeminiService
         5. Metodologia resumida
         6. Estrutura do trabalho
         Use linguagem acadêmica formal, cite autores relevantes e conecte as ideias logicamente.
-      PROMPT
-      ,
+      PROMPT,
       'objetivos' => <<~PROMPT
         Elabore objetivos acadêmicos seguindo as melhores práticas:
         - Objetivo Geral: Uma frase clara e abrangente
         - Objetivos Específicos: 3-5 objetivos mensuráveis e específicos
         Use verbos no infinitivo (analisar, investigar, identificar, etc.)
         Seja específico e mensurável.
-      PROMPT
-      ,
+      PROMPT,
       'justificativa' => <<~PROMPT
         Escreva uma justificativa acadêmica de 300-400 palavras explicando:
         1. Por que este tema é relevante atualmente
@@ -422,8 +420,7 @@ class GeminiService
         3. Quais lacunas na literatura este trabalho preenche
         4. Importância social, científica ou tecnológica
         Use dados, estatísticas e referências quando possível.
-      PROMPT
-      ,
+      PROMPT,
       'metodologia' => <<~PROMPT
         Descreva a metodologia de pesquisa de forma detalhada (400-500 palavras):
         1. Tipo de pesquisa (qualitativa, quantitativa, mista)
@@ -433,8 +430,7 @@ class GeminiService
         5. Procedimentos de análise
         6. Limitações metodológicas
         Seja específico e adequado ao tipo de trabalho.
-      PROMPT
-      ,
+      PROMPT,
       'desenvolvimento' => <<~PROMPT
         Desenvolva o conteúdo principal do trabalho (600-800 palavras):
         1. Revisão da literatura com análise crítica
@@ -443,8 +439,7 @@ class GeminiService
         4. Discussão à luz da teoria
         5. Conexões entre teoria e prática
         Use linguagem acadêmica, cite autores e mantenha argumentação lógica.
-      PROMPT
-      ,
+      PROMPT,
       'conclusao' => <<~PROMPT
         Escreva uma conclusão acadêmica de 300-400 palavras:
         1. Síntese dos principais resultados
@@ -453,8 +448,7 @@ class GeminiService
         4. Limitações identificadas
         5. Sugestões para trabalhos futuros
         Seja objetivo e conecte com a introdução.
-      PROMPT
-      ,
+      PROMPT,
       'referencias' => <<~PROMPT
         Elabore referências bibliográficas no formato ABNT NBR 6023:2018.
         Inclua pelo menos 8 referências de diferentes tipos:
@@ -471,7 +465,7 @@ class GeminiService
     user_analysis = analyze_user_ideas(user_ideas)
     
     messages = [
-      { role: "system", content: <<~SYSTEM }
+      { role: "system", content: <<~SYSTEM
         Você é um professor universitário especializado em orientação de trabalhos acadêmicos.
         Sua missão é transformar as ideias básicas dos estudantes em texto acadêmico de alta qualidade.
         
@@ -489,7 +483,7 @@ class GeminiService
         NUNCA ignore as ideias do estudante - elas são o ponto de partida!
       SYSTEM
       },
-      { role: "user", content: <<~TXT }
+      { role: "user", content: <<~TXT
         INFORMAÇÕES DO TRABALHO:
         Título: #{work_data[:titulo] || work_data[:tema]}
         Tema: #{work_data[:tema]}
@@ -517,6 +511,7 @@ class GeminiService
         - Use linguagem clara e objetiva
         - Siga as normas ABNT rigorosamente
       TXT
+      }
     ]
 
     begin
