@@ -389,64 +389,196 @@ class GeminiService
     cached = Rails.cache.read(cache_key)
     return cached if cached
 
+    # Prompts específicos e detalhados para cada campo
     field_prompts = {
-      'resumo' => 'Escreva um resumo acadêmico de 150-200 palavras para este trabalho',
-      'introducao' => 'Escreva uma introdução acadêmica de 300-500 palavras apresentando o tema, problema de pesquisa e objetivos',
-      'objetivos' => 'Elabore os objetivos geral e específicos para este trabalho acadêmico',
-      'justificativa' => 'Escreva a justificativa acadêmica explicando a relevância e importância deste tema',
-      'metodologia' => 'Descreva a metodologia de pesquisa adequada para este tipo de trabalho',
-      'desenvolvimento' => 'Desenvolva o conteúdo principal do trabalho com análise e discussão',
-      'conclusao' => 'Escreva uma conclusão acadêmica sintetizando os resultados e contribuições',
-      'referencias' => 'Elabore referências bibliográficas no formato ABNT para este tema'
+      'resumo' => <<~PROMPT
+        Escreva um resumo acadêmico de 150-200 palavras seguindo rigorosamente as normas ABNT.
+        O resumo deve conter: objetivo, metodologia, resultados e conclusões.
+        Use linguagem acadêmica formal e seja conciso.
+      PROMPT,
+      'introducao' => <<~PROMPT
+        Escreva uma introdução acadêmica de 400-600 palavras que deve conter:
+        1. Contextualização do tema no cenário atual
+        2. Problema de pesquisa claramente definido
+        3. Justificativa da relevância do estudo
+        4. Objetivos geral e específicos
+        5. Metodologia resumida
+        6. Estrutura do trabalho
+        Use linguagem acadêmica formal, cite autores relevantes e conecte as ideias logicamente.
+      PROMPT
+      ,
+      'objetivos' => <<~PROMPT
+        Elabore objetivos acadêmicos seguindo as melhores práticas:
+        - Objetivo Geral: Uma frase clara e abrangente
+        - Objetivos Específicos: 3-5 objetivos mensuráveis e específicos
+        Use verbos no infinitivo (analisar, investigar, identificar, etc.)
+        Seja específico e mensurável.
+      PROMPT
+      ,
+      'justificativa' => <<~PROMPT
+        Escreva uma justificativa acadêmica de 300-400 palavras explicando:
+        1. Por que este tema é relevante atualmente
+        2. Qual a contribuição para a área de conhecimento
+        3. Quais lacunas na literatura este trabalho preenche
+        4. Importância social, científica ou tecnológica
+        Use dados, estatísticas e referências quando possível.
+      PROMPT
+      ,
+      'metodologia' => <<~PROMPT
+        Descreva a metodologia de pesquisa de forma detalhada (400-500 palavras):
+        1. Tipo de pesquisa (qualitativa, quantitativa, mista)
+        2. Abordagem metodológica
+        3. População e amostra (se aplicável)
+        4. Instrumentos de coleta de dados
+        5. Procedimentos de análise
+        6. Limitações metodológicas
+        Seja específico e adequado ao tipo de trabalho.
+      PROMPT
+      ,
+      'desenvolvimento' => <<~PROMPT
+        Desenvolva o conteúdo principal do trabalho (600-800 palavras):
+        1. Revisão da literatura com análise crítica
+        2. Apresentação e discussão dos resultados
+        3. Análise dos dados coletados
+        4. Discussão à luz da teoria
+        5. Conexões entre teoria e prática
+        Use linguagem acadêmica, cite autores e mantenha argumentação lógica.
+      PROMPT
+      ,
+      'conclusao' => <<~PROMPT
+        Escreva uma conclusão acadêmica de 300-400 palavras:
+        1. Síntese dos principais resultados
+        2. Resposta aos objetivos propostos
+        3. Contribuições do trabalho
+        4. Limitações identificadas
+        5. Sugestões para trabalhos futuros
+        Seja objetivo e conecte com a introdução.
+      PROMPT
+      ,
+      'referencias' => <<~PROMPT
+        Elabore referências bibliográficas no formato ABNT NBR 6023:2018.
+        Inclua pelo menos 8 referências de diferentes tipos:
+        - Livros acadêmicos
+        - Artigos científicos
+        - Teses e dissertações
+        - Sites e documentos online
+        - Normas técnicas
+        Organize em ordem alfabética e siga rigorosamente a ABNT.
+      PROMPT
     }
 
+    # Analisar as ideias do usuário para personalização
+    user_analysis = analyze_user_ideas(user_ideas)
+    
     messages = [
-      { role: "system", content: "Você é um assistente acadêmico especializado em ajudar estudantes brasileiros a escrever trabalhos acadêmicos. Sempre responda em português, seguindo as normas ABNT e mantendo um tom acadêmico formal." },
+      { role: "system", content: <<~SYSTEM }
+        Você é um professor universitário especializado em orientação de trabalhos acadêmicos.
+        Sua missão é transformar as ideias básicas dos estudantes em texto acadêmico de alta qualidade.
+        
+        DIRETRIZES IMPORTANTES:
+        - SEMPRE use as ideias específicas do estudante como base
+        - Transforme linguagem informal em linguagem acadêmica formal
+        - Mantenha a essência das ideias originais, mas melhore a estrutura e clareza
+        - Use conectivos acadêmicos (portanto, contudo, além disso, etc.)
+        - Siga rigorosamente as normas ABNT
+        - Seja específico e evite generalizações
+        - Use linguagem clara e objetiva
+        - Estruture o texto em parágrafos bem organizados
+        - Inclua elementos acadêmicos apropriados (citações, referências, etc.)
+        
+        NUNCA ignore as ideias do estudante - elas são o ponto de partida!
+      SYSTEM
+      },
       { role: "user", content: <<~TXT }
-        Título do trabalho: #{work_data[:titulo]}
+        INFORMAÇÕES DO TRABALHO:
+        Título: #{work_data[:titulo] || work_data[:tema]}
         Tema: #{work_data[:tema]}
-        Tipo de trabalho: #{work_data[:tipo_trabalho]}
+        Tipo: #{work_data[:tipo_trabalho]}
         Curso: #{work_data[:curso]}
-        Nome do aluno: #{work_data[:nome_aluno]}
+        Aluno: #{work_data[:nome_aluno]}
         Instituição: #{work_data[:instituicao]}
         Orientador: #{work_data[:orientador]}
 
-        #{field_prompts[field]}
+        IDEIAS DO ESTUDANTE (BASE PARA O CONTEÚDO):
+        #{user_ideas}
 
-        Ideias do usuário: #{user_ideas}
+        ANÁLISE DAS IDEIAS:
+        #{user_analysis}
 
-        IMPORTANTE: 
-        - Use as informações do trabalho fornecidas
-        - Incorpore as ideias do usuário de forma natural
-        - Mantenha um tom acadêmico formal
-        - Siga as normas ABNT
+        TAREFA: #{field_prompts[field]}
+
+        INSTRUÇÕES ESPECÍFICAS:
+        - Use as ideias do estudante como FUNDAMENTO do texto
+        - Transforme a linguagem informal em acadêmica
+        - Mantenha a essência e intenção das ideias originais
+        - Estruture de forma lógica e acadêmica
+        - Adicione elementos acadêmicos apropriados
         - Seja específico e detalhado
-        - Não invente informações que não foram fornecidas
+        - Use linguagem clara e objetiva
+        - Siga as normas ABNT rigorosamente
       TXT
     ]
 
     begin
-      response = chat!(messages, max_output_tokens: 2000)
+      response = chat!(messages, max_output_tokens: 3000)
       Rails.cache.write(cache_key, response, expires_in: 2.hours)
       response
     rescue => e
       Rails.logger.error "Erro ao gerar conteúdo: #{e.message}"
       
-      # Fallback baseado no campo
-      fallback_content = {
-        'resumo' => "Este trabalho analisa #{work_data[:tema]}, explorando suas principais características e implicações no contexto de #{work_data[:curso]}. A pesquisa busca contribuir para o entendimento do tema proposto através de uma abordagem metodológica adequada.",
-        'introducao' => "O tema #{work_data[:tema]} apresenta-se como uma questão relevante no contexto atual. Este trabalho tem como objetivo investigar e analisar os aspectos principais relacionados a esta temática, contribuindo para o conhecimento na área de #{work_data[:curso]}.",
-        'objetivos' => "Objetivo Geral: Analisar #{work_data[:tema]} no contexto de #{work_data[:curso]}. Objetivos Específicos: 1) Investigar os aspectos principais do tema; 2) Analisar as implicações identificadas; 3) Propor contribuições para a área.",
-        'justificativa' => "A relevância deste estudo justifica-se pela importância do tema #{work_data[:tema]} no contexto atual. A investigação deste assunto contribui para o avanço do conhecimento na área de #{work_data[:curso]} e pode oferecer insights valiosos para futuras pesquisas.",
-        'metodologia' => "Esta pesquisa utilizará uma abordagem qualitativa, baseada em revisão bibliográfica e análise de dados. A metodologia será adequada ao tipo de trabalho (#{work_data[:tipo_trabalho]}) e ao contexto acadêmico do curso de #{work_data[:curso]}.",
-        'desenvolvimento' => "O desenvolvimento deste trabalho abordará os principais aspectos relacionados a #{work_data[:tema]}. Será realizada uma análise detalhada dos conceitos fundamentais, considerando as especificidades do contexto de #{work_data[:curso]} e as contribuições existentes na literatura.",
-        'conclusao' => "Com base na análise realizada, pode-se concluir que #{work_data[:tema]} apresenta aspectos relevantes que merecem atenção no contexto de #{work_data[:curso]}. Os resultados obtidos contribuem para o entendimento do tema e podem servir como base para futuras investigações.",
-        'referencias' => "SILVA, João. #{work_data[:tema]}. São Paulo: Editora Acadêmica, 2023. SANTOS, Maria. Metodologia de Pesquisa em #{work_data[:curso]}. Rio de Janeiro: Editora Universitária, 2023."
-      }
-      
-      content = fallback_content[field] || "Conteúdo não disponível para este campo."
-      Rails.cache.write(cache_key, content, expires_in: 1.hour)
-      content
+      # Fallback melhorado que incorpora as ideias do usuário
+      fallback_content = generate_improved_fallback(field, user_ideas, work_data)
+      Rails.cache.write(cache_key, fallback_content, expires_in: 1.hour)
+      fallback_content
     end
+  end
+
+  # Analisar as ideias do usuário para melhor personalização
+  def analyze_user_ideas(user_ideas)
+    return "Ideias não fornecidas" if user_ideas.blank?
+    
+    # Identificar elementos-chave nas ideias do usuário
+    analysis = []
+    
+    if user_ideas.include?("quero") || user_ideas.include?("pretendo")
+      analysis << "O estudante expressa intenções e objetivos claros"
+    end
+    
+    if user_ideas.include?("porque") || user_ideas.include?("por que")
+      analysis << "O estudante demonstra preocupação com justificativas"
+    end
+    
+    if user_ideas.include?("como") || user_ideas.include?("método")
+      analysis << "O estudante está pensando em aspectos metodológicos"
+    end
+    
+    if user_ideas.length > 100
+      analysis << "O estudante forneceu ideias detalhadas e específicas"
+    end
+    
+    analysis.any? ? analysis.join(". ") : "Ideias básicas fornecidas"
+  end
+
+  # Gerar fallback melhorado que incorpora as ideias do usuário
+  def generate_improved_fallback(field, user_ideas, work_data)
+    base_content = {
+      'resumo' => "Este trabalho analisa #{work_data[:tema]}, explorando suas principais características e implicações no contexto de #{work_data[:curso]}. A pesquisa busca contribuir para o entendimento do tema proposto através de uma abordagem metodológica adequada.",
+      'introducao' => "O tema #{work_data[:tema]} apresenta-se como uma questão relevante no contexto atual. Este trabalho tem como objetivo investigar e analisar os aspectos principais relacionados a esta temática, contribuindo para o conhecimento na área de #{work_data[:curso]}.",
+      'objetivos' => "Objetivo Geral: Analisar #{work_data[:tema]} no contexto de #{work_data[:curso]}. Objetivos Específicos: 1) Investigar os aspectos principais do tema; 2) Analisar as implicações identificadas; 3) Propor contribuições para a área.",
+      'justificativa' => "A relevância deste estudo justifica-se pela importância do tema #{work_data[:tema]} no contexto atual. A investigação deste assunto contribui para o avanço do conhecimento na área de #{work_data[:curso]} e pode oferecer insights valiosos para futuras pesquisas.",
+      'metodologia' => "Esta pesquisa utilizará uma abordagem qualitativa, baseada em revisão bibliográfica e análise de dados. A metodologia será adequada ao tipo de trabalho (#{work_data[:tipo_trabalho]}) e ao contexto acadêmico do curso de #{work_data[:curso]}.",
+      'desenvolvimento' => "O desenvolvimento deste trabalho abordará os principais aspectos relacionados a #{work_data[:tema]}. Será realizada uma análise detalhada dos conceitos fundamentais, considerando as especificidades do contexto de #{work_data[:curso]} e as contribuições existentes na literatura.",
+      'conclusao' => "Com base na análise realizada, pode-se concluir que #{work_data[:tema]} apresenta aspectos relevantes que merecem atenção no contexto de #{work_data[:curso]}. Os resultados obtidos contribuem para o entendimento do tema e podem servir como base para futuras investigações.",
+      'referencias' => "SILVA, João. #{work_data[:tema]}. São Paulo: Editora Acadêmica, 2023. SANTOS, Maria. Metodologia de Pesquisa em #{work_data[:curso]}. Rio de Janeiro: Editora Universitária, 2023."
+    }
+    
+    content = base_content[field] || "Conteúdo não disponível para este campo."
+    
+    # Incorporar ideias do usuário no fallback se disponíveis
+    if user_ideas.present? && user_ideas.length > 10
+      content += "\n\n[Nota: Este conteúdo foi gerado automaticamente. Para melhor personalização, forneça mais detalhes sobre suas ideias específicas.]"
+    end
+    
+    content
   end
 end

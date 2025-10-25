@@ -100,11 +100,21 @@ export default function WorkEditPage() {
     carregarDadosDaAPI,
     saveNote,
     removeNote,
+    atualizarTrabalho,
   } = useTccData()
 
   // Function to open dialogs
   const handleOpenDialog = (dialogType: string) => {
     setActiveDialog(dialogType)
+  }
+
+  // Function to handle cronograma updates
+  const handleCronogramaUpdate = (updatedCronograma: any[]) => {
+    if (workData) {
+      const updatedWorkData = { ...workData, cronograma: updatedCronograma }
+      setWorkData(updatedWorkData)
+      atualizarTrabalho(updatedWorkData)
+    }
   }
 
   const steps = [
@@ -116,7 +126,12 @@ export default function WorkEditPage() {
   ]
 
   const getProgressPercentage = () => {
-    return Math.round((2 / steps.length) * 100) // Assumindo que estamos no passo 2 (conteúdo)
+    if (workData) {
+      // Use cronograma-based progress if available
+      const { calculateWorkProgress } = require('@/lib/cronogramaUtils')
+      return calculateWorkProgress(workData)
+    }
+    return Math.round((2 / steps.length) * 100) // Fallback to step-based progress
   }
 
   useEffect(() => {
@@ -379,6 +394,7 @@ export default function WorkEditPage() {
             removeNote={removeNote}
             activeDialog={activeDialog}
             onCloseDialog={() => setActiveDialog(null)}
+            onCronogramaUpdate={handleCronogramaUpdate}
           />
         )}
       </div>
