@@ -3458,3 +3458,115 @@ Processing by Api::WorkContentController#save_content as JSON
 Completed 401 Unauthorized in 2ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
 
 
+Started POST "/api/work/tcc-1760903327598/save_content" for 127.0.0.1 at 2025-10-19 17:16:08 -0300
+Processing by Api::WorkContentController#save_content as JSON
+  Parameters: {"content"=>{"resumo"=>"O presente artigo analisa o impacto do marketing de influência no consumo digital, considerando sua relevância crescente nas estratégias de comunicação das marcas. Parte-se do problema de como a associação de produtos a influenciadores pode gerar tanto engajamento positivo quanto repercussões negativas, como no caso Carmed x Malu Borges. O objetivo é compreender como os consumidores percebem campanhas mediadas por influenciadores, avaliando os fatores que contribuem para o sucesso ou fracasso dessas ações. A metodologia é qualitativa e exploratória, baseada em pesquisa bibliográfica, estudo de caso e coleta de dados em redes sociais por meio de programação em Ruby. Espera-se que o estudo contribua para a reflexão acadêmica e para práticas mais éticas e eficazes no mercado publicitário.", "introducao"=>"1º parágrafo – Apresentação do tema (área):\nO marketing de influência consolidou-se como uma das principais estratégias de comunicação digital da atualidade. No ambiente das redes sociais, influenciadores e criadores de conteúdo exercem papel central na divulgação de produtos e serviços, estabelecendo uma conexão direta entre marcas e consumidores. Esse fenômeno transformou profundamente o mercado publicitário, deslocando parte da atenção antes voltada para os meios tradicionais de mídia para um espaço marcado pela interação, proximidade e autenticidade.\n\n2º parágrafo – Delimitação do tema:\nDentro desse cenário, destaca-se a necessidade de compreender como a associação de marcas a influenciadores digitais afeta a percepção e as decisões de consumo. A escolha dos influenciadores, a linguagem utilizada nas campanhas e a reação dos consumidores constituem elementos-chave para avaliar a efetividade do marketing de influência. O caso recente da parceria entre a marca Carmed e a influenciadora Malu Borges, cujo vídeo de divulgação gerou grande repercussão negativa, ilustra tanto o alcance dessa estratégia quanto os riscos atrelados à sua execução.\n\n3º parágrafo – Problema e hipótese:\nDiante disso, surge a seguinte questão: como o marketing de influência impacta a percepção dos consumidores e de que maneira a análise de dados em redes sociais pode contribuir para avaliar os riscos e benefícios dessa prática? Parte-se da hipótese de que a autenticidade percebida e a adequação da mensagem ao público-alvo são fatores determinantes para o sucesso de campanhas, enquanto escolhas inadequadas de influenciadores podem comprometer a imagem da marca.\n4º parágrafo – Objetivos:\nEste artigo tem como objetivo geral analisar o papel do marketing de influência na percepção dos consumidores, utilizando como ferramenta complementar a coleta e organização de dados provenientes de redes sociais por meio de programação em Ruby. Como objetivos específicos, pretende-se: identificar as principais características do marketing de influência no Brasil; compreender as reações dos consumidores a campanhas digitais; investigar riscos e benefícios para as marcas; e estudar casos recentes de campanhas bem-sucedidas e mal-recebidas.\n\n5º parágrafo – Justificativa:\nA relevância deste estudo encontra-se na crescente centralidade das redes sociais no comportamento de consumo contemporâneo. A investigação se justifica pela necessidade de compreender os fatores que tornam uma campanha de influência eficaz ou problemática, oferecendo contribuições práticas para o mercado publicitário e reflexões teóricas para a área acadêmica. Além disso, a utilização de programação para coleta de dados diferencia a pesquisa ao unir aspectos de tecnologia e comunicação, agregando valor científico e metodológico.\n\n6º parágrafo – Metodologia:\nA pesquisa terá abordagem qualitativa e exploratória. Será realizada revisão bibliográfica em livros, artigos e relatórios sobre marketing digital, comportamento do consumidor e marketing de influência. Paralelamente, serão analisados casos recentes de campanhas envolvendo influenciadores, com destaque para o caso Carmed x Malu Borges. Também será desenvolvido um script em Ruby para coletar e organizar comentários em redes sociais, possibilitando a análise de recepção do público. Os dados obtidos serão interpretados à luz da teoria, permitindo avaliar o impacto e as implicações do marketing de influência no consumo digital.\n", "desenvolvimento"=>"", "conclusao"=>"", "referencias"=>"", "metodologia"=>"", "objetivos"=>"", "justificativa"=>"", "estrutura_0"=>"", "estrutura_1"=>"", "estrutura_2"=>"", "estrutura_3"=>"", "estrutura_4"=>"", "estrutura_5"=>"", "estrutura_6"=>"", "estrutura_7"=>"", "estrutura_8"=>"", "estrutura_9"=>"", "estrutura_10"=>"", "estrutura_11"=>"", "estrutura_12"=>"", "estrutura_13"=>"", "estrutura_14"=>"", "estrutura_15"=>"", "estrutura_16"=>"", "estrutura_17"=>"", "estrutura_18"=>"", "estrutura_19"=>"", "estrutura_20"=>"", "estrutura_21"=>"", "estrutura_22"=>"", "estrutura_23"=>"", "estrutura_24"=>"", "estrutura_25"=>""}, "customFields"=>[], "fieldLabels"=>{"introducao"=>"Introdução"}, "fieldOrder"=>["resumo", "introducao", "objetivos", "justificativa", "metodologia", "desenvolvimento", "conclusao", "referencias"], "id"=>"tcc-1760903327598", "work_content"=>{"content"=>{"resumo"=>"O presente artigo analisa o impacto do marketing de influência no consumo digital, considerando sua relevância crescente nas estratégias de comunicação das marcas. Parte-se do problema de como a associação de produtos a influenciadores pode gerar tanto engajamento positivo quanto repercussões negativas, como no caso Carmed x Malu Borges. O objetivo é compreender como os consumidores percebem campanhas mediadas por influenciadores, avaliando os fatores que contribuem para o sucesso ou fracasso dessas ações. A metodologia é qualitativa e exploratória, baseada em pesquisa bibliográfica, estudo de caso e coleta de dados em redes sociais por meio de programação em Ruby. Espera-se que o estudo contribua para a reflexão acadêmica e para práticas mais éticas e eficazes no mercado publicitário.", "introducao"=>"1º parágrafo – Apresentação do tema (área):\nO marketing de influência consolidou-se como uma das principais estratégias de comunicação digital da atualidade. No ambiente das redes sociais, influenciadores e criadores de conteúdo exercem papel central na divulgação de produtos e serviços, estabelecendo uma conexão direta entre marcas e consumidores. Esse fenômeno transformou profundamente o mercado publicitário, deslocando parte da atenção antes voltada para os meios tradicionais de mídia para um espaço marcado pela interação, proximidade e autenticidade.\n\n2º parágrafo – Delimitação do tema:\nDentro desse cenário, destaca-se a necessidade de compreender como a associação de marcas a influenciadores digitais afeta a percepção e as decisões de consumo. A escolha dos influenciadores, a linguagem utilizada nas campanhas e a reação dos consumidores constituem elementos-chave para avaliar a efetividade do marketing de influência. O caso recente da parceria entre a marca Carmed e a influenciadora Malu Borges, cujo vídeo de divulgação gerou grande repercussão negativa, ilustra tanto o alcance dessa estratégia quanto os riscos atrelados à sua execução.\n\n3º parágrafo – Problema e hipótese:\nDiante disso, surge a seguinte questão: como o marketing de influência impacta a percepção dos consumidores e de que maneira a análise de dados em redes sociais pode contribuir para avaliar os riscos e benefícios dessa prática? Parte-se da hipótese de que a autenticidade percebida e a adequação da mensagem ao público-alvo são fatores determinantes para o sucesso de campanhas, enquanto escolhas inadequadas de influenciadores podem comprometer a imagem da marca.\n4º parágrafo – Objetivos:\nEste artigo tem como objetivo geral analisar o papel do marketing de influência na percepção dos consumidores, utilizando como ferramenta complementar a coleta e organização de dados provenientes de redes sociais por meio de programação em Ruby. Como objetivos específicos, pretende-se: identificar as principais características do marketing de influência no Brasil; compreender as reações dos consumidores a campanhas digitais; investigar riscos e benefícios para as marcas; e estudar casos recentes de campanhas bem-sucedidas e mal-recebidas.\n\n5º parágrafo – Justificativa:\nA relevância deste estudo encontra-se na crescente centralidade das redes sociais no comportamento de consumo contemporâneo. A investigação se justifica pela necessidade de compreender os fatores que tornam uma campanha de influência eficaz ou problemática, oferecendo contribuições práticas para o mercado publicitário e reflexões teóricas para a área acadêmica. Além disso, a utilização de programação para coleta de dados diferencia a pesquisa ao unir aspectos de tecnologia e comunicação, agregando valor científico e metodológico.\n\n6º parágrafo – Metodologia:\nA pesquisa terá abordagem qualitativa e exploratória. Será realizada revisão bibliográfica em livros, artigos e relatórios sobre marketing digital, comportamento do consumidor e marketing de influência. Paralelamente, serão analisados casos recentes de campanhas envolvendo influenciadores, com destaque para o caso Carmed x Malu Borges. Também será desenvolvido um script em Ruby para coletar e organizar comentários em redes sociais, possibilitando a análise de recepção do público. Os dados obtidos serão interpretados à luz da teoria, permitindo avaliar o impacto e as implicações do marketing de influência no consumo digital.\n", "desenvolvimento"=>"", "conclusao"=>"", "referencias"=>"", "metodologia"=>"", "objetivos"=>"", "justificativa"=>"", "estrutura_0"=>"", "estrutura_1"=>"", "estrutura_2"=>"", "estrutura_3"=>"", "estrutura_4"=>"", "estrutura_5"=>"", "estrutura_6"=>"", "estrutura_7"=>"", "estrutura_8"=>"", "estrutura_9"=>"", "estrutura_10"=>"", "estrutura_11"=>"", "estrutura_12"=>"", "estrutura_13"=>"", "estrutura_14"=>"", "estrutura_15"=>"", "estrutura_16"=>"", "estrutura_17"=>"", "estrutura_18"=>"", "estrutura_19"=>"", "estrutura_20"=>"", "estrutura_21"=>"", "estrutura_22"=>"", "estrutura_23"=>"", "estrutura_24"=>"", "estrutura_25"=>""}, "customFields"=>[], "fieldLabels"=>{"introducao"=>"Introdução"}, "fieldOrder"=>["resumo", "introducao", "objetivos", "justificativa", "metodologia", "desenvolvimento", "conclusao", "referencias"]}}
+Completed 401 Unauthorized in 2ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/api/tcc/criar" for 127.0.0.1 at 2025-10-19 17:20:33 -0300
+Processing by Api::TccController#criar as JSON
+  Parameters: {"nome"=>"Maria Silva", "faculdade"=>"Universidade Federal", "curso"=>"Pedagogia", "materia"=>"TCC", "tema"=>"Inteligência Artificial na Educação: Personalização do Ensino", "tipo_trabalho"=>"TCC", "tcc"=>{"nome"=>"Maria Silva", "faculdade"=>"Universidade Federal", "curso"=>"Pedagogia", "materia"=>"TCC", "tema"=>"Inteligência Artificial na Educação: Personalização do Ensino", "tipo_trabalho"=>"TCC"}}
+Completed 500 Internal Server Error in 111ms (ActiveRecord: 810.3ms (0 queries, 0 cached) | GC: 76.9ms)
+
+
+  
+SyntaxError (/home/ana/Documents/Programming/Trilha Clara/AI TCC Effortless/backend/app/services/gemini_service.rb:399: syntax error, unexpected ',', expecting '}'
+      ,
+      ^
+/home/ana/Documents/Programming/Trilha Clara/AI TCC Effortless/backend/app/services/gemini_service.rb:492: syntax error, unexpected '}', expecting ']'
+      },
+      ^
+/home/ana/Documents/Programming/Trilha Clara/AI TCC Effortless/backend/app/services/gemini_service.rb:574: syntax error, unexpected '}', expecting '}'
+    }
+    ^
+):
+  
+app/services/gemini_service.rb:399: syntax error, unexpected ',', expecting '}'
+app/services/gemini_service.rb:492: syntax error, unexpected '}', expecting ']'
+app/services/gemini_service.rb:574: syntax error, unexpected '}', expecting '}'
+app/controllers/api/tcc_controller.rb:47:in `criar'
+Started POST "/api/tcc/criar" for 127.0.0.1 at 2025-10-19 17:29:14 -0300
+Processing by Api::TccController#criar as JSON
+  Parameters: {"nome"=>"Maria Silva", "faculdade"=>"Universidade Federal", "curso"=>"Pedagogia", "materia"=>"TCC", "tema"=>"Inteligência Artificial na Educação: Personalização do Ensino", "tipo_trabalho"=>"TCC", "tcc"=>{"nome"=>"Maria Silva", "faculdade"=>"Universidade Federal", "curso"=>"Pedagogia", "materia"=>"TCC", "tema"=>"Inteligência Artificial na Educação: Personalização do Ensino", "tipo_trabalho"=>"TCC"}}
+Completed 500 Internal Server Error in 34ms (ActiveRecord: 810.0ms (0 queries, 0 cached) | GC: 21.8ms)
+
+
+  
+SyntaxError (/home/ana/Documents/Programming/Trilha Clara/AI TCC Effortless/backend/app/services/gemini_service.rb:409: syntax error, unexpected ',', expecting '}'
+      ,
+      ^
+/home/ana/Documents/Programming/Trilha Clara/AI TCC Effortless/backend/app/services/gemini_service.rb:491: syntax error, unexpected '}', expecting ']'
+      },
+      ^
+/home/ana/Documents/Programming/Trilha Clara/AI TCC Effortless/backend/app/services/gemini_service.rb:573: syntax error, unexpected '}', expecting '}'
+    }
+    ^
+):
+  
+app/services/gemini_service.rb:409: syntax error, unexpected ',', expecting '}'
+app/services/gemini_service.rb:491: syntax error, unexpected '}', expecting ']'
+app/services/gemini_service.rb:573: syntax error, unexpected '}', expecting '}'
+app/controllers/api/tcc_controller.rb:47:in `criar'
+[dotenv] Set [36mDEVISE_JWT_SECRET_KEY[0m, [36mGOOGLE_CLIENT_ID[0m, [36mGOOGLE_CLIENT_SECRET[0m, [36mGEMINI_API_KEY[0m, [36mDATABASE_URL[0m, [36mRAILS_MASTER_KEY[0m, and [36mSECRET_KEY_BASE[0m
+[dotenv] Loaded [33m.env[0m
+[dotenv] Loaded [33m.env[0m
+Started GET "/api/tcc/tcc-1760903327598" for 127.0.0.1 at 2025-10-25 10:16:32 -0300
+  [1m[36mActiveRecord::SchemaMigration Load (98.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='Backend'*/[0m
+Processing by Api::TccController#show as JSON
+  Parameters: {"id"=>"tcc-1760903327598", "tcc"=>{}}
+Completed 401 Unauthorized in 18ms (ActiveRecord: 2770.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/api/work/tcc-1760903327598/content" for 127.0.0.1 at 2025-10-25 10:17:06 -0300
+Processing by Api::WorkContentController#content as JSON
+  Parameters: {"id"=>"tcc-1760903327598", "work_content"=>{}}
+Completed 401 Unauthorized in 2ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/api/work/tcc-1760903327598/content" for 127.0.0.1 at 2025-10-25 10:17:06 -0300
+Processing by Api::WorkContentController#content as JSON
+  Parameters: {"id"=>"tcc-1760903327598", "work_content"=>{}}
+Completed 401 Unauthorized in 4ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/api/work/tcc-1760903327598/save_content" for 127.0.0.1 at 2025-10-25 10:17:08 -0300
+Processing by Api::WorkContentController#save_content as JSON
+  Parameters: {"content"=>{"resumo"=>"", "introducao"=>"", "desenvolvimento"=>"", "conclusao"=>"", "referencias"=>"", "metodologia"=>"", "objetivos"=>"", "justificativa"=>"", "estrutura_0"=>"", "estrutura_1"=>"", "estrutura_2"=>"", "estrutura_3"=>"", "estrutura_4"=>"", "estrutura_5"=>"", "estrutura_6"=>"", "estrutura_7"=>"", "estrutura_8"=>"", "estrutura_9"=>"", "estrutura_10"=>"", "estrutura_11"=>"", "estrutura_12"=>"", "estrutura_13"=>"", "estrutura_14"=>"", "estrutura_15"=>"", "estrutura_16"=>"", "estrutura_17"=>"", "estrutura_18"=>"", "estrutura_19"=>"", "estrutura_20"=>"", "estrutura_21"=>"", "estrutura_22"=>"", "estrutura_23"=>"", "estrutura_24"=>"", "estrutura_25"=>""}, "customFields"=>[], "fieldLabels"=>{}, "fieldOrder"=>["resumo", "introducao", "objetivos", "justificativa", "metodologia", "desenvolvimento", "conclusao", "referencias"], "id"=>"tcc-1760903327598", "work_content"=>{"content"=>{"resumo"=>"", "introducao"=>"", "desenvolvimento"=>"", "conclusao"=>"", "referencias"=>"", "metodologia"=>"", "objetivos"=>"", "justificativa"=>"", "estrutura_0"=>"", "estrutura_1"=>"", "estrutura_2"=>"", "estrutura_3"=>"", "estrutura_4"=>"", "estrutura_5"=>"", "estrutura_6"=>"", "estrutura_7"=>"", "estrutura_8"=>"", "estrutura_9"=>"", "estrutura_10"=>"", "estrutura_11"=>"", "estrutura_12"=>"", "estrutura_13"=>"", "estrutura_14"=>"", "estrutura_15"=>"", "estrutura_16"=>"", "estrutura_17"=>"", "estrutura_18"=>"", "estrutura_19"=>"", "estrutura_20"=>"", "estrutura_21"=>"", "estrutura_22"=>"", "estrutura_23"=>"", "estrutura_24"=>"", "estrutura_25"=>""}, "customFields"=>[], "fieldLabels"=>{}, "fieldOrder"=>["resumo", "introducao", "objetivos", "justificativa", "metodologia", "desenvolvimento", "conclusao", "referencias"]}}
+Completed 401 Unauthorized in 9ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/api/tcc/tcc-1760903327598" for 127.0.0.1 at 2025-10-25 10:20:11 -0300
+Processing by Api::TccController#show as JSON
+  Parameters: {"id"=>"tcc-1760903327598", "tcc"=>{}}
+Completed 401 Unauthorized in 6ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/api/tcc/tcc-1760903327598" for 127.0.0.1 at 2025-10-25 10:22:11 -0300
+Processing by Api::TccController#show as JSON
+  Parameters: {"id"=>"tcc-1760903327598", "tcc"=>{}}
+Completed 401 Unauthorized in 10ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/api/tcc/criar" for 127.0.0.1 at 2025-10-25 10:24:22 -0300
+Processing by Api::TccController#criar as JSON
+  Parameters: {"nome"=>"Ana Clara Lima Gomes", "faculdade"=>"Estácio de Sá", "curso"=>"publicidade", "materia"=>"publicidade", "tema"=>"MARKETING DE INFLUÊNCIA E O IMPACTO NO CONSUMO DIGITAL: UMA ANÁLISE COM APOIO DE PROGRAMAÇÃO PARA COLETA DE DADOS EM REDES SOCIAIS ", "tipo_trabalho"=>"artigo", "tcc"=>{"nome"=>"Ana Clara Lima Gomes", "faculdade"=>"Estácio de Sá", "curso"=>"publicidade", "materia"=>"publicidade", "tema"=>"MARKETING DE INFLUÊNCIA E O IMPACTO NO CONSUMO DIGITAL: UMA ANÁLISE COM APOIO DE PROGRAMAÇÃO PARA COLETA DE DADOS EM REDES SOCIAIS ", "tipo_trabalho"=>"artigo"}}
+Completed 500 Internal Server Error in 29ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+  
+SyntaxError (/home/ana/Documents/Programming/Trilha Clara/AI TCC Effortless/backend/app/services/gemini_service.rb:409: syntax error, unexpected ',', expecting '}'
+      ,
+      ^
+/home/ana/Documents/Programming/Trilha Clara/AI TCC Effortless/backend/app/services/gemini_service.rb:491: syntax error, unexpected '}', expecting ']'
+      },
+      ^
+/home/ana/Documents/Programming/Trilha Clara/AI TCC Effortless/backend/app/services/gemini_service.rb:573: syntax error, unexpected '}', expecting '}'
+    }
+    ^
+):
+  
+app/services/gemini_service.rb:409: syntax error, unexpected ',', expecting '}'
+app/services/gemini_service.rb:491: syntax error, unexpected '}', expecting ']'
+app/services/gemini_service.rb:573: syntax error, unexpected '}', expecting '}'
+app/controllers/api/tcc_controller.rb:47:in `criar'
