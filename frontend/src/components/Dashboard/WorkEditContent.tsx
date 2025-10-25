@@ -6,6 +6,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Textarea } from '@/components/ui/textarea'
 import { Label } from '@/components/ui/label'
 import { TccData } from '@/types/tcc'
+import api from '@/app/api/api'
 import {
   FileText,
   Wand2,
@@ -378,21 +379,10 @@ export default function WorkEditContent({
   useEffect(() => {
     const fetchContent = async () => {
       try {
-        const token = localStorage.getItem('token')
-        if (!token) return
+        const response = await api.get(`/api/work/${workData.id}/content`)
 
-        const response = await fetch(
-          `http://localhost:4000/api/work/${workData.id}/content`,
-          {
-            headers: {
-              Authorization: `Bearer ${token}`,
-              'Content-Type': 'application/json',
-            },
-          },
-        )
-
-        if (response.ok) {
-          const data = await response.json()
+        if (response.status === 200) {
+          const data = response.data
           setContent({
             resumo: data.resumo || '',
             introducao: data.introducao || '',
@@ -539,27 +529,17 @@ export default function WorkEditContent({
 
       setAutoSaveStatus('saving')
       try {
-        const token = localStorage.getItem('token')
-        if (!token) return
-
-        const response = await fetch(
-          `http://localhost:4000/api/work/${workData.id}/save_content`,
+        const response = await api.post(
+          `/api/work/${workData.id}/save_content`,
           {
-            method: 'POST',
-            headers: {
-              Authorization: `Bearer ${token}`,
-              'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-              content: content,
-              customFields: customFields,
-              fieldLabels: fieldLabels,
-              fieldOrder: fieldOrder,
-            }),
+            content: content,
+            customFields: customFields,
+            fieldLabels: fieldLabels,
+            fieldOrder: fieldOrder,
           },
         )
 
-        if (response.ok) {
+        if (response.status === 200) {
           setAutoSaveStatus('saved')
         } else {
           setAutoSaveStatus('error')
@@ -830,34 +810,21 @@ export default function WorkEditContent({
     setSaved(null)
 
     try {
-      const token = localStorage.getItem('token')
-      if (!token) {
-        throw new Error('Token não encontrado')
-      }
-
-      const response = await fetch(
-        `http://localhost:4000/api/work/${workData.id}/generate_content`,
+      const response = await api.post(
+        `/api/work/${workData.id}/generate_content`,
         {
-          method: 'POST',
-          headers: {
-            Authorization: `Bearer ${token}`,
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({
-            field: field,
-            user_ideas: content[field] || '',
-          }),
+          field: field,
+          user_ideas: content[field] || '',
         },
       )
 
-      if (!response.ok) {
+      if (response.status === 200) {
+        setContent((prev) => ({ ...prev, [field]: response.data.content }))
+        setSaved(field)
+        addToHistory()
+      } else {
         throw new Error('Erro ao gerar conteúdo')
       }
-
-      const data = await response.json()
-      setContent((prev) => ({ ...prev, [field]: data.content }))
-      setSaved(field)
-      addToHistory()
     } catch (error) {
       console.error('Erro ao gerar conteúdo:', error)
       // Fallback para conteúdo mock em caso de erro
@@ -894,30 +861,18 @@ export default function WorkEditContent({
 
   const saveContent = async () => {
     try {
-      const token = localStorage.getItem('token')
-      if (!token) {
-        throw new Error('Token não encontrado')
-      }
+      const response = await api.post(`/api/work/${workData.id}/save_content`, {
+        content: content,
+        customFields: customFields,
+        fieldLabels: fieldLabels,
+        fieldOrder: fieldOrder,
+      })
 
-      const response = await fetch(
-        `http://localhost:4000/api/work/${workData.id}/save_content`,
-        {
-          method: 'POST',
-          headers: {
-            Authorization: `Bearer ${token}`,
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({
-            content: content,
-          }),
-        },
-      )
-
-      if (!response.ok) {
+      if (response.status === 200) {
+        setSaved('all')
+      } else {
         throw new Error('Erro ao salvar conteúdo')
       }
-
-      setSaved('all')
     } catch (error) {
       console.error('Erro ao salvar conteúdo:', error)
     }
