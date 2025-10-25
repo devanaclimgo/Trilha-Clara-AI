@@ -72,6 +72,8 @@ interface ContentField {
   required: boolean
   id: string
   isCustom?: boolean
+  isSubsection?: boolean
+  parentId?: string
 }
 
 interface SortableFieldProps {
@@ -85,6 +87,8 @@ interface SortableFieldProps {
   onToggleCollapse: (fieldKey: string) => void
   onLabelChange: (fieldId: string, newLabel: string) => void
   onDeleteField?: (fieldId: string) => void
+  onAddSection?: (afterFieldId: string) => void
+  onAddSubsection?: (parentFieldId: string) => void
   fieldLabels: Record<string, string>
 }
 
@@ -100,6 +104,8 @@ function SortableField({
   onToggleCollapse,
   onLabelChange,
   onDeleteField,
+  onAddSection,
+  onAddSubsection,
   fieldLabels,
 }: SortableFieldProps) {
   const {
@@ -134,16 +140,23 @@ function SortableField({
       style={style}
       className={`${isDragging ? 'opacity-50' : ''} transition-opacity`}
     >
-      <Card className="bg-white/80 backdrop-blur-sm border border-gray-200/20 hover:shadow-md transition-shadow">
+      <Card
+        className={`bg-white/80 backdrop-blur-sm border border-gray-200/20 hover:shadow-md transition-shadow ${
+          field.isSubsection
+            ? 'ml-8 border-l-4 border-l-purple-300 bg-purple-50/30'
+            : ''
+        }`}
+      >
         <CardHeader>
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2 flex-1">
               <div
                 {...attributes}
                 {...listeners}
-                className="cursor-grab hover:cursor-grabbing p-1 hover:bg-purple-100 rounded transition-colors"
+                className="cursor-grab hover:cursor-grabbing p-2 hover:bg-purple-100 rounded transition-colors group"
+                title="Arrastar para reordenar"
               >
-                <GripVertical className="h-4 w-4 text-gray-400 hover:text-purple-600" />
+                <GripVertical className="h-4 w-4 text-gray-400 group-hover:text-purple-600 transition-colors" />
               </div>
               <field.icon className="h-5 w-5 text-purple-600" />
               <div className="flex-1">
@@ -180,6 +193,11 @@ function SortableField({
                     {isFilled && (
                       <div className="w-2 h-2 bg-green-500 rounded-full"></div>
                     )}
+                    {field.isSubsection && (
+                      <span className="text-xs bg-purple-200 text-purple-700 px-2 py-1 rounded-full font-medium">
+                        Subseção
+                      </span>
+                    )}
                   </CardTitle>
                 )}
               </div>
@@ -191,12 +209,17 @@ function SortableField({
                   Salvo
                 </span>
               )}
-              {field.isCustom && onDeleteField && (
+              {onDeleteField && (
                 <Button
                   onClick={() => onDeleteField(field.id)}
                   variant="ghost"
                   size="sm"
                   className="hover:bg-red-100 hover:text-red-600"
+                  title={
+                    field.isCustom
+                      ? 'Deletar seção personalizada'
+                      : 'Deletar seção'
+                  }
                 >
                   <Trash2 className="h-4 w-4" />
                 </Button>
@@ -268,6 +291,32 @@ function SortableField({
           </CardContent>
         )}
       </Card>
+
+      {/* Inline Add Buttons */}
+      <div className="flex justify-center gap-3 mt-4 mb-6">
+        {onAddSection && (
+          <Button
+            onClick={() => onAddSection(field.id)}
+            variant="outline"
+            size="sm"
+            className="border-2 border-dashed border-purple-200 hover:border-purple-400 hover:bg-purple-50 text-purple-600 hover:text-purple-700 transition-all duration-300 hover:scale-105 shadow-sm"
+          >
+            <Plus className="h-4 w-4 mr-2" />
+            Adicionar Seção
+          </Button>
+        )}
+        {onAddSubsection && !field.isSubsection && (
+          <Button
+            onClick={() => onAddSubsection(field.id)}
+            variant="outline"
+            size="sm"
+            className="border-2 border-dashed border-blue-200 hover:border-blue-400 hover:bg-blue-50 text-blue-600 hover:text-blue-700 transition-all duration-300 hover:scale-105 shadow-sm"
+          >
+            <Plus className="h-4 w-4 mr-2" />
+            Adicionar Subseção
+          </Button>
+        )}
+      </div>
     </div>
   )
 }
@@ -618,25 +667,6 @@ export default function WorkEditContent({
     return () => window.removeEventListener('keydown', handleKeyDown)
   }, [undo, redo])
 
-  const addCustomField = () => {
-    const newField: ContentField = {
-      key: `custom_${nextCustomId}`,
-      label: `Nova Seção ${nextCustomId + 1}`,
-      description: 'Desenvolva esta seção do trabalho',
-      placeholder: 'Ex: Conteúdo da seção...',
-      icon: FileText,
-      required: false,
-      id: `custom_${nextCustomId}`,
-      isCustom: true,
-    }
-
-    setCustomFields((prev) => [...prev, newField])
-    setFieldOrder((prev) => [...prev, newField.id])
-    setCollapsedFields((prev) => ({ ...prev, [newField.id]: true }))
-    setNextCustomId((prev) => prev + 1)
-    addToHistory()
-  }
-
   const deleteCustomField = (fieldId: string) => {
     setCustomFields((prev) => prev.filter((field) => field.id !== fieldId))
     setFieldOrder((prev) => prev.filter((id) => id !== fieldId))
@@ -662,6 +692,81 @@ export default function WorkEditContent({
     addToHistory()
   }
 
+  const deleteField = (fieldId: string) => {
+    // Check if it's a default field
+    const defaultFields = [
+      'resumo',
+      'introducao',
+      'desenvolvimento',
+      'conclusao',
+      'referencias',
+      'metodologia',
+      'objetivos',
+      'justificativa',
+    ]
+    const field = contentFields.find((f) => f.id === fieldId)
+
+    if (field && defaultFields.includes(field.key)) {
+      // For default fields, just clear the content
+      setContent((prev) => ({ ...prev, [field.key]: '' }))
+    } else {
+      // For custom fields, delete them completely
+      deleteCustomField(fieldId)
+    }
+  }
+
+  const addSectionAfter = (afterFieldId: string) => {
+    const newField: ContentField = {
+      key: `custom_${nextCustomId}`,
+      label: `Nova Seção ${nextCustomId + 1}`,
+      description: 'Desenvolva esta seção do trabalho',
+      placeholder: 'Ex: Conteúdo da seção...',
+      icon: FileText,
+      required: false,
+      id: `custom_${nextCustomId}`,
+      isCustom: true,
+    }
+
+    setCustomFields((prev) => [...prev, newField])
+
+    // Insert after the specified field
+    const currentIndex = fieldOrder.indexOf(afterFieldId)
+    const newOrder = [...fieldOrder]
+    newOrder.splice(currentIndex + 1, 0, newField.id)
+    setFieldOrder(newOrder)
+
+    setCollapsedFields((prev) => ({ ...prev, [newField.id]: true }))
+    setNextCustomId((prev) => prev + 1)
+    addToHistory()
+  }
+
+  const addSubsection = (parentFieldId: string) => {
+    const newField: ContentField = {
+      key: `custom_${nextCustomId}`,
+      label: `Nova Subseção ${nextCustomId + 1}`,
+      description: 'Desenvolva esta subseção do trabalho',
+      placeholder: 'Ex: Conteúdo da subseção...',
+      icon: FileText,
+      required: false,
+      id: `custom_${nextCustomId}`,
+      isCustom: true,
+      isSubsection: true,
+      parentId: parentFieldId,
+    }
+
+    setCustomFields((prev) => [...prev, newField])
+
+    // Insert after the parent field
+    const currentIndex = fieldOrder.indexOf(parentFieldId)
+    const newOrder = [...fieldOrder]
+    newOrder.splice(currentIndex + 1, 0, newField.id)
+    setFieldOrder(newOrder)
+
+    setCollapsedFields((prev) => ({ ...prev, [newField.id]: true }))
+    setNextCustomId((prev) => prev + 1)
+    addToHistory()
+  }
+
   const sensors = useSensors(
     useSensor(PointerSensor),
     useSensor(KeyboardSensor, {
@@ -673,12 +778,50 @@ export default function WorkEditContent({
     const { active, over } = event
 
     if (over && active.id !== over.id) {
-      setFieldOrder((items) => {
-        const oldIndex = items.indexOf(active.id as string)
-        const newIndex = items.indexOf(over.id as string)
-        return arrayMove(items, oldIndex, newIndex)
-      })
-      addToHistory()
+      const activeField = contentFields.find(
+        (f) => f.id === (active.id as string),
+      )
+      const overField = contentFields.find((f) => f.id === (over.id as string))
+
+      if (activeField && overField) {
+        // Prevent subsections from being dragged to invalid positions
+        if (activeField.isSubsection && overField.isSubsection) {
+          // Both are subsections - allow reordering
+          setFieldOrder((items) => {
+            const oldIndex = items.indexOf(active.id as string)
+            const newIndex = items.indexOf(over.id as string)
+            return arrayMove(items, oldIndex, newIndex)
+          })
+        } else if (activeField.isSubsection && !overField.isSubsection) {
+          // Dragging subsection to main section - move after the main section
+          setFieldOrder((items) => {
+            const oldIndex = items.indexOf(active.id as string)
+            const newIndex = items.indexOf(over.id as string)
+            const newItems = [...items]
+            newItems.splice(oldIndex, 1)
+            newItems.splice(newIndex, 0, active.id as string)
+            return newItems
+          })
+        } else if (!activeField.isSubsection && overField.isSubsection) {
+          // Dragging main section to subsection - move before the subsection
+          setFieldOrder((items) => {
+            const oldIndex = items.indexOf(active.id as string)
+            const newIndex = items.indexOf(over.id as string)
+            const newItems = [...items]
+            newItems.splice(oldIndex, 1)
+            newItems.splice(newIndex, 0, active.id as string)
+            return newItems
+          })
+        } else {
+          // Both are main sections - normal reordering
+          setFieldOrder((items) => {
+            const oldIndex = items.indexOf(active.id as string)
+            const newIndex = items.indexOf(over.id as string)
+            return arrayMove(items, oldIndex, newIndex)
+          })
+        }
+        addToHistory()
+      }
     }
   }
 
@@ -894,7 +1037,9 @@ export default function WorkEditContent({
                   isCollapsed={collapsedFields[field.id] || false}
                   onToggleCollapse={toggleCollapse}
                   onLabelChange={handleLabelChange}
-                  onDeleteField={field.isCustom ? deleteCustomField : undefined}
+                  onDeleteField={deleteField}
+                  onAddSection={addSectionAfter}
+                  onAddSubsection={addSubsection}
                   fieldLabels={fieldLabels}
                 />
               )
@@ -902,18 +1047,6 @@ export default function WorkEditContent({
           </div>
         </SortableContext>
       </DndContext>
-
-      {/* Add Section Button */}
-      <div className="flex justify-center">
-        <Button
-          onClick={addCustomField}
-          variant="outline"
-          className="border-2 border-dashed border-purple-200 hover:border-purple-300 hover:bg-purple-50 text-purple-600 hover:text-purple-700 transition-all duration-300"
-        >
-          <Plus className="h-4 w-4 mr-2" />
-          Adicionar Seção
-        </Button>
-      </div>
 
       {/* Save All Button */}
       <div className="flex justify-center pt-6">
